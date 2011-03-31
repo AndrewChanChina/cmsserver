@@ -10,11 +10,9 @@
 	<property name="dialect">
 		org.hibernate.dialect.MySQLDialect
 	</property>
-	<property name="connection.url">
-		jdbc:mysql://localhost:3306/smit
-	</property>
+	<property name="connection.url">jdbc:mysql://localhost:3306/cmsdb</property>
 	<property name="connection.username">root</property>
-	<property name="connection.password">guns</property>
+	<property name="connection.password">111111</property>
 	<property name="connection.driver_class">
 		com.mysql.jdbc.Driver
 	</property>
@@ -22,6 +20,7 @@
 	<property name="show_sql">true</property>
 	<property name="hbm2ddl.auto">update</property>
 	<mapping resource="com/smit/vo/SmitAdmin.hbm.xml" />
+	<mapping resource="com/smit/vo/SysInfo.hbm.xml" />
 
 </session-factory>
 

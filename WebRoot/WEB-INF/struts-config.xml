@@ -4,12 +4,17 @@
 <struts-config>
   <form-beans>
    <form-bean name="loginForm" type="com.smit.web.LoginForm"></form-bean>
+   <form-bean name="addSysInfoForm" type="com.smit.web.AddSysInfoForm"></form-bean>
   </form-beans>
   <action-mappings>
-  <action path="/login" type="org.springframework.web.struts.DelegatingActionProxy" name="loginForm">
-   <forward name="sucess" path="/sucess.jsp"/>
-     <forward name="fail" path="/fail.jsp"/>
-  </action>
+	  <action path="/login" type="org.springframework.web.struts.DelegatingActionProxy" name="loginForm">
+		<forward name="sucess" path="/sucess.jsp"/>
+		<forward name="fail" path="/fail.jsp"/>
+	  </action>
+	  <action path="/addSysInfo" type="org.springframework.web.struts.DelegatingActionProxy" name="addSysInfoForm">
+		<forward name="sucess" path="/sucess.jsp"/>
+		<forward name="fail" path="/fail.jsp"/>
+	  </action>
   </action-mappings>
   <message-resources parameter="com.smit.web.ApplicationResources" />
 </struts-config>
