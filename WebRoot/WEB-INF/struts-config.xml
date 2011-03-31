@@ -6,7 +6,7 @@
    <form-bean name="loginForm" type="com.smit.web.LoginForm"></form-bean>
   </form-beans>
   <action-mappings>
-  <action path="/login" type="org.springframework.web.struts.DelegatingActionProxy" name="loginForm">
+  <action path="/login" type="org.springframework.web.struts.DelegatingActionProxy" name="loginForm" >
    <forward name="sucess" path="/sucess.jsp"/>
      <forward name="fail" path="/fail.jsp"/>
   </action>

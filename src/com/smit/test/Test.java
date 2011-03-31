@@ -7,6 +7,8 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
+import com.smit.vo.User;
+
 public class Test extends HibernateDaoSupport {
 	public static void main(String[] args){
 		Configuration cfg = new Configuration().configure();
@@ -19,8 +21,18 @@ public class Test extends HibernateDaoSupport {
 		List list = session.createQuery(hql).list();
 		if(list.size() > 0 ){
 			System.out.println("ksksksk");
-		}else 
-		System.out.println("DCCC");
+		}else {
+			System.out.println("DCCC");
+	    }
+		User user = new User();
+		user.setUserName("guns");
+		user.setPassword("123456");
+		user.setEmail("ligm@szmg.com.cn");
+		user.setExplain("supper admin");
+		user.setTel("254122");
+		user.setState(0);
+		session.save(user);
+		session.beginTransaction().commit();
 	}
 
 }
