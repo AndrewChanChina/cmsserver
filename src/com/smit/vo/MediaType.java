@@ -1,6 +1,8 @@
 package com.smit.vo;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 public class MediaType implements Serializable {
 
@@ -16,6 +18,15 @@ public class MediaType implements Serializable {
 	private Integer topid;
 	private Integer father_id;
 	private Integer isspecial;//0:是专辑，1:不是专辑
+	private Set<Media> medias = new HashSet<Media>();
+	
+
+	public Set<Media> getMedias() {
+		return medias;
+	}
+	public void setMedias(Set<Media> medias) {
+		this.medias = medias;
+	}
 	public Integer getId() {
 		return id;
 	}

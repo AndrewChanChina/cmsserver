@@ -13,7 +13,7 @@ public class Media implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	private Integer id;
-	private Integer tid;
+	private MediaType mediaType;
 	private String fileName;
 	private String path;
 	private String source;
@@ -25,11 +25,12 @@ public class Media implements Serializable {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	public Integer getTid() {
-		return tid;
+	
+	public MediaType getMediaType() {
+		return mediaType;
 	}
-	public void setTid(Integer tid) {
-		this.tid = tid;
+	public void setMediaType(MediaType mediaType) {
+		this.mediaType = mediaType;
 	}
 	public String getFileName() {
 		return fileName;

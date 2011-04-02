@@ -1,6 +1,8 @@
 package com.smit.vo;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Part implements Serializable {
 
@@ -15,6 +17,13 @@ public class Part implements Serializable {
 	private String typename;
 	private Integer topid;
 	private Integer father_id;
+	public Set<Content> getContents() {
+		return contents;
+	}
+	public void setContents(Set<Content> contents) {
+		this.contents = contents;
+	}
+	private Set<Content> contents = new HashSet<Content>();
 	public Integer getId() {
 		return id;
 	}

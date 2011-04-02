@@ -23,6 +23,13 @@
 	<property name="hbm2ddl.auto">update</property>
 	<mapping resource="com/smit/vo/SmitAdmin.hbm.xml" />
 	<mapping resource="com/smit/vo/User.hbm.xml" />
+	<mapping resource="com/smit/vo/Group.hbm.xml" />
+	<mapping resource="com/smit/vo/Purview.hbm.xml" />
+	<mapping resource="com/smit/vo/SysInfo.hbm.xml" />
+	<mapping resource="com/smit/vo/Part.hbm.xml" />
+	<mapping resource="com/smit/vo/Content.hbm.xml" />
+	<mapping resource="com/smit/vo/Media.hbm.xml" />
+	<mapping resource="com/smit/vo/MediaType.hbm.xml" />
 
 </session-factory>
 

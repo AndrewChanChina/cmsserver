@@ -16,7 +16,7 @@ public class Content implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private Integer id;
 	private String title;
-	private Integer tid;
+	private Part part;
 	private String excerpt;
 	private String tags;
 	private String source;
@@ -40,11 +40,12 @@ public class Content implements Serializable {
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	public Integer getTid() {
-		return tid;
+	
+	public Part getPart() {
+		return part;
 	}
-	public void setTid(Integer tid) {
-		this.tid = tid;
+	public void setPart(Part part) {
+		this.part = part;
 	}
 	public String getExcerpt() {
 		return excerpt;

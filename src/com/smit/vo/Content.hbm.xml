@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
 <hibernate-mapping>
-<class name="com.smit.vo.Cotent" table="content">
+<class name="com.smit.vo.Content" table="content">
  <id name="id">
  <generator class="native"></generator>
  </id>
@@ -11,13 +11,13 @@
  <property name="excerpt"/>
   <property name="tags"/>
    <property name="source"/>
-    <property name="creatime" />
+    <property name="createtime" />
  <property name="langType"/>
   <property name="putter"/>
-   <property name="sourRank" />
+   <property name="sortRank" column="sortrank"/>
  <property name="prime"/>
   <property name="onclickCount"/>
-   <property name="tid" />
+   <many-to-one name="part" class="com.smit.vo.Part" column="pid"></many-to-one>
 
 </class>
 </hibernate-mapping>

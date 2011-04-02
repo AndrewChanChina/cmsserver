@@ -17,6 +17,13 @@ public class User implements Serializable {
 	private String tel;//联系方式
 	private String explain;//用户说明
 	private Integer state;//0:冻结状态；1：激活状态
+	private Group group;//用户组ID
+	public Group getGroup() {
+		return group;
+	}
+	public void setGroup(Group group) {
+		this.group = group;
+	}
 	public String getExplain() {
 		return explain;
 	}

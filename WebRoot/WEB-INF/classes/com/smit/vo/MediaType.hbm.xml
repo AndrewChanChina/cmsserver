@@ -5,10 +5,13 @@
  <id name="id">
  <generator class="native"></generator>
  </id>
- <property name="typename" />
+ <property name="typeName" column="typename" />
  <property name="isspecial"/>
   <property name="topid" />
  <property name="father_id"/>
- 
+ <set name="medias" table="media" lazy="true" inverse="true" cascade="all">
+  <key column="tid"></key>
+  <one-to-many class="com.smit.vo.Media" />
+ </set>
 </class>
 </hibernate-mapping>
