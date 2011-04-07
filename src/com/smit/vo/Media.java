@@ -8,12 +8,14 @@ public class Media implements Serializable {
 	/**
 	 * @author ligm
 	 * @date 2011-3-11
-	 * @class Ã½Ìå×ÊÔ´Àà
-	 * @params tid:Ã½Ìå×ÊÔ´ËùÔÚµÄ·ÖÀà»òÕß×¨¼­£¬fileName£ºÎÄ¼þÃû³Æ £¬path£ºÎÄ¼þ´æ·ÅÂ·¾¶£¬source£ºÎÄ¼þÀ´Ô´£¬sortRank£ºÅÅÁÐ£¬createtime£º´´½¨Ê±¼ä
+	 * @class Ã½ï¿½ï¿½ï¿½ï¿½Ô´ï¿½ï¿½
+	 * @params tid:Ã½ï¿½ï¿½ï¿½ï¿½Ô´ï¿½ï¿½ï¿½ÚµÄ·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×¨ï¿½ï¿½ï¿½ï¿½fileNameï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½pathï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½Â·ï¿½ï¿½ï¿½ï¿½sourceï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½Ô´ï¿½ï¿½sortRankï¿½ï¿½ï¿½ï¿½ï¿½Ð£ï¿½createtimeï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
 	 */
 	private static final long serialVersionUID = 1L;
 	private Integer id;
-	private Integer tid;
+
+	private MediaType mediaType;
+
 	private String fileName;
 	private String path;
 	private String source;
@@ -25,11 +27,14 @@ public class Media implements Serializable {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	public Integer getTid() {
-		return tid;
+
+	
+	public MediaType getMediaType() {
+		return mediaType;
 	}
-	public void setTid(Integer tid) {
-		this.tid = tid;
+	public void setMediaType(MediaType mediaType) {
+		this.mediaType = mediaType;
+
 	}
 	public String getFileName() {
 		return fileName;

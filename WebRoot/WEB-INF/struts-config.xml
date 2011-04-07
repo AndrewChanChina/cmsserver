@@ -11,6 +11,7 @@
   	<forward name="success" path="/sucess.jsp"/>
   </global-forwards>
   <action-mappings>
+
 	  <action path="/login.do" type="org.springframework.web.struts.DelegatingActionProxy" name="loginForm">
 		<forward name="sucess" path="/sucess.jsp"/>
 		<forward name="fail" path="/fail.jsp"/>
@@ -23,6 +24,7 @@
 	  </action>
 	  <action path="/Delete.do" type="com.smit.web.DeleteSysInfoAction">
 	  </action>
+
   </action-mappings>
   <message-resources parameter="com.smit.web.ApplicationResources" />
 </struts-config>

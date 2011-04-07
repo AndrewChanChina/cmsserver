@@ -2,6 +2,8 @@
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+response.sendRedirect("login.do");
+//return;
 %>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
@@ -26,5 +28,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                        密码：<input type="password" name="passwd"/><br/>
               <input type="submit" value="提交"/>
      </form>
+    
   </body>
 </html>

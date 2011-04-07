@@ -8,24 +8,26 @@ public class Content implements Serializable {
 	/**
 	 * @author ligm
 	 * @date 2011-3-31
-	 * @class ÄÚÈİÀà
-	 * @params   tid:ÄÚÈİËùÔÚµÄÀ¸Ä¿ID,title:ÄÚÈİ±êÌâ,excerpt:ÄÚÈİÕªÒª
-	 *           tags:ÄÚÈİ±êÇ©,content:ÄÚÈİ,author_id:ÄÚÈİµÄ×÷ÕßID,putter:ÄÚÈİÊÇ·ñÖÃ¶¥;onclickcount:ÄÚÈİ·ÃÎÊÁ¿
-	 *           source:ÄÚÈİÀ´Ô´,langtype:ÄÚÈİÓïÑÔÀàĞÍ,sortrank:ÄÚÈİÅÅÁĞ,prime:ÄÚÈİÊÇ·ñ¼Ó¾«»ª,cteatetime:ÄÚÈİ´´½¨Ê±¼ä
+	 * @class ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	 * @params   tid:ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Úµï¿½ï¿½ï¿½Ä¿ID,title:ï¿½ï¿½ï¿½İ±ï¿½ï¿½ï¿½,excerpt:ï¿½ï¿½ï¿½ï¿½ÕªÒª
+	 *           tags:ï¿½ï¿½ï¿½İ±ï¿½Ç©,content:ï¿½ï¿½ï¿½ï¿½,author_id:ï¿½ï¿½ï¿½İµï¿½ï¿½ï¿½ï¿½ï¿½ID,putter:ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ï¿½Ã¶ï¿½;onclickcount:ï¿½ï¿½ï¿½İ·ï¿½ï¿½ï¿½ï¿½ï¿½
+	 *           source:ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô´,langtype:ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½,sortrank:ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½,prime:ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½Ó¾ï¿½ï¿½ï¿½,cteatetime:ï¿½ï¿½ï¿½İ´ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
 	 */
 	private static final long serialVersionUID = 1L;
 	private Integer id;
 	private String title;
-	private Integer tid;
+
+	private Part part;
+
 	private String excerpt;
 	private String tags;
 	private String source;
 	private Integer author_id;
 	private String content;
-	private Integer putter;//0£ºÊÇ£¬1£º·ñ
+	private Integer putter;//0ï¿½ï¿½ï¿½Ç£ï¿½1ï¿½ï¿½ï¿½ï¿½
 	private Integer onclickCount;
-	private Integer langType;//0:ÖĞÎÄ;1:Ó¢ÎÄ
-	private Integer prime;//0£ºÊÇ£¬1£º·ñ
+	private Integer langType;//0:ï¿½ï¿½ï¿½ï¿½;1:Ó¢ï¿½ï¿½
+	private Integer prime;//0ï¿½ï¿½ï¿½Ç£ï¿½1ï¿½ï¿½ï¿½ï¿½
 	private Integer sortRank;
 	private Timestamp createtime;
 	public Integer getId() {
@@ -40,11 +42,13 @@ public class Content implements Serializable {
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	public Integer getTid() {
-		return tid;
+
+	public Part getPart() {
+		return part;
 	}
-	public void setTid(Integer tid) {
-		this.tid = tid;
+	public void setPart(Part part) {
+		this.part = part;
+
 	}
 	public String getExcerpt() {
 		return excerpt;

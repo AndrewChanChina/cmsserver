@@ -5,11 +5,13 @@
  <id name="id">
  <generator class="native"></generator>
  </id>
- <property name="filename" />
+
+ <property name="fileName" column="filename" />
  <property name="path"/>
   <property name="createtime" />
  <property name="source"/>
-  <property name="tid"/>
-   <property name="sortRank"/>
+   <property name="sortRank" column="sortrank"/>
+   <many-to-one name="mediaType" class="com.smit.vo.MediaType" column="tid"></many-to-one>
+
 </class>
 </hibernate-mapping>

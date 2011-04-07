@@ -5,7 +5,7 @@
  <id name="id">
  <generator class="native"></generator>
  </id>
- <property name="userName"></property>
+ <property name="userName" ></property>
  <property name="passwd"></property>
 </class>
 </hibernate-mapping>

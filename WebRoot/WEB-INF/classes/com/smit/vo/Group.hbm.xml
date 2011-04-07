@@ -1,14 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
 <hibernate-mapping>
-<class name="com.smit.vo.Group" table="group">
+
+<class name="com.smit.vo.Group" table="smit_group">
  <id name="id">
  <generator class="native"></generator>
  </id>
- <property name="groupName" />
- <property name="purview_id"/>
+ <property name="groupName" column="groupname"/>
+
   <property name="createtime" />
- <property name="uid"/>
   <property name="sortRank"/>
+  <set name="users" table="user" lazy="true" inverse="true" cascade="all">
+   <key column="gid" />
+   <one-to-many class="com.smit.vo.User"/>
+  </set>
+  <set name="purviews" table="group_purview" lazy="true" >
+  <key column="gid" />
+  <many-to-many class="com.smit.vo.Purview" column="pid"></many-to-many>
+  </set>
+
 </class>
 </hibernate-mapping>

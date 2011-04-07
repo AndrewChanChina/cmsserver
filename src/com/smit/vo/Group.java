@@ -3,18 +3,23 @@ package com.smit.vo;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class Group implements Serializable {
 
 	/**
 	 * @author ligm
 	 * @date 2011-3-31
-	 * @class Group ÓÃ»§×éÀà
+	 * @class Group ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½
 	 */
 	private static final long serialVersionUID = 1L;
 	private Integer id;
 	private String groupName;
-	private Integer uid;
-	private Integer purview_id;
+
+	private Set<User> users = new HashSet<User>();
+	private Set<Purview> purviews = new HashSet<Purview>();
+
 	private Timestamp createtime;
 	private Integer sortRank;
 	public Integer getId() {
@@ -29,17 +34,22 @@ public class Group implements Serializable {
 	public void setGroupName(String groupName) {
 		this.groupName = groupName;
 	}
-	public Integer getUid() {
-		return uid;
+
+	
+	
+	
+	
+	public Set<Purview> getPurviews() {
+		return purviews;
 	}
-	public void setUid(Integer uid) {
-		this.uid = uid;
+	public void setPurviews(Set<Purview> purviews) {
+		this.purviews = purviews;
 	}
-	public Integer getPurview_id() {
-		return purview_id;
+	public void setUsers(Set<User> users) {
+		this.users = users;
 	}
-	public void setPurview_id(Integer purview_id) {
-		this.purview_id = purview_id;
+	public Set<User> getUsers() {
+		return users;
 	}
 	public Timestamp getCreatetime() {
 		return createtime;

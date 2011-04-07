@@ -10,12 +10,13 @@
   <StrutsActivity path="sucess.jsp" location="650,250" dimension="100,48" />
   <StrutsActivity path="/login" location="950,250" dimension="76,48" />
   <StrutsActivity path="/Welcome" location="50,350" dimension="88,48" />
-  <StrutsActivity path="/Edit.do.do" />
-  <StrutsActivity path="/Delete.do.do" />
+  <StrutsActivity path="/Edit.do.do" location="350,350" dimension="226,84" />
+  <StrutsActivity path="/Delete.do.do" location="650,350" dimension="238,84" />
   <StrutsTransition id="/login.do.do,sucess,/sucess.jsp,1" routingType="0">
     <AutomaticBendpoints>
-      <AbsolutePoint location="0,0" />
-      <AbsolutePoint location="403,74" />
+      <AbsolutePoint location="229,550" />
+      <AbsolutePoint location="229,74" />
+      <AbsolutePoint location="350,74" />
     </AutomaticBendpoints>
   </StrutsTransition>
   <StrutsTransition id="/addSysInfo.do,sucess,/sucess.jsp,1" routingType="0">
@@ -39,8 +40,10 @@
   </StrutsTransition>
   <StrutsTransition id="/login.do.do,fail,/fail.jsp,1" routingType="0">
     <AutomaticBendpoints>
-      <AbsolutePoint location="0,0" />
-      <AbsolutePoint location="697,74" />
+      <AbsolutePoint location="408,592" />
+      <AbsolutePoint location="621,592" />
+      <AbsolutePoint location="621,74" />
+      <AbsolutePoint location="650,74" />
     </AutomaticBendpoints>
   </StrutsTransition>
 </FlowViewLayout>

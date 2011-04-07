@@ -12,6 +12,7 @@ import com.smit.service.LoginService;
 
 public class LoginAction extends Action {
    private LoginService loginService;
+  
    
 	public void setLoginService(LoginService loginService) {
 		this.loginService = loginService;
@@ -21,12 +22,13 @@ public class LoginAction extends Action {
 	public ActionForward execute(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
+		
 		LoginForm loginForm = (LoginForm)form;
 		System.out.println(loginForm.getPasswd());
 		System.out.println(loginForm.getUserName());
 		if(loginService.login(loginForm.getUserName(), loginForm.getPasswd())){
 			return mapping.findForward("sucess");
-			
+		
 			
 		} else 
 		return mapping.findForward("fail");

@@ -2,19 +2,32 @@ package com.smit.vo;
 
 import java.io.Serializable;
 
+import java.util.HashSet;
+import java.util.Set;
+
+
 public class Part implements Serializable {
 
 	/**
 	 * @author ligm
 	 * @date 2011-3-31
-	 * @class À¸Ä¿Àà
-	 * @params topid:¶¥¼¶À¸Ä¿ID,father_id:ÉÏ¼¶À¸Ä¿ID£¬typename:À¸Ä¿Ãû³Æ
+	 * @class ï¿½ï¿½Ä¿ï¿½ï¿½
+	 * @params topid:ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¿ID,father_id:ï¿½Ï¼ï¿½ï¿½ï¿½Ä¿IDï¿½ï¿½typename:ï¿½ï¿½Ä¿ï¿½ï¿½ï¿½
 	 */
 	private static final long serialVersionUID = 1L;
 	private Integer id;
 	private String typename;
 	private Integer topid;
 	private Integer father_id;
+
+	public Set<Content> getContents() {
+		return contents;
+	}
+	public void setContents(Set<Content> contents) {
+		this.contents = contents;
+	}
+	private Set<Content> contents = new HashSet<Content>();
+
 	public Integer getId() {
 		return id;
 	}
