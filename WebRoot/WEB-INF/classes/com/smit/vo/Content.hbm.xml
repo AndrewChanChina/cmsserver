@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+<class name="com.smit.vo.Cotent" table="content">
+ <id name="id">
+ <generator class="native"></generator>
+ </id>
+ <property name="author_id" />
+ <property name="title"/>
+  <property name="content" />
+ <property name="excerpt"/>
+  <property name="tags"/>
+   <property name="source"/>
+    <property name="creatime" />
+ <property name="langType"/>
+  <property name="putter"/>
+   <property name="sourRank" />
+ <property name="prime"/>
+  <property name="onclickCount"/>
+   <property name="tid" />
+
+</class>
+</hibernate-mapping>
