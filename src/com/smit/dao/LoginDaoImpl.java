@@ -10,6 +10,7 @@ public class LoginDaoImpl extends HibernateDaoSupport implements LoginDao {
 	public boolean getAdminMsg(String userName,String passwd) {
 		String hql = "from com.smit.vo.SmitAdmin s where userName='" + userName + "' and passwd='" + passwd + "'";
 		List list = this.getHibernateTemplate().find(hql);
+		
 		System.out.println(list.size());
 		if(list.size() > 0 ){
 			return true;
