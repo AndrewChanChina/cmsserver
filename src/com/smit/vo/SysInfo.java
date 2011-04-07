@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public class SysInfo implements Serializable{
 	
-	private int id;
+	private Integer id;
 	private String infoKey;
 	private String infoValue;
 	
@@ -20,11 +20,20 @@ public class SysInfo implements Serializable{
 	public void setInfoValue(String infoValue) {
 		this.infoValue = infoValue;
 	}
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
+	public void resetInfoKey(String key)
+	{
+		infoKey = key;
+	}
+	
+	public void resetInfoValue(String value)
+	{
+		infoValue = value;
+	}
 }

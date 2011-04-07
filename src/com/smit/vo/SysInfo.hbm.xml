@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
-<hibernate-mapping>
-<class name="com.smit.vo.SysInfo" table="sysinfo">
+<hibernate-mapping package="com.smit.vo">
+<class name="SysInfo" table="sysinfo">
  <id name="id">
- <generator class="native"></generator>
+ 	<generator class="native"></generator>
  </id>
- <property name="id"></property>
- <property name="info_key"></property>
- <property name="info_value"></property>
+ <property name="infoKey" column="info_key"></property>
+ <property name="infoValue" column="info_value"></property>
 </class>
 </hibernate-mapping>

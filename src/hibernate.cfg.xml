@@ -18,6 +18,7 @@
 	</property>
 	<property name="myeclipse.connection.profile">smit</property>
 	<property name="show_sql">true</property>
+	<property name="connection.autocommit">true</property>
 	<property name="hbm2ddl.auto">update</property>
 	<mapping resource="com/smit/vo/SmitAdmin.hbm.xml" />
 	<mapping resource="com/smit/vo/SysInfo.hbm.xml" />
