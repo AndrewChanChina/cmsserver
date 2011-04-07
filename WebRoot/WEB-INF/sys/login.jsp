@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-<title>系统登录</title>
+<title>login</title>
 <link href="./css/admin.css" rel="stylesheet" type="text/css"/>
 <link href="./css/theme.css" rel="stylesheet" type="text/css"/>
 <link href="./css/jquery.validate.css" rel="stylesheet" type="text/css"/>
@@ -58,11 +58,11 @@ $(function() {
                 <table width="100%" border="0" align="center" cellpadding="0" cellspacing="5">
                     <tr>
                       <td width="91" height="40" align="right"><strong>用户名：</strong></td>
-                      <td width="211"><input type="input" id="username" name="username" vld="" maxlength="100" class="input"/></td>
+                      <td width="211"><input type="input" id="userName" name="userName" vld="" maxlength="100" class="input"/></td>
                     </tr>
                     <tr>
                       <td height="40" align="right"><strong>密码：</strong></td>
-                      <td><input name="password" type="password" id="password" maxlength="32" vld="{required:true}" class="input"/></td>
+                      <td><input name="passwd" type="password" id="passwd" maxlength="32" vld="{required:true}" class="input"/></td>
                     </tr>
                 
                     <tr>
@@ -70,7 +70,7 @@ $(function() {
                       <td><input name="captcha" type="text" id="captcha" vld="" class="input"/></td>
                     </tr>
 					 <tr>
-                    	<td colspan="2" align="center">验证码图片</td>
+                    	<td colspan="2" align="center">不区分大小写</td>
                     </tr>
                     <tr>
                       <td height="40" colspan="2" align="center">

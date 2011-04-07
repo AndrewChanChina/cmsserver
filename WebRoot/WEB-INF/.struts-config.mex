@@ -3,10 +3,26 @@
   <StrutsActivity path="/login.do" location="50,50" dimension="190,84" />
   <StrutsActivity path="/sucess.jsp" location="350,50" dimension="106,48" />
   <StrutsActivity path="/fail.jsp" location="650,50" dimension="94,48" />
+  <StrutsActivity path="/WEB-INF/sys/login.jsp" location="350,150" dimension="172,48" />
+  <StrutsActivity path="/login.jsp" location="950,50" dimension="100,48" />
   <StrutsTransition id="/login.do,sucess,/sucess.jsp,1" routingType="0">
     <AutomaticBendpoints>
       <AbsolutePoint location="0,0" />
       <AbsolutePoint location="0,0" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/login.do,login,/fail.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="240,113" />
+      <AbsolutePoint location="697,113" />
+      <AbsolutePoint location="697,98" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/login.do,login,/WEB-INF/sys/login.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="145,134" />
+      <AbsolutePoint location="145,174" />
+      <AbsolutePoint location="350,174" />
     </AutomaticBendpoints>
   </StrutsTransition>
   <StrutsTransition id="/login.do,fail,/fail.jsp,1" routingType="0">

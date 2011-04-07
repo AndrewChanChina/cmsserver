@@ -4,12 +4,19 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:p="http://www.springframework.org/schema/p"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
-   <bean id="loginService" class="com.smit.service.LoginServiceImpl">
+  
+
+   <bean id="smitLoginService" class="com.smit.service.SmitLoginService">
+   	<property name="smitLogin" ref="smitLogin"></property></bean>    
+   <bean id="smitLogin" class="com.smit.dao.SmitLogin" >
+   	<property name="sessionFactory" ref="sessionFactory"></property></bean>
+   <bean name="/login" class="com.smit.web.SmitLoginAction" scope="prototype" >
+  	<property name="smitLoginService" ref="smitLoginService"></property>
+   </bean>
+  
+     <bean id="loginService" class="com.smit.service.LoginServiceImpl">
    <property name="loginDao" ref="loginDao"></property>
    </bean>
-  <bean name="/login" class="com.smit.web.LoginAction" scope="prototype" >
-  <property name="loginService" ref="loginService"></property>
-  </bean>
   <bean id="loginDao" class="com.smit.dao.LoginDaoImpl">
   <property name="sessionFactory" ref="sessionFactory"></property>
   </bean>

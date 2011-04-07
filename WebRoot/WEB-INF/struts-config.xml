@@ -8,7 +8,8 @@
   <action-mappings>
   <action path="/login" type="org.springframework.web.struts.DelegatingActionProxy" name="loginForm" >
    <forward name="sucess" path="/sucess.jsp"/>
-     <forward name="fail" path="/fail.jsp"/>
+   <forward name="fail" path="/fail.jsp"/>
+   <forward name="login" path="/WEB-INF/sys/login.jsp"/>
   </action>
   </action-mappings>
   <message-resources parameter="com.smit.web.ApplicationResources" />
