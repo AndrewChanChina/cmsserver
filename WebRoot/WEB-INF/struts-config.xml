@@ -6,12 +6,19 @@
    <form-bean name="loginForm" type="com.smit.web.LoginForm"></form-bean>
   </form-beans>
   <action-mappings>
-  <action path="/login" type="org.springframework.web.struts.DelegatingActionProxy" name="loginForm" >
+  <action path="/login" type="org.springframework.web.struts.DelegatingActionProxy" 
+  name="loginForm" input="/index.jsp">
    <forward name="sucess" path="/sucess.jsp"/>
      <forward name="fail" path="/fail.jsp"/>
   </action>
   </action-mappings>
   <message-resources parameter="com.smit.web.ApplicationResources" />
+  
+  <plug-in className="org.apache.struts.validator.ValidatorPlugIn" >
+	<set-property property="pathnames"
+	value="/WEB-INF/validator-rules.xml, /WEB-INF/validator-user.xml"/> 
+  </plug-in>
+   
 </struts-config>
 
 
