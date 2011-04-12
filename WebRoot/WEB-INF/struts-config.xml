@@ -34,9 +34,19 @@
   </action>
   <action path="/welcome" type="com.smit.web.WelcomeAction">   
   </action>
+  
+  <!-- language -->
+  <action
+			path="/Locale"
+			type="com.smit.web.LanguageSelectAction"
+			parameter="method"
+			validate="false"
+			>
+			<forward name="success" path="/language.jsp"/>
+		</action>
   </action-mappings>
   
-  <message-resources parameter="com.smit.web.ApplicationResources" />
+  <message-resources parameter="com.smit.web.res.ApplicationResources" />
   
   <plug-in className="org.apache.struts.validator.ValidatorPlugIn" >
 	<set-property property="pathnames"
