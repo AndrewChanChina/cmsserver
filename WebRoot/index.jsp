@@ -1,8 +1,12 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@taglib uri="http://struts.apache.org/tags-bean" prefix="bean"%>
+<%@taglib uri="http://struts.apache.org/tags-logic" prefix="logic"%>
+<%@taglib uri="http://struts.apache.org/tags-html" prefix="html"%>
+
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
-response.sendRedirect("login.do");
+//response.sendRedirect("login.do");
 //return;
 %>
 
@@ -23,9 +27,13 @@ response.sendRedirect("login.do");
   </head>
   
   <body>
+  	<font color="red">
+		<html:errors/>
+  	</font>
      <form action="login.do" method="post">
                   用户名：<input type="text" name="userName"/><br/>
                        密码：<input type="password" name="passwd"/><br/>
+                       密码：<input type="password" name="passwd2"/><br/>
               <input type="submit" value="提交"/>
      </form>
     
