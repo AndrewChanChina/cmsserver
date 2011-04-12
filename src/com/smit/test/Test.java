@@ -1,24 +1,15 @@
 package com.smit.test;
 
-import java.sql.Timestamp;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
+import org.hibernate.HibernateException;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
-import com.smit.vo.Group;
 import com.smit.vo.User;
 
 public class Test extends HibernateDaoSupport {
 	public static void main(String[] args){
-		Configuration cfg = new Configuration().configure();
-		SessionFactory factory = cfg.buildSessionFactory();
-		Session session = factory.openSession();
+//		Configuration cfg = new Configuration().configure();
+//		SessionFactory factory = cfg.buildSessionFactory();
+//		Session session = factory.openSession();
 //		String userName = "admin";
 //		String passwd = "admin";
 //		String hql = "from com.smit.vo.SmitAdmin s where userName='" + userName + "' and passwd='" + passwd + "'";
@@ -66,6 +57,18 @@ public class Test extends HibernateDaoSupport {
 //		Group group = (Group)session.load(Group.class, 2);
 //		session.delete(group);
 //		session.beginTransaction().commit();
+		
+		User user = new User();
+		user.setUserName("kkkdk");		
+		user.setEmail("kddkdk");
+		Test t = new Test();
+		try {
+			
+			t.getHibernateTemplate().save(user);
+		}catch(HibernateException e){
+			e.printStackTrace();
+			
+		}
 		
 	}
 

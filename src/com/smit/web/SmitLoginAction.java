@@ -4,46 +4,60 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
+import org.apache.struts.actions.MappingDispatchAction;
 
-import com.smit.service.SmitLoginService;
+import com.smit.service.ISmitLoginService;
 import com.smit.util.Constants;
+import com.smit.web.form.SmitLoginForm;
 
 /**
  * smit login control
  * @author chenyzpower@gmail.com
  * @since 
  */
-public class SmitLoginAction extends Action {
-
-	private final static String LOGIN_SUC = "loginSuc";
-	private SmitLoginService smitLoginService;
+public class SmitLoginAction extends MappingDispatchAction {
 	
-	public SmitLoginService getSmitLoginService() {
+	private ISmitLoginService smitLoginService;
+	
+	public ISmitLoginService getSmitLoginService() {
 		return smitLoginService;
 	}
-	public void setSmitLoginService(SmitLoginService smitLoginService) {
+	public void setSmitLoginService(ISmitLoginService smitLoginService) {
 		this.smitLoginService = smitLoginService;
 	}
 	
-	@Override
-	public ActionForward execute(ActionMapping mapping, ActionForm form,
+
+	public ActionForward login(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		HttpSession session = request.getSession();
-		String loginSuc = (String)session.getAttribute(LOGIN_SUC);
+		String loginSuc = (String)session.getAttribute(Constants.LOGIN_SUC);
 
-		LoginForm loginForm = (LoginForm)form;
+		SmitLoginForm loginForm = (SmitLoginForm)form;
+		if(form == null){
+			return mapping.findForward("login");
+		}
+		
 		System.out.println(loginForm.getPasswd());
 		System.out.println(loginForm.getUserName());
 		if(smitLoginService.login(loginForm.getUserName(), loginForm.getPasswd())){
-			session.setAttribute(LOGIN_SUC, Constants.SUCCESS);
+			session.setAttribute(Constants.LOGIN_SUC, Constants.SUCCESS);
 			return mapping.findForward("sucess");
 		} else 
 		return mapping.findForward("login");
 	}
+	public ActionForward logout(ActionMapping mapping,ActionForm form,
+		   HttpServletRequest request,HttpServletResponse response) 
+           throws Exception {
+ 
+		HttpSession session = request.getSession();
+		session.setAttribute(Constants.LOGIN_SUC,null);
+	    return mapping.findForward("login");
+	}
+	 
+
 	
 }

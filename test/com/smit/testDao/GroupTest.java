@@ -33,16 +33,17 @@ public class GroupTest extends TestCase {
 	
 	public void testAdd(){
 		User user = new User();
-		user.setUserName(new String("Àî¹âÃ÷"));
+		user.setUserName(new String("ï¿½ï¿½ï¿½ï¿½ï¿½"));
 		user.setExplain("KDKKDKD");
 		Group group = new Group();
 		group.setGroupName("edior");
 		group.setSortRank(100);
         group.setCreatetime(new Timestamp(new Date().getTime()));
-        Set<User> users = new HashSet<User>();
-        users.add(user);
-        group.setUsers(users);
-		session.save(group);
+       // Set<User> users = new HashSet<User>();
+       // users.add(user);
+        //group.setUsers(users);
+        user.setGroup(group);
+		session.save(user);
 		session.beginTransaction().commit();
 	}
 	

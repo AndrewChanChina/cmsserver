@@ -2,16 +2,39 @@
 <!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.3//EN" "http://struts.apache.org/dtds/struts-config_1_3.dtd">
 
 <struts-config>
+
   <form-beans>
    <form-bean name="loginForm" type="com.smit.web.LoginForm"></form-bean>
+   <form-bean name="smitLoginForm" type="com.smit.web.form.SmitLoginForm"></form-bean>
+   <form-bean name="registerForm" type="com.smit.web.form.RegisterForm"></form-bean>
   </form-beans>
+  
+  <global-forwards>
+  	<forward name="register" path="/register.jsp"/>
+    <forward name="login" path="/login.jsp"/>
+  </global-forwards>
+  
   <action-mappings>
-  <action path="/login" type="org.springframework.web.struts.DelegatingActionProxy" name="loginForm" >
+  <action path="/login1" type="org.springframework.web.struts.DelegatingActionProxy" name="loginForm" >
    <forward name="sucess" path="/sucess.jsp"/>
    <forward name="fail" path="/fail.jsp"/>
-   <forward name="login" path="/WEB-INF/sys/login.jsp"/>
+  </action>
+  <action path="/login" type="org.springframework.web.struts.DelegatingActionProxy" 
+  name="smitLoginForm" parameter="login">
+   <forward name="sucess" path="/sucess.jsp"/>
+   <forward name="fail" path="/fail.jsp"/>
+  </action>
+  <action path="/logout" type="org.springframework.web.struts.DelegatingActionProxy"
+  		  parameter="logout">
+  </action>
+  <action path="/register" type="org.springframework.web.struts.DelegatingActionProxy" name="registerForm" >
+   <forward name="sucess" path="/sucess.jsp"/>
+   <forward name="fail" path="/fail.jsp"/>
+  </action>
+  <action path="/welcome" type="com.smit.web.WelcomeAction">   
   </action>
   </action-mappings>
+  
   <message-resources parameter="com.smit.web.ApplicationResources" />
 </struts-config>
 

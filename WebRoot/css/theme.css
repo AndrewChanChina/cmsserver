@@ -6,11 +6,11 @@
 .pn-fbutton{background-color:#FFFFFF;text-align:center;}
 .pn-fhelp{color:#747474;padding:3px 0px;}
 .pn-frequired{color:red}
-.pn-fruler{background:url(../img/theme/ruler.gif) repeat-x 1px 6px;}
+.pn-fruler{background:url(../images/theme/ruler.gif) repeat-x 1px 6px;}
 /*数据列表样式*/
 .pn-ltable{background-color:#E2EBEF;margin:5px auto 0px auto;}
 .pn-lthead{}
-.pn-lthead th{height:27px;background-image:url(../img/theme/msg_bg.jpg);}
+.pn-lthead th{height:27px;background-image:url(../images/theme/msg_bg.jpg);}
 .pn-ltbody{background-color:#FFFFFF;}
 .pn-ltbody tr{height:25px;}
 /*数据列表鼠标经过样式*/
@@ -28,7 +28,7 @@ a.pn-opt:visited {color: #2366A8;}
 a.pn-opt:hover{color: #2366A8;}
 a.pn-opt:active {color: #2366A8;}
 /*分页样式*/
-.pn-sp{margin-top:3px;padding:1px 0;height:28px;background-image:url(../img/theme/pbg.jpg);}
+.pn-sp{margin-top:3px;padding:1px 0;height:28px;background-image:url(../images/theme/pbg.jpg);}
 /*树的样式*/
 .pn-tree{font-size:12px;}
 .pn-tree *{word-break:keep-all;white-space:nowrap;}

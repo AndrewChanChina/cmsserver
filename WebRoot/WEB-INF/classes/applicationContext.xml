@@ -5,25 +5,49 @@
 	xmlns:p="http://www.springframework.org/schema/p"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
   
-
-   <bean id="smitLoginService" class="com.smit.service.SmitLoginService">
-   	<property name="smitLogin" ref="smitLogin"></property></bean>    
-   <bean id="smitLogin" class="com.smit.dao.SmitLogin" >
-   	<property name="sessionFactory" ref="sessionFactory"></property></bean>
-   <bean name="/login" class="com.smit.web.SmitLoginAction" scope="prototype" >
-  	<property name="smitLoginService" ref="smitLoginService"></property>
-   </bean>
-  
+  	<!-- welcome -->
+  	<bean name="/welcome" class="com.smit.web.WelcomeAction" scope="prototype"></bean>
+  	
+  	<!-- dao -->
+  	<bean id="groupDao" class="com.smit.dao.GroupDaoImpl">
+  	<property name="sessionFactory" ref="sessionFactory"></property>
+  	</bean>
+  	
+ 	<!-- SMIT login -->
+ 	<bean id="smitLoginDao" class="com.smit.dao.SmitLoginDaoImpl" >
+   		<property name="sessionFactory" ref="sessionFactory"></property>
+   	</bean>
+    <bean id="smitLoginService" class="com.smit.service.SmitLoginServiceImpl">
+   		<property name="smitLoginDao" ref="smitLoginDao"></property>
+   	</bean> 
+    <bean name="/login" class="com.smit.web.SmitLoginAction" scope="prototype" >
+  		<property name="smitLoginService" ref="smitLoginService"></property>
+    </bean>
+    <bean name="/logout" class="com.smit.web.SmitLoginAction" scope="prototype" >  		
+    </bean>
+    
+  	<!-- register -->
+  	<bean id="registerService" class="com.smit.service.RegisterServiceImpl">
+  		<property name="smitLoginDao" ref="smitLoginDao"></property>
+  		<property name="groupDao" ref="groupDao"></property>
+  	</bean>
+  	<bean name="/register" class="com.smit.web.RegisterAction" scope="prototype">
+  		<property name="registerService" ref="registerService"></property>
+  	</bean>
+  	
+  	<!-- test demo -->
      <bean id="loginService" class="com.smit.service.LoginServiceImpl">
-   <property name="loginDao" ref="loginDao"></property>
-   </bean>
-  <bean id="loginDao" class="com.smit.dao.LoginDaoImpl">
-  <property name="sessionFactory" ref="sessionFactory"></property>
-  </bean>
+   		<property name="loginDao" ref="loginDao"></property>
+   	</bean>
+  	<bean id="loginDao" class="com.smit.dao.LoginDaoImpl">
+  		<property name="sessionFactory" ref="sessionFactory"></property>
+  	</bean>
 
   <bean id="sessionFactory"
   	class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
   	<property name="configLocation"
   		value="classpath:hibernate.cfg.xml">
   	</property>
-  </bean></beans>
+  </bean>
+  
+</beans>

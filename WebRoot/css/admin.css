@@ -23,16 +23,16 @@ a.normal{text-decoration:underline;}
 /*后台管理界面body体*/
 .body-box{width:99%;margin:0px auto;margin-right:auto;}
 /*后台左页body*/
-.lbody{background:url(../img/admin/lbg.jpg) right repeat-y #F4F7FB;color:#666666;margin-right:6px;}
+.lbody{background:url(../images/admin/lbg.jpg) right repeat-y #F4F7FB;color:#666666;margin-right:6px;}
 /*后台左页菜单*/
 .lmenu{margin:6px 0 0 0;padding:0;list-style-type:none;}
-.lmenu li{padding:7px 0 7px 30px;background-image:url(../img/admin/circle.gif);background-repeat:no-repeat;background-position:15px -1px;}
+.lmenu li{padding:7px 0 7px 30px;background-image:url(../images/admin/circle.gif);background-repeat:no-repeat;background-position:15px -1px;}
 .lmenu-focus{background-color:#DDECEF;}
 /*后台左页树*/
 .lttop{padding:10px 0px 2px 0px;text-align:center;}
 /*后台右页头部*/
 .rhead{border:#b4cfcf 1px solid;padding:5px 15px;margin-top:5px;}
 /*后台右页当前位置*/
-.rpos{float:left;padding:3px 0px 3px 20px;background:url(../img/admin/arrow.gif) center left no-repeat;}
+.rpos{float:left;padding:3px 0px 3px 20px;background:url(../images/admin/arrow.gif) center left no-repeat;}
 /*后台右页操作*/
 .ropt{float:right;}

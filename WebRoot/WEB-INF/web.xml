@@ -29,8 +29,23 @@
     <servlet-name>action</servlet-name>
     <url-pattern>*.do</url-pattern>
   </servlet-mapping>
+  <!-- filter -->
+  <filter>
+  	<filter-name>loginFilter</filter-name>
+  	<filter-class>com.smit.web.LoginFilter</filter-class>
+  	<init-param>
+		<param-name>avoid-urls</param-name>
+		<param-value>login.do,logout.do,register.do,welcome.do</param-value>		
+	</init-param>
+  	
+  </filter>
+  <filter-mapping>
+  	<filter-name>loginFilter</filter-name>
+  	<url-pattern>*.do</url-pattern>
+  </filter-mapping>
   <welcome-file-list>
-    <welcome-file>index.jsp</welcome-file>
+  	<welcome-file>welcome.do</welcome-file>
+     <welcome-file>index.jsp</welcome-file>
   </welcome-file-list>
 </web-app>
 
