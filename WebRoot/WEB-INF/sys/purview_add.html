@@ -1,0 +1,227 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<title></title>
+<link href="./css/admin.css" rel="stylesheet" type="text/css"/>
+<link href="./css/theme.css" rel="stylesheet" type="text/css"/>
+<link href="./css/jquery.validate.css" rel="stylesheet" type="text/css"/>
+<link href="./css/jquery.treeview.css" rel="stylesheet" type="text/css"/>
+<link href="./css/jquery.ui.css" rel="stylesheet" type="text/css"/>
+
+<script src="./js/fckeditor.js" type="text/javascript"></script>
+<script src="./js/WdatePicker.js" type="text/javascript"></script>
+<script src="./js/jquery.js" type="text/javascript"></script>
+<script src="./js/jquery.ext.js" type="text/javascript"></script>
+<script src="./js/pony.js" type="text/javascript"></script>
+<script src="./js/admin.js" type="text/javascript"></script>
+<script type="text/javascript">
+function disablePerms() {
+	if($("input[name=super]:checked").val()=="true") {
+		$(".perm-container input[type=checkbox]").attr("disabled","disabeld");
+	} else {
+		$(".perm-container input[type=checkbox]").removeAttr("disabled");
+	}
+}
+$(function() {
+	$("#jvForm").validate();
+	$("input[name=super]").bind("click",function(){
+		disablePerms();
+	});
+});
+</script>
+<style type="text/css">
+.perm-container{}
+.perm-layout-1{padding:3px 0;}
+.perm-layout-2{padding-left:30px;}
+</style>
+</head>
+<body>
+<div class="body-box">
+<div class="rhead">
+	<div class="rpos">当前位置: 角色管理 - 添加</div>
+	<form class="ropt">
+		<input type="submit" value="返回列表" onclick="this.form.action='v_list.do';"/>
+	</form>
+	<div class="clear"></div>
+</div>
+<form method="post" action="o_save.do" id="jvForm">
+<table width="100%" class="pn-ftable" cellpadding="2" cellspacing="1" border="0">
+<tr>
+<td width="15%" class="pn-flabel pn-flabel-h"><span class="pn-frequired">*</span>角色名:</td><td colspan="1" width="35%" class="pn-fcontent"><input type="text" maxlength="100" name="name" class="required" maxlength="100"/></td><td width="15%" class="pn-flabel pn-flabel-h"><span class="pn-frequired">*</span>排列顺序:</td><td colspan="1" width="35%" class="pn-fcontent"><input type="text" maxlength="5" value="10" name="priority" class="required digits" style="width:70px" maxlength="5"/></td></tr>
+<tr><td width="15%" class="pn-flabel pn-flabel-h">拥有所有权限:</td><td colspan="3" width="85%" class="pn-fcontent"><label><input type="radio" value="true" name="super"/>是</label> <label><input type="radio" value="false" checked="checked" name="super"/>否</label></td>
+</tr>
+<tr><td width="15%" class="pn-flabel pn-flabel-h">功能权限:</td><td colspan="3" width="85%" class="pn-fcontent">
+<div class="perm-container">
+<input type="hidden" name="perms" value="/index.do,/top.do,/main.do,/left.do,/right.do"/>
+
+<div class="perm-layout-1">
+<label><input value="/personal/" type="checkbox" name="perms"/>个人资料</label>
+</div>
+
+<div class="perm-layout-1">
+<label><input value="/frame/channel,/channel/v_left.do,/channel/v_tree.do,/channel/v_list.do" type="checkbox" name="perms"/>栏目</label>
+	<div class="perm-layout-2">
+	<label><input value="/channel/v_add.do,/channel/o_save.do,/fck/upload.do,/common/v_image_area_select.do,/common/o_image_cut.do,/common/o_upload_image.do" type="checkbox" name="perms"/>添加</label>
+	<label><input value="/channel/v_edit.do,/channel/o_update.do,/channel/o_priority.do,/fck/upload.do,/common/v_image_area_select.do,/common/o_image_cut.do,/common/o_upload_image.do" type="checkbox" name="perms"/>修改</label>
+	<label><input value="/channel/o_delete.do" type="checkbox" name="perms"/>删除</label>	
+	</div>
+</div>
+
+<div class="perm-layout-1">
+<label><input value="/frame/content,/content/v_left.do,/content/v_tree.do,/content/v_list.do,/content/v_view.do" type="checkbox" name="perms"/>内容</label>
+	<div class="perm-layout-2">
+	<label><input value="/content/v_add.do,/content/o_save.do,/content/v_tree_channels.do,/content/o_upload_attachment.do,/content/o_upload_media.do,/fck/upload.do,/common/v_image_area_select.do,/common/o_image_cut.do,/common/o_upload_image.do" type="checkbox" name="perms"/>添加</label>
+	<label><input value="/content/v_edit.do,/content/o_update.do,/content/v_tree_channels.do,/content/o_upload_attachment.do,/content/o_upload_media.do,/fck/upload.do,/common/v_image_area_select.do,/common/o_image_cut.do,/common/o_upload_image.do" type="checkbox" name="perms"/>修改</label>
+	<label><input value="/content/o_delete.do" type="checkbox" name="perms"/>删除</label>
+	<label><input value="/content/o_check.do,/content/o_reject.do" type="checkbox" name="perms"/>审核</label>
+	</div>
+</div>
+
+<div class="perm-layout-1">
+<label><input value="/frame/template,/template/v_left.do,/template/v_tree.do,/template/v_list.do" type="checkbox" name="perms"/>模板</label>
+	<div class="perm-layout-2">
+	<label><input value="/template/v_add.do,/template/o_save.do,/template/o_swfupload.do,/template/o_create_dir.do" type="checkbox" name="perms"/>添加</label>
+	<label><input value="/template/v_edit.do,/template/o_update.do,/template/v_rename.do,/template/o_rename.do" type="checkbox" name="perms"/>修改</label>
+	<label><input value="/template/o_delete.do,/template/o_delete_single.do" type="checkbox" name="perms"/>删除</label>
+	<label><input value="/template/v_setting.do,/template/o_def_template.do,/template/o_export.do,/template/o_import.do" type="checkbox" name="perms"/>设置</label>
+	</div>
+</div>
+
+<div class="perm-layout-1">
+<label><input name="perms" value="/frame/resource,/resource/v_left.do,/resource/v_tree.do,/resource/v_list.do" type="checkbox"/>资源</label>
+	<div class="perm-layout-2">
+	<label><input value="/resource/v_add.do,/resource/o_save.do,/resource/o_create_dir.do,/resource/v_upload.do,/resource/o_upload.do,/resource/o_swfupload.do" type="checkbox" name="perms"/>添加</label>
+	<label><input value="/resource/v_edit.do,/resource/o_update.do,/resource/v_rename.do,/resource/o_rename.do" type="checkbox" name="perms"/>修改</label>
+	<label><input value="/resource/o_delete.do,/resource/o_delete_single.do" type="checkbox" name="perms"/>删除</label>
+	</div>
+</div>
+
+<div class="perm-layout-1">
+<label><input value="/frame/assistant" type="checkbox" name="perms"/>辅助</label>
+<div>
+	<div class="perm-layout-2">
+	<label><input value="/comment/" type="checkbox" name="perms"/>评论管理</label>
+	</div>
+	<div class="perm-layout-2">
+	<label><input value="/guestbook/" type="checkbox" name="perms"/>留言管理</label>
+	</div>
+	<div class="perm-layout-2">
+	<label><input value="/guestbook_ctg/" type="checkbox" name="perms"/>留言类别管理</label>
+	</div>
+	<div class="perm-layout-2">
+	<label><input value="/vote_topic/" type="checkbox" name="perms"/>投票管理</label>
+	</div>
+</div>
+</div>
+
+<div class="perm-layout-1">
+<label><input value="/frame/maintain" type="checkbox" name="perms"/>维护</label>
+<div>
+	<div class="perm-layout-2">
+	<label><input value="/topic/,/common/v_image_area_select.do,/common/o_image_cut.do,/common/o_upload_image.do" type="checkbox" name="perms"/>专题管理</label>
+	</div>
+	<div class="perm-layout-2">
+	<label><input value="/tag/" type="checkbox" name="perms"/>TAG管理</label>
+	</div>
+	<div class="perm-layout-2">
+	<label><input value="/keyword/" type="checkbox" name="perms"/>关键词管理</label>
+	</div>
+	<div class="perm-layout-2">
+	<label><input value="/sensitivity/" type="checkbox" name="perms"/>敏感词管理</label>
+	</div>
+	<div class="perm-layout-2">
+	<label><input value="/content_cycle/" type="checkbox" name="perms"/>内容回收站</label>
+	</div>
+</div>
+</div>
+
+<div class="perm-layout-1">
+<label><input value="/frame/generate" type="checkbox" name="perms"/>生成</label>
+<div>
+	<div class="perm-layout-2">
+	<label><input value="/static/" type="checkbox" name="perms"/>页面静态化</label>
+	</div>
+	<div class="perm-layout-2">
+	<label><input value="/lucene/" type="checkbox" name="perms"/>全文检索</label>
+	</div>
+	<div class="perm-layout-2">
+	<label><input value="/acquisition/" type="checkbox" name="perms"/>采集管理</label>
+	</div>
+</div>
+</div>
+
+<div class="perm-layout-1">
+<label><input value="/frame/user" type="checkbox" name="perms"/>用户</label>
+<div>
+	<div class="perm-layout-2">
+	<label><input value="/member/" type="checkbox" name="perms"/>会员管理</label>
+	</div>
+	<div class="perm-layout-2">
+	<label><input value="/group/" type="checkbox" name="perms"/>会员组管理</label>
+	</div>
+	<div class="perm-layout-2">
+	<label><input value="/admin_global/" type="checkbox" name="perms"/>管理员(全站)</label>
+	</div>
+	<div class="perm-layout-2">
+	<label><input value="/admin_local/" type="checkbox" name="perms"/>管理员(本站)</label>
+	</div>
+	<div class="perm-layout-2">
+	<label><input value="/role/" type="checkbox" name="perms"/>角色管理</label>
+	</div>
+</div>
+</div>
+
+<div class="perm-layout-1">
+<label><input value="/frame/config" type="checkbox" name="perms"/>配置</label>
+<div>
+	<div class="perm-layout-2">
+	<label><input value="/config/" type="checkbox" name="perms"/>全局设置</label>
+	</div>
+	<div class="perm-layout-2">
+	<label><input value="/site_config/" type="checkbox" name="perms"/>站点设置</label>
+	</div>
+	<div class="perm-layout-2">
+	<label><input value="/model/,/item/" type="checkbox" name="perms"/>模型管理</label>
+	</div>
+	<div class="perm-layout-2">
+	<label><input value="/type/" type="checkbox" name="perms"/>内容类型</label>
+	</div>
+	<div class="perm-layout-2">
+	<label><input value="/ftp/" type="checkbox" name="perms"/>FTP管理</label>
+	</div>
+	<div class="perm-layout-2">
+	<label><input value="/site/" type="checkbox" name="perms"/>站点管理</label>
+	</div>
+</div>
+</div>
+
+</div>
+<script type="text/javascript">
+$(function() {
+	$(".perm-container input[type=checkbox]").bind("click",function() {
+		parentCheck(this);
+		childCheck(this);
+	});
+});
+function parentCheck(chk) {
+	var obj = $(chk).parent().parent().parent();
+	while(obj && obj.attr("class").indexOf("perm-container")==-1) {
+		if(chk.checked) {
+			$(obj.children()[0]).children().attr("checked",true);
+		}
+		obj = obj.parent();
+	}
+}
+function childCheck(chk) {
+	$(chk).parent().next().children().find("input[type=checkbox]").each(function(){this.checked=chk.checked});
+}
+</script>
+</td></tr>
+<tr><td colspan="4" class="pn-fbutton">
+<input type="submit" value="提交"/> &nbsp; <input type="reset" value="重置"/></td>
+</tr></table>
+</form>
+</div>
+</body>
+</html>

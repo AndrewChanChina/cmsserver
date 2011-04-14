@@ -8,6 +8,7 @@
  </id>
  <property name="info_key" />
  <property name="info_value"/>
+ <property name="info_state"/>
 
 </class>
 </hibernate-mapping>

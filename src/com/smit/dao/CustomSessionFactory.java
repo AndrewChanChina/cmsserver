@@ -9,10 +9,11 @@ public class CustomSessionFactory {
 	private static String CONFIG_FILE_LOCATION = "/hibernate.cfg.xml";
 	private static final ThreadLocal threadLocal = new ThreadLocal();
 	private static final Configuration cfg = new Configuration();
-	private static SessionFactory sessionFactory;
+	private static SessionFactory sessionFactory = null;
 	
 	public static Session currentSession() throws HibernateException
 	{
+		closeSession();
 		Session session = (Session)threadLocal.get();
 		if(null == session)
 		{
@@ -25,11 +26,15 @@ public class CustomSessionFactory {
 				}
 				catch(Exception e)
 				{
-					System.err.print("System error.");
-					e.printStackTrace();
+					System.out.println("===============================");
+					System.out.println(e.getMessage());
+					//e.printStackTrace();
 				}
 			}
-			session = sessionFactory.openSession();
+			if(sessionFactory != null)
+			{
+				session = sessionFactory.openSession();
+			}
 			threadLocal.set(session);
 		}
 		return session;
@@ -43,6 +48,7 @@ public class CustomSessionFactory {
 		{
 			session.close();
 		}
+		//sessionFactory = null;
 	}
 	
 	private CustomSessionFactory()

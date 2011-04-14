@@ -13,6 +13,8 @@ public class SysInfo implements Serializable {
 	private Integer id;
 	private String info_key;
 	private String info_value;
+	private String info_state;
+
 
 	public Integer getId() {
 		return id;
@@ -32,6 +34,12 @@ public class SysInfo implements Serializable {
 	}
 	public void setInfo_value(String info_value) {
 		this.info_value = info_value;
+	}
+	public String getInfo_state() {
+		return info_state;
+	}
+	public void setInfo_state(String info_state) {
+		this.info_state = info_state;
 	}
 	public static long getSerialversionuid() {
 		return serialVersionUID;

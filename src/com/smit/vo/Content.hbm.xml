@@ -5,22 +5,21 @@
 <class name="com.smit.vo.Content" table="content">
 
  <id name="id">
- <generator class="native"></generator>
+ 	<generator class="native"></generator>
  </id>
  <property name="author_id" />
  <property name="title"/>
-  <property name="content" />
+ <property name="content" />
  <property name="excerpt"/>
-  <property name="tags"/>
-   <property name="source"/>
-
-    <property name="createtime" />
+ <property name="tags"/>
+ <property name="source"/>
+ <property name="createtime" />
  <property name="langType"/>
-  <property name="putter"/>
-   <property name="sortRank" column="sortrank"/>
+ <property name="putter"/>
+ <property name="sortRank" column="sortrank"/>
  <property name="prime"/>
-  <property name="onclickCount"/>
-   <many-to-one name="part" class="com.smit.vo.Part" column="pid"></many-to-one>
+ <property name="onclickCount"/>
+ <many-to-one name="part" class="com.smit.vo.Part" column="pid"></many-to-one>
 
 
 </class>

@@ -15,13 +15,53 @@
   	<property name="sessionFactory" ref="sessionFactory"></property>
   </bean>
 <!-- ================================================================== -->
-  <bean name="/addSysInfo" class="com.smit.web.AddSysInfoAction" scope="prototype" >
+  <bean name="/addSysInfo" class="com.smit.web.sysinfo.AddSysInfoAction" scope="prototype" >
   	<property name="addSysInfoService" ref="addSysInfoService"></property>
   </bean>
-  <bean id="addSysInfoService" class="com.smit.service.AddSysInfoServiceImpl">
-  	<property name="addSysInfoDao" ref="addSysInfoDao"></property>
+  <bean id="addSysInfoService" class="com.smit.service.SysInfoServiceImpl">
+  	<property name="sysInfoDao" ref="addSysInfoDao"></property>
   </bean>
-  <bean id="addSysInfoDao" class="com.smit.dao.AddSysInfoDaoImpl">
+  <bean id="addSysInfoDao" class="com.smit.dao.SysInfoDaoImpl">
+  	<property name="sessionFactory" ref="sessionFactory"></property>
+  </bean>
+<!-- ================================================================== -->
+  <bean name="/deleteSysInfo" class="com.smit.web.sysinfo.DeleteSysInfoAction" scope="prototype" >
+  	<property name="deleteSysInfoService" ref="deleteSysInfoService"></property>
+  </bean>
+  <bean id="deleteSysInfoService" class="com.smit.service.SysInfoServiceImpl">
+  	<property name="sysInfoDao" ref="deleteSysInfoDao"></property>
+  </bean>
+  <bean id="deleteSysInfoDao" class="com.smit.dao.SysInfoDaoImpl">
+  	<property name="sessionFactory" ref="sessionFactory"></property>
+  </bean>
+<!-- ================================================================== -->
+  <bean name="/updateSysInfo" class="com.smit.web.sysinfo.UpdateSysInfoAction" scope="prototype" >
+  	<property name="updateSysInfoService" ref="updateSysInfoService"></property>
+  </bean>
+  <bean id="updateSysInfoService" class="com.smit.service.SysInfoServiceImpl">
+  	<property name="sysInfoDao" ref="updateSysInfoDao"></property>
+  </bean>
+  <bean id="updateSysInfoDao" class="com.smit.dao.SysInfoDaoImpl">
+  	<property name="sessionFactory" ref="sessionFactory"></property>
+  </bean>
+<!-- ================================================================== -->
+  <bean name="/enableSysInfo" class="com.smit.web.sysinfo.EnableSysInfoAction" scope="prototype" >
+  	<property name="enableSysInfoService" ref="enableSysInfoService"></property>
+  </bean>
+  <bean id="enableSysInfoService" class="com.smit.service.SysInfoServiceImpl">
+  	<property name="sysInfoDao" ref="enableysInfoDao"></property>
+  </bean>
+  <bean id="enableysInfoDao" class="com.smit.dao.SysInfoDaoImpl">
+  	<property name="sessionFactory" ref="sessionFactory"></property>
+  </bean>
+<!-- ================================================================== -->
+  <bean name="/addColumn" class="com.smit.web.column.AddColumnAction" scope="prototype" >
+  	<property name="addColumnService" ref="addColumnService"></property>
+  </bean>
+  <bean id="addColumnService" class="com.smit.service.ColumnServiceImpl">
+  	<property name="columnDao" ref="columnDao"></property>
+  </bean>
+  <bean id="columnDao" class="com.smit.dao.ColumnDaoImpl">
   	<property name="sessionFactory" ref="sessionFactory"></property>
   </bean>
 <!-- ================================================================== -->
