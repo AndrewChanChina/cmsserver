@@ -65,6 +65,41 @@
   	<property name="sessionFactory" ref="sessionFactory"></property>
   </bean>
 <!-- ================================================================== -->
+  <bean name="/deleteColumn" class="com.smit.web.column.DeleteColumnAction" scope="prototype" >
+  	<property name="deleteColumnService" ref="deleteColumnService"></property>
+  </bean>
+  <bean id="deleteColumnService" class="com.smit.service.ColumnServiceImpl">
+  	<property name="columnDao" ref="deleteColumnDao"></property>
+  </bean>
+  <bean id="deleteColumnDao" class="com.smit.dao.ColumnDaoImpl">
+  	<property name="sessionFactory" ref="sessionFactory"></property>
+  </bean>
+<!-- ================================================================== -->
+  <bean name="/updateColumn" class="com.smit.web.column.UpdateColumnAction" scope="prototype" >
+  	<property name="updateColumnService" ref="updateColumnService"></property>
+  </bean>
+  <bean id="updateColumnService" class="com.smit.service.ColumnServiceImpl">
+  	<property name="columnDao" ref="updateColumnDao"></property>
+  </bean>
+  <bean id="updateColumnDao" class="com.smit.dao.ColumnDaoImpl">
+  	<property name="sessionFactory" ref="sessionFactory"></property>
+  </bean>
+  
+  <!-- ================================================================== -->
+  <bean name="/showLeftFrame" class="com.smit.web.LeftFrameAction" scope="prototype" >
+  	<property name="queryAllColumnsService" ref="queryAllColumnsService"></property>
+  </bean>
+  <bean name="/showRightFrame" class="com.smit.web.RightFrameAction" scope="prototype" >
+  	<property name="queryAllColumnsService" ref="queryAllColumnsService"></property>
+  </bean>
+  <bean id="queryAllColumnsService" class="com.smit.service.ColumnServiceImpl">
+  	<property name="columnDao" ref="queryAllColumnsDao"></property>
+  </bean>
+  <bean id="queryAllColumnsDao" class="com.smit.dao.ColumnDaoImpl">
+  	<property name="sessionFactory" ref="sessionFactory"></property>
+  </bean>
+
+<!-- ================================================================== -->
   <bean id="sessionFactory"
   	class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
   	<property name="configLocation"

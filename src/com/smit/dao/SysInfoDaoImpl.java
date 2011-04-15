@@ -46,10 +46,17 @@ public class SysInfoDaoImpl extends HibernateDaoSupport implements SysInfoDao{
 		return true;
 	}
 	
-	public List<SysInfo> queryAllSysInfo()
+	public List<SysInfo> queryAllSysInfo() throws Exception
 	{
 		String hql = "from com.smit.vo.SysInfo";
-		Session session = CustomSessionFactory.currentSession();
+		Session session;
+		try {
+			session = CustomSessionFactory.currentSession();
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+			throw e1;
+		}
 		Transaction ts = null;
 		SysInfo sysInfo = null;
 		List<SysInfo> allSysInfo = new ArrayList();
@@ -78,6 +85,7 @@ public class SysInfoDaoImpl extends HibernateDaoSupport implements SysInfoDao{
 		return allSysInfo;
 	}
 	
+	/*
 	public List querySysInfoByKey(final String key)
 	{
 		String hql = "from com.smit.vo.SysInfo s where info_key='" + key + "'";
@@ -88,6 +96,7 @@ public class SysInfoDaoImpl extends HibernateDaoSupport implements SysInfoDao{
 		} 
 		return null;
 	}
+	*/
 	
 	public boolean deleteSysInfo(final ArrayList<String> idList)
 	{

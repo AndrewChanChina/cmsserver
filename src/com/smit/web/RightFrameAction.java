@@ -1,5 +1,7 @@
 package com.smit.web;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -8,7 +10,17 @@ import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 
+import com.smit.service.ColumnService;
+import com.smit.vo.Part;
+
 public class RightFrameAction extends Action {
+	
+	private ColumnService queryAllColumnsService;
+	public void setQueryAllColumnsService(ColumnService queryAllColumnsService)
+	{
+		this.queryAllColumnsService = queryAllColumnsService;
+	}
+	
 	@Override
 	public ActionForward execute(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -22,6 +34,8 @@ public class RightFrameAction extends Action {
 		}
 		else if(whichClass.equalsIgnoreCase("column"))
 		{
+			List<Part> allColumns = queryAllColumnsService.queryAllColumns();
+			request.setAttribute("allColumns", allColumns);
 			return mapping.findForward("add_Column_page");//add_column.jsp
 		}
 		return null;

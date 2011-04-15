@@ -7,7 +7,7 @@ import com.smit.vo.SysInfo;
 
 public interface SysInfoDao {
 	public boolean addSysInfo(final String key, final String value);
-	public List<SysInfo> queryAllSysInfo();
+	public List<SysInfo> queryAllSysInfo() throws Exception;
 	
 	public boolean deleteSysInfo(final String id);
 	public boolean deleteSysInfo(final ArrayList<String> idList);

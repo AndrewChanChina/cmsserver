@@ -1,12 +1,15 @@
 package com.smit.dao;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.springframework.orm.hibernate3.HibernateCallback;
 import org.springframework.orm.hibernate3.HibernateTemplate;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
@@ -29,25 +32,68 @@ public class ColumnDaoImpl extends HibernateDaoSupport implements ColumnDao
 		Integer father_ID = Integer.valueOf(parentID);
 		Part father = ht.get(Part.class, father_ID);
 		
+		Integer topIdToSet = father.getTopid();
+		if(topIdToSet==0)
+		{
+			topIdToSet = father.getId();
+		}
+		
 		Part part = new Part();
 		part.setFather_id(father_ID);
 		part.setId(null);
-		part.setTopid(father.getTopid());
+		part.setTopid(topIdToSet);
 		part.setTypename(classToAdd);
+		part.setPath(path);
+		
+		ht.saveOrUpdate(part);
 		
 		return true;
 	}
 	
-	public List<Part> queryAllColumns()
+	public List<Part> queryAllColumns() {
+		//if(page == null)
+			//return listAllUsers();
+		
+		//List count = getHibernateTemplate().find("SELECT count(*) FROM com.smit.vo.User");
+		 //page.setTotalCount(Integer.parseInt(count.get(0).toString() ));		 
+		 
+		 List<Part> list = getHibernateTemplate().executeFind(new HibernateCallback() {  
+	            public Object doInHibernate(Session s) throws HibernateException, SQLException
+	            {  
+	            	String hql = "select p FROM com.smit.vo.Part p";
+	                Query query = s.createQuery(hql);  
+	                //int firstRow = page.getPageSize() * (page.getPageIndex() - 1);
+	                //query.setFirstResult(firstRow);  
+	                //query.setMaxResults(page.getPageSize());  
+	                List<Part> list = query.list();  
+	                return list;  
+	            }
+	        });  
+		return list;
+	}
+
+	
+	/*
+	public List<Part> queryAllColumns() throws Exception
 	{
+		
+		List<Part> allColumns = new ArrayList<Part>();
 		String hql = "from com.smit.vo.Part";
-		Session session = CustomSessionFactory.currentSession();
+		Session session;
+		try {
+			session = CustomSessionFactory.currentSession();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			throw e;
+		}
 		if(session == null)
 		{
 			System.out.println("ERROR in List<Part> queryAllColumns(): session = null");
+			return allColumns;
 		}
 		Transaction ts = null;
-		List<Part> allColumns = new ArrayList<Part>();
+		
 		Query query = null; 
 		try
 		{
@@ -70,5 +116,62 @@ public class ColumnDaoImpl extends HibernateDaoSupport implements ColumnDao
 			session.clear();
 		}
 		return allColumns;
+	}
+	*/
+	
+	public boolean deleteColumn(final String id)
+	{
+		Integer intId = Integer.valueOf(id,10);
+		HibernateTemplate ht = this.getHibernateTemplate();
+		if(ht == null)
+		{
+			return false;
+		}
+		Part column = ht.get(Part.class, intId);
+		if(column == null)
+		{
+			return false;
+		}
+		ht.delete(column);
+		return true;
+	}
+	public boolean deleteColumn(final ArrayList<String> idList)
+	{
+		for(int i=0; i<idList.size(); i++)
+		{
+			deleteColumn(idList.get(i));
+		}
+		return true;
+	}
+	public boolean updateColumn(final ArrayList<Part> columnList)
+	{
+		HibernateTemplate ht = this.getHibernateTemplate();
+		if(ht == null)
+		{
+			return false;
+		}
+		for(int i=0; i<columnList.size(); i++)
+		{
+			ht.saveOrUpdate(columnList.get(i));
+		}
+		return true;
+	}
+	
+	public Part queryByColumnId(final Integer id) throws Exception
+	{
+		Session session;
+		try {
+			session = CustomSessionFactory.currentSession();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			throw e;
+		}
+		if(session == null)
+		{
+			return null;
+		}
+		Part part = (Part)session.get(Part.class, id);
+		return part;
 	}
 }

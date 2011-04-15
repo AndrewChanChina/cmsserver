@@ -36,6 +36,12 @@
 	  <action path="/addColumn" type="org.springframework.web.struts.DelegatingActionProxy" name="addColumnForm">
 	  	<forward name="reload" path="/WEB-INF/sys/add_column.jsp"/>
 	  </action>
+	  <action path="/deleteColumn" type="org.springframework.web.struts.DelegatingActionProxy">
+	  	<forward name="reload" path="/WEB-INF/sys/add_column.jsp"/>
+	  </action>
+	  <action path="/updateColumn" type="org.springframework.web.struts.DelegatingActionProxy">
+	  	<forward name="reload" path="/WEB-INF/sys/add_column.jsp"/>
+	  </action>
 	  
 	  <action path="/showTopFrame" type="com.smit.web.TopFrameAction">
 	  	<forward name="topFrame" path="/WEB-INF/sys/top.jsp"/>
@@ -43,11 +49,11 @@
 	  <action path="/showMainFrame" type="com.smit.web.MainFrameAction">
 	  	<forward name="mainFrame" path="/WEB-INF/sys/main.jsp"/>
 	  </action>
-	  <action path="/showLeftFrame" type="com.smit.web.LeftFrameAction">
+	  <action path="/showLeftFrame" type="org.springframework.web.struts.DelegatingActionProxy">
 	  	<forward name="sys_info_and_log_page" path="/WEB-INF/sys/left.jsp"/>
 	  	<forward name="column_tree_page" path="/WEB-INF/sys/column_tree.jsp"/>
 	  </action>
-	  <action path="/showRightFrame" type="com.smit.web.RightFrameAction">
+	  <action path="/showRightFrame" type="org.springframework.web.struts.DelegatingActionProxy">
 	  	<forward name="sys_info_page" path="/WEB-INF/sys/right.jsp"/>
 	  	<forward name="add_Column_page" path="/WEB-INF/sys/add_column.jsp"/>
 	  </action>

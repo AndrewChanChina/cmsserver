@@ -31,6 +31,11 @@ public class AddColumnAction extends Action {
 		System.out.println("parentID: " + parentID);
 		System.out.println("classToAdd: " + classToAdd);
 		System.out.println("path: " + path);
+		if(classToAdd.isEmpty())
+		{
+			System.out.println("classToAdd should not be empty");
+			return null;
+		}
 		if(addColumnService.addColumn(parentID, classToAdd, path))
 		{
 			return mapping.findForward("reload");

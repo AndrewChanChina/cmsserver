@@ -19,6 +19,8 @@ public class Part implements Serializable {
 	private String typename;
 	private Integer topid;
 	private Integer father_id;
+	private String path;
+
 
 	public Set<Content> getContents() {
 		return contents;
@@ -34,24 +36,35 @@ public class Part implements Serializable {
 	public void setId(Integer id) {
 		this.id = id;
 	}
+	
 	public String getTypename() {
 		return typename;
 	}
 	public void setTypename(String typename) {
 		this.typename = typename;
 	}
+	
 	public Integer getTopid() {
 		return topid;
 	}
 	public void setTopid(Integer topid) {
 		this.topid = topid;
 	}
+	
 	public Integer getFather_id() {
 		return father_id;
 	}
 	public void setFather_id(Integer father_id) {
 		this.father_id = father_id;
 	}
+	
+	public String getPath() {
+		return path;
+	}
+	public void setPath(String path) {
+		this.path = path;
+	}
+	
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
