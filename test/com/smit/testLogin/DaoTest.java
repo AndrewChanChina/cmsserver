@@ -29,15 +29,15 @@ public class DaoTest extends TestCase {
 		user.setPassword("psw6");
 		user.setTel("13652");
 		
-		Group group = new Group();
-		group.setGroupName("newGroup5");
-		user.setGroup(group);
+		//Group group = new Group();
+		//group.setGroupName("newGroup5");
+		//user.setGroup(group);
 		//group.getUsers().add(user);
 		//Group group = (Group)session.get(Group.class, 5);
 		//user.setGroup(group);
-		HashSet<User> users = new HashSet();
-		users.add(user);
-		group.setUsers(users);
+		//HashSet<User> users = new HashSet();
+		//users.add(user);
+		//group.setUsers(users);
 		
 		//session.save(group);
 		session.save(user);

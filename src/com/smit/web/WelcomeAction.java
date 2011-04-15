@@ -15,6 +15,8 @@ public class WelcomeAction extends Action {
 	public ActionForward execute(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
-		return mapping.findForward("login");
+		return mapping.findForward("test");
+		//response.sendRedirect("grouplist.do");
+		//return null;
 	}
 }

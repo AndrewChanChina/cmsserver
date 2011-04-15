@@ -4,18 +4,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * ·ÖÒ³×é¼þÀà
+ * ï¿½ï¿½Ò³ï¿½ï¿½ï¿½ï¿½ï¿½
  * @author ligm
  * @date 2011-4-1
  *
  */
 public class Page {
 	private List list = new ArrayList();
-	private int pageSize;//Ã¿Ò³ÏÔÊ¾¶àÉÙ
-	private int currentPage;//µ±Ç°µÚ¼¸Ò³
-	private int totalRecord;//×Ü¼ÇÂ¼Êý
+	private int pageSize;//Ã¿Ò³ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½
+	private int currentPage;//ï¿½ï¿½Ç°ï¿½Ú¼ï¿½Ò³
+	private int totalRecord;//ï¿½Ü¼ï¿½Â¼ï¿½ï¿½
 	/**
-	 * ×ÜÒ³Êý
+	 * ï¿½ï¿½Ò³ï¿½ï¿½
 	 */
 	
 	private int pageCount(){
@@ -23,7 +23,7 @@ public class Page {
 	}
 	
 	/**
-	 * ÏÂÒ»Ò³
+	 * ï¿½ï¿½Ò»Ò³
 	 * @return
 	 */
 	public int getNextPage(){
@@ -31,7 +31,7 @@ public class Page {
 	}
 	
 	/**
-	 * ÉÏÒ»Ò³
+	 * ï¿½ï¿½Ò»Ò³
 	 * @return
 	 */
 	public int getPerPage(){

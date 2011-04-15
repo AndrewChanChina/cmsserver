@@ -1,15 +1,13 @@
-package com.smit.dao;
+package com.smit.service;
 
 import java.util.List;
 
-import com.smit.util.Page;
 import com.smit.util.SmitPage;
 import com.smit.vo.User;
 
-public interface IUserDao {
-
-	public boolean isAdmin(String userName, String password);
-	public boolean register(User user);
+public interface IUserService {
+	public boolean login(String userName,String passwd);
+	public boolean register(String userName,String password,String email,String telphone);
 	
 	public User findGroupByName(String userName);
 	public void save(User user);
@@ -17,7 +15,5 @@ public interface IUserDao {
 	public void delete(User user);
 	public User getUser(Integer id);
 	// For pagination
-	// if page == null, return all users
 	public List listAllUsers(SmitPage page);
-
 }

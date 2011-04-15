@@ -7,43 +7,91 @@
    <form-bean name="loginForm" type="com.smit.web.LoginForm"></form-bean>
    <form-bean name="smitLoginForm" type="com.smit.web.form.SmitLoginForm"></form-bean>
    <form-bean name="registerForm" type="com.smit.web.form.RegisterForm"></form-bean>
+   <form-bean name="groupForm" type="com.smit.web.form.GroupForm"></form-bean>
+   <form-bean name="userForm" type="com.smit.web.form.UserForm"></form-bean>
   </form-beans>
   
   <global-forwards>
   	<forward name="register" path="/register.jsp"/>
     <forward name="login" path="/login.jsp"/>
+    <forward name="sucess" path="/sucess.jsp"/>
+    <forward name="fail" path="/fail.jsp"/>
+    <forward name="test" path="/WEB-INF/sys/user_main.jsp"/>
   </global-forwards>
   
   <action-mappings>
 
-  <action path="/login1" type="org.springframework.web.struts.DelegatingActionProxy" name="loginForm" >
-   <forward name="sucess" path="/sucess.jsp"/>
-   <forward name="fail" path="/fail.jsp"/>
+  <action 	path="/login" type="org.springframework.web.struts.DelegatingActionProxy" 
+  			parameter="login" name="smitLoginForm">
   </action>
-  <action path="/login" type="org.springframework.web.struts.DelegatingActionProxy" 
-  name="smitLoginForm" parameter="login">
-   <forward name="sucess" path="/sucess.jsp"/>
-   <forward name="fail" path="/fail.jsp"/>
+  <action 	path="/logout" type="org.springframework.web.struts.DelegatingActionProxy"
+  		  	parameter="logout">
   </action>
-  <action path="/logout" type="org.springframework.web.struts.DelegatingActionProxy"
-  		  parameter="logout">
+  <action 	path="/register" type="org.springframework.web.struts.DelegatingActionProxy" 
+  			parameter="register" name="registerForm" >
+   			<forward name="sucess" path="/sucess.jsp"/>
+   			<forward name="fail" path="/fail.jsp"/>
   </action>
-  <action path="/register" type="org.springframework.web.struts.DelegatingActionProxy" name="registerForm" >
-   <forward name="sucess" path="/sucess.jsp"/>
-   <forward name="fail" path="/fail.jsp"/>
-  </action>
-  <action path="/welcome" type="com.smit.web.WelcomeAction">   
+  <action 	path="/welcome" type="com.smit.web.WelcomeAction">  	 
   </action>
   
   <!-- language -->
-  <action
-			path="/Locale"
-			type="com.smit.web.LanguageSelectAction"
-			parameter="method"
-			validate="false"
-			>
+  <action	path="/Locale"	type="com.smit.web.LanguageSelectAction"
+			parameter="method"	validate="false">
 			<forward name="success" path="/language.jsp"/>
-		</action>
+  </action>
+  
+   <!-- user manager -->
+  <action 	path="/listuser" 
+  			type="org.springframework.web.struts.DelegatingActionProxy"
+   			parameter="listUser">     			
+    		<forward name="showuserlist" path="/WEB-INF/sys/user_list.jsp"/> 			
+  </action>
+  <action 	path="/gonewuser" type="org.springframework.web.struts.DelegatingActionProxy"
+   			parameter="goNewUser">     			
+    		<forward name="continue" path="/WEB-INF/sys/user_manager.jsp"/> 		
+  </action>
+  <action 	path="/saveupdateuser" type="org.springframework.web.struts.DelegatingActionProxy"
+   			parameter="saveUpdateUser" name="userForm">     			
+    		<forward name="userright_userlist" path="/listuser.do"/> 
+    		<forward name="fail" path="/WEB-INF/sys/group_fail.jsp"/>			
+  </action>
+  <action 	path="/deleteuser" type="org.springframework.web.struts.DelegatingActionProxy"
+   			parameter="deleteUser">     			
+    		<forward name="userright_userlist" path="/listuser.do"/> 
+    		<forward name="fail" path="/WEB-INF/sys/group_fail.jsp"/>			
+  </action>
+		
+  <!-- group manager -->
+  <action 	path="/grouplist" 
+  			type="org.springframework.web.struts.DelegatingActionProxy"
+   			parameter="groupList">     			
+    		<forward name="showgrouplist" path="/WEB-INF/sys/group_list.jsp"/> 			
+  </action>
+  <action 	path="/userleft" type="com.smit.web.GroupAction"
+   			parameter="userleft">     			
+    		<forward name="showguserleft" path="/WEB-INF/sys/left.jsp"/> 			
+  </action>
+  <action 	path="/userright" type="com.smit.web.GroupAction"
+   			parameter="userright">     			
+    		<forward name="userright_grouplist" path="/grouplist.do"/> 
+    		<forward name="userright_userlist" path="/userlist.do"/>			
+  </action>
+  <action 	path="/gonewgroup" type="org.springframework.web.struts.DelegatingActionProxy"
+   			parameter="goNewGroup">     			
+    		<forward name="continue" path="/WEB-INF/sys/group_manager.jsp"/> 		
+  </action>
+  <action 	path="/saveupdategroup" type="org.springframework.web.struts.DelegatingActionProxy"
+   			parameter="saveUpdateGroup" name="groupForm">     			
+    		<forward name="userright_grouplist" path="/grouplist.do"/> 
+    		<forward name="fail" path="/WEB-INF/sys/group_fail.jsp"/>			
+  </action>
+  <action 	path="/deletegroup" type="org.springframework.web.struts.DelegatingActionProxy"
+   			parameter="deleteGroup">     			
+    		<forward name="userright_grouplist" path="/grouplist.do"/> 
+    		<forward name="fail" path="/WEB-INF/sys/group_fail.jsp"/>			
+  </action>
+  
   </action-mappings>
   
   <message-resources parameter="com.smit.web.res.ApplicationResources" />

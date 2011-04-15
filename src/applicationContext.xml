@@ -8,46 +8,60 @@
   	<!-- welcome -->
   	<bean name="/welcome" class="com.smit.web.WelcomeAction" scope="prototype"></bean>
   	
-  	<!-- dao -->
-  	<bean id="groupDao" class="com.smit.dao.GroupDaoImpl">
-  	<property name="sessionFactory" ref="sessionFactory"></property>
-  	</bean>
-  	
- 	<!-- SMIT login -->
- 	<bean id="smitLoginDao" class="com.smit.dao.SmitLoginDaoImpl" >
+   	<!-- SMIT login --> 
+   	<bean id="userDao" class="com.smit.dao.UserDaoImpl" >
    		<property name="sessionFactory" ref="sessionFactory"></property>
-   	</bean>
-    <bean id="smitLoginService" class="com.smit.service.SmitLoginServiceImpl">
-   		<property name="smitLoginDao" ref="smitLoginDao"></property>
-   	</bean> 
-    <bean name="/login" class="com.smit.web.SmitLoginAction" scope="prototype" >
-  		<property name="smitLoginService" ref="smitLoginService"></property>
-    </bean>
-    <bean name="/logout" class="com.smit.web.SmitLoginAction" scope="prototype" >  		
-    </bean>
-    
-  	<!-- register -->
-  	<bean id="registerService" class="com.smit.service.RegisterServiceImpl">
-  		<property name="smitLoginDao" ref="smitLoginDao"></property>
-  		<property name="groupDao" ref="groupDao"></property>
+   	</bean>   
+   	<bean id="userService" class="com.smit.service.UserServiceImpl">
+  		<property name="userDao" ref="userDao"></property>
   	</bean>
-  	<bean name="/register" class="com.smit.web.RegisterAction" scope="prototype">
-  		<property name="registerService" ref="registerService"></property>
+    <bean name="/login" class="com.smit.web.UserAction" scope="prototype" >
+  		<property name="userService" ref="userService"></property>
+    </bean>
+    <bean name="/logout" class="com.smit.web.UserAction" scope="prototype" >  		
+    </bean>
+  	<bean name="/register" class="com.smit.web.UserAction" scope="prototype">
+  		<property name="userService" ref="userService"></property>
   	</bean>
+  	<bean name="/listuser" class="com.smit.web.UserAction" scope="prototype">
+  		<property name="userService" ref="userService"></property>
+  	</bean>
+  	<bean name="/gonewuser" class="com.smit.web.UserAction" scope="prototype">
+  		<property name="groupManager" ref="groupManagerService"></property>
+  		<property name="userService" ref="userService"></property>
+  	</bean>
+  	<bean name="/saveupdateuser" class="com.smit.web.UserAction" scope="prototype">
+  		<property name="userService" ref="userService"></property>
+  	</bean>
+  	<bean name="/deleteuser" class="com.smit.web.UserAction" scope="prototype">
+  		<property name="userService" ref="userService"></property>
+  	</bean>	
   	
-  	<!-- test demo -->
-     <bean id="loginService" class="com.smit.service.LoginServiceImpl">
-   		<property name="loginDao" ref="loginDao"></property>
-   	</bean>
-  	<bean id="loginDao" class="com.smit.dao.LoginDaoImpl">
+  	<!-- group manager -->
+  	<bean id="groupDao" class="com.smit.dao.GroupDaoImpl">
   		<property name="sessionFactory" ref="sessionFactory"></property>
   	</bean>
+  	<bean id="groupManagerService" class="com.smit.service.GroupMangerServiceImpl">
+  		<property name="groupDao" ref="groupDao"></property>
+  	</bean>
+  	<bean name="/grouplist" class="com.smit.web.GroupAction" scope="prototype">
+  		<property name="groupManager" ref="groupManagerService"></property>
+  	</bean>
+  	<bean name="/gonewgroup" class="com.smit.web.GroupAction" scope="prototype">
+  		<property name="groupManager" ref="groupManagerService"></property>
+  	</bean>
+  	<bean name="/saveupdategroup" class="com.smit.web.GroupAction" scope="prototype">
+  		<property name="groupManager" ref="groupManagerService"></property>
+  	</bean>
+  	<bean name="/deletegroup" class="com.smit.web.GroupAction" scope="prototype">
+  		<property name="groupManager" ref="groupManagerService"></property>
+  	</bean>	
 
-  <bean id="sessionFactory"
-  	class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
-  	<property name="configLocation"
-  		value="classpath:hibernate.cfg.xml">
-  	</property>
-  </bean>
+  	<bean id="sessionFactory"
+  		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+  		<property name="configLocation"
+  			value="classpath:hibernate.cfg.xml">
+  		</property>
+  	</bean>
   
 </beans>
