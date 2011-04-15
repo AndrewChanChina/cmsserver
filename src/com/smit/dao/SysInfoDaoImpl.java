@@ -1,19 +1,23 @@
 package com.smit.dao;
 
 import java.io.Serializable;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
+import org.springframework.orm.hibernate3.HibernateCallback;
 import org.springframework.orm.hibernate3.HibernateTemplate;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
+import com.smit.vo.Part;
 import com.smit.vo.SysInfo;
 
 public class SysInfoDaoImpl extends HibernateDaoSupport implements SysInfoDao{
@@ -48,55 +52,17 @@ public class SysInfoDaoImpl extends HibernateDaoSupport implements SysInfoDao{
 	
 	public List<SysInfo> queryAllSysInfo() throws Exception
 	{
-		String hql = "from com.smit.vo.SysInfo";
-		Session session;
-		try {
-			session = CustomSessionFactory.currentSession();
-		} catch (Exception e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-			throw e1;
-		}
-		Transaction ts = null;
-		SysInfo sysInfo = null;
-		List<SysInfo> allSysInfo = new ArrayList();
-		Query query = null; 
-		try
-		{
-			query = session.createQuery(hql);
-			ts = session.beginTransaction();
-			
-			allSysInfo = query.list();
-			ts.commit();
-		}
-		catch(Exception e)
-		{
-			if(ts != null)
-			{
-				ts.rollback();
-			}
-			
-		}
-		finally
-		{
-			session.flush();
-			session.clear();
-		}
-		return allSysInfo;
+		 return getHibernateTemplate().executeFind(new HibernateCallback() {  
+	            public Object doInHibernate(Session s) throws HibernateException, SQLException
+	            {  
+	            	String hql = "FROM com.smit.vo.SysInfo s";
+	                Query query = s.createQuery(hql);  
+	                List<SysInfo> list = query.list();  
+	                return list;  
+	            }
+	        });  
 	}
 	
-	/*
-	public List querySysInfoByKey(final String key)
-	{
-		String hql = "from com.smit.vo.SysInfo s where info_key='" + key + "'";
-		List list = this.getHibernateTemplate().find(hql);
-		System.out.println(list.size());
-		if(list.size() > 0 ){
-			return list;
-		} 
-		return null;
-	}
-	*/
 	
 	public boolean deleteSysInfo(final ArrayList<String> idList)
 	{

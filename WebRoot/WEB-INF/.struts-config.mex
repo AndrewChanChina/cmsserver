@@ -156,6 +156,12 @@
       <AbsolutePoint location="950,674" />
     </AutomaticBendpoints>
   </StrutsTransition>
+  <StrutsTransition id="/showRightFrame.do,sys_info_page,/WEB-INF/sys/sysinfo.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="157,892" />
+      <AbsolutePoint location="1342,674" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
   <StrutsTransition id="/updateColumn.do,reload,/WEB-INF/sys/add_column.jsp,1" routingType="0">
     <AutomaticBendpoints>
       <AbsolutePoint location="1729,634" />

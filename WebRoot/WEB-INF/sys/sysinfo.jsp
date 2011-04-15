@@ -159,8 +159,9 @@ function setCheck(id)
 
 			<%
 				//Get all SysInfos from db;
-				SysInfoDao sysInfoDao = new SysInfoDaoImpl();
-				List<SysInfo> list = sysInfoDao.queryAllSysInfo();
+				//SysInfoDao sysInfoDao = new SysInfoDaoImpl();
+				//List<SysInfo> list = sysInfoDao.queryAllSysInfo();
+				List<SysInfo> list = (List<SysInfo>)request.getAttribute("allSysInfos");
 				if (list == null) {
 					return;
 				}

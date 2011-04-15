@@ -54,7 +54,7 @@
 	  	<forward name="column_tree_page" path="/WEB-INF/sys/column_tree.jsp"/>
 	  </action>
 	  <action path="/showRightFrame" type="org.springframework.web.struts.DelegatingActionProxy">
-	  	<forward name="sys_info_page" path="/WEB-INF/sys/right.jsp"/>
+	  	<forward name="sys_info_page" path="/WEB-INF/sys/sysinfo.jsp"/>
 	  	<forward name="add_Column_page" path="/WEB-INF/sys/add_column.jsp"/>
 	  </action>
 

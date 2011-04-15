@@ -59,8 +59,11 @@ $(function(){
 	<script type="text/javascript">
 	var columnDtree = new dTree('columnDtree');
 <%
-	ColumnDao columnDao = new ColumnDaoImpl();
-	List<Part> allColumns = columnDao.queryAllColumns();
+	//ColumnDao columnDao = new ColumnDaoImpl();
+	//List<Part> allColumns = columnDao.queryAllColumns();
+	
+	List<Part> allColumns = (List<Part>)request.getAttribute("allColumns");
+	
 	for(int i = 0; i<allColumns.size(); i++)
 	{
 		Part part = allColumns.get(i);

@@ -53,6 +53,7 @@ public class ColumnServiceImpl implements ColumnService {
 	
 	public List<Part> queryAllColumns() throws Exception
 	{
-		return columnDao.queryAllColumns();
+		List<Part> allColumns = columnDao.queryAllColumns();
+		return allColumns;
 	}
 }

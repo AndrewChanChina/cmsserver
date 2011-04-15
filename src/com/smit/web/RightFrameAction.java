@@ -11,7 +11,9 @@ import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 
 import com.smit.service.ColumnService;
+import com.smit.service.SysInfoService;
 import com.smit.vo.Part;
+import com.smit.vo.SysInfo;
 
 public class RightFrameAction extends Action {
 	
@@ -19,6 +21,12 @@ public class RightFrameAction extends Action {
 	public void setQueryAllColumnsService(ColumnService queryAllColumnsService)
 	{
 		this.queryAllColumnsService = queryAllColumnsService;
+	}
+	
+	private SysInfoService queryAllSysInfoService;
+	public void setQueryAllSysInfoService(SysInfoService queryAllSysInfoService)
+	{
+		this.queryAllSysInfoService = queryAllSysInfoService;
 	}
 	
 	@Override
@@ -30,6 +38,8 @@ public class RightFrameAction extends Action {
 		
 		if(whichClass.equalsIgnoreCase("sysInfoAndLog"))
 		{
+			List<SysInfo> allSysInfos = queryAllSysInfoService.queryAllSysInfo();
+			request.setAttribute("allSysInfos", allSysInfos);
 			return mapping.findForward("sys_info_page");//right.jsp
 		}
 		else if(whichClass.equalsIgnoreCase("column"))

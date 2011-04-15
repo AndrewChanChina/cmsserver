@@ -1,6 +1,7 @@
 package com.smit.service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import com.smit.dao.SysInfoDao;
 import com.smit.vo.SysInfo;
@@ -59,5 +60,10 @@ public class SysInfoServiceImpl implements SysInfoService{
 			return true;
 		}
 		return false;
+	}
+	
+	public List<SysInfo> queryAllSysInfo() throws Exception
+	{
+		return sysInfoDao.queryAllSysInfo();
 	}
 }

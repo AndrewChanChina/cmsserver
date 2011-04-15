@@ -57,10 +57,10 @@ public class ColumnDaoImpl extends HibernateDaoSupport implements ColumnDao
 		//List count = getHibernateTemplate().find("SELECT count(*) FROM com.smit.vo.User");
 		 //page.setTotalCount(Integer.parseInt(count.get(0).toString() ));		 
 		 
-		 List<Part> list = getHibernateTemplate().executeFind(new HibernateCallback() {  
+		 return getHibernateTemplate().executeFind(new HibernateCallback() {  
 	            public Object doInHibernate(Session s) throws HibernateException, SQLException
 	            {  
-	            	String hql = "select p FROM com.smit.vo.Part p";
+	            	String hql = "FROM com.smit.vo.Part p";
 	                Query query = s.createQuery(hql);  
 	                //int firstRow = page.getPageSize() * (page.getPageIndex() - 1);
 	                //query.setFirstResult(firstRow);  
@@ -69,7 +69,6 @@ public class ColumnDaoImpl extends HibernateDaoSupport implements ColumnDao
 	                return list;  
 	            }
 	        });  
-		return list;
 	}
 
 	

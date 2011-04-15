@@ -91,11 +91,18 @@
   </bean>
   <bean name="/showRightFrame" class="com.smit.web.RightFrameAction" scope="prototype" >
   	<property name="queryAllColumnsService" ref="queryAllColumnsService"></property>
+  	<property name="queryAllSysInfoService" ref="queryAllSysInfoService"></property>
   </bean>
   <bean id="queryAllColumnsService" class="com.smit.service.ColumnServiceImpl">
   	<property name="columnDao" ref="queryAllColumnsDao"></property>
   </bean>
+  <bean id="queryAllSysInfoService" class="com.smit.service.SysInfoServiceImpl">
+  	<property name="sysInfoDao" ref="queryAllSysInfoDao"></property>
+  </bean>
   <bean id="queryAllColumnsDao" class="com.smit.dao.ColumnDaoImpl">
+  	<property name="sessionFactory" ref="sessionFactory"></property>
+  </bean>
+  <bean id="queryAllSysInfoDao" class="com.smit.dao.SysInfoDaoImpl">
   	<property name="sessionFactory" ref="sessionFactory"></property>
   </bean>
 
