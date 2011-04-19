@@ -124,7 +124,7 @@
 								${user.tel}
 							</td>
 							<td>
-								默认分组
+								${user.group.groupName}
 							</td>
 							<td align="center">
 								<a href="gonewuser.do?id=${user.id}" class="pn-opt">修改</a> |

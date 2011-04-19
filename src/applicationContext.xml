@@ -8,13 +8,15 @@
   	<!-- welcome -->
   	<bean name="/welcome" class="com.smit.web.WelcomeAction" scope="prototype"></bean>
   	
-   	<!-- SMIT login --> 
+   	<!-- user dao & service --> 
    	<bean id="userDao" class="com.smit.dao.UserDaoImpl" >
    		<property name="sessionFactory" ref="sessionFactory"></property>
    	</bean>   
    	<bean id="userService" class="com.smit.service.UserServiceImpl">
   		<property name="userDao" ref="userDao"></property>
   	</bean>
+  	
+  	<!-- login register action -->
     <bean name="/login" class="com.smit.web.UserAction" scope="prototype" >
   		<property name="userService" ref="userService"></property>
     </bean>
@@ -22,7 +24,9 @@
     </bean>
   	<bean name="/register" class="com.smit.web.UserAction" scope="prototype">
   		<property name="userService" ref="userService"></property>
-  	</bean>
+  	</bean>  	
+  	
+  	<!-- user manager action -->
   	<bean name="/listuser" class="com.smit.web.UserAction" scope="prototype">
   		<property name="userService" ref="userService"></property>
   	</bean>
@@ -37,18 +41,20 @@
   		<property name="userService" ref="userService"></property>
   	</bean>	
   	
-  	<!-- group manager -->
+  	<!-- group dao & service -->
   	<bean id="groupDao" class="com.smit.dao.GroupDaoImpl">
   		<property name="sessionFactory" ref="sessionFactory"></property>
   	</bean>
   	<bean id="groupManagerService" class="com.smit.service.GroupMangerServiceImpl">
   		<property name="groupDao" ref="groupDao"></property>
   	</bean>
+  	<!-- group manager -->
   	<bean name="/grouplist" class="com.smit.web.GroupAction" scope="prototype">
   		<property name="groupManager" ref="groupManagerService"></property>
   	</bean>
   	<bean name="/gonewgroup" class="com.smit.web.GroupAction" scope="prototype">
   		<property name="groupManager" ref="groupManagerService"></property>
+  		<property name="purviewService" ref="purviewService"></property>
   	</bean>
   	<bean name="/saveupdategroup" class="com.smit.web.GroupAction" scope="prototype">
   		<property name="groupManager" ref="groupManagerService"></property>
@@ -56,7 +62,29 @@
   	<bean name="/deletegroup" class="com.smit.web.GroupAction" scope="prototype">
   		<property name="groupManager" ref="groupManagerService"></property>
   	</bean>	
-
+  	
+  	<!-- purview dao & service -->
+  	<bean id="purviewDao" class="com.smit.dao.PurviewDaoImpl">
+  		<property name="sessionFactory" ref="sessionFactory"></property>
+  	</bean>
+  	<bean id="purviewService" class="com.smit.service.PurviewServiceImpl">
+  		<property name="purviewDao" ref="purviewDao"></property>
+  	</bean>
+  	
+  	<!-- purview manager action -->
+	<bean name="/listpurview" class="com.smit.web.PurviewAction" scope="prototype">
+  		<property name="purviewService" ref="purviewService"></property>
+  	</bean>
+  	<bean name="/gonewpurview" class="com.smit.web.PurviewAction" scope="prototype">
+  		<property name="purviewService" ref="purviewService"></property>
+  	</bean>
+  	<bean name="/saveupdatepurview" class="com.smit.web.PurviewAction" scope="prototype">
+  		<property name="purviewService" ref="purviewService"></property>
+  	</bean>
+  	<bean name="/deletepurview" class="com.smit.web.PurviewAction" scope="prototype">
+  		<property name="purviewService" ref="purviewService"></property>
+  	</bean>	
+  	
   	<bean id="sessionFactory"
   		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
   		<property name="configLocation"

@@ -19,5 +19,7 @@ public interface IUserDao {
 	// For pagination
 	// if page == null, return all users
 	public List listAllUsers(SmitPage page);
+	
+
 
 }

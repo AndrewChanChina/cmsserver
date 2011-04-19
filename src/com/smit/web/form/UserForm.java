@@ -4,6 +4,10 @@ import org.apache.struts.action.ActionForm;
 
 public class UserForm extends ActionForm {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3709476896678423162L;
 	private String userName;
 	private String email;
 	private String tel;

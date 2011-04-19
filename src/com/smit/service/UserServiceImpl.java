@@ -38,7 +38,7 @@ public class UserServiceImpl implements IUserService {
 		return userDao.register(user);
 	}
 	@Override
-	public User findGroupByName(String userName) {
+	public User findUserByName(String userName) {
 		return userDao.findGroupByName(userName);
 	}
 	@Override

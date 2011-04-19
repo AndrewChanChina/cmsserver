@@ -4,6 +4,10 @@ import org.apache.struts.action.ActionForm;
 
 
 public class SmitLoginForm extends ActionForm {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 4163171742841875769L;
 	private String userName;
 	private String passwd;
 	

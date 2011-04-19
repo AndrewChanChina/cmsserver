@@ -9,8 +9,8 @@
  <property name="password" column="passwd"/>
   <property name="email" column="user_email"/>
  <property name="explain" column="user_explain"/>
-  <property name="tel"/>
-   <property name="state"/>
-   <many-to-one name="group" class="com.smit.vo.Group" column="gid"></many-to-one>
+ <property name="tel"/>
+ <property name="state"/>
+ <many-to-one name="group" class="com.smit.vo.Group" column="gid" lazy="false"></many-to-one>
 </class>
 </hibernate-mapping>

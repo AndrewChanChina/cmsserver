@@ -1,7 +1,7 @@
 package com.smit.web;
 
 import java.util.List;
-import java.util.Random;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -12,9 +12,11 @@ import org.apache.struts.action.ActionMapping;
 import org.apache.struts.actions.MappingDispatchAction;
 
 import com.smit.service.IGroupManagerService;
+import com.smit.service.IPurviewService;
 import com.smit.util.SmitPage;
 import com.smit.util.WebUtil;
 import com.smit.vo.Group;
+import com.smit.vo.Purview;
 import com.smit.web.form.GroupForm;
 
 public class GroupAction extends MappingDispatchAction {
@@ -23,7 +25,7 @@ public class GroupAction extends MappingDispatchAction {
 	private final static String METHOD_DEFAULT = "grouplist";
 	private final static String METHOD_USER	= "userlist";
 	private IGroupManagerService groupManager;
-	private GroupForm groupForm;
+	private IPurviewService purviewService;
 	
 	public ActionForward groupList(ActionMapping mapping,ActionForm form,
 			   HttpServletRequest request,HttpServletResponse response) 
@@ -93,6 +95,12 @@ public class GroupAction extends MappingDispatchAction {
 		Group g = new Group();
 		g.setCreatetime( new java.sql.Timestamp(today.getTime()) );
 		g.setGroupName(groupForm.getGroupName());
+		
+		for(String id : groupForm.getPurviewids()){
+			Purview p = new Purview();
+			p.setId(Integer.valueOf(id));
+			g.getPurviews().add(p);
+		}
 	
 		try {
 			if (groupForm.getId()!=null && groupForm.getId().isEmpty()==false ) {
@@ -133,19 +141,33 @@ public class GroupAction extends MappingDispatchAction {
 	public ActionForward goNewGroup(ActionMapping mapping,ActionForm form,
 			   HttpServletRequest request,HttpServletResponse response) 
 	           throws Exception {
-		
-		GroupForm groupForm = new GroupForm();
-		groupForm.setHideId(WebUtil.setHideId2Session(request.getSession()));
-		
-		String id = request.getParameter("id");
-		
-		if(id != null){
-			Group g = groupManager.getGroup(Integer.valueOf(id));
-			groupForm.setGroupName(g.getGroupName());
-			groupForm.setId(String.valueOf( g.getId()) );
+		try{
+			GroupForm groupForm = new GroupForm();
+			groupForm.setHideId(WebUtil.setHideId2Session(request.getSession()));
 			
+			String id = request.getParameter("id");
+			
+			if(id != null){
+				Group g = groupManager.getGroup(Integer.valueOf(id));
+				groupForm.setGroupName(g.getGroupName());
+				groupForm.setId(String.valueOf( g.getId()) );
+				StringBuilder sb = new StringBuilder();
+				Set<Purview> set = g.getPurviews();
+				for(Purview p : set){
+					sb.append(p.getId()).append(",");
+				}
+				String[] ids = sb.toString().split(",");
+				groupForm.setPurviewids(ids);
+				
+			}
+			List purviews = purviewService.listAll(null);
+			request.setAttribute("purviewlist", purviews);
+			request.setAttribute("groupForm", groupForm);
+			
+		} catch(Exception e){
+			e.printStackTrace();
+			return mapping.findForward("fail");
 		}
-		request.setAttribute("groupForm", groupForm);
 		return mapping.findForward("continue");
 	}
 	
@@ -155,11 +177,12 @@ public class GroupAction extends MappingDispatchAction {
 	public void setGroupManager(IGroupManagerService groupManager) {
 		this.groupManager = groupManager;
 	}
+	public IPurviewService getPurviewService() {
+		return purviewService;
+	}
+	public void setPurviewService(IPurviewService purviewService) {
+		this.purviewService = purviewService;
+	}
 	
-	public GroupForm getGroupForm() {
-		return groupForm;
-	}
-	public void setGroupForm(GroupForm groupForm) {
-		this.groupForm = groupForm;
-	}
+	
 }

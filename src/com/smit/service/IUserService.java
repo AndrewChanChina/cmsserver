@@ -9,7 +9,7 @@ public interface IUserService {
 	public boolean login(String userName,String passwd);
 	public boolean register(String userName,String password,String email,String telphone);
 	
-	public User findGroupByName(String userName);
+	public User findUserByName(String userName);
 	public void save(User user);
 	public void update(User user);
 	public void delete(User user);

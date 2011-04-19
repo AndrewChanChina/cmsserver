@@ -110,7 +110,10 @@
 					<td colspan="1" width="38%" class="pn-fcontent">
 						<select name="groupId">
 							<c:forEach items="${groupList}" var="group">
-								<option value="${group.id}">${group.groupName}</option>	
+								<option value="${group.id}" 
+								<c:if test="${group.id==userForm.groupId}">selected</c:if> >
+								${group.groupName}
+								</option>	
 							</c:forEach>						
 						</select>
 					</td>					
@@ -126,6 +129,8 @@
 			</table>
 			<input type="hidden" name="hideId"
 						value="${userForm.hideId}"/>
+			<input type="hidden" name="id"
+						value="${userForm.id}"/>
 		</form>
 	</div>
 </body>

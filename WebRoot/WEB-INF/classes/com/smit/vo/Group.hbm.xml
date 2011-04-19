@@ -13,7 +13,7 @@
    <key column="gid" />
    <one-to-many class="com.smit.vo.User"/>
   </set>
-  <set name="purviews" table="group_purview" lazy="true" >
+  <set name="purviews" table="group_purview" lazy="false" >
   <key column="gid" />
   <many-to-many class="com.smit.vo.Purview" column="pid"></many-to-many>
   </set>

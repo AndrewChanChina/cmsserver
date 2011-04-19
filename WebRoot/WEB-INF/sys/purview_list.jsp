@@ -44,7 +44,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				return;
 			}
 			var f = getTableForm();
-			f.action="deletegroup.do";
+			f.action="deletepurview.do";
 			f.submit();
 		}
 		function optPriority() {
@@ -60,9 +60,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    
    	<div class="body-box">
 	<div class="rhead">
-		<div class="rpos">当前位置: 会员组管理 - 列表</div>
+		<div class="rpos">当前位置: 权限管理 - 列表</div>
 		<form class="ropt">
-			<input type="submit" value="添加" onclick="this.form.action='gonewgroup.do';"/>
+			<input type="submit" value="添加" onclick="this.form.action='gonewpurview.do';"/>
 		</form>
 		<div class="clear"></div>
 	</div>
@@ -74,24 +74,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<th width="20"><input type='checkbox' onclick='Pn.checkbox("ids",this.checked)'/></th>
 				<th>ID</th>
 				<th>名称</th>
-				<th>创建时间</th>				
-				<th>默认组</th>
+				<th>描述</th>
 				<th>操作选项</th>
 			</tr>
 		</thead>
 		<tbody  class="pn-ltbody">
-			<c:forEach items="${grouplist}" var="group">		   
+			<c:forEach items="${PurviewList}" var="purview">		   
 			<tr>
 			<td><input type='checkbox' name='ids' value='1'/></td>
-			<td>${group.id}</td>
-			<td>${group.groupName}</td>	
-			<td>${group.createtime}</td>		
-			<td align="center">
-			<c:forEach items="${group.purviews}" var="purview">
-			${purview.purviewName}&nbsp
-			</c:forEach>
-			</td>						
-			<td align="center">		<a href="gonewgroup.do?id=${group.id}" class="pn-opt">修改</a> | <a href="deletegroup.do?id=${group.id}" onclick="if(!confirm('您确定删除吗？')) {return false;}" class="pn-opt">删除</a></td>
+			<td>${purview.id}</td>
+			<td>${purview.purviewName}</td>	
+			<td>${purview.purviewInfo}</td>
+			<td align="center">		<a href="gonewpurview.do?id=${purview.id}" class="pn-opt">修改</a> | <a href="deletepurview.do?id=${purview.id}" onclick="if(!confirm('您确定删除吗？')) {return false;}" class="pn-opt">删除</a></td>
 			</tr>
 			</c:forEach>
 		</tbody>

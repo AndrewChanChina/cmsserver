@@ -71,27 +71,12 @@ public class UserDaoImpl extends HibernateDaoSupport implements IUserDao {
 		return (User)list.get(0);
 	}
 	@Override
-	public void save(User user) {
-
-		String hql = "from com.smit.vo.Group s where s.groupName='normal'";
-		
-		List list = this.getHibernateTemplate().find(hql);			
-		if(list.size() < 1){
-		}
-		Group group = (Group)list.get(0);
-		user.setGroup(group);
-		HashSet<User> users = new HashSet();
-		users.add(user);
-		
-		group.setUsers(users);
+	public void save(User user) {		
 		this.getHibernateTemplate().save(user);			
-		this.getHibernateTemplate().flush();
-		
 	}
 	@Override
-	public void update(User user) {
-		this.getHibernateTemplate().update(user);
-		
+	public void update(User user) {		
+		this.getHibernateTemplate().update(user);		
 	}
 	@Override
 	public void delete(User user) {

@@ -8,6 +8,10 @@ import org.apache.struts.action.ActionForm;
  *
  */
 public class RegisterForm extends ActionForm {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6724967420974876592L;
 	private String username;
 	private String password;
 	private String tel;

@@ -46,7 +46,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <ul id="lmenu">
 <li><a href="./userright.do?show=grouplist" target="rightFrame">分组信息</a></li>
 <li><a href="./listuser.do" target="rightFrame">用户信息</a></li>
-<li><a href="/userright.do?show=role" target="rightFrame">权限信息</a></li>
+<li><a href="./listpurview.do" target="rightFrame">权限信息</a></li>
 
 </ul>
 </body>

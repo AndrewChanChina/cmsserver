@@ -92,9 +92,9 @@ public class UserAction extends MappingDispatchAction {
 		pager.setUrl("listuser.do?");
 
 		try {
-			List List = userService.listAllUsers(pager);
+			List list = userService.listAllUsers(pager);
 			request.setAttribute("pb", pager);
-			request.setAttribute("listUser", List);
+			request.setAttribute("listUser", list);
 		} catch (Exception e) {
 			return mapping.findForward("fail");
 		}  
@@ -131,9 +131,9 @@ public class UserAction extends MappingDispatchAction {
 			String id = request.getParameter("id");
 			
 			if(id != null){
-				User g = userService.getUser(Integer.valueOf(id));
-				userForm.setUserName(g.getUserName());
-				userForm.setId(String.valueOf( g.getId()) );
+				User g = userService.getUser(Integer.valueOf(id));				
+				BeanUtils.copyProperties(userForm, g);
+				userForm.setGroupId(String.valueOf(g.getGroup().getId()));
 				
 			}
 			List groupList = groupManager.listAllGroups(null);
@@ -160,25 +160,26 @@ public class UserAction extends MappingDispatchAction {
 			return mapping.findForward("fail");
 		}
 		
-		java.util.Date today = new java.util.Date();
-		User g = new User();
-		BeanUtils.copyProperties(g, userForm);
-		g.setUserName(userForm.getUserName());	
-		
+		User u = new User();
+		Group group = new Group();
+		group.setId(Integer.valueOf(userForm.getGroupId()));
+		BeanUtils.copyProperties(u, userForm);
+		u.setUserName(userForm.getUserName());	
+		u.setGroup(group);		
 	
 		try {
 			if (userForm.getId()!=null && userForm.getId().isEmpty()==false ) {
-				g.setId(Integer.valueOf(userForm.getId()));
-				userService.update(g);
+				u.setId(Integer.valueOf(userForm.getId()));
+				userService.update(u);
 			} else {
-				userService.save(g);
+				userService.save(u);
 			}
 		} catch (Exception e) {
 
 			e.printStackTrace();
 			return mapping.findForward("fail");
 		}
-		return mapping.findForward("userright_grouplist");
+		return mapping.findForward("userright_userlist");
 		
 	}
 	public IUserService getUserService() {
