@@ -35,27 +35,22 @@ public class UserDaoImpl extends HibernateDaoSupport implements IUserDao {
 	 */
 	@Override
 	public boolean register(User user){
-		try{	
-			
-			String hql = "from com.smit.vo.Group s where s.groupName='normal'";
-			
-			List list = this.getHibernateTemplate().find(hql);			
-			if(list.size() < 1){
-				return false;
-			}
-			Group group = (Group)list.get(0);
-			user.setGroup(group);
-			HashSet<User> users = new HashSet();
-			users.add(user);
-			
-			group.setUsers(users);
-			this.getHibernateTemplate().save(user);			
-			this.getHibernateTemplate().flush();
-		}catch(DataAccessException e){
-			return false;
-		}catch(Exception e){
+		
+		String hql = "from com.smit.vo.Group s where s.groupName='normal'";
+		
+		List list = this.getHibernateTemplate().find(hql);			
+		if(list.size() < 1){
 			return false;
 		}
+		Group group = (Group)list.get(0);
+		user.setGroup(group);
+		HashSet<User> users = new HashSet();
+		users.add(user);
+		
+		group.setUsers(users);
+		this.getHibernateTemplate().save(user);			
+		this.getHibernateTemplate().flush();
+		
 		return true;
 	}
 	

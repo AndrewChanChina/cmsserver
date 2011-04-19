@@ -16,24 +16,41 @@
   	<forward name="register" path="/register.jsp"/>
     <forward name="login" path="/login.jsp"/>
     <forward name="sucess" path="/sucess.jsp"/>
-    <forward name="fail" path="/fail.jsp"/>
+    <forward name="fail" path="/WEB-INF/sys/group_fail.jsp"/>
     <forward name="test" path="/WEB-INF/sys/user_main.jsp"/>
   </global-forwards>
   
   <action-mappings>
-
+  <!-- framework forward action -->
+  <action 	path="/showTopFrame" type="org.apache.struts.actions.ForwardAction"
+  			parameter="/WEB-INF/sys/top.jsp"
+			scope="request"
+			validate="false">
+  </action>
+  <action 	path="/showMainFrame" type="org.apache.struts.actions.ForwardAction"
+  			parameter="/WEB-INF/sys/main.jsp"
+			scope="request"
+			validate="false">
+  </action>
+  <action 	path="/showLeftFrame" type="org.apache.struts.actions.ForwardAction"
+  			parameter="/WEB-INF/sys/left.jsp"
+			scope="request"
+			validate="false">
+  </action>
+  <!-- login  -->
   <action 	path="/login" type="org.springframework.web.struts.DelegatingActionProxy" 
   			parameter="login" name="smitLoginForm">
+  			<forward name="sucess" path="/WEB-INF/sys/index.html"/>
+  			<forward name="fail" path="/login.jsp"/>
   </action>
   <action 	path="/logout" type="org.springframework.web.struts.DelegatingActionProxy"
   		  	parameter="logout">
+  		  	<forward name="success" path="/login.jsp"/>
   </action>
   <action 	path="/register" type="org.springframework.web.struts.DelegatingActionProxy" 
   			parameter="register" name="registerForm" >
-   			<forward name="sucess" path="/sucess.jsp"/>
+   			<forward name="sucess" path="/WEB-INF/sys/index.html"/>
    			<forward name="fail" path="/fail.jsp"/>
-  </action>
-  <action 	path="/welcome" type="com.smit.web.WelcomeAction">  	 
   </action>
   
   <!-- language -->
@@ -55,24 +72,15 @@
   <action 	path="/saveupdateuser" type="org.springframework.web.struts.DelegatingActionProxy"
    			parameter="saveUpdateUser" name="userForm">     			
     		<forward name="userright_userlist" path="/listuser.do"/> 
-    		<forward name="fail" path="/WEB-INF/sys/group_fail.jsp"/>			
+    		<forward name="fail" path="/WEB-INF/sys/fail.jsp"/>			
   </action>
   <action 	path="/deleteuser" type="org.springframework.web.struts.DelegatingActionProxy"
    			parameter="deleteUser">     			
     		<forward name="userright_userlist" path="/listuser.do"/> 
-    		<forward name="fail" path="/WEB-INF/sys/group_fail.jsp"/>			
+    		<forward name="fail" path="/WEB-INF/sys/fail.jsp"/>			
   </action>
 		
-  <!-- group manager --> 
-  <action 	path="/userleft" type="com.smit.web.GroupAction"
-   			parameter="userleft">     			
-    		<forward name="showguserleft" path="/WEB-INF/sys/left.jsp"/> 			
-  </action>
-  <action 	path="/userright" type="com.smit.web.GroupAction"
-   			parameter="userright">     			
-    		<forward name="userright_grouplist" path="/grouplist.do"/> 
-    		<forward name="userright_userlist" path="/userlist.do"/>			
-  </action>
+  <!-- group manager -->   
   <action 	path="/grouplist" 
   			type="org.springframework.web.struts.DelegatingActionProxy"
    			parameter="groupList">     			
@@ -84,13 +92,11 @@
   </action>
   <action 	path="/saveupdategroup" type="org.springframework.web.struts.DelegatingActionProxy"
    			parameter="saveUpdateGroup" name="groupForm">     			
-    		<forward name="userright_grouplist" path="/grouplist.do"/> 
-    		<forward name="fail" path="/WEB-INF/sys/group_fail.jsp"/>			
+    		<forward name="userright_grouplist" path="/grouplist.do"/> 		
   </action>
   <action 	path="/deletegroup" type="org.springframework.web.struts.DelegatingActionProxy"
    			parameter="deleteGroup">     			
-    		<forward name="userright_grouplist" path="/grouplist.do"/> 
-    		<forward name="fail" path="/WEB-INF/sys/group_fail.jsp"/>			
+    		<forward name="userright_grouplist" path="/grouplist.do"/> 		
   </action>
   
   <!-- purview action -->
@@ -105,13 +111,11 @@
   </action>
   <action 	path="/saveupdatepurview" type="org.springframework.web.struts.DelegatingActionProxy"
    			parameter="saveUpdatePurview" name="purviewForm">     			
-    		<forward name="userright_purviewlist" path="/listpurview.do"/> 
-    		<forward name="fail" path="/WEB-INF/sys/purview_fail.jsp"/>			
+    		<forward name="userright_purviewlist" path="/listpurview.do"/>	
   </action>
   <action 	path="/deletepurview" type="org.springframework.web.struts.DelegatingActionProxy"
    			parameter="deletePurview">     			
-    		<forward name="userright_purviewlist" path="/listpurview.do"/> 
-    		<forward name="fail" path="/WEB-INF/sys/group_fail.jsp"/>			
+    		<forward name="userright_purviewlist" path="/listpurview.do"/> 	
   </action>
   
   </action-mappings>

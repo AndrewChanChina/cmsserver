@@ -24,6 +24,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   
   <body>
   <a href="logout.do">logout</a>
-    登录成功！
+    成功！
   </body>
 </html>

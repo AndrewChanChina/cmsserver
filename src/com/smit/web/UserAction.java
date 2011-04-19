@@ -32,16 +32,18 @@ public class UserAction extends MappingDispatchAction {
 			HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 
-		RegisterForm loginForm = (RegisterForm)form;		
-				
-		if(userService.register(loginForm.getUsername(), 
-				loginForm.getPassword(), 
-				loginForm.getEmail(), 
-				loginForm.getTel())) {			
-			return mapping.findForward("sucess");
-		} else {
+		try{
+			RegisterForm loginForm = (RegisterForm)form;
+			userService.register(loginForm.getUsername(), 
+					loginForm.getPassword(), 
+					loginForm.getEmail(), 
+					loginForm.getTel());
+					
+		}catch (Exception e){
 			return mapping.findForward("fail");
 		}
+		return mapping.findForward("sucess");
+		
 	}
 	
 	public ActionForward login(ActionMapping mapping, ActionForm form,
@@ -52,7 +54,7 @@ public class UserAction extends MappingDispatchAction {
 
 		SmitLoginForm loginForm = (SmitLoginForm)form;
 		if(form == null){
-			return mapping.findForward("login");
+			return mapping.findForward("fail");
 		}
 		
 		System.out.println(loginForm.getPasswd());
@@ -61,7 +63,7 @@ public class UserAction extends MappingDispatchAction {
 			session.setAttribute(Constants.LOGIN_SUC, Constants.SUCCESS);
 			return mapping.findForward("sucess");
 		} else 
-		return mapping.findForward("login");
+		return mapping.findForward("fail");
 	}
 	/**
 	 * logout action
@@ -78,7 +80,7 @@ public class UserAction extends MappingDispatchAction {
  
 		HttpSession session = request.getSession();
 		session.setAttribute(Constants.LOGIN_SUC,null);
-	    return mapping.findForward("login");
+	    return mapping.findForward("success");
 	}
 	
 	public ActionForward listUser(ActionMapping mapping,ActionForm form,

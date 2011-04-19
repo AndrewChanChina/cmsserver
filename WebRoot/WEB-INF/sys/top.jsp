@@ -1,4 +1,23 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+﻿<%@page import="org.hibernate.impl.SessionFactoryImpl"%>
+<%@ page language="java"  pageEncoding="UTF-8"%>
+<%@ page contentType= "text/html;charset=UTF-8" language= "java"%>
+<%@ page import="java.util.*"%>
+<%@ page import="com.smit.dao.*"%>
+<%@ page import="com.smit.vo.*"%>
+<%@ page import="org.hibernate.SessionFactory"%>
+<%@ page import="java.util.HashMap"%>
+<%@ taglib uri="http://struts.apache.org/tags-bean" prefix="bean" %>
+<%@ taglib uri="http://struts.apache.org/tags-html" prefix="html" %>
+<%@ taglib uri="http://struts.apache.org/tags-logic" prefix="logic" %>
+<%@ taglib uri="http://struts.apache.org/tags-tiles" prefix="tiles" %>
+
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
@@ -102,7 +121,7 @@ function changeSite(siteId) {
           <tr>
             <td width="260" height="30">
 			<img src="./images/admin/ico1.gif"><span id="welcome">你好，管理员</span>
-			<img src="./images/admin/ico2.jpg"><a href="logout.do?returnUrl=index.do" target="_top" id="logout" onclick="">退出</a></td>
+			<img src="./images/admin/ico2.jpg"><a href="logout.do" target="_top" id="logout" onclick="">退出</a></td>
             <td align="right">
          
             </td>
@@ -120,13 +139,13 @@ function changeSite(siteId) {
 		   <ul class="menu">			
 			<li class="current" id="tb_11" onclick="HoverLi(1,1,10);"><a href="main.do" target="mainFrame">配置</a></li>
 				
-			<li class="sep"></li><li id="tb_12" onclick="HoverLi(1,2,10);"><a href="frame/channel_main.do" target="mainFrame">用户</a></li>
+			<li class="sep"></li><li id="tb_12" onclick="HoverLi(1,2,10);"><a href="showMainFrame.do?class=user" target="mainFrame">用户</a></li>
 		
-			<li class="sep"></li><li id="tb_13" onclick="HoverLi(1,3,10);"><a href="frame/content_main.do" target="mainFrame">栏目</a></li>
+			<li class="sep"></li><li id="tb_13" onclick="HoverLi(1,3,10);"><a href="showMainFrame.do?class=column" target="mainFrame">栏目</a></li>
 		
-			<li class="sep"></li><li id="tb_14" onclick="HoverLi(1,4,10);"><a href="frame/template_main.do" target="mainFrame">内容</a></li>
+			<li class="sep"></li><li id="tb_14" onclick="HoverLi(1,4,10);"><a href="fshowMainFrame.do?class=column" target="mainFrame">内容</a></li>
 		
-			<li class="sep"></li><li id="tb_15" onclick="HoverLi(1,5,10);"><a href="frame/resource_main.do" target="mainFrame">上传</a></li>
+			<li class="sep"></li><li id="tb_15" onclick="HoverLi(1,5,10);"><a href="showMainFrame.do?class=column" target="mainFrame">上传</a></li>
 			</ul>
 		</td>
       </tr>
