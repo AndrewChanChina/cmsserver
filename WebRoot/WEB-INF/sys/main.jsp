@@ -1,4 +1,4 @@
-<%@page import="org.hibernate.impl.SessionFactoryImpl"%>
+
 <%@ page language="java"  pageEncoding="UTF-8"%>
 <%@ page contentType= "text/html;charset=UTF-8" language= "java"%>
 <%@ page import="java.util.*"%>
@@ -10,7 +10,6 @@
 <%@ taglib uri="http://struts.apache.org/tags-html" prefix="html" %>
 <%@ taglib uri="http://struts.apache.org/tags-logic" prefix="logic" %>
 <%@ taglib uri="http://struts.apache.org/tags-tiles" prefix="tiles" %>
-
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -28,12 +27,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </head>
 <% 
 	//HttpServletRequest request = ServletActionContext.getRequest(); 
-	String classification = (String)request.getParameter("class");
+	String classification = (String)request.getAttribute("class");
 	System.out.println(classification);
  %>
 <frameset cols="240,*" frameborder="0" border="0" framespacing="0">
 	<%
-		if(classification==null || classification.equalsIgnoreCase("column"))
+		if(classification.equalsIgnoreCase("column"))
 		{
 	%>
 			<frame src="showLeftFrame.do?class=column" name="leftFrame" noresize="noresize" id="leftFrame" />
@@ -46,14 +45,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<frame src="showLeftFrame.do?class=sysInfoAndLog" name="leftFrame" noresize="noresize" id="leftFrame" />
 			<frame src="showRightFrame.do?class=sysInfoAndLog" name="rightFrame" id="rightFrame" />
 	<%
-		}else if(classification.equalsIgnoreCase("user"))
-		{
-	%>
-			<frame src="showLeftFrame.do?class=user" name="leftFrame" noresize="noresize" id="leftFrame" />
-			<frame src="listuser.do" name="rightFrame" id="rightFrame" />
-	<%
 		}
-	 %>
+	%>
+
 </frameset>
 <noframes><body></body></noframes>
 </html>
