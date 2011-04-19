@@ -8,12 +8,12 @@ import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 
-import com.smit.service.AddSysInfoService;
+import com.smit.service.SysInfoService;
 
 public class AddSysInfoAction extends Action {
-	private AddSysInfoService addSysInfoService;
+	private SysInfoService addSysInfoService;
 	   
-		public void setAddSysInfoService(AddSysInfoService addSysInfoService) {
+		public void setAddSysInfoService(SysInfoService addSysInfoService) {
 			this.addSysInfoService = addSysInfoService;
 	    }
 	
@@ -28,7 +28,7 @@ public class AddSysInfoAction extends Action {
 		System.out.println(valueToAdd);
 		if(addSysInfoService.addSysInfo(keyToAdd, valueToAdd))
 		{
-			return mapping.findForward("sucess");
+			return mapping.findForward("reload");
 		}
 		else
 		{
