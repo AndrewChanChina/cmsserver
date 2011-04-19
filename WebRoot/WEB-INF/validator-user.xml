@@ -1,0 +1,172 @@
+<!DOCTYPE form-validation PUBLIC
+        "-//Apache Software Foundation//DTD Commons Validator Rules Configuration 1.3.0//EN"
+        "http://jakarta.apache.org/commons/dtds/validator_1_3_0.dtd">
+
+<form-validation>
+   <formset>
+      <form name="smitLoginForm">
+         <field property="userName" depends="required,maxlength,minlength,mask">
+         
+         	<msg name="required" key="err.user.username.required" />
+			<msg name="maxlength" key="err.user.username.length" />
+			<msg name="minlength" key="err.user.username.length" />
+			<msg name="mask" key="err.user.username.invalid" />
+
+			<arg name="maxlength" key="${var:minlength}" position="0" resource="false"/>
+            <arg name="maxlength" key="${var:maxlength}" position="1" resource="false"/>
+
+			<arg name="minlength" key="${var:minlength}" position="0" resource="false"/>
+            <arg name="minlength" key="${var:maxlength}" position="1" resource="false"/>
+            
+            <var>
+            	<var-name>minlength</var-name>
+				<var-value>3</var-value>
+			</var>		
+			<var>
+				<var-name>maxlength</var-name>
+				<var-value>15</var-value>
+			</var>
+            
+            <var>
+				<var-name>mask</var-name>
+				<var-value>^[a-zA-Z0-9-_]*$</var-value>
+			</var>
+			
+         </field>
+         
+         <field property="passwd" depends="required,maxlength,minlength,mask">
+         
+         	<msg name="required" key="err.user.pwd.required" />
+			<msg name="maxlength" key="err.user.pwd.length" />
+			<msg name="minlength" key="err.user.pwd.length" />
+			<msg name="mask" key="err.user.pwd.invalid" />
+
+			<arg name="maxlength" key="${var:minlength}" position="0" resource="false"/>
+            <arg name="maxlength" key="${var:maxlength}" position="1" resource="false"/>
+
+			<arg name="minlength" key="${var:minlength}" position="0" resource="false"/>
+            <arg name="minlength" key="${var:maxlength}" position="1" resource="false"/>
+            
+            <var>
+            	<var-name>minlength</var-name>
+				<var-value>5</var-value>
+			</var>		
+			<var>
+				<var-name>maxlength</var-name>
+				<var-value>15</var-value>
+			</var>            
+            <var>
+				<var-name>mask</var-name>
+				<var-value>^[a-zA-Z0-9]*$</var-value>
+			</var>			
+         </field>		
+		
+     </form>
+     <form name="registerForm">
+         <field property="username" depends="required,maxlength,minlength,mask">
+         
+         	<msg name="required" key="err.user.username.required" />
+			<msg name="maxlength" key="err.user.username.length" />
+			<msg name="minlength" key="err.user.username.length" />
+			<msg name="mask" key="err.user.username.invalid" />
+
+			<arg name="maxlength" key="${var:minlength}" position="0" resource="false"/>
+            <arg name="maxlength" key="${var:maxlength}" position="1" resource="false"/>
+
+			<arg name="minlength" key="${var:minlength}" position="0" resource="false"/>
+            <arg name="minlength" key="${var:maxlength}" position="1" resource="false"/>
+            
+            <var>
+            	<var-name>minlength</var-name>
+				<var-value>3</var-value>
+			</var>		
+			<var>
+				<var-name>maxlength</var-name>
+				<var-value>15</var-value>
+			</var>
+            
+            <var>
+				<var-name>mask</var-name>
+				<var-value>^[a-zA-Z0-9-_]*$</var-value>
+			</var>
+			
+         </field>
+         
+         <field property="password" depends="required,maxlength,minlength,mask">
+         
+         	<msg name="required" key="err.user.pwd.required" />
+			<msg name="maxlength" key="err.user.pwd.length" />
+			<msg name="minlength" key="err.user.pwd.length" />
+			<msg name="mask" key="err.user.pwd.invalid" />
+
+			<arg name="maxlength" key="${var:minlength}" position="0" resource="false"/>
+            <arg name="maxlength" key="${var:maxlength}" position="1" resource="false"/>
+
+			<arg name="minlength" key="${var:minlength}" position="0" resource="false"/>
+            <arg name="minlength" key="${var:maxlength}" position="1" resource="false"/>
+            
+            <var>
+            	<var-name>minlength</var-name>
+				<var-value>5</var-value>
+			</var>		
+			<var>
+				<var-name>maxlength</var-name>
+				<var-value>15</var-value>
+			</var>
+            
+            <var>
+				<var-name>mask</var-name>
+				<var-value>^[a-zA-Z0-9]*$</var-value>
+			</var>
+			
+         </field>
+         
+         <field property="password2" depends="validwhen">
+         
+         	<msg name="validwhen" key="err.user.pwd2.notmatch" />
+         
+			<var>
+				<var-name>test</var-name>
+				<var-value>
+					(passwd == *this*)
+				</var-value>
+				</var>
+		 </field>
+
+		 <field property="email" depends="required,email">
+		 
+		 	<msg name="required" key="err.user.email.required" />
+		 	<msg name="email" key="err.user.email.invalid" />
+
+		 </field>		 
+
+		 <field property="tel" depends="required,maxlength,minlength,mask">
+         
+         	<msg name="required" key="err.user.tel.required" />
+			<msg name="maxlength" key="err.user.tel.length" />
+			<msg name="minlength" key="err.user.tel.length" />
+			<msg name="mask" key="err.user.pwd.invalid" />
+
+			<arg name="maxlength" key="${var:minlength}" position="0" resource="false"/>
+            <arg name="maxlength" key="${var:maxlength}" position="1" resource="false"/>
+
+			<arg name="minlength" key="${var:minlength}" position="0" resource="false"/>
+            <arg name="minlength" key="${var:maxlength}" position="1" resource="false"/>
+            
+            <var>
+            	<var-name>minlength</var-name>
+				<var-value>6</var-value>
+			</var>		
+			<var>
+				<var-name>maxlength</var-name>
+				<var-value>15</var-value>
+			</var>
+            
+            <var>
+				<var-name>mask</var-name>
+				<var-value>^[0-9]*$</var-value>
+			</var>			
+         </field> 
+     </form>
+  </formset>
+</form-validation>
