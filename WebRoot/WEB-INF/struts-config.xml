@@ -127,7 +127,7 @@
 
 
 
-	  
+ <!-- sysinfo -->
 	  <action path="/addSysInfo" 
 	  		  type="org.springframework.web.struts.DelegatingActionProxy" 
 	  		  name="addSysInfoForm"
@@ -152,6 +152,7 @@
 	  			<forward name="reload" path="/WEB-INF/sys/sysinfo.jsp"/>
 	  </action>
 	  
+ <!-- column -->
 	  <action path="/addColumn" 
 	  		  type="org.springframework.web.struts.DelegatingActionProxy" 
 	  		  name="addColumnForm"
