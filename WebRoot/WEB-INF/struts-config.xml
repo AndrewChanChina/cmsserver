@@ -4,7 +4,6 @@
 <struts-config>
 
   <form-beans>
-   <form-bean name="loginForm" type="com.smit.web.LoginForm"></form-bean>
    <form-bean name="smitLoginForm" type="com.smit.web.form.SmitLoginForm"></form-bean>
    <form-bean name="registerForm" type="com.smit.web.form.RegisterForm"></form-bean>
    <form-bean name="groupForm" type="com.smit.web.form.GroupForm"></form-bean>
@@ -39,7 +38,8 @@
   </action>
   <!-- login  -->
   <action 	path="/login" type="org.springframework.web.struts.DelegatingActionProxy" 
-  			parameter="login" name="smitLoginForm">
+  			parameter="login" name="smitLoginForm" 
+  			input="/login.jsp" validate="true">
   			<forward name="sucess" path="/WEB-INF/sys/index.html"/>
   			<forward name="fail" path="/login.jsp"/>
   </action>
@@ -48,7 +48,8 @@
   		  	<forward name="success" path="/login.jsp"/>
   </action>
   <action 	path="/register" type="org.springframework.web.struts.DelegatingActionProxy" 
-  			parameter="register" name="registerForm" >
+  			parameter="register" name="registerForm" 
+  			input="/register.jsp" validate="true">
    			<forward name="sucess" path="/WEB-INF/sys/index.html"/>
    			<forward name="fail" path="/fail.jsp"/>
   </action>

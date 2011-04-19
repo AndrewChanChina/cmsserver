@@ -1,8 +1,8 @@
 package com.smit.web.form;
 
-import org.apache.struts.action.ActionForm;
+import org.apache.struts.validator.ValidatorForm;
 
-public class UserForm extends ActionForm {
+public class UserForm extends ValidatorForm {
 	
 	/**
 	 * 

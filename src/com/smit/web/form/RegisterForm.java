@@ -1,19 +1,22 @@
 package com.smit.web.form;
 
-import org.apache.struts.action.ActionForm;
+import org.apache.struts.validator.ValidatorForm;
+
+
 
 /**
  * user register form
  * @author chenyzpower@gmail.com
  *
  */
-public class RegisterForm extends ActionForm {
+public class RegisterForm extends ValidatorForm {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 6724967420974876592L;
 	private String username;
 	private String password;
+	private String password2;
 	private String tel;
 	private String email;
 	
@@ -40,5 +43,12 @@ public class RegisterForm extends ActionForm {
 	}
 	public void setEmail(String email) {
 		this.email = email;
+	}
+	public String getPassword2() {
+		return password2;
+	}
+	public void setPassword2(String password2) {
+		this.password2 = password2;
 	}	
+	
 }
