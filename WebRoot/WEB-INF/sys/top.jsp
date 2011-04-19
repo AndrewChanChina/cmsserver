@@ -135,7 +135,7 @@ function changeSite(siteId) {
         <td><img src="./images/admin/top_07.jpg"></td>
         <td background="./images/admin/nav_bg.jpg">
 		   <ul class="menu">			
-			<li class="current" id="tb_11" onclick="HoverLi(1,1,10);"><a href="main.do" target="mainFrame">配置</a></li>
+			<li class="current" id="tb_11" onclick="HoverLi(1,1,10);"><a href="showMainFrame.do?class=sysInfoAndLog" target="mainFrame">配置</a></li>
 				
 			<li class="sep"></li><li id="tb_12" onclick="HoverLi(1,2,10);"><a href="frame/channel_main.do" target="mainFrame">用户</a></li>
 		

@@ -18,51 +18,75 @@
 		<forward name="fail" path="/fail.jsp"/>
 	  </action>
 	  
-	  <action path="/addSysInfo" type="org.springframework.web.struts.DelegatingActionProxy" name="addSysInfoForm">
-		<forward name="sucess" path="/sucess.jsp"/>
-		<forward name="fail" path="/fail.jsp"/>
-		<forward name="reload" path="/WEB-INF/sys/sysinfo.jsp"/>
+	  <action path="/addSysInfo" 
+	  		  type="org.springframework.web.struts.DelegatingActionProxy" 
+	  		  name="addSysInfoForm"
+	  		  parameter="addSysInfo">
+				<forward name="sucess" path="/sucess.jsp"/>
+				<forward name="fail" path="/fail.jsp"/>
+				<forward name="reload" path="/WEB-INF/sys/sysinfo.jsp"/>
 	  </action>
-	  <action path="/deleteSysInfo" type="org.springframework.web.struts.DelegatingActionProxy">
-	  	<forward name="reload" path="/WEB-INF/sys/sysinfo.jsp"/>
+	  <action path="/deleteSysInfo" 
+	  		  type="org.springframework.web.struts.DelegatingActionProxy"
+	  		  parameter="deleteSysInfo">
+	  			<forward name="reload" path="/WEB-INF/sys/sysinfo.jsp"/>
 	  </action>
-	  <action path="/updateSysInfo" type="org.springframework.web.struts.DelegatingActionProxy">
-	  	<forward name="reload" path="/WEB-INF/sys/sysinfo.jsp"/>
+	  <action path="/updateSysInfo" 
+	  		  type="org.springframework.web.struts.DelegatingActionProxy"
+	  		  parameter="updateSysInfo">
+	  			<forward name="reload" path="/WEB-INF/sys/sysinfo.jsp"/>
 	  </action>
-	  <action path="/enableSysInfo" type="org.springframework.web.struts.DelegatingActionProxy">
-	  	<forward name="reload" path="/WEB-INF/sys/sysinfo.jsp"/>
+	  <action path="/enableSysInfo" 
+	  		  type="org.springframework.web.struts.DelegatingActionProxy"
+	  		  parameter="enableSysInfo">
+	  			<forward name="reload" path="/WEB-INF/sys/sysinfo.jsp"/>
 	  </action>
 	  
-	  <action path="/addColumn" type="org.springframework.web.struts.DelegatingActionProxy" name="addColumnForm">
-	  	<forward name="reload" path="/WEB-INF/sys/add_column.jsp"/>
+	  <action path="/addColumn" 
+	  		  type="org.springframework.web.struts.DelegatingActionProxy" 
+	  		  name="addColumnForm"
+	  		  parameter="addColumn">
+	  			<forward name="reload" path="/WEB-INF/sys/add_column.jsp"/>
 	  </action>
-	  <action path="/deleteColumn" type="org.springframework.web.struts.DelegatingActionProxy">
-	  	<forward name="reload" path="/WEB-INF/sys/add_column.jsp"/>
+	  <action path="/deleteColumn" 
+	  		  type="org.springframework.web.struts.DelegatingActionProxy"
+	  		  parameter="deleteColumn">
+	  			<forward name="reload" path="/WEB-INF/sys/add_column.jsp"/>
 	  </action>
-	  <action path="/updateColumn" type="org.springframework.web.struts.DelegatingActionProxy">
-	  	<forward name="reload" path="/WEB-INF/sys/add_column.jsp"/>
+	  <action path="/updateColumn" 
+	  		  type="org.springframework.web.struts.DelegatingActionProxy"
+	  		  parameter="updateColumn">
+	  			<forward name="reload" path="/WEB-INF/sys/add_column.jsp"/>
 	  </action>
 	  
 	  <action path="/showTopFrame" type="com.smit.web.TopFrameAction">
-	  	<forward name="topFrame" path="/WEB-INF/sys/top.jsp"/>
+	  			<forward name="topFrame" path="/WEB-INF/sys/top.jsp"/>
 	  </action>
-	  <action path="/showMainFrame" type="com.smit.web.MainFrameAction">
-	  	<forward name="mainFrame" path="/WEB-INF/sys/main.jsp"/>
+	  <action path="/showMainFrame" 
+	  		  type="com.smit.web.FrameworkAction"
+	  		  parameter="showMainFrame">
+	  			<forward name="mainFrame" path="/WEB-INF/sys/main.jsp"/>
 	  </action>
-	  <action path="/showLeftFrame" type="org.springframework.web.struts.DelegatingActionProxy">
-	  	<forward name="sys_info_and_log_page" path="/WEB-INF/sys/left.jsp"/>
-	  	<forward name="column_tree_page" path="/WEB-INF/sys/column_tree.jsp"/>
+	  <action path="/showLeftFrame"
+	  		  type="org.springframework.web.struts.DelegatingActionProxy"
+	  		  parameter="showLeftFrame">
+			  	<forward name="sys_info_and_log_page" path="/WEB-INF/sys/left.jsp"/>
+			  	<forward name="column_tree_page" path="/WEB-INF/sys/column_tree.jsp"/>
 	  </action>
-	  <action path="/showRightFrame" type="org.springframework.web.struts.DelegatingActionProxy">
-	  	<forward name="sys_info_page" path="/WEB-INF/sys/sysinfo.jsp"/>
-	  	<forward name="add_Column_page" path="/WEB-INF/sys/add_column.jsp"/>
+	  <action path="/showRightFrame" 
+	  		  type="org.springframework.web.struts.DelegatingActionProxy"
+	  		  parameter="showRightFrame">
+			  	<forward name="sys_info_page" path="/WEB-INF/sys/sysinfo.jsp"/>
+			  	<forward name="add_Column_page" path="/WEB-INF/sys/add_column.jsp"/>
 	  </action>
 
-	  <action path="/showSysInfo" type="com.smit.web.ShowSysInfoPageAction">
-	  	<forward name="sysInfo" path="/WEB-INF/sys/sysinfo.jsp"/>
+	  <action path="/showSysInfo" 
+	  		  type="org.springframework.web.struts.DelegatingActionProxy"
+	  		  parameter="showSysInfoPage">
+	  			<forward name="sysInfo" path="/WEB-INF/sys/sysinfo.jsp"/>
 	  </action>
 	  <action path="/showLogInfo" type="com.smit.web.ShowLogInfoPageAction">
-	  	<forward name="logInfo" path="/WEB-INF/sys/log_list.jsp"/>
+	  			<forward name="logInfo" path="/WEB-INF/sys/log_list.jsp"/>
 	  </action>
 
 	  

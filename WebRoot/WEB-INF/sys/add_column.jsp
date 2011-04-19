@@ -41,8 +41,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<body>
 	
 	<%
-	//ColumnDao columnDao = new ColumnDaoImpl();
-	//List<Part> allColumns = columnDao.queryAllColumns();
 	List<Part> allColumns = (List<Part>)request.getAttribute("allColumns");
 %>
 	

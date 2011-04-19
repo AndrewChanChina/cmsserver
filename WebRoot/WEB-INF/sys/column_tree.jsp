@@ -81,8 +81,9 @@ $(function(){
 		//System.out.println("parentid = " + parentid);
 		//System.out.println("name = " + name);
 		//System.out.println("======== ");
+		String link = "<a href='content.do?op=list&pid=" + id + "></a>";
 %>
-		columnDtree.add(<%=(id-1)%>,<%=(parentid-1)%>,"<%=name%>");
+		columnDtree.add(<%=(id-1)%>,<%=(parentid-1)%>,"<%=name%>","<%=link%>");
 <%
 	}
 %>
