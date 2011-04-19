@@ -2,6 +2,7 @@ package com.smit.vo;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -10,13 +11,15 @@ public class Group implements Serializable {
 	/**
 	 * @author ligm
 	 * @date 2011-3-31
-	 * @class Group ÓÃ»§×éÀà
+	 * @class Group ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½
 	 */
 	private static final long serialVersionUID = 1L;
 	private Integer id;
 	private String groupName;
+
 	private Set<User> users = new HashSet<User>();
 	private Set<Purview> purviews = new HashSet<Purview>();
+
 	private Timestamp createtime;
 	private Integer sortRank;
 	public Integer getId() {
@@ -31,6 +34,7 @@ public class Group implements Serializable {
 	public void setGroupName(String groupName) {
 		this.groupName = groupName;
 	}
+
 	
 	
 	

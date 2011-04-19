@@ -6,10 +6,9 @@
 <%@ page import="com.smit.vo.*"%>
 <%@ page import="org.hibernate.SessionFactory"%>
 <%@ page import="java.util.HashMap"%>
-<%@ taglib uri="http://struts.apache.org/tags-bean" prefix="bean" %>
-<%@ taglib uri="http://struts.apache.org/tags-html" prefix="html" %>
-<%@ taglib uri="http://struts.apache.org/tags-logic" prefix="logic" %>
-<%@ taglib uri="http://struts.apache.org/tags-tiles" prefix="tiles" %>
+<%@ taglib uri= "/WEB-INF/struts-html.tld" prefix="html"%>
+<%@ taglib uri= "/WEB-INF/struts-logic.tld" prefix="logic"%>
+<%@ taglib uri= "/WEB-INF/struts-bean.tld" prefix="bean"%>
 
 <%
 String path = request.getContextPath();
@@ -41,6 +40,7 @@ $(function(){
 </head>
 <body class="lbody">
 
+
 <ul id="lmenu">
 <% 
 	String opCode= (String)request.getParameter("class");
@@ -50,6 +50,7 @@ $(function(){
 		<li><a href="showSysInfo.do" target="rightFrame">基本信息维护</a></li>
 		<li><a href="showLogInfo.do" target="rightFrame">日志</a></li>
 <%	
+
 	}else if(opCode.equalsIgnoreCase("user")){
 %>
 		<li><a href="listuser.do" target="rightFrame">用户管理</a></li>
@@ -58,6 +59,7 @@ $(function(){
 <%	
 	}
 %>
+
 </ul>
 </body>
 </html>

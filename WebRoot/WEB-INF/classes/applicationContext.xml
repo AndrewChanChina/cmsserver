@@ -4,8 +4,7 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:p="http://www.springframework.org/schema/p"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
-  
- 	
+ 
    	<!-- user dao & service --> 
    	<bean id="userDao" class="com.smit.dao.UserDaoImpl" >
    		<property name="sessionFactory" ref="sessionFactory"></property>
@@ -82,12 +81,64 @@
   	<bean name="/deletepurview" class="com.smit.web.PurviewAction" scope="prototype">
   		<property name="purviewService" ref="purviewService"></property>
   	</bean>	
-  	
-  	<bean id="sessionFactory"
-  		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
-  		<property name="configLocation"
-  			value="classpath:hibernate.cfg.xml">
-  		</property>
-  	</bean>
+
+<!-- ================================================================== -->
+  <bean name="/addSysInfo" class="com.smit.web.sysinfo.SysInfoAction" scope="prototype" >
+  	<property name="sysInfoService" ref="sysInfoService"></property>
+  </bean>
+  <bean name="/deleteSysInfo" class="com.smit.web.sysinfo.SysInfoAction" scope="prototype" >
+  	<property name="sysInfoService" ref="sysInfoService"></property>
+  </bean>
+  <bean name="/updateSysInfo" class="com.smit.web.sysinfo.SysInfoAction" scope="prototype" >
+  	<property name="sysInfoService" ref="sysInfoService"></property>
+  </bean>
+  <bean name="/enableSysInfo" class="com.smit.web.sysinfo.SysInfoAction" scope="prototype" >
+  	<property name="sysInfoService" ref="sysInfoService"></property>
+  </bean>
+  <bean id="sysInfoService" class="com.smit.service.SysInfoServiceImpl">
+  	<property name="sysInfoDao" ref="sysInfoDao"></property>
+  </bean>
+  <bean id="sysInfoDao" class="com.smit.dao.SysInfoDaoImpl">
+  	<property name="sessionFactory" ref="sessionFactory"></property>
+  </bean>
+<!-- ================================================================== -->
+  <bean name="/addColumn" class="com.smit.web.column.ColumnAction" scope="prototype" >
+  	<property name="columnService" ref="columnService"></property>
+  </bean>
+    <bean name="/deleteColumn" class="com.smit.web.column.ColumnAction" scope="prototype" >
+  	<property name="columnService" ref="columnService"></property>
+  </bean>
+  <bean name="/updateColumn" class="com.smit.web.column.ColumnAction" scope="prototype" >
+  	<property name="columnService" ref="columnService"></property>
+  </bean>
+  <bean id="columnService" class="com.smit.service.ColumnServiceImpl">
+  	<property name="columnDao" ref="columnDao"></property>
+  </bean>
+  <bean id="columnDao" class="com.smit.dao.ColumnDaoImpl">
+  	<property name="sessionFactory" ref="sessionFactory"></property>
+  </bean>
+ 
+<!-- ================================================================== -->
+  <bean name="/showLeftFrame" class="com.smit.web.FrameworkAction" scope="prototype" >
+  	<property name="columnService" ref="columnService"></property>
+  </bean>
+  <bean name="/showRightFrame" class="com.smit.web.FrameworkAction" scope="prototype" >
+  	<property name="columnService" ref="columnService"></property>
+  	<property name="sysInfoService" ref="sysInfoService"></property>
+  </bean>
+<!-- ================================================================== -->
+  <bean name="/showSysInfo" 
+  		class="com.smit.web.FrameworkAction"
+  		scope="prototype" >
+  	<property name="sysInfoService" ref="sysInfoService"></property>
+  </bean>
+<!-- ================================================================== -->
+  <bean id="sessionFactory"
+  	class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+  	<property name="configLocation"
+  		value="classpath:hibernate.cfg.xml">
+  	</property>
+  </bean>
   
-</beans>
+  </beans>
+

@@ -1,3 +1,9 @@
+<<<<<<< HEAD
 #Tue Apr 12 14:59:17 CST 2011
+=======
+#Wed Apr 13 14:16:36 CST 2011
+>>>>>>> qfshen
 eclipse.preferences.version=1
+encoding//WebRoot/WEB-INF/sys/add_column.jsp=UTF-8
+encoding//WebRoot/WEB-INF/sys/column_tree.jsp=UTF-8
 encoding/<project>=UTF-8

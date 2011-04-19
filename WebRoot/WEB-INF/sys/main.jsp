@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 
+=======
+<%@page import="org.hibernate.impl.SessionFactoryImpl"%>
+>>>>>>> qfshen
 <%@ page language="java"  pageEncoding="UTF-8"%>
 <%@ page contentType= "text/html;charset=UTF-8" language= "java"%>
 <%@ page import="java.util.*"%>
@@ -6,10 +10,11 @@
 <%@ page import="com.smit.vo.*"%>
 <%@ page import="org.hibernate.SessionFactory"%>
 <%@ page import="java.util.HashMap"%>
-<%@ taglib uri="http://struts.apache.org/tags-bean" prefix="bean" %>
-<%@ taglib uri="http://struts.apache.org/tags-html" prefix="html" %>
-<%@ taglib uri="http://struts.apache.org/tags-logic" prefix="logic" %>
-<%@ taglib uri="http://struts.apache.org/tags-tiles" prefix="tiles" %>
+
+<%@ taglib uri= "/WEB-INF/struts-html.tld" prefix="html"%>
+<%@ taglib uri= "/WEB-INF/struts-logic.tld" prefix="logic"%>
+<%@ taglib uri= "/WEB-INF/struts-bean.tld" prefix="bean"%>
+
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";

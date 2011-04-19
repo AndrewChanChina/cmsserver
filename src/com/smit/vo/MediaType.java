@@ -1,6 +1,7 @@
 package com.smit.vo;
 
 import java.io.Serializable;
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -9,15 +10,16 @@ public class MediaType implements Serializable {
 	/**
 	 * @author ligm
 	 * @date 2011-3-31
-	 * @class Ã½Ìå×ÊÔ´·ÖÀàÀà
-	 * @params typename:Ã½Ìå×ÊÔ´Ãû³Æ ,topid:Ã½Ìå×ÊÔ´¶¥¼¶ID£¬father_id:Ã½Ìå×ÊÔ´ÉÏ¼¶ID£¬isspecial:ÊÇ·ñÊÇ×¨¼­
+	 * @class Ã½ï¿½ï¿½ï¿½ï¿½Ô´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	 * @params typename:Ã½ï¿½ï¿½ï¿½ï¿½Ô´ï¿½ï¿½ï¿½ ,topid:Ã½ï¿½ï¿½ï¿½ï¿½Ô´ï¿½ï¿½ï¿½ï¿½IDï¿½ï¿½father_id:Ã½ï¿½ï¿½ï¿½ï¿½Ô´ï¿½Ï¼ï¿½IDï¿½ï¿½isspecial:ï¿½Ç·ï¿½ï¿½ï¿½×¨ï¿½ï¿½
 	 */
 	private static final long serialVersionUID = 1L;
 	private Integer id;
 	private String typeName;
 	private Integer topid;
 	private Integer father_id;
-	private Integer isspecial;//0:ÊÇ×¨¼­£¬1:²»ÊÇ×¨¼­
+	private Integer isspecial;//0:ï¿½ï¿½×¨ï¿½ï¿½ï¿½ï¿½1:ï¿½ï¿½ï¿½ï¿½×¨ï¿½ï¿½
+
 	private Set<Media> medias = new HashSet<Media>();
 	
 
@@ -27,6 +29,7 @@ public class MediaType implements Serializable {
 	public void setMedias(Set<Media> medias) {
 		this.medias = medias;
 	}
+
 	public Integer getId() {
 		return id;
 	}

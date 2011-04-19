@@ -4,11 +4,16 @@
 <struts-config>
 
   <form-beans>
+
    <form-bean name="smitLoginForm" type="com.smit.web.form.SmitLoginForm"></form-bean>
    <form-bean name="registerForm" type="com.smit.web.form.RegisterForm"></form-bean>
    <form-bean name="groupForm" type="com.smit.web.form.GroupForm"></form-bean>
    <form-bean name="userForm" type="com.smit.web.form.UserForm"></form-bean>
    <form-bean name="purviewForm" type="com.smit.web.form.PurviewForm"></form-bean>
+   
+   	<form-bean name="loginForm" type="com.smit.web.LoginForm"></form-bean>
+	<form-bean name="addSysInfoForm" type="com.smit.web.sysinfo.AddSysInfoForm"></form-bean>
+	<form-bean name="addColumnForm" type="com.smit.web.column.AddColumnForm"></form-bean>
   </form-beans>
   
   <global-forwards>
@@ -17,6 +22,7 @@
     <forward name="sucess" path="/sucess.jsp"/>
     <forward name="fail" path="/WEB-INF/sys/group_fail.jsp"/>
     <forward name="test" path="/WEB-INF/sys/user_main.jsp"/>
+    <forward name="success" path="/sucess.jsp"/>
   </global-forwards>
   
   <action-mappings>
@@ -118,7 +124,81 @@
    			parameter="deletePurview">     			
     		<forward name="userright_purviewlist" path="/listpurview.do"/> 	
   </action>
-  
+
+
+
+	  
+	  <action path="/addSysInfo" 
+	  		  type="org.springframework.web.struts.DelegatingActionProxy" 
+	  		  name="addSysInfoForm"
+	  		  parameter="addSysInfo">
+				<forward name="sucess" path="/sucess.jsp"/>
+				<forward name="fail" path="/fail.jsp"/>
+				<forward name="reload" path="/WEB-INF/sys/sysinfo.jsp"/>
+	  </action>
+	  <action path="/deleteSysInfo" 
+	  		  type="org.springframework.web.struts.DelegatingActionProxy"
+	  		  parameter="deleteSysInfo">
+	  			<forward name="reload" path="/WEB-INF/sys/sysinfo.jsp"/>
+	  </action>
+	  <action path="/updateSysInfo" 
+	  		  type="org.springframework.web.struts.DelegatingActionProxy"
+	  		  parameter="updateSysInfo">
+	  			<forward name="reload" path="/WEB-INF/sys/sysinfo.jsp"/>
+	  </action>
+	  <action path="/enableSysInfo" 
+	  		  type="org.springframework.web.struts.DelegatingActionProxy"
+	  		  parameter="enableSysInfo">
+	  			<forward name="reload" path="/WEB-INF/sys/sysinfo.jsp"/>
+	  </action>
+	  
+	  <action path="/addColumn" 
+	  		  type="org.springframework.web.struts.DelegatingActionProxy" 
+	  		  name="addColumnForm"
+	  		  parameter="addColumn">
+	  			<forward name="reload" path="/WEB-INF/sys/add_column.jsp"/>
+	  </action>
+	  <action path="/deleteColumn" 
+	  		  type="org.springframework.web.struts.DelegatingActionProxy"
+	  		  parameter="deleteColumn">
+	  			<forward name="reload" path="/WEB-INF/sys/add_column.jsp"/>
+	  </action>
+	  <action path="/updateColumn" 
+	  		  type="org.springframework.web.struts.DelegatingActionProxy"
+	  		  parameter="updateColumn">
+	  			<forward name="reload" path="/WEB-INF/sys/add_column.jsp"/>
+	  </action>
+	  
+	  <action path="/showTopFrame" type="com.smit.web.TopFrameAction">
+	  			<forward name="topFrame" path="/WEB-INF/sys/top.jsp"/>
+	  </action>
+	  <action path="/showMainFrame" 
+	  		  type="com.smit.web.FrameworkAction"
+	  		  parameter="showMainFrame">
+	  			<forward name="mainFrame" path="/WEB-INF/sys/main.jsp"/>
+	  </action>
+	  <action path="/showLeftFrame"
+	  		  type="org.springframework.web.struts.DelegatingActionProxy"
+	  		  parameter="showLeftFrame">
+			  	<forward name="sys_info_and_log_page" path="/WEB-INF/sys/left.jsp"/>
+			  	<forward name="column_tree_page" path="/WEB-INF/sys/column_tree.jsp"/>
+	  </action>
+	  <action path="/showRightFrame" 
+	  		  type="org.springframework.web.struts.DelegatingActionProxy"
+	  		  parameter="showRightFrame">
+			  	<forward name="sys_info_page" path="/WEB-INF/sys/sysinfo.jsp"/>
+			  	<forward name="add_Column_page" path="/WEB-INF/sys/add_column.jsp"/>
+	  </action>
+
+	  <action path="/showSysInfo" 
+	  		  type="org.springframework.web.struts.DelegatingActionProxy"
+	  		  parameter="showSysInfoPage">
+	  			<forward name="sysInfo" path="/WEB-INF/sys/sysinfo.jsp"/>
+	  </action>
+	  <action path="/showLogInfo" type="com.smit.web.ShowLogInfoPageAction">
+	  			<forward name="logInfo" path="/WEB-INF/sys/log_list.jsp"/>
+	  </action>
+
   </action-mappings>
   
   <message-resources parameter="com.smit.web.res.ApplicationResources" />

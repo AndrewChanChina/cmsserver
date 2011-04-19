@@ -7,23 +7,25 @@ public class User implements Serializable {
 	/**
 	 * @author ligm
 	 * @date 2011-3-11
-	 * @class ÓÃ»§Àà
+	 * @class ï¿½Ã»ï¿½ï¿½ï¿½
 	 */
 	private static final long serialVersionUID = 1L;
 	private Integer id;
 	private String userName;
 	private String password;
-	private String email;//ÓÊÏäµØÖ·
-	private String tel;//ÁªÏµ·½Ê½
-	private String explain;//ÓÃ»§ËµÃ÷
-	private Integer state;//0:¶³½á×´Ì¬£»1£º¼¤»î×´Ì¬
-	private Group group;//ÓÃ»§×éID
+	private String email;//ï¿½ï¿½ï¿½ï¿½ï¿½Ö·
+	private String tel;//ï¿½ï¿½Ïµï¿½ï¿½Ê½
+	private String explain;//ï¿½Ã»ï¿½Ëµï¿½ï¿½
+	private Integer state;//0:ï¿½ï¿½ï¿½ï¿½×´Ì¬ï¿½ï¿½1ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×´Ì¬
+
+	private Group group;//ï¿½Ã»ï¿½ï¿½ï¿½ID
 	public Group getGroup() {
 		return group;
 	}
 	public void setGroup(Group group) {
 		this.group = group;
 	}
+
 	public String getExplain() {
 		return explain;
 	}

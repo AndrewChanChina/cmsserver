@@ -7,18 +7,22 @@ public class SysInfo implements Serializable {
 	/**
 	 * @author ligm
 	 * @date 2011-3-31
-	 * @class ÏµÍ³»ù±¾Êý¾ÝÀà
+	 * @class ÏµÍ³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 */
 	private static final long serialVersionUID = 1L;
 	private Integer id;
 	private String info_key;
 	private String info_value;
+	private String info_state;
+
+
 	public Integer getId() {
 		return id;
 	}
 	public void setId(Integer id) {
 		this.id = id;
 	}
+
 	public String getInfo_key() {
 		return info_key;
 	}
@@ -31,8 +35,13 @@ public class SysInfo implements Serializable {
 	public void setInfo_value(String info_value) {
 		this.info_value = info_value;
 	}
+	public String getInfo_state() {
+		return info_state;
+	}
+	public void setInfo_state(String info_state) {
+		this.info_state = info_state;
+	}
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-
 }

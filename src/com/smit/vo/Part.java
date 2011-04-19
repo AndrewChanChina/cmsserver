@@ -1,22 +1,27 @@
 package com.smit.vo;
 
 import java.io.Serializable;
+
 import java.util.HashSet;
 import java.util.Set;
+
 
 public class Part implements Serializable {
 
 	/**
 	 * @author ligm
 	 * @date 2011-3-31
-	 * @class À¸Ä¿Àà
-	 * @params topid:¶¥¼¶À¸Ä¿ID,father_id:ÉÏ¼¶À¸Ä¿ID£¬typename:À¸Ä¿Ãû³Æ
+	 * @class ï¿½ï¿½Ä¿ï¿½ï¿½
+	 * @params topid:ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¿ID,father_id:ï¿½Ï¼ï¿½ï¿½ï¿½Ä¿IDï¿½ï¿½typename:ï¿½ï¿½Ä¿ï¿½ï¿½ï¿½
 	 */
 	private static final long serialVersionUID = 1L;
 	private Integer id;
 	private String typename;
 	private Integer topid;
 	private Integer father_id;
+	private String path;
+
+
 	public Set<Content> getContents() {
 		return contents;
 	}
@@ -24,30 +29,42 @@ public class Part implements Serializable {
 		this.contents = contents;
 	}
 	private Set<Content> contents = new HashSet<Content>();
+
 	public Integer getId() {
 		return id;
 	}
 	public void setId(Integer id) {
 		this.id = id;
 	}
+	
 	public String getTypename() {
 		return typename;
 	}
 	public void setTypename(String typename) {
 		this.typename = typename;
 	}
+	
 	public Integer getTopid() {
 		return topid;
 	}
 	public void setTopid(Integer topid) {
 		this.topid = topid;
 	}
+	
 	public Integer getFather_id() {
 		return father_id;
 	}
 	public void setFather_id(Integer father_id) {
 		this.father_id = father_id;
 	}
+	
+	public String getPath() {
+		return path;
+	}
+	public void setPath(String path) {
+		this.path = path;
+	}
+	
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
