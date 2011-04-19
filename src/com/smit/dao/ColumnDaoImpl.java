@@ -9,6 +9,7 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.slf4j.Logger;
 import org.springframework.orm.hibernate3.HibernateCallback;
 import org.springframework.orm.hibernate3.HibernateTemplate;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
@@ -158,19 +159,40 @@ public class ColumnDaoImpl extends HibernateDaoSupport implements ColumnDao
 	
 	public Part queryByColumnId(final Integer id) throws Exception
 	{
-		Session session;
-		try {
-			session = CustomSessionFactory.currentSession();
-		} catch (Exception e) {
+		//Session session;
+		//try {
+			//session = CustomSessionFactory.currentSession();
+		//} catch (Exception e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
-			throw e;
-		}
-		if(session == null)
-		{
-			return null;
-		}
-		Part part = (Part)session.get(Part.class, id);
-		return part;
+			//e.printStackTrace();
+			//throw e;
+		//}
+		//if(session == null)
+		//{
+			//return null;
+		//}
+		//Part part = (Part)session.get(Part.class, id);
+		//return part;
+		
+		
+		List<Part> partsList = getHibernateTemplate().executeFind(new HibernateCallback() {  
+            public Object doInHibernate(Session s) throws HibernateException, SQLException
+            {  
+            	String hql = "FROM com.smit.vo.Part p where id=" + id;
+                Query query = s.createQuery(hql);  
+                //int firstRow = page.getPageSize() * (page.getPageIndex() - 1);
+                //query.setFirstResult(firstRow);  
+                //query.setMaxResults(page.getPageSize());  
+                List<Part> list = query.list();
+               
+                return list;
+            }
+        });
+		Part part = new Part();
+        if(!partsList.isEmpty() && partsList.size()>0)
+        {
+        	part = partsList.get(0);
+        }
+         return part;
 	}
 }
