@@ -44,7 +44,7 @@ $(function(){
 <ul id="lmenu">
 <% 
 	String opCode= (String)request.getParameter("class");
-	if(opCode == null)
+	if(opCode.equalsIgnoreCase("sysInfoAndLog"))
 	{
 %>
 		<li><a href="showSysInfo.do" target="rightFrame">基本信息维护</a></li>
@@ -66,7 +66,6 @@ $(function(){
 <%	
 	}
 %>
-
 </ul>
 </body>
 </html>

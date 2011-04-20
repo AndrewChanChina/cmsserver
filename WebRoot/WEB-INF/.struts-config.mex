@@ -304,6 +304,13 @@
       <AbsolutePoint location="2150,1974" />
     </AutomaticBendpoints>
   </StrutsTransition>
+  <StrutsTransition id="/showLeftFrame.do,to_left,/WEB-INF/sys/left.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1054,834" />
+      <AbsolutePoint location="1054,874" />
+      <AbsolutePoint location="816,874" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
   <StrutsTransition id="/addSysInfo.do,fail,/fail.jsp,1" routingType="0">
     <AutomaticBendpoints>
       <AbsolutePoint location="950,74" />

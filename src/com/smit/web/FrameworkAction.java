@@ -28,43 +28,18 @@ public class FrameworkAction extends MappingDispatchAction {
 		this.sysInfoService = sysInfoService;
 	}
 	
-	public ActionForward showMainFrame(ActionMapping mapping, ActionForm form,
-			HttpServletRequest request, HttpServletResponse response)
-			throws Exception
-	{
-		String classification = request.getParameter("class");
-		if(classification == null)
-		{
-			request.setAttribute("class", "null");
-		}
-		else if(classification.equalsIgnoreCase("sysInfoAndLog"))
-		{
-			request.setAttribute("class", classification);
-		}
-		else if(classification.equalsIgnoreCase("column"))
-		{
-			request.setAttribute("class", classification);
-		}
-		return mapping.findForward("mainFrame");
-	}
-	
 	public ActionForward showLeftFrame(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 			throws Exception
 	{
 			String whichClass = request.getParameter("class");
-			
-			if(whichClass.equalsIgnoreCase("sysInfoAndLog"))
-			{
-				return mapping.findForward("sys_info_and_log_page");
-			}
-			else if(whichClass.equalsIgnoreCase("column"))
+			if(whichClass.equalsIgnoreCase("column"))
 			{
 				List<Part> allColumns = columnService.queryAllColumns();
 				request.setAttribute("allColumns", allColumns);
 				return mapping.findForward("column_tree_page");
 			}
-			return null;
+			return mapping.findForward("to_left");
 	}
 	
 	public ActionForward showRightFrame(ActionMapping mapping, ActionForm form,

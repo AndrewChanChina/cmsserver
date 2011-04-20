@@ -3,212 +3,205 @@
 
 <struts-config>
 
-  <form-beans>
+	<form-beans>
 
-   <form-bean name="smitLoginForm" type="com.smit.web.form.SmitLoginForm"></form-bean>
-   <form-bean name="registerForm" type="com.smit.web.form.RegisterForm"></form-bean>
-   <form-bean name="groupForm" type="com.smit.web.form.GroupForm"></form-bean>
-   <form-bean name="userForm" type="com.smit.web.form.UserForm"></form-bean>
-   <form-bean name="purviewForm" type="com.smit.web.form.PurviewForm"></form-bean>
-   
-   	<form-bean name="loginForm" type="com.smit.web.LoginForm"></form-bean>
-	<form-bean name="addSysInfoForm" type="com.smit.web.sysinfo.AddSysInfoForm"></form-bean>
-	<form-bean name="addColumnForm" type="com.smit.web.column.AddColumnForm"></form-bean>
-  </form-beans>
-  
-  <global-forwards>
-  	<forward name="register" path="/register.jsp"/>
-    <forward name="login" path="/login.jsp"/>
-    <forward name="sucess" path="/sucess.jsp"/>
-    <forward name="fail" path="/WEB-INF/sys/group_fail.jsp"/>
-    <forward name="test" path="/WEB-INF/sys/user_main.jsp"/>
-    <forward name="success" path="/sucess.jsp"/>
-  </global-forwards>
-  
-  <action-mappings>
-  <!-- framework forward action -->
-  <action 	path="/showTopFrame" type="org.apache.struts.actions.ForwardAction"
-  			parameter="/WEB-INF/sys/top.jsp"
-			scope="request"
-			validate="false">
-  </action>
-  <action 	path="/showMainFrame" type="org.apache.struts.actions.ForwardAction"
-  			parameter="/WEB-INF/sys/main.jsp"
-			scope="request"
-			validate="false">
-  </action>
-  <action 	path="/showLeftFrame" type="org.apache.struts.actions.ForwardAction"
-  			parameter="/WEB-INF/sys/left.jsp"
-			scope="request"
-			validate="false">
-  </action>
-  <!-- login  -->
-  <action 	path="/login" type="org.springframework.web.struts.DelegatingActionProxy" 
-  			parameter="login" name="smitLoginForm" 
-  			input="/login.jsp" validate="true">
-  			<forward name="sucess" path="/WEB-INF/sys/index.html"/>
-  			<forward name="fail" path="/login.jsp"/>
-  </action>
-  <action 	path="/logout" type="org.springframework.web.struts.DelegatingActionProxy"
-  		  	parameter="logout">
-  		  	<forward name="success" path="/login.jsp"/>
-  </action>
-  <action 	path="/register" type="org.springframework.web.struts.DelegatingActionProxy" 
-  			parameter="register" name="registerForm" 
-  			input="/register.jsp" validate="true">
-   			<forward name="sucess" path="/WEB-INF/sys/index.html"/>
-   			<forward name="fail" path="/fail.jsp"/>
-  </action>
-  
-  <!-- language -->
-  <action	path="/Locale"	type="com.smit.web.LanguageSelectAction"
-			parameter="method"	validate="false">
-			<forward name="success" path="/language.jsp"/>
-  </action>
-  
-   <!-- user manager -->
-  <action 	path="/listuser" 
-  			type="org.springframework.web.struts.DelegatingActionProxy"
-   			parameter="listUser">     			
-    		<forward name="showuserlist" path="/WEB-INF/sys/user_list.jsp"/> 			
-  </action>
-  <action 	path="/gonewuser" type="org.springframework.web.struts.DelegatingActionProxy"
-   			parameter="goNewUser">     			
-    		<forward name="continue" path="/WEB-INF/sys/user_manager.jsp"/> 		
-  </action>
-  <action 	path="/saveupdateuser" type="org.springframework.web.struts.DelegatingActionProxy"
-   			parameter="saveUpdateUser" name="userForm">     			
-    		<forward name="userright_userlist" path="/listuser.do"/> 
-    		<forward name="fail" path="/WEB-INF/sys/fail.jsp"/>			
-  </action>
-  <action 	path="/deleteuser" type="org.springframework.web.struts.DelegatingActionProxy"
-   			parameter="deleteUser">     			
-    		<forward name="userright_userlist" path="/listuser.do"/> 
-    		<forward name="fail" path="/WEB-INF/sys/fail.jsp"/>			
-  </action>
-		
-  <!-- group manager -->   
-  <action 	path="/grouplist" 
-  			type="org.springframework.web.struts.DelegatingActionProxy"
-   			parameter="groupList">     			
-    		<forward name="showgrouplist" path="/WEB-INF/sys/group_list.jsp"/> 			
-  </action>
-  <action 	path="/gonewgroup" type="org.springframework.web.struts.DelegatingActionProxy"
-   			parameter="goNewGroup">     			
-    		<forward name="continue" path="/WEB-INF/sys/group_manager.jsp"/> 		
-  </action>
-  <action 	path="/saveupdategroup" type="org.springframework.web.struts.DelegatingActionProxy"
-   			parameter="saveUpdateGroup" name="groupForm">     			
-    		<forward name="userright_grouplist" path="/grouplist.do"/> 		
-  </action>
-  <action 	path="/deletegroup" type="org.springframework.web.struts.DelegatingActionProxy"
-   			parameter="deleteGroup">     			
-    		<forward name="userright_grouplist" path="/grouplist.do"/> 		
-  </action>
-  
-  <!-- purview action -->
-  <action 	path="/listpurview" 
-  			type="org.springframework.web.struts.DelegatingActionProxy"
-   			parameter="listPurview">     			
-    		<forward name="showpurviewlist" path="/WEB-INF/sys/purview_list.jsp"/> 			
-  </action>
-  <action 	path="/gonewpurview" type="org.springframework.web.struts.DelegatingActionProxy"
-   			parameter="goNewPurview">     			
-    		<forward name="continue" path="/WEB-INF/sys/purview_manager.jsp"/> 		
-  </action>
-  <action 	path="/saveupdatepurview" type="org.springframework.web.struts.DelegatingActionProxy"
-   			parameter="saveUpdatePurview" name="purviewForm">     			
-    		<forward name="userright_purviewlist" path="/listpurview.do"/>	
-  </action>
-  <action 	path="/deletepurview" type="org.springframework.web.struts.DelegatingActionProxy"
-   			parameter="deletePurview">     			
-    		<forward name="userright_purviewlist" path="/listpurview.do"/> 	
-  </action>
+		<form-bean name="smitLoginForm" type="com.smit.web.form.SmitLoginForm"></form-bean>
+		<form-bean name="registerForm" type="com.smit.web.form.RegisterForm"></form-bean>
+		<form-bean name="groupForm" type="com.smit.web.form.GroupForm"></form-bean>
+		<form-bean name="userForm" type="com.smit.web.form.UserForm"></form-bean>
+		<form-bean name="purviewForm" type="com.smit.web.form.PurviewForm"></form-bean>
+
+		<form-bean name="loginForm" type="com.smit.web.LoginForm"></form-bean>
+		<form-bean name="addSysInfoForm" type="com.smit.web.sysinfo.AddSysInfoForm"></form-bean>
+		<form-bean name="addColumnForm" type="com.smit.web.column.AddColumnForm"></form-bean>
+	</form-beans>
+
+	<global-forwards>
+		<forward name="register" path="/register.jsp" />
+		<forward name="login" path="/login.jsp" />
+		<forward name="sucess" path="/sucess.jsp" />
+		<forward name="fail" path="/WEB-INF/sys/group_fail.jsp" />
+		<forward name="test" path="/WEB-INF/sys/user_main.jsp" />
+		<forward name="success" path="/sucess.jsp" />
+	</global-forwards>
+
+	<action-mappings>
+
+		<!-- login -->
+		<action path="/login"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			parameter="login" name="smitLoginForm" input="/login.jsp" validate="true">
+			<forward name="sucess" path="/WEB-INF/sys/index.html" />
+			<forward name="fail" path="/login.jsp" />
+		</action>
+		<action path="/logout"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			parameter="logout">
+			<forward name="success" path="/login.jsp" />
+		</action>
+		<action path="/register"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			parameter="register" name="registerForm" input="/register.jsp"
+			validate="true">
+			<forward name="sucess" path="/WEB-INF/sys/index.html" />
+			<forward name="fail" path="/fail.jsp" />
+		</action>
+
+		<!-- language -->
+		<action path="/Locale" type="com.smit.web.LanguageSelectAction"
+			parameter="method" validate="false">
+			<forward name="success" path="/language.jsp" />
+		</action>
+
+		<!-- user manager -->
+		<action path="/listuser"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			parameter="listUser">
+			<forward name="showuserlist" path="/WEB-INF/sys/user_list.jsp" />
+		</action>
+		<action path="/gonewuser"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			parameter="goNewUser">
+			<forward name="continue" path="/WEB-INF/sys/user_manager.jsp" />
+		</action>
+		<action path="/saveupdateuser"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			parameter="saveUpdateUser" name="userForm">
+			<forward name="userright_userlist" path="/listuser.do" />
+			<forward name="fail" path="/WEB-INF/sys/fail.jsp" />
+		</action>
+		<action path="/deleteuser"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			parameter="deleteUser">
+			<forward name="userright_userlist" path="/listuser.do" />
+			<forward name="fail" path="/WEB-INF/sys/fail.jsp" />
+		</action>
+
+		<!-- group manager -->
+		<action path="/grouplist"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			parameter="groupList">
+			<forward name="showgrouplist" path="/WEB-INF/sys/group_list.jsp" />
+		</action>
+		<action path="/gonewgroup"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			parameter="goNewGroup">
+			<forward name="continue" path="/WEB-INF/sys/group_manager.jsp" />
+		</action>
+		<action path="/saveupdategroup"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			parameter="saveUpdateGroup" name="groupForm">
+			<forward name="userright_grouplist" path="/grouplist.do" />
+		</action>
+		<action path="/deletegroup"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			parameter="deleteGroup">
+			<forward name="userright_grouplist" path="/grouplist.do" />
+		</action>
+
+		<!-- purview action -->
+		<action path="/listpurview"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			parameter="listPurview">
+			<forward name="showpurviewlist" path="/WEB-INF/sys/purview_list.jsp" />
+		</action>
+		<action path="/gonewpurview"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			parameter="goNewPurview">
+			<forward name="continue" path="/WEB-INF/sys/purview_manager.jsp" />
+		</action>
+		<action path="/saveupdatepurview"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			parameter="saveUpdatePurview" name="purviewForm">
+			<forward name="userright_purviewlist" path="/listpurview.do" />
+		</action>
+		<action path="/deletepurview"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			parameter="deletePurview">
+			<forward name="userright_purviewlist" path="/listpurview.do" />
+		</action>
 
 
 
- <!-- sysinfo -->
-	  <action path="/addSysInfo" 
-	  		  type="org.springframework.web.struts.DelegatingActionProxy" 
-	  		  name="addSysInfoForm"
-	  		  parameter="addSysInfo">
-				<forward name="sucess" path="/sucess.jsp"/>
-				<forward name="fail" path="/fail.jsp"/>
-				<forward name="reload" path="/WEB-INF/sys/sysinfo.jsp"/>
-	  </action>
-	  <action path="/deleteSysInfo" 
-	  		  type="org.springframework.web.struts.DelegatingActionProxy"
-	  		  parameter="deleteSysInfo">
-	  			<forward name="reload" path="/WEB-INF/sys/sysinfo.jsp"/>
-	  </action>
-	  <action path="/updateSysInfo" 
-	  		  type="org.springframework.web.struts.DelegatingActionProxy"
-	  		  parameter="updateSysInfo">
-	  			<forward name="reload" path="/WEB-INF/sys/sysinfo.jsp"/>
-	  </action>
-	  <action path="/enableSysInfo" 
-	  		  type="org.springframework.web.struts.DelegatingActionProxy"
-	  		  parameter="enableSysInfo">
-	  			<forward name="reload" path="/WEB-INF/sys/sysinfo.jsp"/>
-	  </action>
-	  
- <!-- column -->
-	  <action path="/addColumn" 
-	  		  type="org.springframework.web.struts.DelegatingActionProxy" 
-	  		  name="addColumnForm"
-	  		  parameter="addColumn">
-	  			<forward name="reload" path="/WEB-INF/sys/add_column.jsp"/>
-	  </action>
-	  <action path="/deleteColumn" 
-	  		  type="org.springframework.web.struts.DelegatingActionProxy"
-	  		  parameter="deleteColumn">
-	  			<forward name="reload" path="/WEB-INF/sys/add_column.jsp"/>
-	  </action>
-	  <action path="/updateColumn" 
-	  		  type="org.springframework.web.struts.DelegatingActionProxy"
-	  		  parameter="updateColumn">
-	  			<forward name="reload" path="/WEB-INF/sys/add_column.jsp"/>
-	  </action>
-	  
-	  <action path="/showTopFrame" type="com.smit.web.TopFrameAction">
-	  			<forward name="topFrame" path="/WEB-INF/sys/top.jsp"/>
-	  </action>
-	  <action path="/showMainFrame" 
-	  		  type="com.smit.web.FrameworkAction"
-	  		  parameter="showMainFrame">
-	  			<forward name="mainFrame" path="/WEB-INF/sys/main.jsp"/>
-	  </action>
-	  <action path="/showLeftFrame"
-	  		  type="org.springframework.web.struts.DelegatingActionProxy"
-	  		  parameter="showLeftFrame">
-			  	<forward name="sys_info_and_log_page" path="/WEB-INF/sys/left.jsp"/>
-			  	<forward name="column_tree_page" path="/WEB-INF/sys/column_tree.jsp"/>
-	  </action>
-	  <action path="/showRightFrame" 
-	  		  type="org.springframework.web.struts.DelegatingActionProxy"
-	  		  parameter="showRightFrame">
-			  	<forward name="sys_info_page" path="/WEB-INF/sys/sysinfo.jsp"/>
-			  	<forward name="add_Column_page" path="/WEB-INF/sys/add_column.jsp"/>
-	  </action>
+		<!-- sysinfo -->
+		<action path="/addSysInfo"
+			type="org.springframework.web.struts.DelegatingActionProxy" name="addSysInfoForm"
+			parameter="addSysInfo">
+			<forward name="sucess" path="/sucess.jsp" />
+			<forward name="fail" path="/fail.jsp" />
+			<forward name="reload" path="/WEB-INF/sys/sysinfo.jsp" />
+		</action>
+		<action path="/deleteSysInfo"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			parameter="deleteSysInfo">
+			<forward name="reload" path="/WEB-INF/sys/sysinfo.jsp" />
+		</action>
+		<action path="/updateSysInfo"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			parameter="updateSysInfo">
+			<forward name="reload" path="/WEB-INF/sys/sysinfo.jsp" />
+		</action>
+		<action path="/enableSysInfo"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			parameter="enableSysInfo">
+			<forward name="reload" path="/WEB-INF/sys/sysinfo.jsp" />
+		</action>
 
-	  <action path="/showSysInfo" 
-	  		  type="org.springframework.web.struts.DelegatingActionProxy"
-	  		  parameter="showSysInfoPage">
-	  			<forward name="sysInfo" path="/WEB-INF/sys/sysinfo.jsp"/>
-	  </action>
-	  <action path="/showLogInfo" type="com.smit.web.ShowLogInfoPageAction">
-	  			<forward name="logInfo" path="/WEB-INF/sys/log_list.jsp"/>
-	  </action>
+		<!-- column -->
+		<action path="/addColumn"
+			type="org.springframework.web.struts.DelegatingActionProxy" name="addColumnForm"
+			parameter="addColumn">
+			<forward name="reload" path="/WEB-INF/sys/add_column.jsp" />
+		</action>
+		<action path="/deleteColumn"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			parameter="deleteColumn">
+			<forward name="reload" path="/WEB-INF/sys/add_column.jsp" />
+		</action>
+		<action path="/updateColumn"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			parameter="updateColumn">
+			<forward name="reload" path="/WEB-INF/sys/add_column.jsp" />
+		</action>
 
-  </action-mappings>
-  
-  <message-resources parameter="com.smit.web.res.ApplicationResources" />
-  
-  <plug-in className="org.apache.struts.validator.ValidatorPlugIn" >
-	<set-property property="pathnames"
-	value="/WEB-INF/validator-rules.xml, /WEB-INF/validator-user.xml"/> 
-  </plug-in>
-   
+		<!-- framework forward action -->
+		<action path="/showTopFrame" type="org.apache.struts.actions.ForwardAction"
+			parameter="/WEB-INF/sys/top.jsp" scope="request" validate="false">
+		</action>
+		<action path="/showMainFrame" type="org.apache.struts.actions.ForwardAction"
+			parameter="/WEB-INF/sys/main.jsp" scope="request" validate="false">
+		</action>
+		<action path="/showLeftFrame"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			parameter="showLeftFrame">
+			<forward name="to_left" path="/WEB-INF/sys/left.jsp" />
+			<forward name="column_tree_page" path="/WEB-INF/sys/column_tree.jsp" />
+		</action>
+		<action path="/showRightFrame"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			parameter="showRightFrame">
+			<forward name="sys_info_page" path="/WEB-INF/sys/sysinfo.jsp" />
+			<forward name="add_Column_page" path="/WEB-INF/sys/add_column.jsp" />
+		</action>
+
+		<action path="/showSysInfo"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			parameter="showSysInfoPage">
+			<forward name="sysInfo" path="/WEB-INF/sys/sysinfo.jsp" />
+		</action>
+		<action path="/showLogInfo" type="com.smit.web.ShowLogInfoPageAction">
+			<forward name="logInfo" path="/WEB-INF/sys/log_list.jsp" />
+		</action>
+
+	</action-mappings>
+
+	<message-resources parameter="com.smit.web.res.ApplicationResources" />
+
+	<plug-in className="org.apache.struts.validator.ValidatorPlugIn">
+		<set-property property="pathnames"
+			value="/WEB-INF/validator-rules.xml, /WEB-INF/validator-user.xml" />
+	</plug-in>
+
 </struts-config>
 
 
