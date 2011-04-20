@@ -4,6 +4,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -19,6 +21,7 @@ import com.smit.vo.SysInfo;
 
 public class ColumnDaoImpl extends HibernateDaoSupport implements ColumnDao
 {
+	
 	private SessionFactory sessionFactory;
 	
 	public void SessionFactory(SessionFactory sessionFactory)
@@ -28,6 +31,7 @@ public class ColumnDaoImpl extends HibernateDaoSupport implements ColumnDao
 	
 	public boolean addColumn(String parentID, String classToAdd, String path)
 	{
+
 		HibernateTemplate ht = this.getHibernateTemplate();
 		
 		Integer father_ID = Integer.valueOf(parentID);
