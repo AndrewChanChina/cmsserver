@@ -1,10 +1,8 @@
-<%@ page language="java" pageEncoding="GB18030"%>
+<%@ page language="java" pageEncoding="utf-8"%>
 
-<%@ taglib uri="http://struts.apache.org/tags-bean" prefix="bean"%>
-<%@ taglib uri="http://struts.apache.org/tags-html" prefix="html"%>
-<%@ taglib uri="http://struts.apache.org/tags-logic" prefix="logic"%>
-<%@ taglib uri="http://struts.apache.org/tags-tiles" prefix="tiles"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri= "/WEB-INF/struts-html.tld" prefix="html"%>
+<%@ taglib uri= "/WEB-INF/struts-logic.tld" prefix="logic"%>
+<%@ taglib uri= "/WEB-INF/struts-bean.tld" prefix="bean"%>
 
 <%
 	String path = request.getContextPath();
@@ -32,11 +30,11 @@
 </head>
 
 <body>
-	�û�ע��
+	用户注册
 	<div class="body-box">
 		<div class="rhead">			
 			<form class="ropt">
-				<input type="submit" value="���ص�¼"
+				<input type="submit" value="返回登录"
 					onclick="this.form.action='login.do';" />
 			</form>
 		</div>
@@ -50,17 +48,17 @@
 				</tr>
 				<tr>
 					<td width="12%" class="pn-flabel pn-flabel-h">
-						<span class="pn-frequired">*</span>�û���:
+						<span class="pn-frequired">*</span>用户名:
 					</td>
 					<td colspan="1" width="38%" class="pn-fcontent">
 						<input type="text" maxlength="100" name="username"
-							vld="{required:true,username:true,remote:'v_check_username.do',messages:{remote:'�û����ѱ�ʹ��'}}"
+							vld="{required:true,username:true,remote:'v_check_username.do',messages:{remote:'用户名已被使用'}}"
 							maxlength="100" value="${userForm.userName}"/>
 					</td>					
 				</tr>
 				<tr>
 					<td width="12%" class="pn-flabel pn-flabel-h">
-						��������:
+						电子邮箱:
 					</td>
 					<td colspan="1" width="38%" class="pn-fcontent">
 						<input type="text" maxlength="100" name="email" class="email"
@@ -69,7 +67,7 @@
 				</tr>
 				<tr>
 					<td width="12%" class="pn-flabel pn-flabel-h">
-						<span class="pn-frequired">*</span>����:
+						<span class="pn-frequired">*</span>密码:
 					</td>
 					<td colspan="1" width="38%" class="pn-fcontent">
 						<input type="text" 
@@ -79,7 +77,7 @@
 				</tr>
 				<tr>
 					<td width="12%" class="pn-flabel pn-flabel-h">
-						<span class="pn-frequired">*</span>ȷ������:
+						<span class="pn-frequired">*</span>确认密码:
 					</td>
 					<td colspan="1" width="38%" class="pn-fcontent">
 						<input type="text"  name="password2"
@@ -88,7 +86,7 @@
 				</tr>
 				<tr>
 					<td width="12%" class="pn-flabel pn-flabel-h">
-						�绰:
+						电话:
 					</td>
 					<td colspan="1" width="38%" class="pn-fcontent">
 						<input type="text" name="tel" value="${userForm.tel}"/>
@@ -97,9 +95,9 @@
 				<tr>
 					<td>
 					<td colspan="4" class="pn-fbutton">
-						<input type="submit" value="�ύ" />
+						<input type="submit" value="提交" />
 						&nbsp;
-						<input type="reset" value="����" />
+						<input type="reset" value="重置" />
 					</td>
 				</tr>
 			</table>

@@ -1,4 +1,4 @@
-<%@ page language="java" pageEncoding="GB18030"%>
+<%@ page language="java" pageEncoding="UTF-8"%>
 
 <%@ taglib uri= "/WEB-INF/struts-html.tld" prefix="tiles" %>
 <%@ taglib uri= "/WEB-INF/struts-html.tld" prefix="html"%>
@@ -17,6 +17,7 @@
 <html:html lang="true">
 <head>
 	<base href="<%=basePath%>">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
 	<meta http-equiv="expires" content="0">
@@ -34,22 +35,22 @@
 <body>
 	<logic:empty name='userForm' property='id'>
 		<div>
-			´´½¨ÓÃ»§£º
+			åˆ›å»ºç”¨æˆ·ï¼š
 		</div>
 	</logic:empty>
 	<logic:notEmpty name='userForm' property='id'>
 		<div>
-			ÐÞ¸ÄÓÃ»§£º
+			ä¿®æ”¹ç”¨æˆ·ï¼š
 		</div>
 	</logic:notEmpty>
 
 	<div class="body-box">
 		<div class="rhead">
 			<div class="rpos">
-				µ±Ç°Î»ÖÃ: ¹ÜÀíÔ±(È«Õ¾) - Ìí¼Ó
+				å½“å‰ä½ç½®: ç®¡ç†å‘˜(å…¨ç«™) - æ·»åŠ 
 			</div>
 			<form class="ropt">
-				<input type="submit" value="·µ»ØÁÐ±í"
+				<input type="submit" value="è¿”å›žåˆ—è¡¨"
 					onclick="this.form.action='listuser.do';" />
 			</form>
 			<div class="clear"></div>
@@ -59,17 +60,17 @@
 				border="0">
 				<tr>
 					<td width="12%" class="pn-flabel pn-flabel-h">
-						<span class="pn-frequired">*</span>ÓÃ»§Ãû:
+						<span class="pn-frequired">*</span>ç”¨æˆ·å:
 					</td>
 					<td colspan="1" width="38%" class="pn-fcontent">
 						<input type="text" maxlength="100" name="userName"
-							vld="{required:true,username:true,remote:'v_check_username.do',messages:{remote:'ÓÃ»§ÃûÒÑ±»Ê¹ÓÃ'}}"
+							vld="{required:true,username:true,remote:'v_check_username.do',messages:{remote:'ç”¨æˆ·åå·²è¢«ä½¿ç”¨'}}"
 							maxlength="100" value="${userForm.userName}"/>
 					</td>					
 				</tr>
 				<tr>
 					<td width="12%" class="pn-flabel pn-flabel-h">
-						µç×ÓÓÊÏä:
+						ç”µå­é‚®ç®±:
 					</td>
 					<td colspan="1" width="38%" class="pn-fcontent">
 						<input type="text" maxlength="100" name="email" class="email"
@@ -78,7 +79,7 @@
 				</tr>
 				<tr>
 					<td width="12%" class="pn-flabel pn-flabel-h">
-						<span class="pn-frequired">*</span>ÃÜÂë:
+						<span class="pn-frequired">*</span>å¯†ç :
 					</td>
 					<td colspan="1" width="38%" class="pn-fcontent">
 						<input type="text" 
@@ -88,7 +89,7 @@
 				</tr>
 				<tr>
 					<td width="12%" class="pn-flabel pn-flabel-h">
-						<span class="pn-frequired">*</span>È·ÈÏÃÜÂë:
+						<span class="pn-frequired">*</span>ç¡®è®¤å¯†ç :
 					</td>
 					<td colspan="1" width="38%" class="pn-fcontent">
 						<input type="text"  name="password2"
@@ -97,7 +98,7 @@
 				</tr>
 				<tr>
 					<td width="12%" class="pn-flabel pn-flabel-h">
-						µç»°:
+						ç”µè¯:
 					</td>
 					<td colspan="1" width="38%" class="pn-fcontent">
 						<input type="text" name="tel" value="${userForm.tel}"/>
@@ -105,7 +106,7 @@
 				</tr>
 				<tr>
 					<td width="12%" class="pn-flabel pn-flabel-h">
-						<span class="pn-frequired">*</span>»áÔ±×é:
+						<span class="pn-frequired">*</span>ä¼šå‘˜ç»„:
 					</td>
 					<td colspan="1" width="38%" class="pn-fcontent">
 						<select name="groupId">
@@ -121,9 +122,9 @@
 				<tr>
 					<td>
 					<td colspan="4" class="pn-fbutton">
-						<input type="submit" value="Ìá½»" />
+						<input type="submit" value="æäº¤" />
 						&nbsp;
-						<input type="reset" value="ÖØÖÃ" />
+						<input type="reset" value="é‡ç½®" />
 					</td>
 				</tr>
 			</table>

@@ -1,0 +1,29 @@
+label.common.message=中文版本
+
+#user module label message
+label.user.name = 姓名
+label.user.username = 用户名
+label.user.pwd = 密码
+label.user.pwd2 = 确认密码
+label.user.email = 邮箱
+ 
+label.user.button.submit = 发送
+ 
+#Error message
+err.user.username.required = 必须填写用户名.<br/>
+err.user.username.length = 用户名长度在 {0} 之间 {1}.<br/>
+err.user.username.invalid = 
+用户名只能包含以下字符 a-z, A-Z, 0-9, "-" 和 "_".<br/>
+ 
+err.user.pwd.required = 必须填写密码<br/>
+err.user.pwd.length = 密码长度在{0}之间{1}.<br/>
+err.user.pwd.invalid = 密码只能包含如下字符 a-z, A-Z, 0-9.<br/>
+ 
+err.user.pwd2.notmatch = 两次输入的密码不一致.<br/>
+ 
+err.user.email.required = 邮箱是必须的.<br/>
+err.user.email.invalid =  邮箱地址无效.<br/>
+
+err.user.tel.required = 电话是必须的.<br/>
+err.user.tel.length = 电话的输入长度在{0}之间{1}.<br/>
+err.user.tel.invalid = 电话的字符必须是0~9.<br/>

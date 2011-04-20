@@ -1,4 +1,4 @@
-<%@ page language="java" pageEncoding="GB18030"%>
+<%@ page language="java" pageEncoding="UTF-8"%>
 
 <%@ taglib uri= "/WEB-INF/struts-html.tld" prefix="tiles" %>
 <%@ taglib uri= "/WEB-INF/struts-html.tld" prefix="html"%>
@@ -38,10 +38,10 @@
 	}
 	function optDelete() {
 		if (Pn.checkedCount('ids') <= 0) {
-			alert("ÇëÑ¡ÔñÄúÒª²Ù×÷µÄÊý¾Ý");
+			alert("è¯·é€‰æ‹©æ‚¨è¦æ“ä½œçš„æ•°æ®");
 			return;
 		}
-		if (!confirm("ÄúÈ·¶¨É¾³ýÂð£¿")) {
+		if (!confirm("æ‚¨ç¡®å®šåˆ é™¤å—ï¼Ÿ")) {
 			return;
 		}
 		var f = getTableForm();
@@ -62,10 +62,10 @@
 	<div class="body-box">
 		<div class="rhead">
 			<div class="rpos">
-				µ±Ç°Î»ÖÃ: ÓÃ»§¹ÜÀí - ÁÐ±í
+				å½“å‰ä½ç½®: ç”¨æˆ·ç®¡ç† - åˆ—è¡¨
 			</div>
 			<form class="ropt">
-				<input type="submit" value="Ìí¼Ó"
+				<input type="submit" value="æ·»åŠ "
 					onclick="this.form.action='gonewuser.do';" />
 			</form>
 			<div class="clear"></div>
@@ -83,22 +83,22 @@
 							ID
 						</th>
 						<th>
-							ÐÕÃû
+							å§“å
 						</th>
 						<th>
-							ÃÜÂë
+							å¯†ç 
 						</th>
 						<th>
-							ÓÊ¼þ
+							é‚®ä»¶
 						</th>
 						<th>
-							µç»°
+							ç”µè¯
 						</th>
 						<th>
-							ËùÊô·Ö×é
+							æ‰€å±žåˆ†ç»„
 						</th>
 						<th>
-							²Ù×÷
+							æ“ä½œ
 						</th>
 					</tr>
 				</thead>
@@ -127,10 +127,10 @@
 								${user.group.groupName}
 							</td>
 							<td align="center">
-								<a href="gonewuser.do?id=${user.id}" class="pn-opt">ÐÞ¸Ä</a> |
+								<a href="gonewuser.do?id=${user.id}" class="pn-opt">ä¿®æ”¹</a> |
 								<a href="deleteuser.do?id=${user.id}"
-									onclick="if(!confirm('ÄúÈ·¶¨É¾³ýÂð£¿')) {return false;}"
-									class="pn-opt">É¾³ý</a>
+									onclick="if(!confirm('æ‚¨ç¡®å®šåˆ é™¤å—ï¼Ÿ')) {return false;}"
+									class="pn-opt">åˆ é™¤</a>
 							</td>
 						</tr>
 					</c:forEach>
@@ -140,9 +140,9 @@
 				<smitpage:page pager="${pb}" />
 			</div>
 			<div>
-				<input type="button" value="É¾³ý" onclick="optDelete();" />
+				<input type="button" value="åˆ é™¤" onclick="optDelete();" />
 				&nbsp;
-				<input type="button" value="±£´æÅÅÁÐË³Ðò" onclick="optPriority();" />
+				<input type="button" value="ä¿å­˜æŽ’åˆ—é¡ºåº" onclick="optPriority();" />
 			</div>
 		</form>
 	</div>

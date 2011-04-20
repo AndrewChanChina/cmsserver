@@ -1,4 +1,5 @@
-<%@ page language="java" pageEncoding="GB18030"%>
+<%@ page language="java" pageEncoding="UTF-8"%>
+<%@ page contentType="text/html;charset=UTF-8" language="java"%>
 <%@ page import="com.smit.web.form.GroupForm"%>
 <%@ page import="java.util.*"%>
 <%@ page import="com.smit.vo.Purview"%>
@@ -20,6 +21,7 @@
 <html:html lang="true">
 <head>
 	<base href="<%=basePath%>">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
 	<meta http-equiv="expires" content="0">
@@ -37,12 +39,12 @@
 <body>
 	<logic:empty name='groupForm' property='id'>
 		<div> 
-			&quot;�������飺 
+			&quot;创建分组： 
 		</div>
 	</logic:empty>
 	<logic:notEmpty name='groupForm' property='id'>
 		<div>
-			�޸ķ��飺
+			修改分组：
 		</div>
 	</logic:notEmpty>
 	
@@ -51,17 +53,17 @@
 				border="0">
 				<tr>
 					<td width="12%" class="pn-flabel pn-flabel-h">
-						<span class="pn-frequired">*</span>������:
+						<span class="pn-frequired">*</span>分组名:
 					</td>
 					<td colspan="1" width="38%" class="pn-fcontent">
 						<input type="text" maxlength="100" name="groupName"
-							vld="{required:true,username:true,remote:'v_check_username.do',messages:{remote:'�û����ѱ�ʹ��'}}"
+							vld="{required:true,username:true,remote:'v_check_username.do',messages:{remote:'用户名已被使用'}}"
 							maxlength="100" value="${groupForm.groupName}"/>
 					</td>					
 				</tr>
 				<tr>
 					<td width="12%" class="pn-flabel pn-flabel-h">
-						����:
+						描述:
 					</td>
 					<td colspan="1" width="38%" class="pn-fcontent">					
 						<%							
@@ -97,9 +99,9 @@
 				<tr>
 					<td>&nbsp;
 					<td colspan="4" class="pn-fbutton">
-						<input type="submit" value="�ύ" />
+						<input type="submit" value="提交" />
 						&nbsp;
-						<input type="reset" value="����" />
+						<input type="reset" value="重置" />
 					</td>
 				</tr>
 			</table>

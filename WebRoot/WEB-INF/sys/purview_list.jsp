@@ -1,4 +1,5 @@
-<%@ page language="java" pageEncoding="GB18030"%>
+<%@ page language="java" pageEncoding="UTF-8"%>
+<%@ page contentType="text/html;charset=UTF-8" language="java"%>
 
 <%@ taglib uri= "/WEB-INF/struts-html.tld" prefix="tiles" %>
 <%@ taglib uri= "/WEB-INF/struts-html.tld" prefix="html"%>
@@ -37,10 +38,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		}
 		function optDelete() {
 			if(Pn.checkedCount('ids')<=0) {
-				alert("ÇëÑ¡ÔñÄúÒª²Ù×÷µÄÊı¾İ");
+				alert("è¯·é€‰æ‹©æ‚¨è¦æ“ä½œçš„æ•°æ®");
 				return;
 			}
-			if(!confirm("ÄúÈ·¶¨É¾³ıÂğ£¿")) {
+			if(!confirm("æ‚¨ç¡®å®šåˆ é™¤å—ï¼Ÿ")) {
 				return;
 			}
 			var f = getTableForm();
@@ -60,9 +61,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    
    	<div class="body-box">
 	<div class="rhead">
-		<div class="rpos">µ±Ç°Î»ÖÃ: È¨ÏŞ¹ÜÀí - ÁĞ±í</div>
+		<div class="rpos">å½“å‰ä½ç½®: æƒé™ç®¡ç† - åˆ—è¡¨</div>
 		<form class="ropt">
-			<input type="submit" value="Ìí¼Ó" onclick="this.form.action='gonewpurview.do';"/>
+			<input type="submit" value="æ·»åŠ " onclick="this.form.action='gonewpurview.do';"/>
 		</form>
 		<div class="clear"></div>
 	</div>
@@ -73,9 +74,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<tr>
 				<th width="20"><input type='checkbox' onclick='Pn.checkbox("ids",this.checked)'/></th>
 				<th>ID</th>
-				<th>Ãû³Æ</th>
-				<th>ÃèÊö</th>
-				<th>²Ù×÷Ñ¡Ïî</th>
+				<th>åç§°</th>
+				<th>æè¿°</th>
+				<th>æ“ä½œé€‰é¡¹</th>
 			</tr>
 		</thead>
 		<tbody  class="pn-ltbody">
@@ -85,15 +86,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<td>${purview.id}</td>
 			<td>${purview.purviewName}</td>	
 			<td>${purview.purviewInfo}</td>
-			<td align="center">		<a href="gonewpurview.do?id=${purview.id}" class="pn-opt">ĞŞ¸Ä</a> | <a href="deletepurview.do?id=${purview.id}" onclick="if(!confirm('ÄúÈ·¶¨É¾³ıÂğ£¿')) {return false;}" class="pn-opt">É¾³ı</a></td>
+			<td align="center">		<a href="gonewpurview.do?id=${purview.id}" class="pn-opt">ä¿®æ”¹</a> | <a href="deletepurview.do?id=${purview.id}" onclick="if(!confirm('æ‚¨ç¡®å®šåˆ é™¤å—ï¼Ÿ')) {return false;}" class="pn-opt">åˆ é™¤</a></td>
 			</tr>
 			</c:forEach>
 		</tbody>
 	</table>
 	<div><smitpage:page pager="${pb}"/></div>
 	<div>
-		<input type="button" value="É¾³ı" onclick="optDelete();"/>
-		&nbsp; <input type="button" value="±£´æÅÅÁĞË³Ğò" onclick="optPriority();"/>
+		<input type="button" value="åˆ é™¤" onclick="optDelete();"/>
+		&nbsp; <input type="button" value="ä¿å­˜æ’åˆ—é¡ºåº" onclick="optPriority();"/>
 	</div>
 </form>
 </div>

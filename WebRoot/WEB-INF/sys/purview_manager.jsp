@@ -1,4 +1,5 @@
-<%@ page language="java" pageEncoding="GB18030"%>
+<%@ page language="java" pageEncoding="UTF-8"%>
+<%@ page contentType="text/html;charset=UTF-8" language="java"%>
 
 <%@ taglib uri= "/WEB-INF/struts-html.tld" prefix="tiles" %>
 <%@ taglib uri= "/WEB-INF/struts-html.tld" prefix="html"%>
@@ -15,6 +16,7 @@
 <html:html lang="true">
 <head>
 	<base href="<%=basePath%>">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
 	<meta http-equiv="expires" content="0">
@@ -32,12 +34,12 @@
 <body>
 	<logic:empty name='PurviewForm' property='id'>
 		<div>
-			�����µ�Ȩ�ޣ�
+			创建新的权限：
 		</div>
 	</logic:empty>
 	<logic:notEmpty name='PurviewForm' property='id'>
 		<div>
-			�޸��޸ģ�
+			修改修改：
 		</div>
 	</logic:notEmpty>
 
@@ -46,17 +48,17 @@
 				border="0">
 				<tr>
 					<td width="12%" class="pn-flabel pn-flabel-h">
-						<span class="pn-frequired">*</span>����:
+						<span class="pn-frequired">*</span>名称:
 					</td>
 					<td colspan="1" width="38%" class="pn-fcontent">
 						<input type="text" maxlength="100" name="purviewName"
-							vld="{required:true,username:true,remote:'v_check_username.do',messages:{remote:'�û����ѱ�ʹ��'}}"
+							vld="{required:true,username:true,remote:'v_check_username.do',messages:{remote:'用户名已被使用'}}"
 							maxlength="100" value="${PurviewForm.purviewName}"/>
 					</td>					
 				</tr>
 				<tr>
 					<td width="12%" class="pn-flabel pn-flabel-h">
-						����:
+						描述:
 					</td>
 					<td colspan="1" width="38%" class="pn-fcontent">
 						<input type="text" maxlength="100" name="purviewInfo"
@@ -66,9 +68,9 @@
 				<tr>
 					<td>
 					<td colspan="4" class="pn-fbutton">
-						<input type="submit" value="�ύ" />
+						<input type="submit" value="提交" />
 						&nbsp;
-						<input type="reset" value="����" />
+						<input type="reset" value="重置" />
 					</td>
 				</tr>
 			</table>
