@@ -4,14 +4,11 @@
 <struts-config>
 
 	<form-beans>
-
 		<form-bean name="smitLoginForm" type="com.smit.web.form.SmitLoginForm"></form-bean>
 		<form-bean name="registerForm" type="com.smit.web.form.RegisterForm"></form-bean>
 		<form-bean name="groupForm" type="com.smit.web.form.GroupForm"></form-bean>
 		<form-bean name="userForm" type="com.smit.web.form.UserForm"></form-bean>
 		<form-bean name="purviewForm" type="com.smit.web.form.PurviewForm"></form-bean>
-
-		<form-bean name="loginForm" type="com.smit.web.LoginForm"></form-bean>
 		<form-bean name="addSysInfoForm" type="com.smit.web.sysinfo.AddSysInfoForm"></form-bean>
 		<form-bean name="addColumnForm" type="com.smit.web.column.AddColumnForm"></form-bean>
 	</form-beans>
@@ -120,7 +117,6 @@
 			parameter="deletePurview">
 			<forward name="userright_purviewlist" path="/listpurview.do" />
 		</action>
-
 
 
 		<!-- sysinfo -->

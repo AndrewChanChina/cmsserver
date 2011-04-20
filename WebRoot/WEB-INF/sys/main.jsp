@@ -50,7 +50,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		{
 	%>
 			<frame src="showLeftFrame.do?class=user" name="leftFrame" noresize="noresize" id="leftFrame" />
-			<frame src="userlist.do" name="rightFrame" id="rightFrame" />
+			<frame src="listuser.do" name="rightFrame" id="rightFrame" />
 	<%
 		}
 	%>
