@@ -37,6 +37,9 @@ public class LoginFilter implements Filter {
 
 		HttpServletRequest request = (HttpServletRequest) arg0;
 		HttpServletResponse response = (HttpServletResponse) arg1;
+		
+		request.setCharacterEncoding("utf-8"); 
+		
 		String url = request.getServletPath();
 		url = url.substring(url.lastIndexOf("/")+1);
 		System.out.println("loginFilter url = " + url);

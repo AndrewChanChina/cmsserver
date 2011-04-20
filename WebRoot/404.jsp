@@ -1,10 +1,7 @@
-<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
-<%@taglib uri="http://struts.apache.org/tags-html" prefix="html"%>
-<%@taglib uri="http://struts.apache.org/tags-bean" prefix="bean"%>
+<%@ page language="java" isErrorPage="true" pageEncoding="UTF-8" exception-type="com.smit.util."%>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
-
 %>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
@@ -12,7 +9,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <head>
     <base href="<%=basePath%>">
     
-    <title>My JSP 'language.jsp' starting page</title>
+    <title>页面找不到e</title>
     
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
@@ -26,10 +23,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-    <html:link page="/Locale.do?method=chinese">Chinese</html:link>
-<html:link page="/Locale.do?method=english">English</html:link>
-<html:link page="/Locale.do?method=german">German</html:link>
-<html:link page="/Locale.do?method=france">France</html:link>
-<bean:message key="label.common.message" />
+    <h1>页面找不到</h1>
+    <p>对不起，你访问的页面不存在</p>
+    <p>${pageContext.exception}</p>
   </body>
 </html>

@@ -7,9 +7,12 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.beanutils.BeanUtils;
+import org.apache.struts.action.ActionErrors;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
+import org.apache.struts.action.ActionMessage;
+import org.apache.struts.action.ActionMessages;
 import org.apache.struts.actions.MappingDispatchAction;
 
 import com.smit.service.IGroupManagerService;
@@ -52,10 +55,7 @@ public class UserAction extends MappingDispatchAction {
 		HttpSession session = request.getSession();
 		String loginSuc = (String)session.getAttribute(Constants.LOGIN_SUC);
 
-		SmitLoginForm loginForm = (SmitLoginForm)form;
-		if(form == null){
-			return mapping.findForward("fail");
-		}
+		SmitLoginForm loginForm = (SmitLoginForm)form;		
 		
 		System.out.println(loginForm.getPasswd());
 		System.out.println(loginForm.getUserName());
@@ -63,7 +63,12 @@ public class UserAction extends MappingDispatchAction {
 			session.setAttribute(Constants.LOGIN_SUC, Constants.SUCCESS);
 			return mapping.findForward("sucess");
 		} else 
-		return mapping.findForward("fail");
+		{
+			ActionErrors errors = new ActionErrors();
+			errors.add(ActionMessages.GLOBAL_MESSAGE,new ActionMessage("ee42452"));
+			this.saveErrors(request, errors);
+			return mapping.findForward("fail");			
+		}			
 	}
 	/**
 	 * logout action
