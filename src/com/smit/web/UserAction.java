@@ -60,7 +60,9 @@ public class UserAction extends MappingDispatchAction {
 		System.out.println(loginForm.getPasswd());
 		System.out.println(loginForm.getUserName());
 		if(userService.login(loginForm.getUserName(), loginForm.getPasswd())){
+			// save some login information
 			session.setAttribute(Constants.LOGIN_SUC, Constants.SUCCESS);
+			session.setAttribute(Constants.CURUSERNAME, loginForm.getUserName());
 			return mapping.findForward("sucess");
 		} else 
 		{
