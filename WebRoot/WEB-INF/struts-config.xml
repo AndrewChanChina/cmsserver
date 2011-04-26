@@ -11,15 +11,18 @@
 		<form-bean name="purviewForm" type="com.smit.web.form.PurviewForm"></form-bean>
 		<form-bean name="addSysInfoForm" type="com.smit.web.sysinfo.AddSysInfoForm"></form-bean>
 		<form-bean name="addColumnForm" type="com.smit.web.column.AddColumnForm"></form-bean>
+		<form-bean name="pushDataForm" type="com.smit.web.form.PushDataForm"></form-bean>
+		<form-bean name="pushServiceForm" type="com.smit.web.form.PushServiceForm"></form-bean>
 	</form-beans>
 
 	<global-forwards>
 		<forward name="register" path="/register.jsp" />
 		<forward name="login" path="/login.jsp" />
-		<forward name="sucess" path="/sucess.jsp" />
-		<forward name="fail" path="/WEB-INF/sys/group_fail.jsp" />
+		<forward name="success" path="/success.jsp" />
+		<forward name="fail" path="/fail.jsp" />
 		<forward name="test" path="/WEB-INF/sys/user_main.jsp" />
-		<forward name="success" path="/sucess.jsp" />
+		<forward name="bad_req" path="/WEB-INF/sys/bad_req.jsp" />
+		<forward name="listPush" path="/pushservicemanager.do?opt=list" />
 	</global-forwards>
 
 	<action-mappings>
@@ -28,7 +31,8 @@
 		<action path="/login"
 			type="org.springframework.web.struts.DelegatingActionProxy"
 			parameter="login" name="smitLoginForm" input="/login.jsp" validate="true">
-			<forward name="sucess" path="/WEB-INF/sys/index.html" />
+			<forward name="success-admin" path="/WEB-INF/sys/index.html" />
+			<forward name="success-user" path="/home.do" />
 			<forward name="fail" path="/login.jsp" />
 		</action>
 		<action path="/logout"
@@ -40,7 +44,7 @@
 			type="org.springframework.web.struts.DelegatingActionProxy"
 			parameter="register" name="registerForm" input="/register.jsp"
 			validate="true">
-			<forward name="sucess" path="/WEB-INF/sys/index.html" />
+			<forward name="success" path="/WEB-INF/sys/index.html" />
 			<forward name="fail" path="/fail.jsp" />
 		</action>
 
@@ -118,12 +122,11 @@
 			<forward name="userright_purviewlist" path="/listpurview.do" />
 		</action>
 
-
 		<!-- sysinfo -->
 		<action path="/addSysInfo"
 			type="org.springframework.web.struts.DelegatingActionProxy" name="addSysInfoForm"
 			parameter="addSysInfo">
-			<forward name="sucess" path="/sucess.jsp" />
+			<forward name="success" path="/success.jsp" />
 			<forward name="fail" path="/fail.jsp" />
 			<forward name="reload" path="/WEB-INF/sys/sysinfo.jsp" />
 		</action>
@@ -187,6 +190,37 @@
 		</action>
 		<action path="/showLogInfo" type="com.smit.web.ShowLogInfoPageAction">
 			<forward name="logInfo" path="/WEB-INF/sys/log_list.jsp" />
+		</action>
+		
+		<!-- push service -->
+		<action path="/home"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			parameter="home">
+			<forward name="success" path="/WEB-INF/sys/pushService/home.jsp" />
+		</action>
+		<action path="/developer_register"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			parameter="developerRegister" name="registerForm" input="/devregister_page.do"
+			validate="true">
+			<forward name="success" path="/login.jsp" />
+		</action>		
+		<action path="/pushdata"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			parameter="pushData" name="pushDataForm">
+			<forward name="success" path="/home.do" />
+		</action>
+		<action path="/devregister_page" type="org.apache.struts.actions.ForwardAction"
+			parameter="/WEB-INF/sys/pushService/developer_register.jsp" 
+			scope="request" validate="false">			
+		</action>
+		<action path="/pushservicemanage"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			parameter="opt" name="pushServiceForm">
+			<forward name="success" path="/login.jsp" />
+			<forward name="listPage" path="/WEB-INF/sys/pushService/pushservice_list.jsp" />
+			<forward name="managePage" path="/WEB-INF/sys/pushService/pushservice_manage.jsp" />
+			<forward name="back2ListPage" path="/pushservicemanage.do?opt=list" />
+			<forward name="sendData" path="/home.do"></forward>
 		</action>
 
 	</action-mappings>
