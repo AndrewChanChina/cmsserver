@@ -1,5 +1,5 @@
 ﻿<%@page import="org.hibernate.impl.SessionFactoryImpl"%>
-<%@ page language="java"  pageEncoding="UTF-8"%>
+
 <%@ page contentType= "text/html;charset=UTF-8" language= "java"%>
 <%@ page import="java.util.*"%>
 <%@ page import="com.smit.dao.*"%>
@@ -58,6 +58,7 @@ $(function(){
 </ul>
 	<script type="text/javascript">
 	var columnDtree = new dTree('columnDtree');
+	columnDtree.add(0,0,"系统栏目","content.do?op=list");
 <%
 	//ColumnDao columnDao = new ColumnDaoImpl();
 	//List<Part> allColumns = columnDao.queryAllColumns();

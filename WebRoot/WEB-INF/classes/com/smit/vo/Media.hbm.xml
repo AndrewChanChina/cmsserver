@@ -10,8 +10,11 @@
  <property name="path"/>
   <property name="createtime" />
  <property name="source"/>
+ <property name="fileSize" column="filesize"></property>
+ <property name="typeName"></property>
+ <property name="userName" column="username"></property>
    <property name="sortRank" column="sortrank"/>
-   <many-to-one name="mediaType" class="com.smit.vo.MediaType" column="tid"></many-to-one>
+ <!--<many-to-one name="mediaType" class="com.smit.vo.MediaType" column="tid"></many-to-one>-->  
 
 </class>
 </hibernate-mapping>

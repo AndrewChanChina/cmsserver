@@ -11,6 +11,27 @@
 		<form-bean name="purviewForm" type="com.smit.web.form.PurviewForm"></form-bean>
 		<form-bean name="addSysInfoForm" type="com.smit.web.sysinfo.AddSysInfoForm"></form-bean>
 		<form-bean name="addColumnForm" type="com.smit.web.column.AddColumnForm"></form-bean>
+		<form-bean name="contentForm" type="com.smit.web.content.forms.ContentForm"/>
+		
+		   <form-bean name="uploadForm"  type="com.smit.web.UploadForm" />  
+		<form-bean name="contentDynaActionForm" type="org.apache.struts.action.DynaActionForm">
+			<form-property name="id" type="java.lang.Integer" />
+			<form-property name="author_id" type="java.lang.Integer" />
+			<form-property name="title" type="java.lang.String" />
+			<form-property name="shortTitle" type="java.lang.String" />
+			<form-property name="isCheck" type="java.lang.Integer" />
+			<form-property name="typeName" type="java.lang.String" />
+			<form-property name="content" type="java.lang.String" />
+			<form-property name="excerpt" type="java.lang.String" />
+			<form-property name="tags" type="java.lang.String" />
+			<form-property name="source" type="java.lang.String" />
+	    	<form-property name="createtime" type="java.lang.Double"/> 
+			<form-property name="langType" type="java.lang.Integer" />
+			<form-property name="putter" type="java.lang.Integer" />
+			<form-property name="sortRank" type="java.lang.Integer" />
+			<form-property name="prime" type="java.lang.Integer" />
+			<form-property name="subImg" type="java.lang.String" />
+		</form-bean>
 	</form-beans>
 
 	<global-forwards>
@@ -117,7 +138,13 @@
 			parameter="deletePurview">
 			<forward name="userright_purviewlist" path="/listpurview.do" />
 		</action>
-
+        <!-- 内容控制器 -->
+        	<action path="/content"
+			type="org.springframework.web.struts.DelegatingActionProxy" name="contentForm"
+			parameter="op">
+			<forward name="manager" path="/WEB-INF/sys/content_manager.jsp"></forward>
+			<forward name="list" path="/WEB-INF/sys/content_list.jsp"></forward>
+		</action>
 
 		<!-- sysinfo -->
 		<action path="/addSysInfo"
@@ -164,6 +191,9 @@
 		<action path="/showTopFrame" type="org.apache.struts.actions.ForwardAction"
 			parameter="/WEB-INF/sys/top.jsp" scope="request" validate="false">
 		</action>
+		<action path="/index" type="org.apache.struts.actions.ForwardAction"
+			parameter="/WEB-INF/sys/index.jsp" scope="request" validate="false">
+		</action>
 		<action path="/showMainFrame" type="org.apache.struts.actions.ForwardAction"
 			parameter="/WEB-INF/sys/main.jsp" scope="request" validate="false">
 		</action>
@@ -188,9 +218,22 @@
 		<action path="/showLogInfo" type="com.smit.web.ShowLogInfoPageAction">
 			<forward name="logInfo" path="/WEB-INF/sys/log_list.jsp" />
 		</action>
-
+     <!-- 上传控制器 -->
+            <action path="/uploadfile" type="org.apache.struts.actions.ForwardAction"
+	        	parameter="/WEB-INF/sys/upload.jsp" scope="request" validate="false"/>
+	        <action path="/upload"    
+            name="uploadForm"  
+            type="org.springframework.web.struts.DelegatingActionProxy"  
+            scope="request" parameter="op">
+            <forward name="upload" path="/WEB-INF/sys/upload.jsp"></forward>
+            <forward name="list" path="/WEB-INF/sys/upload_list.jsp"></forward>
+             </action>
 	</action-mappings>
-
+   <!-- 配置上传文件大小 -->
+	<controller maxFileSize="8M" >
+	 
+	
+	</controller>
 	<message-resources parameter="com.smit.web.res.ApplicationResources" />
 
 	<plug-in className="org.apache.struts.validator.ValidatorPlugIn">

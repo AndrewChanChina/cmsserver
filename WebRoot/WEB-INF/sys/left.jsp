@@ -64,8 +64,18 @@ $(function(){
 		<li><a href="grouplist.do" target="rightFrame">分组管理</a></li>
 		<li><a href="listpurview.do" target="rightFrame">权限管理</a></li>
 <%	
-	}
+	}else if(opCode.equalsIgnoreCase("content")){
 %>
+      	 <li><a href="content.do?op=add" target="rightFrame">发布内容</a></li>
+         <li><a href="content.do?op=list" target="rightFrame">内容管理</a></li>
+      
+<%
+   }else if(opCode.equalsIgnoreCase("upload")){
+ %>
+ 		<li><a href="uploadfile.do" target="rightFrame">上传资源</a></li>
+         <li><a href="upload.do?op=list" target="rightFrame">资源管理</a></li>
+  <%}
+  %>
 </ul>
 </body>
 </html>

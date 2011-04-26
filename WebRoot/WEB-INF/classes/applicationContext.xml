@@ -14,7 +14,32 @@
 	<bean id="userService" class="com.smit.service.UserServiceImpl">
 		<property name="userDao" ref="userDao"></property>
 	</bean>
+	
+	<!-- 内容业务组件 -->
+	 <bean name="/content" class="com.smit.web.content.actions.ContentAction">
+  	<property name="contentService" ref="contentService"></property>
+  	<property name="columnService" ref="columnService"/>
+  	<property name="userService" ref="userService"/>
+  </bean>
 
+  <bean id="contentDao" class="com.smit.dao.ContentDaoImpl">
+    <property name="sessionFactory" ref="sessionFactory"></property>
+  </bean>
+  
+  <bean id="contentService" class="com.smit.service.ContentServiceImpl">
+  <property name="contentDao" ref="contentDao"></property>
+  </bean>
+  
+  <!-- 上传业务组件 -->
+  <bean name="/upload" class="com.smit.web.UploadAction">
+   <property name="mediaService" ref="mediaService"></property>
+  </bean>
+  <bean id="mediaDao" class="com.smit.dao.MediaDaoImpl">
+  <property name="sessionFactory" ref="sessionFactory"></property>
+  </bean>
+  <bean id="mediaService" class="com.smit.service.MediaServiceImpl">
+  <property name="mediaDao" ref="mediaDao"></property>
+  </bean>
 	<!-- login register action -->
 	<bean name="/login" class="com.smit.web.UserAction" scope="prototype">
 		<property name="userService" ref="userService"></property>

@@ -1,5 +1,5 @@
 ﻿<%@page import="org.hibernate.impl.SessionFactoryImpl"%>
-<%@ page language="java"  pageEncoding="UTF-8"%>
+
 <%@ page contentType= "text/html;charset=UTF-8" language= "java"%>
 <%@ page import="java.util.*"%>
 <%@ page import="com.smit.dao.*"%>
@@ -143,9 +143,9 @@ function changeSite(siteId) {
 		
 			<li class="sep"></li><li id="tb_13" onclick="HoverLi(1,3,10);"><a href="showMainFrame.do?class=column" target="mainFrame">栏目</a></li>
 		
-			<li class="sep"></li><li id="tb_14" onclick="HoverLi(1,4,10);"><a href="showMainFrame.do?class=column" target="mainFrame">内容</a></li>
+			<li class="sep"></li><li id="tb_14" onclick="HoverLi(1,4,10);"><a href="showMainFrame.do?class=content" target="mainFrame">内容</a></li>
 		
-			<li class="sep"></li><li id="tb_15" onclick="HoverLi(1,5,10);"><a href="showMainFrame.do?class=column" target="mainFrame">上传</a></li>
+			<li class="sep"></li><li id="tb_15" onclick="HoverLi(1,5,10);"><a href="showMainFrame.do?class=upload" target="mainFrame">上传</a></li>
 			</ul>
 		</td>
       </tr>
