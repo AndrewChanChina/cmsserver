@@ -9,7 +9,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <head>
     <base href="<%=basePath%>">
     
-    <title>My JSP 'sucess.jsp' starting page</title>
+    <title>My JSP 'fail.jsp' starting page</title>
     
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
@@ -23,8 +23,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-  <a href="logout.do">logout</a>
-    成功！
-    <a href="index.do">ddd</a>
+   请求参数不对，请检查请求的参数
   </body>
 </html>

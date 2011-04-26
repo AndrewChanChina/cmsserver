@@ -128,7 +128,7 @@
 			<var>
 				<var-name>test</var-name>
 				<var-value>
-					(passwd == *this*)
+					(password == *this*)
 				</var-value>
 				</var>
 		 </field>

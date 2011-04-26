@@ -135,6 +135,7 @@ body {
 															<img name="reg" style="cursor: pointer"
 																src="./images/login/reset.jpg" onclick="" />
 															&nbsp; &nbsp;<a href="register.jsp">register</a>
+															&nbsp; &nbsp;<a href="devregister_page.do">注册开发者</a>
 														</td>
 													</tr>
 												</table>

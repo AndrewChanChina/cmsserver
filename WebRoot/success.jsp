@@ -9,7 +9,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <head>
     <base href="<%=basePath%>">
     
-    <title>My JSP 'fail.jsp' starting page</title>
+    <title>My JSP 'sucess.jsp' starting page</title>
     
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
@@ -23,6 +23,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-    操作失败啦
+  <a href="logout.do">logout</a>
+<<<<<<< HEAD:WebRoot/sucess.jsp
+    成功！
+    <a href="index.do">ddd</a>
+=======
+    你的操作已经成功！
+>>>>>>> d42ba37e7ad3bb0b387548bd51276afde279c447:WebRoot/success.jsp
   </body>
 </html>
