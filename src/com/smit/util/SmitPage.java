@@ -2,7 +2,8 @@ package com.smit.util;
 
 public class SmitPage {
 	
-	public static String pageNumberParameterName = "cpage";
+	public final static String CUR_PAGE = "CUR_PAGE";
+	public final static String pageNumberParameterName = "cpage";
  	private int pageIndex;
  	private int pageSize = 10;
  	private int totalCount;
@@ -21,10 +22,12 @@ public class SmitPage {
         this.url = url;
     }
 	public int getPageIndex() {
+		if(this.pageIndex > getPageCount())
+			this.pageIndex = getPageCount();
 		return pageIndex;
 	}
-	public void setPageIndex(int pageIndex) {
-		this.pageIndex = pageIndex;
+	public void setPageIndex(int pageIndex) {		
+		this.pageIndex = pageIndex;		
 	}
 	public int getPageSize() {
 		return pageSize;

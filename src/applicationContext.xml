@@ -5,6 +5,11 @@
 	xmlns:p="http://www.springframework.org/schema/p"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
  
+ 	<!-- session factory -->
+   	<bean id="sessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+  		<property name="configLocation"	value="classpath:hibernate.cfg.xml"></property>
+   	</bean>
+  
    	<!-- user dao & service --> 
    	<bean id="userDao" class="com.smit.dao.UserDaoImpl" >
    		<property name="sessionFactory" ref="sessionFactory"></property>
@@ -16,6 +21,7 @@
   	<!-- login register action -->
     <bean name="/login" class="com.smit.web.UserAction" scope="prototype" >
   		<property name="userService" ref="userService"></property>
+  		<property name="pushDataService" ref="pushDataService"></property>
     </bean>
     <bean name="/logout" class="com.smit.web.UserAction" scope="prototype" >  		
     </bean>
@@ -133,12 +139,25 @@
   	<property name="sysInfoService" ref="sysInfoService"></property>
   </bean>
 <!-- ================================================================== -->
-  <bean id="sessionFactory"
-  	class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
-  	<property name="configLocation"
-  		value="classpath:hibernate.cfg.xml">
-  	</property>
-  </bean>
+
+	<bean id="pushServiceDao" class="com.smit.dao.PushServiceDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+  	</bean>
+  	<bean id="pushManage" class="com.smit.service.push.PushManageImpl">
+  		<property name="pushServiceDao" ref="pushServiceDao"></property>
+  	</bean>
+	<bean id="pushDataService" class="com.smit.service.push.PushDataServiceImpl">
+  	</bean>
+  	<bean name="/home" class="com.smit.web.PushDataAction" scope="prototype">
+  	</bean>	
+  	<bean name="/developer_register" class="com.smit.web.PushDataAction" scope="prototype">
+  		<property name="userService" ref="userService"></property>
+  	</bean>	  	
+  	<bean name="/pushdata" class="com.smit.web.PushDataAction" scope="prototype">
+  	</bean>	
+  	<bean name="/pushservicemanage" class="com.smit.web.PushServiceManage" scope="prototype">
+  		<property name="pushManage" ref="pushManage"></property>
+  	</bean>
   
   </beans>
 

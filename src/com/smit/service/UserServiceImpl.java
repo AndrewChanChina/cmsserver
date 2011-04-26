@@ -26,8 +26,11 @@ public class UserServiceImpl implements IUserService {
 		}
 		return false;
 	}
+	/**
+	 * register normal user
+	 */
 	@Override
-	public boolean register(String userName,String password,String email,String telphone)
+	public void register(String userName,String password,String email,String telphone)
 	{		
 		User user = new User();
 		user.setUserName(userName);		
@@ -35,7 +38,20 @@ public class UserServiceImpl implements IUserService {
 		user.setPassword(password);
 		user.setTel(telphone);
 		
-		return userDao.register(user);
+		userDao.register(user,"normal");
+	}
+	/**
+	 * register developer to developer group
+	 */
+	@Override
+	public void regDeveloper(String userName,String password,String email,String telphone){
+		User user = new User();
+		user.setUserName(userName);		
+		user.setEmail(email);
+		user.setPassword(password);
+		user.setTel(telphone);
+		
+		userDao.register(user,"developer");
 	}
 	@Override
 	public User findUserByName(String userName) {

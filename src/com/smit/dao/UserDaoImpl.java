@@ -7,11 +7,10 @@ import java.util.List;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
-import org.springframework.dao.DataAccessException;
 import org.springframework.orm.hibernate3.HibernateCallback;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
-import com.smit.util.Page;
+import com.smit.util.DaoException;
 import com.smit.util.SmitPage;
 import com.smit.vo.Group;
 import com.smit.vo.User;
@@ -30,17 +29,17 @@ public class UserDaoImpl extends HibernateDaoSupport implements IUserDao {
 		return false;
 	}
 	/**
-	 *   save a user to 'normal' group.
-	 *   So please make sure that is a normal group name in smit_group
+	 *   save a user to 'groupName' group.
+	 *   So please make sure that is a 'groupName' in smit_group
 	 */
 	@Override
-	public boolean register(User user){
+	public void register(User user,String groupName){
 		
-		String hql = "from com.smit.vo.Group s where s.groupName='normal'";
+		String hql = "from com.smit.vo.Group s where s.groupName='"+groupName+"'";
 		
 		List list = this.getHibernateTemplate().find(hql);			
 		if(list.size() < 1){
-			return false;
+			throw new DaoException("your group "+groupName+" not exist");
 		}
 		Group group = (Group)list.get(0);
 		user.setGroup(group);
@@ -50,8 +49,6 @@ public class UserDaoImpl extends HibernateDaoSupport implements IUserDao {
 		group.setUsers(users);
 		this.getHibernateTemplate().save(user);			
 		this.getHibernateTemplate().flush();
-		
-		return true;
 	}
 	
 	

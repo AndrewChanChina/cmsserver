@@ -1,10 +1,10 @@
 package com.smit.web.form;
 
-import org.apache.struts.validator.ValidatorForm;
+import org.apache.struts.action.ActionForm;
 
 
 
-public class GroupForm extends ValidatorForm {
+public class GroupForm extends ActionForm {
 	/**
 	 * 
 	 */

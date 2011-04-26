@@ -47,39 +47,6 @@ public class GroupAction extends MappingDispatchAction {
 		return mapping.findForward("showgrouplist");
 		
 	}
-	/**
-	 * show user left page list menu
-	 * @param mapping
-	 * @param form
-	 * @param request
-	 * @param response
-	 * @return
-	 * @throws Exception
-	 */
-	public ActionForward userleft(ActionMapping mapping,ActionForm form,
-			   HttpServletRequest request,HttpServletResponse response) 
-	           throws Exception {	
-		return mapping.findForward("showguserleft");
-	}
-	/**
-	 * redirect to right page
-	 * @param mapping
-	 * @param form
-	 * @param request
-	 * @param response
-	 * @return
-	 * @throws Exception
-	 */
-	public ActionForward userright(ActionMapping mapping,ActionForm form,
-			   HttpServletRequest request,HttpServletResponse response) 
-	           throws Exception {
-		String method = request.getParameter(METHOD_PARAM);
-		if(METHOD_USER.equals(method)){
-			return mapping.findForward("userright_userlist");
-		}else{
-			return mapping.findForward("userright_grouplist");
-		}
-	}
 	
 	public ActionForward saveUpdateGroup(ActionMapping mapping,ActionForm form,
 			   HttpServletRequest request,HttpServletResponse response) 
