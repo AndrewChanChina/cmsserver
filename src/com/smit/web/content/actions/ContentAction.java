@@ -59,20 +59,27 @@ public class ContentAction extends DispatchAction {
 		List contents = new ArrayList();
 		if(request.getParameter("cid") != null){
 			Content content = null;
-			User user = null;
+			//User user = null;
 			int id = Integer.parseInt(request.getParameter("cid"));
 			if(contentService.findById(id) != null){
 				content = contentService.findById(id);
+				contents.add(0, content);
 				
 			}
-			if(userService.getUser(content.getAuthor_id()) != null){
-				user = userService.getUser(content.getAuthor_id());		
+			//if(userService.getUser(content.getAuthor_id()) != null){
+				//user = userService.getUser(content.getAuthor_id());		
+			//}
+			if(columnService.queryByColumnId(id)!= null){
+				Part part = columnService.queryByColumnId(id);
+				contents.add(1,part.getTypename());
+				
 			}
-			Part part = new Part();
-			contents.add(content);
-			contents.add(part.getTypename());
-			contents.add(user.getUserName());
-			request.setAttribute("contentBean", contents);  
+			
+			
+		
+		
+		//contents.add(user.getUserName());
+			request.setAttribute("contents", contents);  
 		}
 	
 		
@@ -145,7 +152,7 @@ public class ContentAction extends DispatchAction {
 			HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		
-		int id = Integer.parseInt(request.getParameter("id"));
+		int id = Integer.parseInt(request.getParameter("cid"));
 		try {
 			contentService.delete(id);
 			return mapping.findForward("s");
@@ -163,7 +170,7 @@ public class ContentAction extends DispatchAction {
 	public ActionForward view(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
-	    int id = Integer.getInteger(request.getParameter("id"));
+	    int id = Integer.getInteger(request.getParameter("cid"));
 	    try {
 	    	Content content = contentService.findById(id);
 	    	request.setAttribute("contentBean", content);
@@ -187,12 +194,12 @@ public class ContentAction extends DispatchAction {
 	  //  }
 	    
 	   // for(String id : ids){
-		     String id = request.getParameter("id");
+		     String id = request.getParameter("cid");
 	    	 try {
 	 	    	Content content = contentService.findById(Integer.parseInt(id));
 	 	    	content.setIsCheck(1);
 	 	    	contentService.update(content);  	
-	 	    	return new ActionForward("content.do?op=list");
+	 	    	return new ActionForward("/content.do?op=list");
 	 	    }catch(ServiceException e){
 	 	    	ActionMessage msg = new ActionMessage(e.getMessage());
 	 	    	msgs.add("ContentAction.view.failure", msg);

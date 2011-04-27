@@ -8,8 +8,8 @@ String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 List<com.smit.vo.Part> parts = (List<com.smit.vo.Part>)request.getAttribute("parts");
 
-List contents = (List)request.getAttribute("contentBean");
-if(contents != null){
+List contents = (List)request.getAttribute("contents");
+if(contents.get(0)!= null){
 	content = (com.smit.vo.Content)contents.get(0);
 }
 
@@ -62,7 +62,7 @@ if(contents != null){
 <%
   if(parts != null){
   Iterator iter = parts.iterator();
-  if(iter.hasNext()){
+  while(iter.hasNext()){
   	com.smit.vo.Part part = (com.smit.vo.Part)iter.next();
   	
  
@@ -135,7 +135,7 @@ if(contents != null){
 
 
 <td width="10%" class="pn-flabel pn-flabel-h">作者:</td><td colspan="1" width="40%" class="pn-fcontent">
-<input type="text" maxlength="100" name="author" value="<% if(contents != null) out.print((String)contents.get(2)); %>" maxlength="100"/></td>
+<input type="text" maxlength="100" name="author" value="<% if(content.getAuthor()!= null) out.print(content.getAuthor());%>" maxlength="100"/></td>
 
 
 

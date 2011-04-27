@@ -23,7 +23,7 @@ public class Content implements Serializable {
 	private String typeName;
 	private String tags;
 	private String source;
-	private Integer author_id;
+	private String author;
 	private String content;
 	private Integer putter;//0���ǣ�1����
 	private Integer onclickCount;
@@ -90,11 +90,12 @@ public class Content implements Serializable {
 	public void setSource(String source) {
 		this.source = source;
 	}
-	public Integer getAuthor_id() {
-		return author_id;
+    
+	public String getAuthor() {
+		return author;
 	}
-	public void setAuthor_id(Integer author_id) {
-		this.author_id = author_id;
+	public void setAuthor(String author) {
+		this.author = author;
 	}
 	public String getContent() {
 		return content;

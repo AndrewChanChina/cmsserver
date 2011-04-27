@@ -123,7 +123,7 @@ function chgStatus() {
 <tbody  class="pn-ltbody">
 <%
 	Iterator iter = contents.iterator();
-	int i = 0;
+	int i = (contentsPage.getCurrentPage()-1)*20;
 	while(iter.hasNext()){
 		com.smit.vo.Content content = (com.smit.vo.Content)iter.next();
 		java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yy-MM-dd");
@@ -148,7 +148,7 @@ function chgStatus() {
 		<td align="center"><% if(content.getPrime()!=null && content.getPrime() == 1){ %>	是<% }else  %>否</td>
 	<td align="center"><% if(content.getIsCheck()!= null && content.getIsCheck()== 1){ %>	己审核 <% }else  %>未审核
 </td>
-	<td align="center">		<a href="content.do?op=view&id=<%=content.getId() %>" class="pn-opt">查看</a> | 		<a href="content.do?op=manager&id=<%=content.getId() %>" class="pn-opt">修改</a> | 		<a href="content.do?op=delete&id=<%=content.getId() %>" onclick="if(!confirm('您确定删除吗？')) {return false;}" class="pn-opt">删除</a>
+	<td align="center">		<a href="content.do?op=check&cid=<%=content.getId() %>" class="pn-opt">审核</a> | 		<a href="content.do?op=add&cid=<%=content.getId() %>" class="pn-opt">修改</a> | 		<a href="content.do?op=delete&cid=<%=content.getId() %>" onclick="if(!confirm('您确定删除吗？')) {return false;}" class="pn-opt">删除</a>
 		</td>
 </tr>
 
@@ -177,11 +177,7 @@ function goPage() {
 	
 }
 </script>
-<div>
-	
-	<input type="button" value="审核" onclick="opCheck();"/>
-	
-</div>
+
 </form>
 </div>
 </body>
