@@ -188,7 +188,21 @@
 		<action path="/showLogInfo" type="com.smit.web.ShowLogInfoPageAction">
 			<forward name="logInfo" path="/WEB-INF/sys/log_list.jsp" />
 		</action>
-
+		<!-- add by luocheng 2011-04-26 -->
+		<action path="/showBaseLog" type="org.springframework.web.struts.DelegatingActionProxy"
+			parameter="showLogPage">
+			<forward name="baseLog" path="/WEB-INF/sys/base.jsp"></forward>
+		</action>
+		<action path="/showDetailLog" type="org.springframework.web.struts.DelegatingActionProxy"
+			parameter="showLogPage">
+			<forward name="baseLog" path="/WEB-INF/sys/base.jsp"></forward>
+		</action>
+		<action path="/showBaseLog" type="org.springframework.web.struts.DelegatingActionProxy"
+			parameter="showLogPage">
+			<forward name="baseLog" path="/WEB-INF/sys/base.jsp"></forward>
+			<forward name="detail" path="/WEB-INF/sys/detail.jsp"></forward>
+			<forward name="fileupload" path="/WEB-INF/sys/fileupload.jsp"></forward>
+		</action>
 	</action-mappings>
 
 	<message-resources parameter="com.smit.web.res.ApplicationResources" />

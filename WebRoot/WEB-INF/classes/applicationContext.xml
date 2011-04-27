@@ -154,8 +154,18 @@
 		<property name="configLocation" value="classpath:hibernate.cfg.xml">
 		</property>
 	</bean>
-
-	<bean id="smitLog" class="com.smit.util.SmitLog"></bean>
+    <bean id="smitLog" class="com.smit.util.SmitLog"></bean>
+    <!-- add by luocheng 2011-04-26 ==================================== -->
+    <bean name="/showBaseLog" class="com.smit.web.FrameworkAction" scope="prototype">
+    	<property name="sysInfoService" ref="sysInfoService"></property>
+    </bean>
+    <!-- log file upload , add by luocheng-->
+    <bean id="logDao" class="com.smit.dao.LogDaoImpl">
+    	<property name="sessionFactory" ref="sessionFactory"></property>
+    </bean>
+    <bean id="logService" class="com.smit.service.LogServiceImpl">
+    	<property name="logDao" ref="logDao"></property>
+    </bean>
 	<!-- 
 	<aop:config>
 		<aop:aspect id="b" ref="smitLog">

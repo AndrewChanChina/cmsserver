@@ -25,7 +25,8 @@
 	<mapping resource="com/smit/vo/Content.hbm.xml" />
 	<mapping resource="com/smit/vo/Media.hbm.xml" />
 	<mapping resource="com/smit/vo/MediaType.hbm.xml" />
-
+	<mapping resource="com/smit/vo/BaseLog.hbm.xml"/>
+	<mapping resource="com/smit/vo/DetailLog.hbm.xml"/>
 </session-factory>
 
 </hibernate-configuration>

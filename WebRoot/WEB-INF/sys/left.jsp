@@ -64,8 +64,19 @@ $(function(){
 		<li><a href="grouplist.do" target="rightFrame">分组管理</a></li>
 		<li><a href="listpurview.do" target="rightFrame">权限管理</a></li>
 <%	
-	}
+	}else if(opCode.equalsIgnoreCase("log")){
 %>
+		<li><a href="showBaseLog.do?class=base" target="rightFrame">基本信息</a></li>
+		<li><a href="showBaseLog.do?class=detail" target="rightFrame">细分状态</a></li>
+		<li><a href="showBaseLog.do?class=fileupload" target="rightFrame">log上传</a></li>
+<%
+	}else if(opCode.equalsIgnoreCase("auth")){
+ %>
+ 		<li><a href="" target="rightFrame">请求授权</a></li>
+ 		<li><a href="" target="rightFrame">激活成功</a></li>
+ <%
+ 	}
+  %>
 </ul>
 </body>
 </html>

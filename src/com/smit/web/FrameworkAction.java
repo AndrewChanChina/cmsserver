@@ -77,4 +77,18 @@ public class FrameworkAction extends MappingDispatchAction {
 		request.setAttribute("allSysInfos", allSysInfos);
 		return mapping.findForward("sysInfo");
 	}
+	
+	//add by luocheng 2011-04-26
+	public ActionForward showLogPage(ActionMapping mapping,ActionForm form,
+			HttpServletRequest request, HttpServletResponse response) throws Exception{
+		String classType = request.getParameter("class");
+		if(classType.equals("base")){
+			return mapping.findForward("baseLog");
+		}else if(classType.equals("detail")){
+			return mapping.findForward("detail");
+		}else if(classType.equals("fileupload")){
+			return mapping.findForward("fileupload");	
+		}
+		return null;
+	}
 }
