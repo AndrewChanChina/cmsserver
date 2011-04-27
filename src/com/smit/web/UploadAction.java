@@ -5,6 +5,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Iterator;
+import java.util.List;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
@@ -16,12 +18,10 @@ import org.apache.struts.action.ActionMapping;
 import org.apache.struts.action.ActionMessage;
 import org.apache.struts.action.ActionMessages;
 import org.apache.struts.actions.DispatchAction;
-import org.springframework.beans.BeanUtils;
 
 import com.smit.service.MediaService;
 import com.smit.util.Page;
 import com.smit.util.ServiceException;
-import com.smit.vo.Content;
 import com.smit.vo.Media;
 
 public class UploadAction extends DispatchAction {
@@ -43,10 +43,18 @@ public class UploadAction extends DispatchAction {
 			HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		UploadForm uploadForm = (UploadForm)form;
-		String fileSize = uploadForm.getFile().getFileSize() /1024 + "B";
-		String basePath = this.getServlet().getServletContext().getRealPath("/");
+		String fileSize = "";
+		if(uploadForm.getFile() != null){
+			fileSize = uploadForm.getFile().getFileSize() /1024 + "KB";
+			
+		}
+	
+		//String basePath = this.getServlet().getServletContext().getRealPath("/");
+		String basePath = request.getRealPath("/");
 		//SimpleDateFormat format = new SimpleDateFormat("yyyy\\MM\\dd\\HH");
 		SimpleDateFormat format = new SimpleDateFormat("yyyy\\MM\\dd");
+		
+		basePath += format.format(new Date());
 		File baseDir = new File(basePath);
 		if(!baseDir.exists()){
 			baseDir.mkdirs();
@@ -73,12 +81,14 @@ public class UploadAction extends DispatchAction {
 		fos.close();
 		Media media = new Media();
 		Date date = new Date();
-		media.setCreatetime(new Double(String.valueOf(date.getTime())));
+		
+		media.setCreatetime((int)date.getTime());
 		media.setFileName(fileName);
 		media.setSortRank(uploadForm.getSortRank());
-		media.setSource(media.getSource());
-		media.setTypeName(media.getTypeName());
+		media.setSource(uploadForm.getSource());
+		media.setTypeName(uploadForm.getTypeName());
 		media.setFileSize(fileSize);
+		
 		media.setPath(baseDir.getPath());
 		try {
 			mediaService.save(media);	
@@ -101,8 +111,14 @@ public class UploadAction extends DispatchAction {
 		Integer pageSize = (request.getParameter("ps") == null ||request.getParameter("ps") == "") ? 20 : Integer.parseInt(request.getParameter("ps"));
 	
 		try {
-			Page page = page = mediaService.findAll(currentPage, pageSize);	
-				
+			Page page = mediaService.findAll(currentPage, pageSize);	
+			List medias = page.getList();
+			//System.out.println(medias.size() + "guns");
+		  //  Iterator iter = medias.iterator();
+		   // while(iter.hasNext()){
+		    	//Media media = (Media)iter.next();
+		    	//System.out.println(media.getFileName());
+		    //}
 			
 			//System.out.println(page.getList().size());
 			request.setAttribute("page", page);

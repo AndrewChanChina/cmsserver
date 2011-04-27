@@ -91,7 +91,7 @@ function chgStatus() {
 <body>
 <div class="body-box">
 <div class="rhead">
-	<div class="rpos">当前位置: 内容管理 - 列表</div>
+	<div class="rpos">当前位置: 资源管理 - 列表</div>
 	<div class="clear"></div>
 </div>
 <form action="upload.do?op=search" method="post" style="padding-top:5px;">
@@ -111,6 +111,7 @@ function chgStatus() {
 	<th width="20"><input type='checkbox' onclick='Pn.checkbox("ids",this.checked)'/></th>
 	<th>ID</th>
 	<th>文件名</th>
+		
 	
 	<th>路径</th>
 	<th>上传者</th>
@@ -120,11 +121,9 @@ function chgStatus() {
 <%
 	Iterator iter = medias.iterator();
 	int i = 0;
-	if(iter.hasNext()){
+	while(iter.hasNext()){
 		com.smit.vo.Media media = (com.smit.vo.Media)iter.next();
-		java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yy-MM-dd");
-		Date date = new Date(Long.parseLong(String.valueOf(media.getCreatetime())));
-		String createtime = sdf.format(date);
+		
 		
 		i++;
  %>
@@ -133,9 +132,10 @@ function chgStatus() {
 	<td><%=i %></td>
 	<td>		
 	
-		<strong><%=media.getFileName() %></strong>
+		[<strong><%=media.getTypeName() %></strong>]
 		<%=media.getFileName()%>
 </td>
+ 
 
 	<td align="right"><%=media.getPath() %></td>
 	

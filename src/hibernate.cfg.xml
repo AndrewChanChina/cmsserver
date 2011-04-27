@@ -15,16 +15,17 @@
 	</property>
 	<property name="connection.username">root</property>
 
-	
-	<property name="connection.password">123456</property>
+
+	<property name="connection.password">guns</property>
 	<property name="connection.driver_class">
 		com.mysql.jdbc.Driver
 	</property>
-	<property name="myeclipse.connection.profile">ss</property>
+	<property name="myeclipse.connection.profile">ddd</property>
 
 	<property name="show_sql">true</property>
 	<property name="hbm2ddl.auto">update</property>
 	<property name="connection.autocommit">true</property>
+	<property name="format_sql">true</property>
 	<mapping resource="com/smit/vo/User.hbm.xml" />
 	<mapping resource="com/smit/vo/Group.hbm.xml" />
 	<mapping resource="com/smit/vo/Purview.hbm.xml" />

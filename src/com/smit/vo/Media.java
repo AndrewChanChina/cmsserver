@@ -20,7 +20,7 @@ public class Media implements Serializable {
 	private String path;
 	private String source;
 	private Integer sortRank;
-	private Double createtime;
+	private Integer createtime;
 	private String typeName;
 	private String fileSize;
 	private String userName;
@@ -85,10 +85,10 @@ public class Media implements Serializable {
 		this.sortRank = sortRank;
 	}
 	
-	public Double getCreatetime() {
+	public Integer getCreatetime() {
 		return createtime;
 	}
-	public void setCreatetime(Double createtime) {
+	public void setCreatetime(Integer createtime) {
 		this.createtime = createtime;
 	}
 	public static long getSerialversionuid() {

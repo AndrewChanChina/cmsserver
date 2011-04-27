@@ -93,13 +93,13 @@ public class ContentAction extends DispatchAction {
 			if(id >0){
 				 content = contentService.findById(id);		
 				 
-				 content.setCreatetime(new Double(date.getTime()));
+			
 				 BeanUtils.copyProperties(contentForm,content);
 				 contentService.update(content);
 			}else {
 				 content = new Content();		
 			
-				 content.setCreatetime(new Double(date.getTime()));
+				 content.setCreatetime((int)date.getTime());
 				 BeanUtils.copyProperties(contentForm,content);
 				 contentService.save(content);
 			}

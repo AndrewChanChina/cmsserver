@@ -55,7 +55,7 @@ public class MediaServiceImpl implements MediaService {
 	public Page findAll(int currentPage, int pageSize) {
 		Page page = null;
 		try {
-			mediaDao.getPage(currentPage, pageSize);
+			page = mediaDao.getPage(currentPage, pageSize);
 			
 		}catch(DaoException e){
 			throw new ServiceException(e.getMessage());

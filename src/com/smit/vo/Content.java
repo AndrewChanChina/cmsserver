@@ -30,7 +30,7 @@ public class Content implements Serializable {
 	private Integer langType;//0:����;1:Ӣ��
 	private Integer prime;//0���ǣ�1����
 	private Integer sortRank;
-	private Double createtime;
+	private Integer createtime;
 	private String subImg;
 	public Integer getId() {
 		return id;
@@ -134,10 +134,10 @@ public class Content implements Serializable {
 	}
 
 	
-	public Double getCreatetime() {
+	public Integer getCreatetime() {
 		return createtime;
 	}
-	public void setCreatetime(Double createtime) {
+	public void setCreatetime(Integer createtime) {
 		this.createtime = createtime;
 	}
 	public String getSubImg() {

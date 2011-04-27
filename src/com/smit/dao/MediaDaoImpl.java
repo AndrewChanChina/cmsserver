@@ -1,6 +1,7 @@
 package com.smit.dao;
 
 import java.sql.SQLException;
+import java.util.Iterator;
 import java.util.List;
 
 import org.hibernate.HibernateException;
@@ -46,13 +47,15 @@ public class MediaDaoImpl extends HibernateDaoSupport implements MediaDao {
 
 	@Override
 	public Page getPage(final int currentPage,final int pageSize) {
+		System.out.println(currentPage);
+		System.out.println(pageSize);
 		Page page = new Page();
 		try {
 			List list = this.getHibernateTemplate().find("select count(*) from Media");
 			Integer recordCount = Integer.parseInt(String.valueOf(list.get(0)));
+			System.out.println(recordCount);
 			
-			
-			List contents = this.getHibernateTemplate().execute(new HibernateCallback(){
+			List medias = this.getHibernateTemplate().execute(new HibernateCallback(){
 	
 				@Override
 				public Object doInHibernate(Session session)
@@ -64,8 +67,15 @@ public class MediaDaoImpl extends HibernateDaoSupport implements MediaDao {
 				}
 				
 			});
+//			System.out.println("大小"+ medias.size());
+//			System.out.println("文件名：" + ((Media)medias.get(2)).getFileName());
+//			System.out.println("文件名：" + ((Media)medias.get(1)).getFileName());
+//			System.out.println("文件名：" + ((Media)medias.get(0)).getFileName());
+			page.setCurrentPage(currentPage);
+			page.setPageSize(pageSize);
 			page.setTotalRecord(recordCount);
-			page.setList(contents);
+			page.setList(medias);
+			System.out.println(page.toString());
 		
 		}catch(HibernateException e){
 			throw new DaoException("��Դ���Ҳ���" + e.getMessage());

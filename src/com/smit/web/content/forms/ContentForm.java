@@ -26,7 +26,7 @@ public class ContentForm extends ActionForm{
 	private Integer langType;
 	private Integer prime;
 	private Integer sortRank;
-	private Double createtime;
+	
 	private String subImg;
 	public Integer getId() {
 		return id;
@@ -124,12 +124,7 @@ public class ContentForm extends ActionForm{
 	public void setSortRank(Integer sortRank) {
 		this.sortRank = sortRank;
 	}
-	public Double getCreatetime() {
-		return createtime;
-	}
-	public void setCreatetime(Double createtime) {
-		this.createtime = createtime;
-	}
+	
 	public String getSubImg() {
 		return subImg;
 	}

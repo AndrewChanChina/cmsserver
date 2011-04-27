@@ -118,12 +118,13 @@ function chgStatus() {
 	<th>点击</th>
 	<th>发布时间</th>
 	<th>推荐精华</th>
+	<th>审梳状态</th>
 	<th>操作选项</th></tr></thead>
 <tbody  class="pn-ltbody">
 <%
 	Iterator iter = contents.iterator();
 	int i = 0;
-	if(iter.hasNext()){
+	while(iter.hasNext()){
 		com.smit.vo.Content content = (com.smit.vo.Content)iter.next();
 		java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yy-MM-dd");
 		Date date = new Date(Long.parseLong(String.valueOf(content.getCreatetime())));
@@ -144,8 +145,8 @@ function chgStatus() {
 	
 	<td align="center"><%=content.getOnclickCount()%></td>
 	<td align="center"><%=createtime%></td>
-		<td align="center"><% if(content.getPrime() == 1){ %>	是<% }else  %>否</td>
-	<td align="center"><% if(content.getIsCheck() == 1){ %>	己审核 <% }else  %>未审核
+		<td align="center"><% if(content.getPrime()!=null && content.getPrime() == 1){ %>	是<% }else  %>否</td>
+	<td align="center"><% if(content.getIsCheck()!= null && content.getIsCheck()== 1){ %>	己审核 <% }else  %>未审核
 </td>
 	<td align="center">		<a href="content.do?op=view&id=<%=content.getId() %>" class="pn-opt">查看</a> | 		<a href="content.do?op=manager&id=<%=content.getId() %>" class="pn-opt">修改</a> | 		<a href="content.do?op=delete&id=<%=content.getId() %>" onclick="if(!confirm('您确定删除吗？')) {return false;}" class="pn-opt">删除</a>
 		</td>

@@ -9,9 +9,9 @@
  <property name="isspecial"/>
   <property name="topid" />
  <property name="father_id"/>
- <set name="medias" table="media" lazy="true" inverse="true" cascade="all">
+<!-- <set name="medias" table="media" lazy="true" inverse="true" cascade="all">
   <key column="tid"></key>
   <one-to-many class="com.smit.vo.Media" />
- </set>
+ </set> --> 
 </class>
 </hibernate-mapping>

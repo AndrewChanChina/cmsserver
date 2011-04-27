@@ -83,6 +83,9 @@ public class ContentDaoImpl extends HibernateDaoSupport implements ContentDao {
 				
 			});
 			page.setTotalRecord(recordCount);
+			page.setCurrentPage(currentPage);
+			page.setPageSize(pageSize);
+			
 			page.setList(contents);
 		
 		}catch(HibernateException e){
@@ -114,6 +117,8 @@ public class ContentDaoImpl extends HibernateDaoSupport implements ContentDao {
 				
 			});
 			page.setTotalRecord(recordCount);
+			page.setCurrentPage(currentPage);
+			page.setPageSize(pageSize);
 			page.setList(contents);
 		
 		}catch(HibernateException e){

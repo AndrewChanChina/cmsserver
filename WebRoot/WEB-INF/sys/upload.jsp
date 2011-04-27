@@ -51,7 +51,7 @@
 
 
 <td width="10%" class="pn-flabel pn-flabel-h">资源类型:</td><td colspan="1" width="40%" class="pn-fcontent">
-<input type="text" maxlength="100" name="tid" value="" style="width:70px" maxlength="100"/> 
+<input type="text" maxlength="100" name="typeName" value="" style="width:70px" maxlength="100"/> 
 </td>
 
 
