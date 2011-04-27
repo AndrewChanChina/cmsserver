@@ -75,7 +75,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<th width="20"><input type='checkbox' onclick='Pn.checkbox("ids",this.checked)'/></th>
 				<th>ID</th>
 				<th>名称</th>
-				<th>创建时间</th>				
+				<th>创建时间</th>
+				<th>权限水平</th>				
 				<th>默认组</th>
 				<th>操作选项</th>
 			</tr>
@@ -86,7 +87,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<td><input type='checkbox' name='ids' value='1'/></td>
 			<td>${group.id}</td>
 			<td>${group.groupName}</td>	
-			<td>${group.createtime}</td>		
+			<td>${group.createtime}</td>	
+			<td>${group.sortRank}</td>	
 			<td align="center">
 			<c:forEach items="${group.purviews}" var="purview">
 			${purview.purviewName}&nbsp

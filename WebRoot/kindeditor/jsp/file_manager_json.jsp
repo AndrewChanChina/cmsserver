@@ -38,6 +38,7 @@ if (path.indexOf("..") >= 0) {
 	out.println("Access is not allowed.");
 	return;
 }
+
 //最后一个字符不是/
 if (!"".equals(path) && !path.endsWith("/")) {
 	out.println("Parameter is not valid.");

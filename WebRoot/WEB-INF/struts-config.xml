@@ -245,6 +245,17 @@
 			parameter="home">
 			<forward name="success" path="/WEB-INF/sys/pushService/home.jsp" />
 		</action>
+		<!-- login -->
+		<action path="/devloginjsp" type="org.apache.struts.actions.ForwardAction"
+			parameter="/WEB-INF/sys/pushService/login.jsp" scope="request" validate="false" />
+			
+		<action path="/devlogin"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			parameter="login" name="smitLoginForm" 
+			input="/WEB-INF/sys/pushService/login.jsp" validate="true">
+			<forward name="success" path="/home.do" />
+			<forward name="fail" path="/WEB-INF/sys/pushService/login.jsp" />
+		</action>
 		<action path="/developer_register"
 			type="org.springframework.web.struts.DelegatingActionProxy"
 			parameter="developerRegister" name="registerForm" input="/devregister_page.do"

@@ -90,6 +90,7 @@ while (itr.hasNext()) {
 	}
 }
 %>
+
 <%!
 private String getError(String message) {
 	JSONObject obj = new JSONObject();

@@ -12,6 +12,8 @@ public class Constants {
 	public final static String CURUSERNAME = "current_user_name"; 	// String
 	public final static String CUR_USER_ID = "current_user_id";		// Integer
 	public final static String IS_DEVELOPER	= "is_developer";		// Boolean
+	public final static String CUR_GROUPNAME = "current_group_name";
+	public final static String LEVEL = "level";
 	
 	public final static String OPERATOR = "opt";
 

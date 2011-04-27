@@ -3,10 +3,10 @@
 <%@ page import="com.smit.web.form.GroupForm"%>
 <%@ page import="java.util.*"%>
 <%@ page import="com.smit.vo.Purview"%>
-<%@ taglib uri= "/WEB-INF/struts-html.tld" prefix="tiles" %>
-<%@ taglib uri= "/WEB-INF/struts-html.tld" prefix="html"%>
-<%@ taglib uri= "/WEB-INF/struts-logic.tld" prefix="logic"%>
-<%@ taglib uri= "/WEB-INF/struts-bean.tld" prefix="bean"%>
+<%@ taglib uri="/WEB-INF/struts-html.tld" prefix="tiles"%>
+<%@ taglib uri="/WEB-INF/struts-html.tld" prefix="html"%>
+<%@ taglib uri="/WEB-INF/struts-logic.tld" prefix="logic"%>
+<%@ taglib uri="/WEB-INF/struts-bean.tld" prefix="bean"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="smitpage" uri="/WEB-INF/smitpagetag.tld"%>
 
@@ -21,7 +21,7 @@
 <html:html lang="true">
 <head>
 	<base href="<%=basePath%>">
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
 	<meta http-equiv="expires" content="0">
@@ -38,8 +38,8 @@
 
 <body>
 	<logic:empty name='groupForm' property='id'>
-		<div> 
-			&quot;创建分组： 
+		<div>
+			&quot;创建分组：
 		</div>
 	</logic:empty>
 	<logic:notEmpty name='groupForm' property='id'>
@@ -47,68 +47,98 @@
 			修改分组：
 		</div>
 	</logic:notEmpty>
-	
+
 	<form method="post" action="saveupdategroup.do" id="jvForm">
-			<table width="100%" class="pn-ftable" cellpadding="2" cellspacing="1"
-				border="0">
-				<tr>
-					<td width="12%" class="pn-flabel pn-flabel-h">
-						<span class="pn-frequired">*</span>分组名:
-					</td>
-					<td colspan="1" width="38%" class="pn-fcontent">
-						<input type="text" maxlength="100" name="groupName"
-							vld="{required:true,username:true,remote:'v_check_username.do',messages:{remote:'用户名已被使用'}}"
-							maxlength="100" value="${groupForm.groupName}"/>
-					</td>					
-				</tr>
-				<tr>
-					<td width="12%" class="pn-flabel pn-flabel-h">
-						描述:
-					</td>
-					<td colspan="1" width="38%" class="pn-fcontent">					
-						<%							
-							List purviewlist = (List)request.getAttribute("purviewlist");
-							GroupForm g = (GroupForm)request.getAttribute("groupForm");
+		<table width="100%" class="pn-ftable" cellpadding="2" cellspacing="1"
+			border="0">
+			<tr>
+				<td width="12%" class="pn-flabel pn-flabel-h">
+					<span class="pn-frequired">*</span>分组名:
+				</td>
+				<td colspan="1" width="38%" class="pn-fcontent">
+					<input type="text" maxlength="100" name="groupName"
+						vld="{required:true,username:true,remote:'v_check_username.do',messages:{remote:'用户名已被使用'}}"
+						maxlength="100" value="${groupForm.groupName}" />
+				</td>
+			</tr>
+			<tr>
+				<td width="12%" class="pn-flabel pn-flabel-h">
+					权限水平：
+				</td>
+				<td colspan="1" width="38%" class="pn-fcontent">
+					<select name="sortRank">
+						<option value="1"
+							<c:if test="${group.sortRank==1}">selected</c:if>>
+							1
+						</option>
+						<option value="2"
+							<c:if test="${group.sortRank==2}">selected</c:if>>
+							2
+						</option>
+						<option value="3"
+							<c:if test="${group.sortRank==3}">selected</c:if>>
+							3
+						</option>
+						<option value="4"
+							<c:if test="${group.sortRank==4}">selected</c:if>>
+							4
+						</option>
+						<option value="5"
+							<c:if test="${group.sortRank==5}">selected</c:if>>
+							5
+						</option>
+						<option value="6"
+							<c:if test="${group.sortRank==6}">selected</c:if>>
+							6
+						</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td width="12%" class="pn-flabel pn-flabel-h">
+					描述:
+				</td>
+				<td colspan="1" width="38%" class="pn-fcontent">
+					<%
+						List purviewlist = (List) request.getAttribute("purviewlist");
+							GroupForm g = (GroupForm) request.getAttribute("groupForm");
 							String[] purviewids = g.getPurviewids();
-							
-							for(Object item : purviewlist){
-								Purview p = (Purview)item;
+
+							for (Object item : purviewlist) {
+								Purview p = (Purview) item;
 								StringBuilder sb = new StringBuilder();
-								
-								sb.append("<input type='checkbox' name='purviewids'	value ='" + 
-										p.getId() + "' ");
+
+								sb.append("<input type='checkbox' name='purviewids'	value ='"
+										+ p.getId() + "' ");
 								int len = 0;
-								if(purviewids!=null)
-								 len = purviewids.length;
-								for(int i=0; i< len; i++){
-									if(purviewids[i].equals(String.valueOf(p.getId())))
-									{
+								if (purviewids != null)
+									len = purviewids.length;
+								for (int i = 0; i < len; i++) {
+									if (purviewids[i].equals(String.valueOf(p.getId()))) {
 										sb.append("checked ");
 										break;
 									}
 								}
-								
+
 								sb.append(" />" + p.getPurviewName());
 								out.print(sb.toString());
 							}
-							
-						 %> 					
-						
-					</td>
-				</tr>				
-				<tr>
-					<td>&nbsp;
-					<td colspan="4" class="pn-fbutton">
-						<input type="submit" value="提交" />
-						&nbsp;
-						<input type="reset" value="重置" />
-					</td>
-				</tr>
-			</table>
-			<input type="hidden" name="hideId"
-						value="${groupForm.hideId}"/>
-			<input type="hidden" name="id"
-						value="${groupForm.id}"/>
-		</form>
+					%>
+
+				</td>
+			</tr>
+			<tr>
+				<td>
+					&nbsp;
+				<td colspan="4" class="pn-fbutton">
+					<input type="submit" value="提交" />
+					&nbsp;
+					<input type="reset" value="重置" />
+				</td>
+			</tr>
+		</table>
+		<input type="hidden" name="hideId" value="${groupForm.hideId}" />
+		<input type="hidden" name="id" value="${groupForm.id}" />
+	</form>
 </body>
 </html:html>
