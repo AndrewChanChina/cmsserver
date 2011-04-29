@@ -33,12 +33,18 @@ public class FrameworkAction extends MappingDispatchAction {
 			throws Exception
 	{
 			String whichClass = request.getParameter("class");
+			
 			if(whichClass.equalsIgnoreCase("column"))
 			{
 				List<Part> allColumns = columnService.queryAllColumns();
 				request.setAttribute("allColumns", allColumns);
 				return mapping.findForward("column_tree_page");
 			}
+			
+			/*
+			List<Part> allColumns = columnService.queryAllColumns();
+			request.setAttribute("allColumns", allColumns);
+			*/
 			return mapping.findForward("to_left");
 	}
 	
@@ -55,8 +61,12 @@ public class FrameworkAction extends MappingDispatchAction {
 		}
 		else if(whichClass.equalsIgnoreCase("column"))
 		{
+			Part rootColumn = columnService.queryRootColumn();
+			request.setAttribute("rootColumn", rootColumn);
 			List<Part> allColumns = columnService.queryAllColumns();
 			request.setAttribute("allColumns", allColumns);
+			List<Part> allTopColumns = columnService.queryTopColumns();
+			request.setAttribute("topColumns", allTopColumns);
 			return mapping.findForward("add_Column_page");//add_column.jsp
 		}
 		return null;

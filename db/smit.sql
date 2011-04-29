@@ -122,22 +122,23 @@ CREATE TABLE `part` (
   `topid` tinyint(10) DEFAULT NULL,
   `father_id` tinyint(10) DEFAULT NULL,
   `typename` varchar(50) DEFAULT NULL,
-  `path` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 /*Data for the table `part` */
 
-insert  into `part`(`id`,`topid`,`father_id`,`typename`,`path`) values (1,0,NULL,'all columns','');
-insert  into `part`(`id`,`topid`,`father_id`,`typename`,`path`) values (2,1,1,'column 1','');
-insert  into `part`(`id`,`topid`,`father_id`,`typename`,`path`) values (3,1,1,'column 2','');
-insert  into `part`(`id`,`topid`,`father_id`,`typename`,`path`) values (4,1,1,'column 3','');
-insert  into `part`(`id`,`topid`,`father_id`,`typename`,`path`) values (5,1,2,'column 1.1','');
-insert  into `part`(`id`,`topid`,`father_id`,`typename`,`path`) values (6,1,2,'column 1.2','');
-insert  into `part`(`id`,`topid`,`father_id`,`typename`,`path`) values (7,1,2,'column 1.3','');
-insert  into `part`(`id`,`topid`,`father_id`,`typename`,`path`) values (8,1,3,'column 2.1','');
-insert  into `part`(`id`,`topid`,`father_id`,`typename`,`path`) values (9,1,3,'column 2.2','');
-insert  into `part`(`id`,`topid`,`father_id`,`typename`,`path`) values (10,1,4,'column 3.1','');
+insert  into `part`(`id`,`topid`,`father_id`,`typename`) values (1,0,0,'all columns');
+insert  into `part`(`id`,`topid`,`father_id`,`typename`) values (2,1,1,'column 1');
+insert  into `part`(`id`,`topid`,`father_id`,`typename`) values (3,1,1,'column 2');
+insert  into `part`(`id`,`topid`,`father_id`,`typename`) values (4,1,1,'column 3');
+insert  into `part`(`id`,`topid`,`father_id`,`typename`) values (5,2,2,'column 1.1');
+insert  into `part`(`id`,`topid`,`father_id`,`typename`) values (6,2,2,'column 1.2');
+insert  into `part`(`id`,`topid`,`father_id`,`typename`) values (7,2,2,'column 1.3');
+insert  into `part`(`id`,`topid`,`father_id`,`typename`) values (8,3,3,'column 2.1');
+insert  into `part`(`id`,`topid`,`father_id`,`typename`) values (9,3,3,'column 2.2');
+insert  into `part`(`id`,`topid`,`father_id`,`typename`) values (10,4,4,'column 3.1');
+insert  into `part`(`id`,`topid`,`father_id`,`typename`) values (11,2,5,'column 1.1.1');
+insert  into `part`(`id`,`topid`,`father_id`,`typename`) values (12,2,5,'column 1.1.2');
 
 /* 1--------------------- */
 /*     |--2--------- 								*/

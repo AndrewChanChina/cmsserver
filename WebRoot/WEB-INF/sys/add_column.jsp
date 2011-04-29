@@ -39,15 +39,42 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</script>
 	</head>
 	<body>
-	
-	<%
+<%
 	List<Part> allColumns = (List<Part>)request.getAttribute("allColumns");
+	List<Part> topColumns = (List<Part>)request.getAttribute("topColumns");
+	Part rootColumn = (Part)request.getAttribute("rootColumn");
+	
 %>
 	
 <script type="text/javascript">
 
 function getTableForm() {
 	return document.getElementById('tableForm');
+}
+
+function splitOutDataAndAddToSelect(data, selectBtnID)
+{
+	var selectBtn = document.getElementById(selectBtnID);
+	if(data == "")
+	{
+		removeAllSelectOptions(selectBtnID);
+		addOptionToSelect(selectBtnID, "--没有数据", "-9999");
+		return;
+	}
+	addOptionToSelect(selectBtnID, "--请选择", "-9999");
+	var itemArr = data.split("##");
+	for(var i = 0; i<itemArr.length; i++)
+	{
+		var dataArr = itemArr[i].split("__");
+		addOptionToSelect(selectBtnID, dataArr[3], dataArr[0]);
+	}
+}
+
+function splitOutCurrentID(id)
+{
+	var prefixString = "man_topParentID";
+	var sub = id.substring(prefixString.length);
+	return sub;
 }
 
 function addColumnOptDelete() {
@@ -117,14 +144,98 @@ function getInputKeyAndValueAndStateById(id)
 	var array = [];
 	var inputId = document.getElementById("id"+id);
 	var inputColumnName = document.getElementById("columnName"+id);
-	var inputParentID = document.getElementById("parentID"+id);
-	var inputPath = document.getElementById("path"+id);
+	var inputTopParentID = document.getElementById("man_topParentID"+id);
+	var inputParentID = document.getElementById("man_parentID"+id);
 	array[0] = inputId.value;
 	array[1] = inputColumnName.value;
-	array[2] = inputParentID.value;
-	array[3] = inputPath.value;
+	array[2] = inputTopParentID.value;
+	array[3] = inputParentID.value;
 	return array;
 }
+
+function ajax()
+{
+	var mXmlhttp = null;
+	//var ret = null;
+	var mUserFinishCallBack = null;
+	var mTargetSelectID = null;
+	this.selectColumnsUnderTopCallBack = function()
+	{
+		if (mXmlhttp.readyState != 4) 
+		{
+			return;
+		}
+		if (mXmlhttp.status != 200) 
+		{
+			return;
+		}
+		var ret = mXmlhttp.responseText;
+		mUserFinishCallBack(ret, mTargetSelectID);
+	}
+	
+	this.retValues = function()
+	{
+		return ret;
+	}
+	
+	this.changeParentID = function(topParent_value,userFinishCallBack, targetSelectID) 
+	{
+		mUserFinishCallBack = userFinishCallBack;
+		mTargetSelectID = targetSelectID;
+		if (window.XMLHttpRequest)
+		{
+			mXmlhttp = new XMLHttpRequest();
+		} 
+		else if (window.ActiveXObject) 
+		{
+			mXmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+		}
+		if (mXmlhttp != null) 
+		{
+			mXmlhttp.onreadystatechange = this.selectColumnsUnderTopCallBack;
+			mXmlhttp.open("GET", "selectColumnsUnderTop.do?topId="
+					+ topParent_value, false);
+			mXmlhttp.send(null);
+		}
+	}
+}
+
+function removeAllSelectOptions(targetSelectID)
+{
+	var o = document.getElementById(targetSelectID);
+	for(var i=o.length -1 ; i>=0; i--)
+	{
+		o.remove(i);
+	}
+}
+
+function addOptionToSelect(targetSelectID, optionCaption, optionValue)
+{
+	var o = document.getElementById(targetSelectID);
+	var optionToAdd=document.createElement('option')
+	optionToAdd.innerText = optionCaption;
+	optionToAdd.value = optionValue;
+	o.add(optionToAdd);
+}
+
+function changeSelectOptions(rets, targetSelectID)
+{
+	removeAllSelectOptions(targetSelectID);
+	splitOutDataAndAddToSelect(rets, targetSelectID);
+}
+
+function ajax_changeParentID(topParent_value, targetSelectID)
+{
+	if(topParent_value == "-9999")
+	{
+		removeAllSelectOptions(targetSelectID);
+		addOptionToSelect(targetSelectID, "--请选择", "-9999");
+		return;
+	}
+	var ajaxObj = new ajax();
+	ajaxObj.changeParentID(topParent_value, changeSelectOptions, targetSelectID);
+}
+
 
 </script>
 		<form id="uploadForm" action="#" method="post"
@@ -155,48 +266,58 @@ function getInputKeyAndValueAndStateById(id)
 					cellspacing="1" border="0">
 					<tr>
 						<td width="10%" class="pn-flabel pn-flabel-h">
-							上级栏目:
+							顶级栏目:
 						</td>
-						<td colspan="3" width="90%" class="pn-fcontent">
-							<select name="parentID" onchange="window.alert(this.value);">
+						<td colspan="1" width="40%" class="pn-fcontent">
+							<select id="top_parentID" name="topID" onchange="ajax_changeParentID(this.value, 'parentID');">
+							<option value="-9999" selected="selected">
+								--请选择
+							</option>
+							<option value="<%=rootColumn.getId()%>">
+								<%=rootColumn.getTypename()%>
+							</option>
 							<%
-								for(int i = 0; i<allColumns.size(); i++)
+								for(int i = 0; i<topColumns.size(); i++)
 								{
-									Part part = allColumns.get(i);
-									Integer id = part.getId();
-									Integer topid = part.getTopid();
-									Integer parentid = part.getFather_id();
-									String className = part.getTypename();
+									Part toppart = topColumns.get(i);
+									Integer top_id = toppart.getId();
+									Integer top_topid = toppart.getTopid();
+									Integer top_parentid = toppart.getFather_id();
+									String top_className = toppart.getTypename();
 									%>
-										<option value="<%=id%>">
-											<%=className%>
+										<option value="<%=top_id%>">
+											<%=top_className%>
 										</option>
 									<%
-									
 								}
 							%>
 							</select>
 						</td>
+						<td width="10%" class="pn-flabel pn-flabel-h">
+							上级栏目:
+						</td>
+						
+						<td colspan="1" width="40%" class="pn-fcontent">
+							<select id="parentID" name="parentID">
+							<option value="-9999" selected="selected">
+								--请选择
+							</option>
+							<!-- ... -->
+							</select>
+						</td>
+						
 					</tr>
 					<tr>
 						<td width="10%" class="pn-flabel pn-flabel-h">
 							<span class="pn-frequired">*</span>栏目名称:
 						</td>
-						<td colspan="1" width="40%" class="pn-fcontent">
-							<input id="columnName" type="text" maxlength="100" name="classToAdd" class="required"
+						<td colspan="3" width="40%" class="pn-fcontent">
+							<input id="columnName" type="text" maxlength="100" name="typeName" class="required"
 								maxlength="100"/>
-						</td>
-						<td width="10%" class="pn-flabel pn-flabel-h">
-							访问路径:
-						</td>
-						<td colspan="1" width="40%" class="pn-fcontent">
-							<input type="text" maxlength="30" name="path" class="required" maxlength="30" width="100%"/>
 						</td>
 					</tr>
 					<tr>
 						<td colspan="4" class="pn-fbutton">
-							<input type="hidden" name="root" value="1" />
-							<input type="hidden" name="modelId" value="1" />
 							<input type="submit" value="提交" />&nbsp;
 							<input type="reset" value="重置" />
 						</td>
@@ -220,10 +341,10 @@ function getInputKeyAndValueAndStateById(id)
 								栏目名称
 							</th>
 							<th>
-								父栏目名称
+								顶级栏目名称
 							</th>
 							<th>
-								链接路径
+								父栏目名称
 							</th>
 							<th>
 								操作选项
@@ -249,9 +370,9 @@ function getInputKeyAndValueAndStateById(id)
 								Integer topid = part.getTopid();
 								Integer parentid = part.getFather_id();
 								String columnName = part.getTypename();
-								String columnPath = part.getPath();
+								//String columnPath = part.getPath();
 								String parentColumnName = idAndNameMap.get(parentid);
-								
+								String topColumnName = idAndNameMap.get(topid);
 						%>
 								<tr>
 									<td>
@@ -266,33 +387,54 @@ function getInputKeyAndValueAndStateById(id)
 											value="<%=columnName%>" class="required" maxlength="255"
 											style="width: 120px" />
 									</td>
-									<td align="center">
+									<td align="center"><!-- 顶级栏目名称 -->
 											<% 
-												if(parentColumnName == null)
+												if(topColumnName == null)
 												{
 												}
 												else
 												{
 											%>
-													<select id="parentID<%=id%>" name="parentID" onchange="window.alert(this.value);">
+													<select id="man_topParentID<%=id%>" name="parentID" disabled="disabled" onchange="ajax_changeParentID(this.value, 'man_parentID' + splitOutCurrentID(this.id));">
+													<option value="-9999">
+														--请选择
+													</option>
 											<%
-													for(int k=0; k<valueArray.length; ++k)
+													if(rootColumn.getId().equals(topid))
 													{
-														Integer mapID = (Integer)keyArray[k];
-														String mapName = (String)valueArray[k];
-														if(parentColumnName.equals(mapName))
+											 %>
+														<option value="<%=rootColumn.getId()%>" selected="selected">
+															<%=rootColumn.getTypename()%><!-- 当前: -->
+														</option>
+											<%
+													}
+													else
+													{
+											%>
+														<option value="<%=rootColumn.getId()%>">
+															<%=rootColumn.getTypename()%>
+														</option>
+											<%
+													}
+											
+													for(int k=0; k<topColumns.size(); ++k)
+													{
+														Part partInTops = topColumns.get(k);
+														Integer top_mapID = partInTops.getId();
+														String top_mapName = partInTops.getTypename();
+														if(top_mapID.equals(topid))
 														{
 											%>
-															<option value="<%=mapID%>" selected="selected">
-																当前:<%=mapName%>
+															<option value="<%=top_mapID%>" selected="selected">
+																<%=top_mapName%><!-- 当前: -->
 															</option>
 											<%
 														}
 														else
 														{
 											%>
-															<option value="<%=mapID%>">
-																<%=mapName%>
+															<option value="<%=top_mapID%>">
+																<%=top_mapName%>
 															</option>
 											<%
 														}
@@ -304,10 +446,25 @@ function getInputKeyAndValueAndStateById(id)
 												}
 											%>
 									</td>
-									<td align="center">
-										<input type="text" id="path<%=id%>" name="path"
-											value="<%=columnPath%>" class="required" maxlength="1024"
-											style="width: 500px" />
+									<td align="center"><!-- 父栏目名称 -->
+											<% 
+												if(parentColumnName == null)
+												{
+												}
+												else
+												{
+											%>
+													<select id="man_parentID<%=id%>" name="parentID" disabled="disabled">
+													<option value="-9999">
+														--请选择
+													</option>
+													<option value="<%=parentid%>" selected="selected">
+														<%=parentColumnName%>
+													</option>
+
+											<%
+												}
+											%>
 									</td>
 									<td align="center">
 										<a href="deleteColumn.do?id=<%=id%>&idList=null"

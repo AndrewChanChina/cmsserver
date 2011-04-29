@@ -151,6 +151,7 @@
 			type="org.springframework.web.struts.DelegatingActionProxy" name="addColumnForm"
 			parameter="addColumn">
 			<forward name="reload" path="/WEB-INF/sys/add_column.jsp" />
+			<forward name="reloadMainFrame" path="/showMainFrame.do?class=column" />
 		</action>
 		<action path="/deleteColumn"
 			type="org.springframework.web.struts.DelegatingActionProxy"
@@ -161,6 +162,13 @@
 			type="org.springframework.web.struts.DelegatingActionProxy"
 			parameter="updateColumn">
 			<forward name="reload" path="/WEB-INF/sys/add_column.jsp" />
+		</action>
+		
+		<!-- add_column_tree_page Two-Select-Interaction action -->
+		
+		<action path="/selectColumnsUnderTop" 
+				type="org.springframework.web.struts.DelegatingActionProxy"
+				parameter="selectColumnsUnderTopID">
 		</action>
 
 		<!-- framework forward action -->
