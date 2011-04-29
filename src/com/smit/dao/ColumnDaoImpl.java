@@ -101,19 +101,7 @@ public class ColumnDaoImpl extends HibernateDaoSupport implements ColumnDao
 	public boolean addColumn(Integer topID, Integer parentID, String typeName)
 	{
 		HibernateTemplate ht = this.getHibernateTemplate();
-		
-		//Integer father_ID = Integer.valueOf(parentID);
-		//Part father = ht.get(Part.class, father_ID);
-		//Part top = ht.get(Part.class, topID);
 
-		/*
-		Integer topIdToSet = father.getTopid();
-		if(topIdToSet==0)
-		{
-			topIdToSet = father.getId();
-		}
-		*/
-		
 		Part part = new Part();
 		part.setFather_id(parentID);
 		part.setId(null);
@@ -126,7 +114,7 @@ public class ColumnDaoImpl extends HibernateDaoSupport implements ColumnDao
 	public List<Part> queryAllColumns() 
 	{
 		HibernateTemplate ht = getHibernateTemplate();
-		List<Part> list = ht.executeFind(new HibernateCallback<Object>() {  
+		List<Part> list = ht.executeFind(new HibernateCallback<Object>() {
 	            public Object doInHibernate(Session s) throws HibernateException, SQLException
 	            {  
 	            	String hql = "FROM com.smit.vo.Part p";

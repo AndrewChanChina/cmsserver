@@ -29,7 +29,7 @@
     <servlet-name>action</servlet-name>
     <url-pattern>*.do</url-pattern>
   </servlet-mapping>
-  <!-- filter -->
+  <!-- 
   <filter>
   	<filter-name>loginFilter</filter-name>
   	<filter-class>com.smit.web.LoginFilter</filter-class>
@@ -43,6 +43,7 @@
   	<filter-name>loginFilter</filter-name>
   	<url-pattern>*.do</url-pattern>
   </filter-mapping>
+  filter -->
   <welcome-file-list>
     <welcome-file>/WEB-INF/sys/index.html</welcome-file>
   </welcome-file-list>

@@ -24,6 +24,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   
   <body>
   <a href="logout.do">logout</a>
+<<<<<<< HEAD:WebRoot/sucess.jsp
+    成功！
+    <a href="index.do">ddd</a>
+=======
     你的操作已经成功！
+>>>>>>> d42ba37e7ad3bb0b387548bd51276afde279c447:WebRoot/success.jsp
   </body>
 </html>

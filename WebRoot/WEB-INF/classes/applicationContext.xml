@@ -7,67 +7,95 @@
 						http://www.springframework.org/schema/aop
     					http://www.springframework.org/schema/aop/spring-aop.xsd">
 
+	<!-- user dao & service -->
+	<bean id="userDao" class="com.smit.dao.UserDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="userService" class="com.smit.service.UserServiceImpl">
+		<property name="userDao" ref="userDao"></property>
+	</bean>
+	
+	<!-- 内容业务组件 -->
+	 <bean name="/content" class="com.smit.web.content.actions.ContentAction">
+  	<property name="contentService" ref="contentService"></property>
+  	<property name="columnService" ref="columnService"/>
+  	<property name="userService" ref="userService"/>
+  </bean>
+
+  <bean id="contentDao" class="com.smit.dao.ContentDaoImpl">
+    <property name="sessionFactory" ref="sessionFactory"></property>
+  </bean>
+  
+  <bean id="contentService" class="com.smit.service.ContentServiceImpl">
+  <property name="contentDao" ref="contentDao"></property>
+  </bean>
+  
+  <!-- 上传业务组件 -->
+  <bean name="/upload" class="com.smit.web.UploadAction">
+   <property name="mediaService" ref="mediaService"></property>
+  </bean>
+  <bean id="mediaDao" class="com.smit.dao.MediaDaoImpl">
+  <property name="sessionFactory" ref="sessionFactory"></property>
+  </bean>
+  <bean id="mediaService" class="com.smit.service.MediaServiceImpl">
+  <property name="mediaDao" ref="mediaDao"></property>
+  </bean>
+	<!-- login register action -->
+	<bean name="/login" class="com.smit.web.UserAction" scope="prototype">
+		<property name="userService" ref="userService"></property>
+	</bean>
+	<bean name="/logout" class="com.smit.web.UserAction" scope="prototype">
+	</bean>
+	<bean name="/register" class="com.smit.web.UserAction" scope="prototype">
+		<property name="userService" ref="userService"></property>
+	</bean>
+
+	<!-- user manager action -->
+	<bean name="/listuser" class="com.smit.web.UserAction" scope="prototype">
+		<property name="userService" ref="userService"></property>
+	</bean>
+	<bean name="/gonewuser" class="com.smit.web.UserAction" scope="prototype">
+		<property name="groupManager" ref="groupManagerService"></property>
+		<property name="userService" ref="userService"></property>
+	</bean>
+	<bean name="/saveupdateuser" class="com.smit.web.UserAction"
+		scope="prototype">
+		<property name="userService" ref="userService"></property>
+	</bean>
+	<bean name="/deleteuser" class="com.smit.web.UserAction" scope="prototype">
+		<property name="userService" ref="userService"></property>
+	</bean>
+
+	<!-- group dao & service -->
+	<bean id="groupDao" class="com.smit.dao.GroupDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="groupManagerService" class="com.smit.service.GroupMangerServiceImpl">
+		<property name="groupDao" ref="groupDao"></property>
+	</bean>
+	<!-- group manager -->
+	<bean name="/grouplist" class="com.smit.web.GroupAction" scope="prototype">
+		<property name="groupManager" ref="groupManagerService"></property>
+	</bean>
+	<bean name="/gonewgroup" class="com.smit.web.GroupAction" scope="prototype">
+		<property name="groupManager" ref="groupManagerService"></property>
+		<property name="purviewService" ref="purviewService"></property>
+	</bean>
+	<bean name="/saveupdategroup" class="com.smit.web.GroupAction"
+		scope="prototype">
+		<property name="groupManager" ref="groupManagerService"></property>
+	</bean>
+	<bean name="/deletegroup" class="com.smit.web.GroupAction" scope="prototype">
+		<property name="groupManager" ref="groupManagerService"></property>
+	</bean>
+
 
  	<!-- session factory -->
    	<bean id="sessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
   		<property name="configLocation"	value="classpath:hibernate.cfg.xml"></property>
    	</bean>
   
-   	<!-- user dao & service --> 
-   	<bean id="userDao" class="com.smit.dao.UserDaoImpl" >
-   		<property name="sessionFactory" ref="sessionFactory"></property>
-   	</bean>   
-   	<bean id="userService" class="com.smit.service.UserServiceImpl">
-  		<property name="userDao" ref="userDao"></property>
-  	</bean>
-  	
-  	<!-- login register action -->
-    <bean name="/login" class="com.smit.web.UserAction" scope="prototype" >
-  		<property name="userService" ref="userService"></property>
-  		<property name="pushDataService" ref="pushDataService"></property>
-    </bean>
-    <bean name="/logout" class="com.smit.web.UserAction" scope="prototype" >  		
-    </bean>
-  	<bean name="/register" class="com.smit.web.UserAction" scope="prototype">
-  		<property name="userService" ref="userService"></property>
-  	</bean>  	
-  	
-  	<!-- user manager action -->
-  	<bean name="/listuser" class="com.smit.web.UserAction" scope="prototype">
-  		<property name="userService" ref="userService"></property>
-  	</bean>
-  	<bean name="/gonewuser" class="com.smit.web.UserAction" scope="prototype">
-  		<property name="groupManager" ref="groupManagerService"></property>
-  		<property name="userService" ref="userService"></property>
-  	</bean>
-  	<bean name="/saveupdateuser" class="com.smit.web.UserAction" scope="prototype">
-  		<property name="userService" ref="userService"></property>
-  	</bean>
-  	<bean name="/deleteuser" class="com.smit.web.UserAction" scope="prototype">
-  		<property name="userService" ref="userService"></property>
-  	</bean>	
-  	
-  	<!-- group dao & service -->
-  	<bean id="groupDao" class="com.smit.dao.GroupDaoImpl">
-  		<property name="sessionFactory" ref="sessionFactory"></property>
-  	</bean>
-  	<bean id="groupManagerService" class="com.smit.service.GroupMangerServiceImpl">
-  		<property name="groupDao" ref="groupDao"></property>
-  	</bean>
-  	<!-- group manager -->
-  	<bean name="/grouplist" class="com.smit.web.GroupAction" scope="prototype">
-  		<property name="groupManager" ref="groupManagerService"></property>
-  	</bean>
-  	<bean name="/gonewgroup" class="com.smit.web.GroupAction" scope="prototype">
-  		<property name="groupManager" ref="groupManagerService"></property>
-  		<property name="purviewService" ref="purviewService"></property>
-  	</bean>
-  	<bean name="/saveupdategroup" class="com.smit.web.GroupAction" scope="prototype">
-  		<property name="groupManager" ref="groupManagerService"></property>
-  	</bean>
-  	<bean name="/deletegroup" class="com.smit.web.GroupAction" scope="prototype">
-  		<property name="groupManager" ref="groupManagerService"></property>
-  	</bean>	
+  
   	
   	<!-- purview dao & service -->
   	<bean id="purviewDao" class="com.smit.dao.PurviewDaoImpl">

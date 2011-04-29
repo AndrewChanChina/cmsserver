@@ -43,8 +43,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<body class="lbody">
 
 
-		<ul id="lmenu">
-			<% 
+	<ul id="lmenu">
+<% 
 	String opCode= (String)request.getParameter("class");
 	if(opCode.equalsIgnoreCase("sysInfoAndLog"))
 	{
@@ -84,49 +84,49 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <%	
 	}else if(opCode.equalsIgnoreCase("content")){
 %>
-			<li>
-				<a href="content.do?op=add" target="rightFrame">发布内容</a>
-			</li>
+			<li><a href="content.do?op=add" target="rightFrame">发布内容</a></li>
+         	<li><a href="content.do?op=list" target="rightFrame">内容管理</a></li>
 			<script type="text/javascript">
-	var columnDtree = new dTree('columnDtree');
-<%
-	List<Part> allColumns = (List<Part>)request.getAttribute("allColumns");
-	for(int i = 0; i<allColumns.size(); i++)
-	{
-		Part part = allColumns.get(i);
-		Integer id = part.getId();
-		Integer topid = part.getTopid();
-		Integer parentid = part.getFather_id();
-		if(parentid == null)
-		{
-			parentid = 0;
-		}
-		String name = part.getTypename();
+			var columnDtree = new dTree('columnDtree');
+			<%
+				List<Part> allColumns = (List<Part>)request.getAttribute("allColumns");
+				for(int i = 0; i<allColumns.size(); i++)
+				{
+					Part part = allColumns.get(i);
+					Integer id = part.getId();
+					Integer topid = part.getTopid();
+					Integer parentid = part.getFather_id();
+					if(parentid == null)
+					{
+						parentid = 0;
+					}
+					String name = part.getTypename();
+					String link = "<a href='content.do?op=list&pid=" + id + "></a>";
+			%>
+				columnDtree.add(<%=(id-1)%>,<%=(parentid-1)%>,"<%=name%>","<%=link%>");
+			<%
+				}
+				if(allColumns == null || allColumns.size() == 0)
+				{
+			%>
+					columnDtree.add(0, -1 ,"所有栏目", "<a href='content.do?op=list'></a>");
+			<%
+				}
+			
+			%>
+				document.write(columnDtree);
+				
+			</script>
 
-		//System.out.println("id = " + id);
-		//System.out.println("topid = " + topid);
-		//System.out.println("parentid = " + parentid);
-		//System.out.println("name = " + name);
-		//System.out.println("======== ");
-		String link = "<a href='content.do?op=list&pid=" + id + "></a>";
-%>
-	columnDtree.add(<%=(id-1)%>,<%=(parentid-1)%>,"<%=name%>","<%=link%>");
+      	 
+      
 <%
-	}
-	if(allColumns == null || allColumns.size() == 0)
-	{
+   }else if(opCode.equalsIgnoreCase("upload")){
 %>
-		columnDtree.add(0, -1 ,"所有栏目", "<a href='content.do?op=list'></a>");
-<%
-	}
-
-%>
-	document.write(columnDtree);
-	
-</script>
-<%
-   }
-%>
+ 		<li><a href="uploadfile.do" target="rightFrame">上传资源</a></li>
+         <li><a href="upload.do?op=list" target="rightFrame">资源管理</a></li>
+  <%}
+  %>
 </ul>
 </body>
 </html>

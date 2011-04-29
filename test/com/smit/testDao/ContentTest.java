@@ -31,7 +31,7 @@ public class ContentTest extends TestCase {
 	public void testAdd(){
 		Content content = new Content();
 		content.setTitle("kdkdk");
-		content.setCreatetime(new Timestamp(new Date().getTime()));
+
 		content.setContent("kdkdkdkd");
 		session.save(content);
 		session.beginTransaction().commit();
