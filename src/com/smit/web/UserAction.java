@@ -17,6 +17,7 @@ import org.apache.struts.actions.MappingDispatchAction;
 
 import com.smit.service.IGroupManagerService;
 import com.smit.service.IUserService;
+import com.smit.service.push.IPushDataService;
 import com.smit.util.Constants;
 import com.smit.util.SmitPage;
 import com.smit.util.WebUtil;
@@ -30,6 +31,7 @@ public class UserAction extends MappingDispatchAction {
 
 	private IUserService userService; 
 	private IGroupManagerService groupManager;
+	private IPushDataService pushDataService;
 	
 	public ActionForward register(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -45,7 +47,7 @@ public class UserAction extends MappingDispatchAction {
 		}catch (Exception e){
 			return mapping.findForward("fail");
 		}
-		return mapping.findForward("sucess");
+		return mapping.findForward("success");
 		
 	}
 	
@@ -59,18 +61,35 @@ public class UserAction extends MappingDispatchAction {
 		
 		System.out.println(loginForm.getPasswd());
 		System.out.println(loginForm.getUserName());
-		if(userService.login(loginForm.getUserName(), loginForm.getPasswd())){
-			// save some login information
-			session.setAttribute(Constants.LOGIN_SUC, Constants.SUCCESS);
-			session.setAttribute(Constants.CURUSERNAME, loginForm.getUserName());
-			return mapping.findForward("sucess");
-		} else 
-		{
+		try{
+			if(userService.login(loginForm.getUserName(), loginForm.getPasswd())){
+				// save some login information
+				session.setAttribute(Constants.LOGIN_SUC, Constants.SUCCESS);
+				session.setAttribute(Constants.CURUSERNAME, loginForm.getUserName());
+				return mapping.findForward("success-admin");
+			} else if(pushDataService.login(Constants.PUSH_HOST, 
+					loginForm.getUserName(), loginForm.getPasswd())) 
+			{
+				// login smack success
+				session.setAttribute(Constants.LOGIN_SUC, Constants.SUCCESS);
+				session.setAttribute(Constants.CURUSERNAME, loginForm.getUserName());
+				session.setAttribute(Constants.PUSH_CONNECTION, pushDataService);
+				User u = userService.findUserByName(loginForm.getUserName());
+				if(u != null){
+					session.setAttribute(Constants.CUR_USER_ID, u.getId());
+				}				
+				return mapping.findForward("success-user");
+			} else {
+				throw new Exception("dd");
+			}
+			
+		}catch (Exception e){
 			ActionErrors errors = new ActionErrors();
 			errors.add(ActionMessages.GLOBAL_MESSAGE,new ActionMessage("ee42452"));
 			this.saveErrors(request, errors);
-			return mapping.findForward("fail");			
-		}			
+			return mapping.findForward("fail");				
+		}		
+				
 	}
 	/**
 	 * logout action
@@ -191,19 +210,18 @@ public class UserAction extends MappingDispatchAction {
 		return mapping.findForward("userright_userlist");
 		
 	}
-	public IUserService getUserService() {
-		return userService;
-	}
-
+	
 	public void setUserService(IUserService userService) {
 		this.userService = userService;
 	}
-	
-	public IGroupManagerService getGroupManager() {		
-		return groupManager;
-	}
+
 	public void setGroupManager(IGroupManagerService groupManager) {
 		this.groupManager = groupManager;
 	}
+
+	public void setPushDataService(IPushDataService pushDataService) {
+		this.pushDataService = pushDataService;
+	}
+	
 	
 }

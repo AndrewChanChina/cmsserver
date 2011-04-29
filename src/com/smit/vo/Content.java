@@ -16,10 +16,11 @@ public class Content implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private Integer id;
 	private String title;
-
+	private String shortTitle;
+	private Integer isCheck;
 	private Part part;
-
 	private String excerpt;
+	private String typeName;
 	private String tags;
 	private String source;
 	private Integer author_id;
@@ -29,26 +30,47 @@ public class Content implements Serializable {
 	private Integer langType;//0:����;1:Ӣ��
 	private Integer prime;//0���ǣ�1����
 	private Integer sortRank;
-	private Timestamp createtime;
+	private Integer createtime;
+	private String subImg;
 	public Integer getId() {
 		return id;
 	}
 	public void setId(Integer id) {
 		this.id = id;
 	}
+	
+	
+	public String getTypeName() {
+		return typeName;
+	}
+	public void setTypeName(String typeName) {
+		this.typeName = typeName;
+	}
 	public String getTitle() {
 		return title;
+	}
+	
+	public Integer getIsCheck() {
+		return isCheck;
+	}
+	public void setIsCheck(Integer isCheck) {
+		this.isCheck = isCheck;
+	}
+	public String getShortTitle() {
+		return shortTitle;
+	}
+	public void setShortTitle(String shortTitle) {
+		this.shortTitle = shortTitle;
 	}
 	public void setTitle(String title) {
 		this.title = title;
 	}
-
+	
 	public Part getPart() {
 		return part;
 	}
 	public void setPart(Part part) {
 		this.part = part;
-
 	}
 	public String getExcerpt() {
 		return excerpt;
@@ -111,11 +133,18 @@ public class Content implements Serializable {
 		this.sortRank = sortRank;
 	}
 
-	public Timestamp getCreatetime() {
+	
+	public Integer getCreatetime() {
 		return createtime;
 	}
-	public void setCreatetime(Timestamp createtime) {
+	public void setCreatetime(Integer createtime) {
 		this.createtime = createtime;
+	}
+	public String getSubImg() {
+		return subImg;
+	}
+	public void setSubImg(String subImg) {
+		this.subImg = subImg;
 	}
 	public static long getSerialversionuid() {
 		return serialVersionUID;

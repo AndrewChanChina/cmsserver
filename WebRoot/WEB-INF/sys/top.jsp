@@ -1,5 +1,5 @@
 ﻿<%@page import="org.hibernate.impl.SessionFactoryImpl"%>
-<%@ page language="java"  pageEncoding="UTF-8"%>
+
 <%@ page contentType= "text/html;charset=UTF-8" language= "java"%>
 <%@ page import="java.util.*"%>
 <%@ page import="com.smit.dao.*"%>
@@ -143,13 +143,17 @@ function changeSite(siteId) {
 		
 			<li class="sep"></li><li id="tb_13" onclick="HoverLi(1,3,10);"><a href="showMainFrame.do?class=column" target="mainFrame">栏目</a></li>
 		
-			<li class="sep"></li><li id="tb_14" onclick="HoverLi(1,4,10);"><a href="showMainFrame.do?class=column" target="mainFrame">内容</a></li>
+			<li class="sep"></li><li id="tb_14" onclick="HoverLi(1,4,10);"><a href="showMainFrame.do?class=content" target="mainFrame">内容</a></li>
 		
+<<<<<<< HEAD
 			<li class="sep"></li><li id="tb_15" onclick="HoverLi(1,5,10);"><a href="showMainFrame.do?class=column" target="mainFrame">上传</a></li>
 			
 			<li class="sep"></li><li id="tb_16" onclick="HoverLi(1,6,10);"><a href="showMainFrame.do?class=log" target="mainFrame">log</a></li>
 			
 			<li class="sep"></li><li id="tb_17" onclick="HoverLi(1,7,10);"><a href="showMainFrame.do?class=auth" target="mainFrame">鉴权</a></li>
+=======
+			<li class="sep"></li><li id="tb_15" onclick="HoverLi(1,5,10);"><a href="showMainFrame.do?class=upload" target="mainFrame">上传</a></li>
+>>>>>>> 8a6a93b2fed7be98c22db5556be96eace5afaeb5
 			</ul>
 		</td>
       </tr>

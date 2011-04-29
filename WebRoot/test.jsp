@@ -7,35 +7,49 @@
 <html:html>
 <head>
 <title>multi file upload test</title>
+<script src="./js/fckeditor.js" type="text/javascript"></script>
+<script src="./js/WdatePicker.js" type="text/javascript"></script>
+<script src="./js/jquery.js" type="text/javascript"></script>
+<script src="./js/jquery.ext.js" type="text/javascript"></script>
+<script src="./js/pony.js" type="text/javascript"></script>
+<script src="./js/admin.js" type="text/javascript"></script>
+<script src="./js/admin.js" type="text/javascript"></script>
 <script type="text/javascript">
 	var t = 1;
 	function addFile(){
-	alert("hello!");
 		var parent = document.getElementById("more");
-		alert("hello!");
-		var br = document.createElement("br");
+		var div = document.createElement("div");
+		var str = "div"+(t++);
+		div.name= str;
+		div.id= str;
 		var input = document.createElement("input");
 		var	button = document.createElement("input");
-		alert("go to here!");
 		input.type = "file";
-		input.name = "uploadFile[" + (t++) + "].file";
+		input.name = "upload";
 		button.type = "button";
 		button.value = "删除";
-		button.onclick = Function(){
-			parent.removeChild("br");
-			parent.removeChild("input");
-			parent.removeChild("button");
+		button.onclick = function(){
+			div.removeChild(input);
+			div.removeChild(button);
 		};
-		
-		parent.appendChild("br");
-		parent.appendChild("input");
-		parent.appendChild("button");
+		alert("create success1!");
+		div.appendChild(input);
+		div.appendChild(button);
+		alert("create success2!");
+		parent.appendChild(div);
+
 	}
 
 </script>
 </head>
 <body>
-	<input id="more" type="file" name="uploadFile[0].file"/><input type="button" onclick="addFile()" value="增加"/>
+<form action="logUpload.do" method="post" enctype="multipart/form-data">
 	
+	<div id="more">
+	<input  type="file" name="upload"/>
+	<input type="button" onclick="addFile()" value="增加"/> 
+	</div>
+	<input type="submit" value="提交" />
+	</form>
 </body>
 </html:html>

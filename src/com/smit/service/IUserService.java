@@ -7,7 +7,8 @@ import com.smit.vo.User;
 
 public interface IUserService {
 	public boolean login(String userName,String passwd);
-	public boolean register(String userName,String password,String email,String telphone);
+	public void register(String userName,String password,String email,String telphone);
+	public void regDeveloper(String userName,String password,String email,String telphone);
 	
 	public User findUserByName(String userName);
 	public void save(User user);

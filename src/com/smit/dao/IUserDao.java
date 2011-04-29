@@ -9,7 +9,7 @@ import com.smit.vo.User;
 public interface IUserDao {
 
 	public boolean isAdmin(String userName, String password);
-	public boolean register(User user);
+	public void register(User user,String groupName);
 	
 	public User findGroupByName(String userName);
 	public void save(User user);

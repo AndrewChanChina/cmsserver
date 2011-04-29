@@ -19,21 +19,25 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<!--
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
-
+	<link href="./css/admin.css" rel="stylesheet" type="text/css"/>
+	<link href="./css/theme.css" rel="stylesheet" type="text/css"/>
+	<link href="./css/jquery.validate.css" rel="stylesheet" type="text/css"/>
+	<link href="./css/jquery.treeview.css" rel="stylesheet" type="text/css"/>
+	<link href="./css/jquery.ui.css" rel="stylesheet" type="text/css"/>
+	
   </head>
-  <body><form method="get" action="logAction" name="detailForm"><p>&nbsp;</p><table border="0" width="200">
-<tbody><tr>
-<td>DeviceType</td>
+  <body><form method="post" action="detailLog.do" id="detailForm" enctype="multipart/form-data"><p>&nbsp;</p><table border="0" width="200">
+<tbody>
+<!--  
+<tr>
+<td width="10%" class="pn-flabel pn-flabel-h" style="overflow:hidden;white-space:nowrap;">机器类型:</td>
 <td>&nbsp;<input type="text" name="deviceType"></td></tr>
 <tr>
-<td>&nbsp;TestStatus</td>
+<td  width="10%"style="overflow:hidden;white-space:nowrap;" class="pn-flabel pn-flabel-h">上传时间:</td>
 <td>&nbsp;<input type="text" name="testStatus"></td></tr>
-<tr>
-<td>&nbsp;Note</td>
-<td>&nbsp;<input type="text" name="note"></td></tr>
-<tr>
-<td>&nbsp;FilePath</td>
-<td>&nbsp;<input type="text" name="filePath"></td></tr><tr><td valign="top"><input type="submit" value="确定" name="ok"></td><td valign="top"><input type="reset" value="取消" name="reset"></td></tr>
+-->
+<td style="overflow:hidden;white-space:nowrap;" class="pn-flabel pn-flabel-h">选择文件:</td>
+<td>&nbsp;<input type="file" name="upload"></td></tr><tr><td valign="top"><input type="submit" value="确定" name="ok"></td><td valign="top"><input type="reset" value="取消" name="reset"></td></tr>
 </tbody></table></form> 
     
   </body>

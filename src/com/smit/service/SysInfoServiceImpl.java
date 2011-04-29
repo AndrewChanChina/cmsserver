@@ -10,9 +10,9 @@ public class SysInfoServiceImpl implements SysInfoService{
 	
 	private SysInfoDao sysInfoDao;
 	
-	public void setSysInfoDao(SysInfoDao dao)
+	public void setSysInfoDao(SysInfoDao sysInfoDao)
 	{
-		this.sysInfoDao = dao;
+		this.sysInfoDao = sysInfoDao;
 	}
 	
 	@Override

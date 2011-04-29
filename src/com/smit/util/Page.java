@@ -11,14 +11,22 @@ import java.util.List;
  */
 public class Page {
 	private List list = new ArrayList();
-	private int pageSize;//ÿҳ��ʾ����
+	private int pageSize=20;//ÿҳ��ʾ����
 	private int currentPage;//��ǰ�ڼ�ҳ
 	private int totalRecord;//�ܼ�¼��
+	public int getTotalRecord() {
+		return totalRecord;
+	}
+
+	public void setTotalRecord(int totalRecord) {
+		this.totalRecord = totalRecord;
+	}
+
 	/**
 	 * ��ҳ��
 	 */
 	
-	private int pageCount(){
+	public int pageCount(){
 		return (totalRecord%pageSize == 0)?(totalRecord/pageSize):(totalRecord/pageSize+1);
 	}
 	

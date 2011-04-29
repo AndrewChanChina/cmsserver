@@ -10,7 +10,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <base href="<%=basePath%>">
     
     <title>My JSP 'base.jsp' starting page</title>
-    
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
 	<meta http-equiv="expires" content="0">    
@@ -23,25 +23,25 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-   <form method="get" action="BaseLogAction" name="baseLogForm"><p>&nbsp;</p><table border="0" width="297" height="302">
+   <form method="post" action="logUpload.do" id="logForm" enctype="multipart/form-data"><p>&nbsp;</p><table border="0" width="297" height="302">
 <tbody><tr>
 <td>&nbsp;MachineID</td>
 <td>&nbsp;<input type="text" name="machineID"></td></tr>
 <tr>
 <td>&nbsp;MachineType</td>
-<td>&nbsp;<input type="text" name="machineID"></td></tr>
+<td>&nbsp;<input type="text" name="machineType"></td></tr>
 <tr>
 <td>&nbsp;SystemVersion</td>
-<td>&nbsp;<input type="text" name="machineID"></td></tr>
+<td>&nbsp;<input type="text" name="systemVersion"></td></tr>
 <tr>
 <td>&nbsp;SoftWareVersion</td>
-<td>&nbsp;<input type="text" name="machineID"></td></tr>
+<td>&nbsp;<input type="text" name="softwareVersion"></td></tr>
 <tr>
 <td>&nbsp;TestStatus</td>
-<td>&nbsp;<input type="text" name="machineID"></td></tr>
+<td>&nbsp;<input type="text" name="testStatus"></td></tr>
 <tr>
 <td>&nbsp;FilePath</td>
-<td>&nbsp;<input type="text" name="filePath"></td></tr>
+<td>&nbsp;<input  type="file" name="upload"/></td></tr>
 <tr>
 <td>&nbsp;<input type="submit" value="提交" name="tijiao"></td>
 <td>&nbsp;<input type="reset" value="取消" name="qvxiao"></td></tr>

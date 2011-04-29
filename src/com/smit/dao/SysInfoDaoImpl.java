@@ -21,12 +21,7 @@ import com.smit.vo.Part;
 import com.smit.vo.SysInfo;
 
 public class SysInfoDaoImpl extends HibernateDaoSupport implements SysInfoDao{
-	private SessionFactory sessionFactory;
-	
-	public void SessionFactory(SessionFactory sessionFactory)
-	{
-		this.sessionFactory = sessionFactory;
-	}
+
 	
 	/*
 	@Resource(name="sessionFactory")
