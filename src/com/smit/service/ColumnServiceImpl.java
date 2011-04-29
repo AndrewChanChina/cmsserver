@@ -56,4 +56,9 @@ public class ColumnServiceImpl implements ColumnService {
 		List<Part> allColumns = columnDao.queryAllColumns();
 		return allColumns;
 	}
+
+	@Override
+	public Part queryByColumnId(Integer id) throws Exception {
+		return columnDao.queryByColumnId(id);
+	}
 }

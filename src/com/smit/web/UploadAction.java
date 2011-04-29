@@ -136,7 +136,21 @@ public class UploadAction extends DispatchAction {
 	public ActionForward delete(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
-		return null;
+		int id = Integer.parseInt(request.getParameter("mid"));
+		try {
+			mediaService.delete(id);
+		    
+			return mapping.findForward("list");
+		}catch(ServiceException e){
+			ActionMessage msg = new ActionMessage(e.getMessage());
+			msgs.add("contentAction.list.failure",msg);
+			this.saveMessages(request, msgs);
+			return mapping.findForward("f");
+			
+		}
+	
+		
+	
 	
 	}
 

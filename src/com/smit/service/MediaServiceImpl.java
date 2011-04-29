@@ -29,7 +29,7 @@ public class MediaServiceImpl implements MediaService {
 	public void delete(int id) {
 		try {
 			Media media = findById(id);
-			mediaDao.save(media);
+			mediaDao.delete(media);
 			
 			
 		}catch(DaoException e){
@@ -67,7 +67,7 @@ public class MediaServiceImpl implements MediaService {
 	public Media findById(int id) {
 		Media media = null;
 		try {
-			media = findById(id);
+			media = mediaDao.getById(id);
 			
 		}catch(DaoException e){
 			throw new ServiceException(e.getMessage());

@@ -31,7 +31,7 @@ public class ContentServiceImpl implements ContentService {
 	public void delete(int id) {
 		try {
 			Content content = findById(id);
-			contentDao.save(content);
+			contentDao.delete(content);
 			
 			
 		}catch(DaoException e){
@@ -82,7 +82,7 @@ public class ContentServiceImpl implements ContentService {
 	public Content findById(int id) {
 		Content content = null;
 		try {
-			content = findById(id);
+			content = contentDao.getById(id);
 			
 		}catch(DaoException e){
 			throw new ServiceException(e.getMessage());

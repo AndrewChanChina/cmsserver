@@ -54,7 +54,8 @@ public class ColumnDaoImpl extends HibernateDaoSupport implements ColumnDao
 		
 		return true;
 	}
-	
+
+
 	public List<Part> queryAllColumns() {
 		//if(page == null)
 			//return listAllUsers();

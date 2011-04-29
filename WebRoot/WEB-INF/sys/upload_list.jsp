@@ -143,7 +143,7 @@ function chgStatus() {
 	<td align="center"><%=media.getSource()%></td>
 	
 </td>
-	<td align="center"><a href="content.do?op=manager&id=<%=media.getId() %>" class="pn-opt">修改</a> | 		<a href="content.do?op=delete&id=<%=media.getId() %>" onclick="if(!confirm('您确定删除吗？')) {return false;}" class="pn-opt">删除</a>
+	<td align="center"><a href="upload.do?op=delete&mid=<%=media.getId() %>" onclick="if(!confirm('您确定删除吗？')) {return false;}" class="pn-opt">删除</a>
 		</td>
 </tr>
 

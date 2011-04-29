@@ -12,4 +12,5 @@ public interface ColumnService {
 	public boolean deleteColumn(final ArrayList<String> idList);
 	public boolean updateColumn(final ArrayList<Part> columnList);
 	public List<Part> queryAllColumns() throws Exception;
+	public Part queryByColumnId(final Integer id) throws Exception;
 }
