@@ -1,6 +1,7 @@
 ﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <%@ page language="java" pageEncoding="utf-8"%>
 <%@ taglib uri="http://struts.apache.org/tags-html" prefix="html"%>
+<%@ taglib uri="/WEB-INF/jcaptcha.tld" prefix="jcaptcha" %> 
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -38,6 +39,12 @@ body {
 </style>
 
 		<script type="text/javascript">
+		
+		function refresh_jcaptcha(obj){ 
+			//alert(obj); 
+			obj.src="jcaptcha?" + Math.random() + ".do";
+		} 
+		
 	if (top != this) {
 		top.location = this.location;
 	}
@@ -118,15 +125,16 @@ body {
 															<strong>验证码：</strong>
 														</td>
 														<td>
-															<input name="captcha" type="text" id="captcha" vld=""
-																class="input" />
+															<input name="jcaptcha_response" type="text"  vld=""
+																class="input" />&nbsp;&nbsp;
+																<!-- <font class ="required_error_font">  <html:errors property="jcaptcha_error_msg" /></font>
+																<font size =“-1″ color ="#6f6f6f"> <jcaptcha:question /></font > -->
+														<img name ="jcaptcha" id ="jcaptcha" onclick ="refresh_jcaptcha(this)" src ="jcaptcha.do" alt ="click to refresh" style ="cursor:pointer;"/> 
+														
+														
 														</td>
 													</tr>
-													<tr>
-														<td colspan="2" align="center">
-															不区分大小写
-														</td>
-													</tr>
+													
 													<tr>
 														<td height="40" colspan="2" align="center">
 															<input type="image" src="./images/login/login.jpg"

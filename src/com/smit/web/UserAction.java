@@ -1,5 +1,7 @@
 package com.smit.web;
 
+
+
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -15,6 +17,10 @@ import org.apache.struts.action.ActionMessage;
 import org.apache.struts.action.ActionMessages;
 import org.apache.struts.actions.MappingDispatchAction;
 
+import com.octo.captcha.module.config.CaptchaModuleConfigHelper;
+import com.octo.captcha.module.struts.CaptchaServicePlugin;
+import com.octo.captcha.service.CaptchaService;
+import com.octo.captcha.service.CaptchaServiceException;
 import com.smit.service.IGroupManagerService;
 import com.smit.service.IUserService;
 import com.smit.service.push.IPushDataService;
@@ -56,7 +62,8 @@ public class UserAction extends MappingDispatchAction {
 			throws Exception {
 		HttpSession session = request.getSession();
 		String loginSuc = (String)session.getAttribute(Constants.LOGIN_SUC);
-
+		if (!isJcaptchaOK(request)) 
+		    return mapping.getInputForward();
 		SmitLoginForm loginForm = (SmitLoginForm)form;		
 		
 		System.out.println(loginForm.getPasswd());
@@ -222,6 +229,42 @@ public class UserAction extends MappingDispatchAction {
 	public void setPushDataService(IPushDataService pushDataService) {
 		this.pushDataService = pushDataService;
 	}
+	public boolean isJcaptchaOK(HttpServletRequest request) 
+	{ 
+		
+		CaptchaService service = CaptchaServicePlugin.getInstance () 
+		.getService(); 
+		String responseKey = CaptchaServicePlugin.getInstance () 
+		.getResponseKey(); 
+		String captchaID = CaptchaModuleConfigHelper.getId (request); 
+		String challengeResponse = request.getParameter(responseKey); 
 	
+		request.removeAttribute(responseKey); 
+		boolean isResponseCorrect = false ; 
+		if (challengeResponse != null ) 
+		try { 
+		isResponseCorrect = service.validateResponseForID(captchaID, 
+		challengeResponse).booleanValue(); 
+		} catch (CaptchaServiceException e) { 
+	
+		request.setAttribute(CaptchaServicePlugin 
+		.getInstance ().getMessageKey(), 
+		CaptchaModuleConfigHelper 
+		.getMessage (request)); 
+		
+		throw (e);//抛出程序应用异常 
+		} 
+		if (isResponseCorrect) { 
+	
+		return true;//正确 
+		} 
+		
+		ActionErrors errors = new ActionErrors();//用ActionError替换了他自己的Message 
+		errors.add("jcaptcha_error_msg", new ActionMessage( 
+		"error.jcaptcha.error.inputInvalid")); 
+		this .addErrors(request, errors); 
+		return false; 
+	} 
+
 	
 }

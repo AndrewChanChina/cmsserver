@@ -228,7 +228,7 @@
 			<forward name="logInfo" path="/WEB-INF/sys/log_list.jsp" />
 		</action>
 
-		<!-- 上传控制器 -->
+		
 		<action path="/uploadfile" type="org.apache.struts.actions.ForwardAction"
 			parameter="/WEB-INF/sys/upload.jsp" scope="request" validate="false" />
 		<action path="/upload" name="uploadForm"
@@ -270,7 +270,13 @@
 			<forward name="back2ListPage" path="/pushservicemanage.do?opt=list" />
 			<forward name="sendData" path="/home.do"></forward>
 		</action>
-
+        
+		<!-- 验证码生成控制器 -->
+		<action 
+		path="/jcaptcha"
+		type="com.octo.captcha.module.struts.image.RenderImageCaptchaAction" 
+		> 
+		</action > 
 
 	</action-mappings>
 	<!-- 配置上传文件大小 -->
@@ -284,6 +290,8 @@
 		<set-property property="pathnames"
 			value="/WEB-INF/validator-rules.xml, /WEB-INF/validator-user.xml" />
 	</plug-in>
+   <plug-in className ="com.octo.captcha.module.struts.CaptchaServicePlugin"/> 
+
 
 </struts-config>
 

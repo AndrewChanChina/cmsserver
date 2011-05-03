@@ -6,10 +6,11 @@ com.smit.vo.Content content = new com.smit.vo.Content();
 
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
-List<com.smit.vo.Part> parts = (List<com.smit.vo.Part>)request.getAttribute("parts");
+List<com.smit.vo.Part> parts = request.getAttribute("parts") ==null?null:(List<com.smit.vo.Part>)request.getAttribute("parts");
 
-List contents = (List)request.getAttribute("contents");
-if(contents.get(0)!= null){
+List contents = request.getAttribute("contents")==null?null:(List)request.getAttribute("contents");
+
+if(contents != null && contents.get(0)!= null){
 	content = (com.smit.vo.Content)contents.get(0);
 }
 
