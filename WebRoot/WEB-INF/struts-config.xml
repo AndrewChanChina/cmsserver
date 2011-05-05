@@ -36,7 +36,7 @@
 
 		<form-bean name="pushDataForm" type="com.smit.web.form.PushDataForm"></form-bean>
 		<form-bean name="pushServiceForm" type="com.smit.web.form.PushServiceForm"></form-bean>
-
+		<form-bean name="videoForm" type="com.smit.web.webService.VideoForm" />
 	</form-beans>
 
 	<global-forwards>
@@ -280,6 +280,11 @@
 				path="/WEB-INF/sys/pushService/pushservice_manage.jsp" />
 			<forward name="back2ListPage" path="/pushservicemanage.do?opt=list" />
 			<forward name="sendData" path="/home.do"></forward>
+		</action>
+		<!-- web service -->
+		<action path="/video" type="org.springframework.web.struts.DelegatingActionProxy"
+			parameter="video" name="videoForm" scope="request" validate="false">
+			<forward name="success" path="/WEB-INF/sys/webService/outPutXml.jsp"></forward>
 		</action>
 
 

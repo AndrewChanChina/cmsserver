@@ -209,6 +209,9 @@
 		scope="prototype">
 		<property name="pushManage" ref="pushManage"></property>
 	</bean>
+	<bean name="/video" class="com.smit.web.webService.VideoAction"
+		scope="prototype">
+	</bean>
 
 	<bean id="smitLog" class="com.smit.util.SmitLog"></bean>
 	<!-- <aop:config> <aop:aspect id="b" ref="smitLog"> <aop:pointcut id="log" 
