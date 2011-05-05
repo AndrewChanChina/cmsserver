@@ -1,4 +1,4 @@
-package com.smit.vo;
+﻿package com.smit.vo;
 
 import java.io.Serializable;
 import java.sql.Timestamp;

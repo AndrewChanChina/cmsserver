@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+<class name="com.smit.vo.Video" table="video">
+
+ <id name="id">
+ <generator class="native"></generator>
+ </id>
+ <property name="title" />
+ <property name="description" />
+ <property name="link" />
+ <property name="author" />
+ <property name="guid"/>
+ <property name="size"/>
+ <property name="comments"/>
+ <property name="pubDate"/>
+ <property name="enclosure_url"/>
+ <property name="flag1"/>
+ <property name="flag2"/>
+ <property name="createtime"/>
+ <property name="partId" column="part_id"/>
+  
+</class>
+</hibernate-mapping>

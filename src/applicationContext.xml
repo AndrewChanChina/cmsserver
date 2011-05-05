@@ -209,6 +209,13 @@
 		scope="prototype">
 		<property name="pushManage" ref="pushManage"></property>
 	</bean>
+	<bean id="videoDao" class="com.smit.dao.VideoDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="videoService" class="com.smit.service.collection.VideoServiceImpl">
+		<property name="videoDao" ref="videoDao"></property>
+	</bean>
+	
 	<bean name="/video" class="com.smit.web.webService.VideoAction"
 		scope="prototype">
 	</bean>

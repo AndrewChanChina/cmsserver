@@ -15,7 +15,7 @@
 	</property>
 	<property name="connection.username">root</property>
 
-	
+
 	<property name="connection.password">123456</property>
 	<property name="connection.driver_class">
 		com.mysql.jdbc.Driver
@@ -34,6 +34,7 @@
 	<mapping resource="com/smit/vo/Media.hbm.xml" />
 	<mapping resource="com/smit/vo/MediaType.hbm.xml" />
 	<mapping resource="com/smit/vo/PushService.hbm.xml" />
+	<mapping resource="com/smit/vo/Video.hbm.xml" />
 
 </session-factory>
 
