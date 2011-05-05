@@ -11,30 +11,25 @@ import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.actions.MappingDispatchAction;
 
+import com.smit.service.collection.VideoService;
 import com.smit.service.webService.IToXML;
 import com.smit.service.webService.Object2Xml;
 import com.smit.service.webService.VideoItem;
 
 public class VideoAction extends MappingDispatchAction{
+	
+	VideoService videoService;
 
 	public ActionForward video(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		try {
 			
-			Object2Xml xmlObject = new Object2Xml();
-			VideoItem vi = new VideoItem();
-			vi.setName("gong fu");
-			vi.setDescription("a great movie");
-			List<String> urls = new ArrayList<String>();
-			urls.add("www.baidu.com/uu.flv");
-			urls.add("www.baidu.com/bb.flv");
-			vi.setUrls(urls);
+			Object2Xml xmlObject = new Object2Xml();			
 			
-			List<IToXML> toXMLs = new ArrayList<IToXML>();
-			toXMLs.add(vi);
-			
+			List<IToXML> toXMLs = videoService.findByPartIdXMl(null, 1);			
 			xmlObject.setToXMLs(toXMLs);
+			
 			request.setAttribute("xmlObject", xmlObject);
 		} catch (Exception e) {
 			return mapping.findForward("fail");
@@ -48,4 +43,14 @@ public class VideoAction extends MappingDispatchAction{
 		
 		return mapping.findForward("success");		
 	}
+
+	public VideoService getVideoService() {
+		return videoService;
+	}
+
+	public void setVideoService(VideoService videoService) {
+		this.videoService = videoService;
+	}
+	
+	
 }

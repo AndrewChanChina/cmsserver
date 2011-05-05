@@ -7,6 +7,7 @@ import junit.framework.TestCase;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import com.smit.service.collection.CollectVideoTask;
 import com.smit.service.collection.VideoService;
 import com.smit.util.SmitPage;
 import com.smit.vo.Video;
@@ -51,5 +52,10 @@ public class VideoServiceTest extends TestCase {
 		for(Video v : list){
 			System.out.println("title:" + v.getTitle());
 		}
+	}
+	
+	public void testImportVideo(){
+		CollectVideoTask ct = (CollectVideoTask)beanFactory.getBean("collectVideoTask");
+		ct.youku();
 	}
 }

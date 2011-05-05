@@ -1,8 +1,11 @@
 package com.smit.service.collection;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.smit.dao.VideoDao;
+import com.smit.service.webService.IToXML;
+import com.smit.service.webService.VideoItem;
 import com.smit.util.SmitPage;
 import com.smit.vo.Video;
 
@@ -54,6 +57,22 @@ public class VideoServiceImpl implements VideoService {
 			save(v);
 		}
 		
+	}
+
+	@Override
+	public List<IToXML> findByPartIdXMl(SmitPage page, Integer partId) {
+		List<Video> list = findByPartId(page,partId);
+		List<IToXML> listXml = new ArrayList<IToXML>();
+		for(Video v : list){
+			VideoItem item = new VideoItem();
+			item.setName(v.getTitle());
+			item.setDescription(v.getDescription());
+			List<String> urls = new ArrayList<String>();
+			urls.add(v.getEnclosure_url());
+			item.setUrls(urls);
+			listXml.add(item);
+		}
+		return listXml;
 	}
 	
 

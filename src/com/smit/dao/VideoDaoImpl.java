@@ -17,6 +17,7 @@ public class VideoDaoImpl extends HibernateDaoSupport implements VideoDao {
 
 	@Override
 	public void save(Video video) {
+		video.setCreatetime( new java.sql.Timestamp(new java.util.Date().getTime()) );
 		this.getHibernateTemplate().save(video);		
 	}
 

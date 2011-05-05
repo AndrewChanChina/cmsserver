@@ -12,10 +12,11 @@ import com.smit.vo.Video;
 
 public class CollectVideoTask {
 	
-	VideoService vs;
+	VideoService videoService;
 	
 	public void youku(){		
-		System.out.println("Run youku task ~");		
+		System.out.println("Run youku task ~");	
+		getLatest();
 	}
 	
 	public void getLatest(){
@@ -29,11 +30,14 @@ public class CollectVideoTask {
 			for(FeedVideo v : list){
 				System.out.println(v.getEnclosure_url());
 				n++;
-				Video video = new Video();			
+				Video video = new Video();
+				video.setPartId(1);
+				video.setFlag1(v.getItunes_duration());
+				video.setFlag2(v.getItunes_keywords());
 				BeanUtils.copyProperties(video,v);	
 				listVideo.add(video);				
 			} 
-			vs.save(listVideo);
+			videoService.save(listVideo);
 			
 		} catch (IllegalAccessException e) {
 			e.printStackTrace();
@@ -43,5 +47,15 @@ public class CollectVideoTask {
 			e.printStackTrace();
 		}
 	}
+
+	public VideoService getVideoService() {
+		return videoService;
+	}
+
+	public void setVideoService(VideoService videoService) {
+		this.videoService = videoService;
+	}
+
+
 
 }
