@@ -51,5 +51,6 @@
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/dom4j-1.6.1.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/asm-all-4.0_RC1.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/asm-all-4.0_RC1.pom"/>
+	<classpathentry kind="lib" path="lib/commons-lang3-3.0-beta.jar"/>
 	<classpathentry kind="output" path="WebRoot/WEB-INF/classes"/>
 </classpath>

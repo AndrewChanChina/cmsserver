@@ -14,8 +14,8 @@ public class BaseLog implements Serializable{
 	private String sysVersion;
 	private String softwareVersion;
 	private String testStatus;
-	private String filePath;//upload file path
-	
+	private String logFile;//upload file path
+	private String create_time;
 	public int getId() {
 		return id;
 	}
@@ -52,14 +52,21 @@ public class BaseLog implements Serializable{
 	public void setTestStatus(String testStatus) {
 		this.testStatus = testStatus;
 	}
-	public String getFilePath() {
-		return filePath;
+	
+	public String getLogFile() {
+		return logFile;
 	}
-	public void setFilePath(String filePath) {
-		this.filePath = filePath;
+	public void setLogFile(String logFile) {
+		this.logFile = logFile;
 	}
 	public static long getSerialversionuid() {
 		return serialVersionUID;
+	}
+	public String getCreate_time() {
+		return create_time;
+	}
+	public void setCreate_time(String create_time) {
+		this.create_time = create_time;
 	}
 	
 }

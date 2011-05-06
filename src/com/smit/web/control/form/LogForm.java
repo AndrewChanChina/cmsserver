@@ -1,4 +1,4 @@
-package com.smit.web.form;
+package com.smit.web.control.form;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;

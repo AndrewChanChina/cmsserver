@@ -1,4 +1,4 @@
-package com.smit.web.form;
+package com.smit.web.control.form;
 
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.upload.FormFile;

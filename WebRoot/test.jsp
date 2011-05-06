@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8"%>
+    pageEncoding="utf-8" import="java.util.*"%>
 <%@ taglib uri= "/WEB-INF/struts-html.tld" prefix="html"%>
 <%@ taglib uri= "/WEB-INF/struts-logic.tld" prefix="logic"%>
 <%@ taglib uri= "/WEB-INF/struts-bean.tld" prefix="bean"%>
@@ -50,6 +50,17 @@
 	<input type="button" onclick="addFile()" value="增加"/> 
 	</div>
 	<input type="submit" value="提交" />
+	<% List list = new ArrayList();
+		list.add(1);
+		list.add(2);
+		list.add(3);
+		pageContext.setAttribute("list",list);
+	%>
+	<table>
+	<logic:iterate id="test" name="list" >
+		<tr><td><bean:write name="test"/></td></tr>
+	</logic:iterate>
+	</table>
 	</form>
 </body>
 </html:html>

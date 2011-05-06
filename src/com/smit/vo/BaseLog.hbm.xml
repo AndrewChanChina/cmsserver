@@ -10,7 +10,8 @@
 		<property name="sysVersion"></property>
 		<property name="softwareVersion"></property>
 		<property name="testStatus"></property>
-		<property name="filePath"></property>
+		<property name="logFile"></property>
+		<property name="create_time"></property>
 	</class>
 </hibernate-mapping>
 

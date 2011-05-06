@@ -183,11 +183,35 @@
     <bean id="logService" class="com.smit.service.LogServiceImpl">
     	<property name="logDao" ref="logDao"></property>
     </bean>
-    <bean name="/logUpload" class="com.smit.web.content.actions.MultiFileUploadAction">
+    <bean name="/logUpload" class="com.smit.web.control.action.MultiFileUploadAction">
     	<property name="logService" ref="logService"></property>
     </bean>
-    <bean name="/detailLog" class="com.smit.web.content.actions.MultiFileUploadAction">
+    <bean name="/detailLog" class="com.smit.web.control.action.MultiFileUploadAction">
     	<property name="logService" ref="logService"></property>
+    </bean>
+    <bean name="productDao" class="com.smit.dao.ProductControlImpl">
+    	<property name="sessionFactory" ref="sessionFactory"></property>
+    </bean>
+    <bean name="productControlService" class="com.smit.service.ProductControlServiceImpl">
+    	<property name="productDao" ref="productDao"></property>
+    </bean>
+    <bean name="/showOrder" class="com.smit.web.control.action.OrderAction">
+    	<property name="productService" ref="productControlService"></property>
+    </bean>
+    <bean name="/order" class="com.smit.web.control.action.OrderAction">
+    	<property name="productService" ref="productControlService"></property>
+    </bean>
+    <bean name="/queryOrder" class="com.smit.web.control.action.OrderAction">
+    	<property name="productService" ref="productControlService"></property>
+    </bean>
+    <bean name="/showAuth" class="com.smit.web.FrameworkAction">
+    	<property name="sysInfoService" ref="sysInfoService"></property>
+    </bean>
+    <bean name="/testOption" class="com.smit.web.control.action.TestOptionAction">
+    	<property name="service" ref="productControlService"></property>
+    </bean>
+    <bean name="/loginAuth" class="com.smit.web.control.action.AuthAction">
+    	<property name="productService" ref="productControlService"></property>
     </bean>
 <!-- &&&& end of luocheng================================================================== -->
 	<bean id="pushServiceDao" class="com.smit.dao.PushServiceDaoImpl">

@@ -37,7 +37,11 @@
 
 	<mapping resource="com/smit/vo/BaseLog.hbm.xml"/>
 	<mapping resource="com/smit/vo/DetailLog.hbm.xml"/>
-
+	<mapping resource="com/smit/vo/Device.hbm.xml"/>
+	<mapping resource="com/smit/vo/Order.hbm.xml"/>
+	<mapping resource="com/smit/vo/TestOption.hbm.xml"/>
+	<mapping resource="com/smit/vo/CertifiedProduct.hbm.xml"/>
+	
 	<mapping resource="com/smit/vo/PushService.hbm.xml" />
 
 

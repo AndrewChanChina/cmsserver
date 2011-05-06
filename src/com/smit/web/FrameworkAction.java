@@ -2,6 +2,7 @@ package com.smit.web;
 
 import java.util.List;
 
+import javax.security.auth.message.callback.PrivateKeyCallback.Request;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -86,8 +87,24 @@ public class FrameworkAction extends MappingDispatchAction {
 			return mapping.findForward("baseLog");
 		}else if(classType.equals("detail")){
 			return mapping.findForward("detail");
-		}else if(classType.equals("fileupload")){
-			return mapping.findForward("fileupload");	
+		}else if(classType.equals("order")){
+			return mapping.findForward("order");	
+		}else if(classType.equals("test")){
+			return mapping.findForward("testOption");
+		}
+		return null;
+	}
+	
+	//add by luocheng 2011-05-05
+	public ActionForward showAuth(ActionMapping mapping, ActionForm form,
+			HttpServletRequest request, HttpServletResponse response){
+		String type = request.getParameter("class");
+		if(type.equals("login")){
+			return mapping.findForward("loginAuth");
+		}else if(type.equals("reqAuth")){
+			return mapping.findForward("requestAuth");
+		}else if(type.equals("active")){
+			return mapping.findForward("active");
 		}
 		return null;
 	}

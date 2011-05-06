@@ -1,4 +1,4 @@
-package com.smit.web.content.actions;
+package com.smit.web.control.action;
 
 import java.io.ByteArrayInputStream;
 import java.io.File;
@@ -27,6 +27,7 @@ import org.apache.struts.actions.DispatchAction;
 import org.apache.struts.actions.MappingDispatchAction;
 import org.apache.struts.upload.FormFile;
 import org.dom4j.Document;
+import org.dom4j.DocumentException;
 import org.dom4j.DocumentHelper;
 import org.dom4j.Element;
 import org.dom4j.dom.DOMDocumentFactory;
@@ -35,8 +36,8 @@ import org.dom4j.io.SAXReader;
 import com.smit.service.LogService;
 import com.smit.vo.BaseLog;
 import com.smit.vo.DetailLog;
-import com.smit.web.form.DetailLogForm;
-import com.smit.web.form.LogForm;
+import com.smit.web.control.form.DetailLogForm;
+import com.smit.web.control.form.LogForm;
 
 public class MultiFileUploadAction extends MappingDispatchAction{
 
@@ -49,7 +50,7 @@ public class MultiFileUploadAction extends MappingDispatchAction{
 	
 	public ActionForward log(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
-			throws Exception {
+			{
 		LogForm logForm = (LogForm) form;
 		String filename = logForm.getUpload().getFileName();
 		System.out.println(logForm.getUpload().getFileName());
@@ -57,13 +58,15 @@ public class MultiFileUploadAction extends MappingDispatchAction{
 		//String basePath = format.format(new Date());
 		//String basePath = this.servlet.getServletContext().getRealPath(arg0)+"/";
 		String basePath = "D:\\filedown\\";
+		File file = new File(basePath);
+		if(!(file.exists())){
+			file.mkdirs();
+		}
 		FileOutputStream fos = null;
 		InputStream is = null;
-		String result = "success";
-		String xml = null;
 		try{
 				//构建文件在服务器保存的路径
-				File file = new File(basePath,"WEB-INF/"+filename);
+				//File file = new File(basePath,"WEB-INF/"+filename);
 				fos = new FileOutputStream(basePath+filename);
 				//获得输入流
 				is = logForm.getUpload().getInputStream();
@@ -72,24 +75,31 @@ public class MultiFileUploadAction extends MappingDispatchAction{
 				while((count = is.read(buffer))>0){
 					fos.write(buffer,0,count);
 				}
+				fos.close();
+				is.close();
+				insertBaseLog(logForm);
+				createRespXML(response,"200");
 			}catch (Exception e){
-					e.printStackTrace();
-					result = "fail:" + e.toString();
-			}finally{
-					fos.close();
-					is.close();
+				e.printStackTrace();
+				try {
+					createRespXML(response,"109");
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				}
 			}
 			
-			BaseLog baseLog = new BaseLog();
-			baseLog.setMachineID(logForm.getMachineID());
-			baseLog.setMachineType(logForm.getMachineType());
-			baseLog.setSysVersion(logForm.getSystemVersion());
-			baseLog.setSoftwareVersion(logForm.getSoftwareVersion());
-			baseLog.setTestStatus(logForm.getTestStatus());
-			logService.insertBaseLog(baseLog);
-			//response.getWriter().println(result);
-			createXML(response);
 			return null;
+	}
+
+
+	private void insertBaseLog(LogForm logForm) {
+		BaseLog baseLog = new BaseLog();
+		baseLog.setMachineID(logForm.getMachineID());
+		baseLog.setMachineType(logForm.getMachineType());
+		baseLog.setSysVersion(logForm.getSystemVersion());
+		baseLog.setSoftwareVersion(logForm.getSoftwareVersion());
+		baseLog.setTestStatus(logForm.getTestStatus());
+		logService.insertBaseLog(baseLog);
 	}
 	
 	public ActionForward detailLog(ActionMapping mapping, ActionForm form,
@@ -98,6 +108,10 @@ public class MultiFileUploadAction extends MappingDispatchAction{
 		DetailLogForm df = (DetailLogForm) form;
 		FormFile file = df.getUpload();
 		System.out.println(file.getFileName());
+		if(!(file.getFileName().endsWith(".xml"))){
+			createRespXML(response, "输入文件必须为XML格式！");
+			return null;
+		}
 		byte[] buffer = new byte[8192];
 		String xml = null;
 		int count = 0;
@@ -107,26 +121,28 @@ public class MultiFileUploadAction extends MappingDispatchAction{
 		}
 		
 		xml = new String(buffer);
-		System.out.println(xml);
-		DetailLog log = new DetailLog();
-		//Document doc = DocumentHelper.parseText(xml);
-		SAXReader saxReader = new SAXReader();
-		Document doc = saxReader.read(new ByteArrayInputStream(buffer));
-		Element root = doc.getRootElement();
-		for(Iterator i =root.elementIterator();i.hasNext();){
-			Element device = (Element) i.next();
-			log.setDeviceType(device.elementText("name"));
-			log.setTestStatus(device.elementText("status"));
-			log.setNote(device.elementText("note"));
-			logService.insertDetailLog(log);
-		}
-		
-		createXML(response);
+		parseXML(xml);
+		createRespXML(response,"200");
 		return null;
 	}
 
 
-	private void createXML(HttpServletResponse response) throws IOException {
+	private void parseXML(String xml) throws DocumentException {
+		System.out.println(xml.toString());
+		Document doc = DocumentHelper.parseText(xml.trim());
+		Element root = doc.getRootElement();
+		for(Iterator i =root.elementIterator();i.hasNext();){
+			DetailLog log = new DetailLog();
+			Element device = (Element) i.next();
+			//log.setDeviceType(device.elementText("name"));
+			log.setTestStatus(device.elementText("status"));
+			log.setNote(device.elementText("note"));
+			logService.insertDetailLog(log);
+		}
+	}
+
+
+	private void createRespXML(HttpServletResponse response,String result) throws IOException {
 		response.setContentType("text/xml;charset=utf-8");
 		response.setHeader("Cache-Control", "no-cache");
 		PrintWriter pw = response.getWriter();
@@ -136,7 +152,7 @@ public class MultiFileUploadAction extends MappingDispatchAction{
 		//status.setText("200");
 		StringBuffer sb = new StringBuffer();
 		sb.append("<global>");
-		sb.append("<status>200</status>");
+		sb.append("<status>"+result+"</status>");
 		sb.append("</global>");
 		pw.println(sb.toString());
 	}

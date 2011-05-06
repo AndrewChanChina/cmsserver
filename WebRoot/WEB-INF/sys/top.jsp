@@ -148,12 +148,12 @@ function changeSite(siteId) {
 <<<<<<< HEAD
 			<li class="sep"></li><li id="tb_15" onclick="HoverLi(1,5,10);"><a href="showMainFrame.do?class=column" target="mainFrame">上传</a></li>
 			
-			<li class="sep"></li><li id="tb_16" onclick="HoverLi(1,6,10);"><a href="showMainFrame.do?class=log" target="mainFrame">log</a></li>
+			<li class="sep"></li><li id="tb_16" onclick="HoverLi(1,6,10);"><a href="showMainFrame.do?class=log" target="mainFrame">测试</a></li>
 			
-			<li class="sep"></li><li id="tb_17" onclick="HoverLi(1,7,10);"><a href="showMainFrame.do?class=auth" target="mainFrame">鉴权</a></li>
-=======
+			<li class="sep"></li><li id="tb_17" onclick="HoverLi(1,7,10);"><a href="showMainFrame.do?class=auth" target="mainFrame">授权</a></li>
+
 			<li class="sep"></li><li id="tb_15" onclick="HoverLi(1,5,10);"><a href="showMainFrame.do?class=upload" target="mainFrame">上传</a></li>
->>>>>>> 8a6a93b2fed7be98c22db5556be96eace5afaeb5
+
 			</ul>
 		</td>
       </tr>
