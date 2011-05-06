@@ -38,6 +38,8 @@ public class FrameworkAction extends MappingDispatchAction {
 			{
 				List<Part> allColumns = columnService.queryAllColumns();
 				request.setAttribute("allColumns", allColumns);
+				Part rootColumn = columnService.queryRootColumn();
+				request.setAttribute("rootColumn", rootColumn);
 				return mapping.findForward("column_tree_page");
 			}
 			

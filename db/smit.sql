@@ -59,6 +59,22 @@ CREATE TABLE `group` (
 
 /*Data for the table `group` */
 
+
+/*Table structure for table `available_rss_url` */
+
+DROP TABLE IF EXISTS `available_rss_url`;
+
+CREATE TABLE `available_rss_url` (
+  `id` tinyint(10) NOT NULL AUTO_INCREMENT,
+  `sitename` varchar(150) DEFAULT NULL,
+  `rssurl` varchar(1024) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+/*Data for the table `available_rss_url` */
+
+
+
 /*Table structure for table `group_purview` */
 
 DROP TABLE IF EXISTS `group_purview`;
