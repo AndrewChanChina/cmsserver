@@ -16,14 +16,14 @@ public class ColumnServiceImpl implements ColumnService {
 		this.columnDao = dao;
 	}
 	
-	public boolean addColumn(String parentID, String classToAdd, String path)
+	public boolean addColumn(Integer topID, Integer parentID, String typeName)
+	//public boolean addColumn(String parentID, String classToAdd)
 	{
-		if(columnDao.addColumn(parentID, classToAdd, path))
+		if(columnDao.addColumn(topID, parentID, typeName))
 		{
 			return true;
 		}
 		return false;
-		
 	}
 	
 	public boolean deleteColumn(final String id)
@@ -56,9 +56,27 @@ public class ColumnServiceImpl implements ColumnService {
 		List<Part> allColumns = columnDao.queryAllColumns();
 		return allColumns;
 	}
-
-	@Override
-	public Part queryByColumnId(Integer id) throws Exception {
+	
+	public List<Part> queryTopColumns() throws Exception
+	{
+		List<Part> allColumns = columnDao.queryTopColumns();
+		return allColumns;
+	}
+	
+	public List<Part> queryAllChildsUnderTop(final String id) throws Exception
+	{
+		List<Part> allChildren = columnDao.queryAllChildsUnderTop(id);
+		return allChildren;
+	}
+	
+	public Part queryRootColumn() throws Exception
+	{
+		Part root = columnDao.queryRootColumn();
+		return root;
+	}
+	
+	public Part queryByColumnId(final Integer id) throws Exception
+	{
 		return columnDao.queryByColumnId(id);
 	}
 }

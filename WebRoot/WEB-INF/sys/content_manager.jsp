@@ -188,7 +188,7 @@ if(contents != null && contents.get(0)!= null){
 
 
 </tr>
-
+<!-- 
 <tr id="tr-typeImg" >
 
 
@@ -204,7 +204,7 @@ if(contents != null && contents.get(0)!= null){
 
 </tr>
 
-
+ -->
 
 <tr id="tr-txt">
 

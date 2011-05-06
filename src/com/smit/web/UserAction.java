@@ -68,8 +68,8 @@ public class UserAction extends MappingDispatchAction {
 	    }
 	    SmitLoginForm loginForm = (SmitLoginForm)form;		
 		
-		/*System.out.println(loginForm.getPasswd());
-		System.out.println(loginForm.getUserName());*/
+		System.out.println(loginForm.getPasswd());
+		System.out.println(loginForm.getUserName());
 		try{
 			if(userService.login(loginForm.getUserName(), loginForm.getPasswd())){
 				// save some login information

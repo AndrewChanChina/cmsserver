@@ -56,7 +56,7 @@
 		<action path="/login"
 			type="org.springframework.web.struts.DelegatingActionProxy"
 			parameter="login" name="smitLoginForm" input="/login.jsp" validate="true">
-			<forward name="success-admin" path="/WEB-INF/sys/index.jsp" />
+			<forward name="success-admin" path="/WEB-INF/sys/index.html" />
 			<forward name="success-user" path="/home.do" />
 			<forward name="fail" path="/login.jsp" />
 		</action>
@@ -185,6 +185,7 @@
 			type="org.springframework.web.struts.DelegatingActionProxy" name="addColumnForm"
 			parameter="addColumn">
 			<forward name="reload" path="/WEB-INF/sys/add_column.jsp" />
+			<forward name="reloadMainFrame" path="/showMainFrame.do?class=column" />
 		</action>
 		<action path="/deleteColumn"
 			type="org.springframework.web.struts.DelegatingActionProxy"
@@ -195,6 +196,13 @@
 			type="org.springframework.web.struts.DelegatingActionProxy"
 			parameter="updateColumn">
 			<forward name="reload" path="/WEB-INF/sys/add_column.jsp" />
+		</action>
+		
+		<!-- add_column_tree_page Two-Select-Interaction action -->
+		
+		<action path="/selectColumnsUnderTop" 
+				type="org.springframework.web.struts.DelegatingActionProxy"
+				parameter="selectColumnsUnderTopID">
 		</action>
 
 		<!-- framework forward action -->
@@ -211,7 +219,7 @@
 			type="org.springframework.web.struts.DelegatingActionProxy"
 			parameter="showLeftFrame">
 			<forward name="to_left" path="/WEB-INF/sys/left.jsp" />
-		<!-- <forward name="column_tree_page" path="/WEB-INF/sys/column_tree.jsp" /> -->	
+			<forward name="column_tree_page" path="/WEB-INF/sys/column_tree.jsp" />
 		</action>
 		<action path="/showRightFrame"
 			type="org.springframework.web.struts.DelegatingActionProxy"

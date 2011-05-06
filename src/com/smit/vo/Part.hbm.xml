@@ -8,7 +8,6 @@
  <property name="topid" />
  <property name="father_id"/>
  <property name="typename" />
- <property name="path" />
  <set name="contents" lazy="true" inverse="true" cascade="all">
  	<key column="pid"></key>
  	<one-to-many class="com.smit.vo.Content"/>

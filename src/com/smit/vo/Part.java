@@ -19,16 +19,65 @@ public class Part implements Serializable {
 	private String typename;
 	private Integer topid;
 	private Integer father_id;
-	private String path;
+	//private String path;
+	
+	//private Part parent;
+	//private Part top;
 
+	/*
+	private Set<Part> children = new HashSet<Part>();
+	private Set<Part> bottoms = new HashSet<Part>();
+	*/
+	private Set<Content> contents = new HashSet<Content>();
 
+	/*
+	public Part getTop() {
+		return top;
+	}
+	public void setTop(Part top) {
+		this.top = top;
+	}
+	*/
+	
+	/*
+	public Part getParent() {
+		return parent;
+	}
+	public void setParent(Part parent) {
+		this.parent = parent;
+	}
+	*/
+	
+	/*
+	public Set<Part> getChildren() {
+		return children;
+	}
+	public void setChildren(Set<Part> children) {
+		this.children = children;
+	}
+	
+	public void addChild(Part child)
+	{
+		children.add(child);
+	}
+	
+	public Set<Part> getBottoms() {
+		return bottoms;
+	}
+	public void setBottoms(Set<Part> bottoms) {
+		this.bottoms = bottoms;
+	}
+	public void addBottom(Part bottom)
+	{
+		bottoms.add(bottom);
+	}
+	*/
 	public Set<Content> getContents() {
 		return contents;
 	}
 	public void setContents(Set<Content> contents) {
 		this.contents = contents;
 	}
-	private Set<Content> contents = new HashSet<Content>();
 
 	public Integer getId() {
 		return id;
@@ -58,12 +107,14 @@ public class Part implements Serializable {
 		this.father_id = father_id;
 	}
 	
+	/*
 	public String getPath() {
 		return path;
 	}
 	public void setPath(String path) {
 		this.path = path;
 	}
+	*/
 	
 	public static long getSerialversionuid() {
 		return serialVersionUID;

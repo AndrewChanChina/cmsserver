@@ -1,5 +1,6 @@
 package com.smit.web.column;
 
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,22 +30,36 @@ public class ColumnAction extends MappingDispatchAction {
 			HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		AddColumnForm addColumnForm = (AddColumnForm)form;
+		String topID = addColumnForm.getTopID();
 		String parentID = addColumnForm.getParentID();
-		String classToAdd = addColumnForm.getClassToAdd();
-		String path = addColumnForm.getPath();
+		String typeName = addColumnForm.getTypeName();
+		//String path = addColumnForm.getPath();
+		System.out.println("topID: " + topID);
 		System.out.println("parentID: " + parentID);
-		System.out.println("classToAdd: " + classToAdd);
-		System.out.println("path: " + path);
-		if(classToAdd.isEmpty())
+		System.out.println("typeName: " + typeName);
+		//System.out.println("path: " + path);
+		if(topID.equals("-9999"))
 		{
-			System.out.println("classToAdd should not be empty");
-			return null;
+			setAttributes(request);
+			return mapping.findForward("reload");//reloadMainFrame
 		}
-		if(columnService.addColumn(parentID, classToAdd, path))
+		if(typeName.isEmpty())
 		{
-			List<Part> allColumns = columnService.queryAllColumns();
-			request.setAttribute("allColumns", allColumns);
-			return mapping.findForward("reload");
+			System.out.println("typeName should not be empty");
+			//return null;
+			setAttributes(request);
+			return mapping.findForward("reload");//reloadMainFrame
+		}
+		Integer intTopID = Integer.valueOf(topID);
+		Integer intParentID = Integer.valueOf(parentID);
+		if(intParentID == -9999)
+		{
+			intParentID = intTopID;
+		}
+		if(columnService.addColumn(intTopID, intParentID, typeName))
+		{
+			setAttributes(request);
+			return mapping.findForward("reload");//reloadMainFrame
 		}
 		else
 		{
@@ -64,8 +79,7 @@ public class ColumnAction extends MappingDispatchAction {
 		{
 			if(columnService.deleteColumn(idToDelete))
 			{
-				List<Part> allColumns = columnService.queryAllColumns();
-				request.setAttribute("allColumns", allColumns);
+				setAttributes(request);
 				return mapping.findForward("reload");
 			}
 		}
@@ -74,8 +88,7 @@ public class ColumnAction extends MappingDispatchAction {
 			ArrayList<String> list = parseIdList(idListToDelete);
 			if(columnService.deleteColumn(list))
 			{
-				List<Part> allColumns = columnService.queryAllColumns();
-				request.setAttribute("allColumns", allColumns);
+				setAttributes(request);
 				return mapping.findForward("reload");
 			}
 		}
@@ -85,7 +98,7 @@ public class ColumnAction extends MappingDispatchAction {
 	public ActionForward updateColumn(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
-
+		
 		String itemListToUpdate = request.getParameter("itemList");
 
 		if(itemListToUpdate != null && ! itemListToUpdate.equalsIgnoreCase("null"))
@@ -93,12 +106,49 @@ public class ColumnAction extends MappingDispatchAction {
 			ArrayList<Part> list = parseColumnList(itemListToUpdate);
 			if(columnService.updateColumn(list))
 			{
-				List<Part> allColumns = columnService.queryAllColumns();
-				request.setAttribute("allColumns", allColumns);
+				setAttributes(request);
 				return mapping.findForward("reload");
 			}
 		}
 		return mapping.findForward("fail");
+	}
+	
+	public void selectColumnsUnderTopID(ActionMapping mapping, ActionForm form,
+			HttpServletRequest request, HttpServletResponse response)
+			throws Exception 
+	{
+		String topId = request.getParameter("topId");
+		PrintWriter w = response.getWriter();
+		response.setCharacterEncoding("UTF-8");
+		Part root = columnService.queryRootColumn();
+		Integer param = Integer.valueOf(topId);
+		if(root.getId().equals(param))
+		{
+			String str = "";
+			w.write(str);
+			return;
+		}
+		List<Part> topColumns = columnService.queryAllChildsUnderTop(topId);
+		String str = formTopColumnsString(topColumns);
+		System.out.print(str);
+		w.write(str);
+		return;
+	}
+	
+	private String formTopColumnsString(List<Part> topColumns)
+	{
+		String str = "";
+		for(int i=0; i<topColumns.size(); i++)
+		{
+			Part part = topColumns.get(i);
+			str += part.getId() + "__" + part.getTopid() + "__" + 
+				  part.getFather_id() + "__" + part.getTypename();
+			if(i != topColumns.size()-1)//Not last one
+			{
+				str += "##";
+			}
+		}
+		return str;
 	}
 	
 	ArrayList<String> parseIdList(String idList)
@@ -133,13 +183,23 @@ public class ColumnAction extends MappingDispatchAction {
 		return list;
 	}
 	
+	private void setAttributes(HttpServletRequest request) throws Exception
+	{
+		Part rootColumn = columnService.queryRootColumn();
+		request.setAttribute("rootColumn", rootColumn);
+		List<Part> allColumns = columnService.queryAllColumns();
+		request.setAttribute("allColumns", allColumns);
+		List<Part> allTopColumns = columnService.queryTopColumns();
+		request.setAttribute("topColumns", allTopColumns);
+	}
+	
 	private Part parseOneItem(String oneItem)
 	{
 		Part column = new Part();
 		String tmpContentList = oneItem;
 		int first = -1;
 		int count = 0;
-		ColumnDao columnDao = new ColumnDaoImpl();
+		//ColumnDao columnDao = new ColumnDaoImpl();
 		
 		while((first = tmpContentList.indexOf("^^^")) != -1)
 		{
@@ -150,7 +210,7 @@ public class ColumnAction extends MappingDispatchAction {
 				Integer intId = Integer.valueOf(content,10);
 				//column.setId(intId);
 				try {
-					column = columnDao.queryByColumnId(intId);
+					column = columnService.queryByColumnId(intId);
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -160,17 +220,23 @@ public class ColumnAction extends MappingDispatchAction {
 				column.setTypename(content);
 				break;
 			case 2:
-				Integer intFatherId = Integer.valueOf(content,10);
-				column.setFather_id(intFatherId);
+				Integer intTopId = Integer.valueOf(content,10);
+			column.setTopid(intTopId);
 				break;
 			case 3:
-				column.setPath(content);
+				//column.setPath(content);
+				Integer intFatherId = Integer.valueOf(content,10);
+				if(intFatherId.equals(-9999))
+				{
+					intFatherId = column.getTopid();
+				}
+				column.setFather_id(intFatherId);
 				break;
 			default:
 				break;
 			}
 			count ++;
-			tmpContentList = tmpContentList.substring(first+1);
+			tmpContentList = tmpContentList.substring(first+3);
 		}
 		return column;
 	}

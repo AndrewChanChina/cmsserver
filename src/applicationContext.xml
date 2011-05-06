@@ -150,6 +150,9 @@
   <bean name="/updateColumn" class="com.smit.web.column.ColumnAction" scope="prototype" >
   	<property name="columnService" ref="columnService"></property>
   </bean>
+  <bean name="/selectColumnsUnderTop" class="com.smit.web.column.ColumnAction" scope="prototype" >
+  	<property name="columnService" ref="columnService"></property>
+  </bean>
   <bean id="columnService" class="com.smit.service.ColumnServiceImpl">
   	<property name="columnDao" ref="columnDao"></property>
   </bean>
@@ -166,7 +169,7 @@
   	<property name="sysInfoService" ref="sysInfoService"></property>
   </bean>
 <!-- ================================================================== -->
-  <bean name="/showSysInfo" 
+  <bean name="/showSysInfo"
   		class="com.smit.web.FrameworkAction"
   		scope="prototype" >
   	<property name="sysInfoService" ref="sysInfoService"></property>

@@ -58,31 +58,32 @@ $(function(){
 </ul>
 	<script type="text/javascript">
 	var columnDtree = new dTree('columnDtree');
-	columnDtree.add(0,0,"系统栏目","content.do?op=list");
+	//columnDtree.add(0,0,"系统栏目","content.do?op=list");
 <%
-	//ColumnDao columnDao = new ColumnDaoImpl();
-	//List<Part> allColumns = columnDao.queryAllColumns();
-	
 	List<Part> allColumns = (List<Part>)request.getAttribute("allColumns");
-	
+	Part rootColumn = (Part)request.getAttribute("rootColumn");
 	for(int i = 0; i<allColumns.size(); i++)
 	{
 		Part part = allColumns.get(i);
 		Integer id = part.getId();
 		Integer topid = part.getTopid();
 		Integer parentid = part.getFather_id();
+		String link = null;
+		if(rootColumn.getId().equals(id))
+		{
+			//link = "content.do?op=list";
+			link = "";
+		}
+		else
+		{
+			//link = "<a href='content.do?op=list&pid=" + id + "></a>";
+			link = "";
+		}
 		if(parentid == null)
 		{
 			parentid = 0;
 		}
-		String name = part.getTypename();
-
-		//System.out.println("id = " + id);
-		//System.out.println("topid = " + topid);
-		//System.out.println("parentid = " + parentid);
-		//System.out.println("name = " + name);
-		//System.out.println("======== ");
-		String link = "<a href='content.do?op=list&pid=" + id + "></a>";
+		String name = part.getTypename();	
 %>
 		columnDtree.add(<%=(id-1)%>,<%=(parentid-1)%>,"<%=name%>","<%=link%>");
 <%
