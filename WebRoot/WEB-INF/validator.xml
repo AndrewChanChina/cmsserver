@@ -1,0 +1,113 @@
+<!DOCTYPE form-validation PUBLIC
+        "-//Apache Software Foundation//DTD Commons Validator Rules Configuration 1.3.0//EN"
+        "http://jakarta.apache.org/commons/dtds/validator_1_3_0.dtd">
+
+<form-validation>
+   <formset>
+      <form name="contentForm">
+            <field property="title" depends="required,maxlength,minlength,mask">
+         
+         	<msg name="required" key="error.content.title.required" />
+			<msg name="maxlength" key="error.content.title.length" />
+			<msg name="minlength" key="error.content.title.length" />
+			<msg name="mask" key="error.content.title.invalid" />
+
+			<arg name="maxlength" key="${var:maxlength}" position="1" resource="false"/>
+            <arg name="minlength" key="${var:minlength}" position="0" resource="false"/>
+            
+            <var>
+            	<var-name>minlength</var-name>
+				<var-value>6</var-value>
+			</var>		
+			<var>
+				<var-name>maxlength</var-name>
+				<var-value>15</var-value>
+			</var>
+            
+            <var>
+				<var-name>mask</var-name>
+				<var-value>^[a-zA-Z0-9-_]*$</var-value>
+			</var>
+			
+         </field>
+         
+         <field property="typeName" depends = "mask">
+           <msg name="mask" key="error.content.typeName.invalid" />
+             <var>
+				<var-name>mask</var-name>
+				<var-value>^[a-zA-Z0-9-_]*$</var-value>
+			</var>
+         </field>
+          <field property="excerpt" depends = "mask">
+           <msg name="mask" key="error.content.typeName.invalid" />
+             <var>
+				<var-name>mask</var-name>
+				<var-value>^[a-zA-Z0-9-_]*$</var-value>
+			</var>
+         </field>
+          <field property="tags" depends = "mask">
+           <msg name="mask" key="error.content.typeName.invalid" />
+             <var>
+				<var-name>mask</var-name>
+				<var-value>^[a-zA-Z0-9-_,]*$</var-value>
+			</var>
+         </field>
+           <field property="author" depends = "mask">
+           <msg name="mask" key="error.content.typeName.invalid" />
+             <var>
+				<var-name>mask</var-name>
+				<var-value>^[a-zA-Z0-9-_]*$</var-value>
+			</var>
+         </field>
+         
+         <field property="shortTitle" depends="required,maxlength,minlength,mask">
+         
+         	<msg name="required" key="error.content.shortTitle.required" />
+			<msg name="maxlength" key="error.content.shortTitle.length" />
+			<msg name="minlength" key="error.content.shortTitle.length" />
+			<msg name="mask" key="error.content.shortTitle.invalid" />
+
+			<arg name="maxlength" key="${var:maxlength}" position="1" resource="false"/>
+      
+			<arg name="minlength" key="${var:minlength}" position="0" resource="false"/>
+        
+            <var>
+            	<var-name>minlength</var-name>
+				<var-value>2</var-value>
+			</var>		
+			<var>
+				<var-name>maxlength</var-name>
+				<var-value>6</var-value>
+			</var>            
+            <var>
+				<var-name>mask</var-name>
+				<var-value>^[a-zA-Z0-9]*$</var-value>
+			</var>			
+         </field>	
+         <field property="sortRank"	depends="mask">
+           <msg name="mask" key="error.content.sortRank.invalid"/>
+           <var>
+             <var-name>mask</var-name>
+             <var-value>^[0-9]*$</var-value>
+           </var>
+         </field>
+		
+     </form>
+     <form name="uploadForm">
+         <field property="sortRank" depends="mask">
+         
+			<msg name="mask" key="error.upload.sortRank.invalid" />
+
+		
+            <var>
+				<var-name>mask</var-name>
+				<var-value>^[0-9]*$</var-value>
+			</var>
+			
+         </field>
+         
+         
+       
+     </form>
+  </formset>
+</form-validation>

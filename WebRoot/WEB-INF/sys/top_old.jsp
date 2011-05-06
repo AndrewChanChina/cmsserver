@@ -1,3 +1,4 @@
+﻿
 
 <%@ page contentType= "text/html;charset=UTF-8" language= "java"%>
 <%@page import="org.hibernate.impl.SessionFactoryImpl"%>
@@ -14,11 +15,12 @@
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
-String userName = session.getAttribute("userName") == null?"":(String)session.getAttribute("userName");
+
 
 %>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
@@ -121,12 +123,10 @@ function changeSite(siteId) {
         <td background="./images/admin/top_bg.jpg"><table width="98%" border="0" align="center" cellpadding="0" cellspacing="0">
           <tr>
             <td width="260" height="30">
-			<img src="./images/admin/ico1.gif"><span id="welcome">你好,<%=userName %></span>
+			<img src="./images/admin/ico1.gif"><span id="welcome">你好,${sessionScope.userName }</span>
 			<img src="./images/admin/ico2.jpg"><a href="logout.do" target="_top" id="logout" onclick="">退出</a></td>
-            <td align="right">
-         
+            <td align="right">   
             </td>
-           
           </tr>
         </table></td>
       </tr>
@@ -134,7 +134,7 @@ function changeSite(siteId) {
         <td><img src="./images/admin/top_07.jpg"></td>
         <td background="./images/admin/nav_bg.jpg">
 		   <ul class="menu">			
-		<li class="current" id="tb_11" onclick="HoverLi(1,1,10);"><a href="showMainFrame.do?class=sysInfoAndLog" target="mainFrame">配置</a></li>
+			<li class="current" id="tb_11" onclick="HoverLi(1,1,10);"><a href="showMainFrame.do?class=sysInfoAndLog" target="mainFrame">配置</a></li>
 				
 			<li class="sep"></li><li id="tb_12" onclick="HoverLi(1,2,10);"><a href="showMainFrame.do?class=user" target="mainFrame">用户</a></li>
 		

@@ -193,15 +193,7 @@
   	</bean>
   	
   	<bean id="smitLog" class="com.smit.util.SmitLog"></bean>
-	<!-- 
-	<aop:config>
-		<aop:aspect id="b" ref="smitLog">
-			<aop:pointcut id="log" expression="execution(* chen.hui.log.*.*(..))" />
-			<aop:before pointcut-ref="log" method="before" />
-			<aop:after pointcut-ref="log" method="after" />
-		</aop:aspect>
-	</aop:config>
-	 -->
+	
 
 	<aop:config proxy-target-class="true">
 		<aop:aspect id="logaop" ref="smitLog">

@@ -42,7 +42,7 @@ body {
 		
 		function refresh_jcaptcha(obj){ 
 			//alert(obj); 
-			obj.src="jcaptcha?" + Math.random() + ".do";
+			obj.src="jcaptcha.do?" + Math.random();
 		} 
 		
 	if (top != this) {
@@ -127,14 +127,18 @@ body {
 														<td>
 															<input name="jcaptcha_response" type="text"  vld=""
 																class="input" />&nbsp;&nbsp;
-																<!-- <font class ="required_error_font">  <html:errors property="jcaptcha_error_msg" /></font>
-																<font size =“-1″ color ="#6f6f6f"> <jcaptcha:question /></font > -->
-														<img name ="jcaptcha" id ="jcaptcha" onclick ="refresh_jcaptcha(this)" src ="jcaptcha.do" alt ="click to refresh" style ="cursor:pointer;"/> 
+																
+															
 														
 														
 														</td>
 													</tr>
-													
+													<tr>
+														<td align="center" colspan="2">
+												         <img name ="jcaptcha" id ="jcaptcha" onclick ="refresh_jcaptcha(this)" src ="jcaptcha.do" alt ="click to refresh" style ="cursor:pointer;"/> 
+												    	</td>
+												    	
+													</tr>
 													<tr>
 														<td height="40" colspan="2" align="center">
 															<input type="image" src="./images/login/login.jpg"
@@ -142,8 +146,8 @@ body {
 															&nbsp; &nbsp;
 															<img name="reg" style="cursor: pointer"
 																src="./images/login/reset.jpg" onclick="" />
-															&nbsp; &nbsp;<a href="register.jsp">register</a>
-															&nbsp; &nbsp;<a href="devregister_page.do">注册开发者</a>
+															&nbsp; &nbsp;<a href="register.jsp">注册</a>
+															
 														</td>
 													</tr>
 												</table>

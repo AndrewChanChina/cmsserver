@@ -110,15 +110,16 @@ public class ContentAction extends DispatchAction {
 				 BeanUtils.copyProperties(contentForm,content);
 				 contentService.save(content);
 			}
-			
+			request.setAttribute("url", "content.do?op=list");
 			//contentService.saveorupdate(content);
-			return mapping.findForward("s");			
+			return mapping.findForward("success");			
 		}catch(ServiceException e){
 			e.printStackTrace();
 			ActionMessage msg = new ActionMessage(e.getMessage());
 			msgs.add("contentAction.save.failure", msg);
 			this.saveMessages(request, msgs);
-			return mapping.findForward("f");		
+			request.setAttribute("url", "content.do?op=add");
+			return mapping.findForward("fail");		
 		}		
 	}
 
@@ -131,7 +132,7 @@ public class ContentAction extends DispatchAction {
 		try {
 			Page page = page = contentService.findAll(currentPage, pageSize,pid);	
 				
-			
+		
 			//System.out.println(page.getList().size());
 			request.setAttribute("page", page);
 			return mapping.findForward("list");
@@ -139,7 +140,8 @@ public class ContentAction extends DispatchAction {
 			ActionMessage msg = new ActionMessage(e.getMessage());
 			msgs.add("contentAction.list.failure",msg);
 			this.saveMessages(request, msgs);
-			return mapping.findForward("f");
+		
+			return mapping.findForward("404");
 			
 		}
 	
@@ -155,14 +157,16 @@ public class ContentAction extends DispatchAction {
 		int id = Integer.parseInt(request.getParameter("cid"));
 		try {
 			contentService.delete(id);
-			return mapping.findForward("s");
+			request.setAttribute("url", "content.do?op=list");
+			return mapping.findForward("success");
 			
 		}catch(ServiceException e){
 			
 			ActionMessage msg = new ActionMessage(e.getMessage());
 			msgs.add("contentAction.save.failure", msg);
 			this.saveMessages(request, msgs);
-			return mapping.findForward("f");
+			request.setAttribute("url", "content.do?op=list");
+			return mapping.findForward("fail");
 			
 		}
 	}
@@ -179,7 +183,7 @@ public class ContentAction extends DispatchAction {
 	    	ActionMessage msg = new ActionMessage(e.getMessage());
 	    	msgs.add("ContentAction.view.failure", msg);
 	    	this.saveMessages(request, msgs);
-	    	return mapping.findForward("f");
+	    	return mapping.findForward("fail");
 	    }
 		
 	}
@@ -198,13 +202,15 @@ public class ContentAction extends DispatchAction {
 	    	 try {
 	 	    	Content content = contentService.findById(Integer.parseInt(id));
 	 	    	content.setIsCheck(1);
-	 	    	contentService.update(content);  	
-	 	    	return new ActionForward("/content.do?op=list");
+	 	    	contentService.update(content);  
+	 	   	    request.setAttribute("url", "content.do?op=list");
+	 	   	 return mapping.findForward("success");
 	 	    }catch(ServiceException e){
 	 	    	ActionMessage msg = new ActionMessage(e.getMessage());
 	 	    	msgs.add("ContentAction.view.failure", msg);
 	 	    	this.saveMessages(request, msgs);
-	 	    	return mapping.findForward("f");
+	 	       request.setAttribute("url", "content.do?op=list");
+	 	    	return mapping.findForward("fail");
 	 	    }
 	    	
 	    	

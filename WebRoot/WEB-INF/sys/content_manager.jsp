@@ -68,8 +68,8 @@ if(contents != null && contents.get(0)!= null){
   	
  
 %>
-  <option value="<%=part.getId() %>" class="sel-disabled" <% if(part.getTypename().equals((String)contents.get(1))) {%> selected <%} %>>
-  <%=part.getTypename() %>
+  <option value="${part.id}" class="sel-disabled" <% if(part.getTypename() != null && contents != null && contents.get(1) != null && part.getTypename().equals((String)contents.get(1))) {%> selected <%} %>>
+ ${part.typename}
   </option>
 <%
 }

@@ -92,13 +92,15 @@ public class UploadAction extends DispatchAction {
 		media.setPath(baseDir.getPath());
 		try {
 			mediaService.save(media);	
-			return mapping.findForward("s");			
+			request.setAttribute("url", "upload.do?op=list");
+			return mapping.findForward("success");			
 		}catch(ServiceException e){
 			e.printStackTrace();
 			ActionMessage msg = new ActionMessage(e.getMessage());
 			msgs.add("contentAction.save.failure", msg);
 			this.saveMessages(request, msgs);
-			return mapping.findForward("f");		
+			request.setAttribute("url", "uploadfile.do");
+			return mapping.findForward("fail");		
 		}		
 	
 	}
@@ -127,7 +129,7 @@ public class UploadAction extends DispatchAction {
 			ActionMessage msg = new ActionMessage(e.getMessage());
 			msgs.add("contentAction.list.failure",msg);
 			this.saveMessages(request, msgs);
-			return mapping.findForward("f");
+			return mapping.findForward("fail");
 			
 		}
 	

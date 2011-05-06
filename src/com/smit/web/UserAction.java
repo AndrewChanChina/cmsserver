@@ -61,29 +61,31 @@ public class UserAction extends MappingDispatchAction {
 			HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		HttpSession session = request.getSession();
-		String loginSuc = (String)session.getAttribute(Constants.LOGIN_SUC);
-		if (!isJcaptchaOK(request)) 
-		    return mapping.getInputForward();
-		SmitLoginForm loginForm = (SmitLoginForm)form;		
+	//	String loginSuc = (String)session.getAttribute(Constants.LOGIN_SUC);
+		if (!isJcaptchaOK(request)) {
+			
+			return mapping.getInputForward();		
+	    }
+	    SmitLoginForm loginForm = (SmitLoginForm)form;		
 		
-		System.out.println(loginForm.getPasswd());
-		System.out.println(loginForm.getUserName());
+		/*System.out.println(loginForm.getPasswd());
+		System.out.println(loginForm.getUserName());*/
 		try{
 			if(userService.login(loginForm.getUserName(), loginForm.getPasswd())){
 				// save some login information
 				session.setAttribute(Constants.LOGIN_SUC, Constants.SUCCESS);
-				session.setAttribute(Constants.CURUSERNAME, loginForm.getUserName());
+				session.setAttribute("userName", loginForm.getUserName());
 				return mapping.findForward("success-admin");
 			} else if(pushDataService.login(Constants.PUSH_HOST, 
 					loginForm.getUserName(), loginForm.getPasswd())) 
 			{
 				// login smack success
 				session.setAttribute(Constants.LOGIN_SUC, Constants.SUCCESS);
-				session.setAttribute(Constants.CURUSERNAME, loginForm.getUserName());
+				session.setAttribute("userName", loginForm.getUserName());
 				session.setAttribute(Constants.PUSH_CONNECTION, pushDataService);
 				User u = userService.findUserByName(loginForm.getUserName());
 				if(u != null){
-					session.setAttribute(Constants.CUR_USER_ID, u.getId());
+					session.setAttribute("id", u.getId());
 				}				
 				return mapping.findForward("success-user");
 			} else {
@@ -262,7 +264,7 @@ public class UserAction extends MappingDispatchAction {
 		ActionErrors errors = new ActionErrors();//用ActionError替换了他自己的Message 
 		errors.add("jcaptcha_error_msg", new ActionMessage( 
 		"error.jcaptcha.error.inputInvalid")); 
-		this .addErrors(request, errors); 
+		this.addErrors(request, errors); 
 		return false; 
 	} 
 

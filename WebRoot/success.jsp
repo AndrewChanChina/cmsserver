@@ -2,6 +2,8 @@
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+
+
 %>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
@@ -9,13 +11,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <head>
     <base href="<%=basePath%>">
     
-    <title>My JSP 'sucess.jsp' starting page</title>
+    <title></title>
     
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
 	<meta http-equiv="expires" content="0">    
 	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 	<meta http-equiv="description" content="This is my page">
+	<meta http-equiv="refresh" content="1;url=${requestScope.url }">
+	
 	<!--
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
@@ -23,12 +27,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-  <a href="logout.do">logout</a>
-<<<<<<< HEAD:WebRoot/sucess.jsp
-    成功！
-    <a href="index.do">ddd</a>
-=======
-    你的操作已经成功！
->>>>>>> d42ba37e7ad3bb0b387548bd51276afde279c447:WebRoot/success.jsp
+                   <p > <h3> <font color="#FF0000">>>>>操作成功，一秒钟跳转，如果没有跳转，请<a href="${requestScope.url }">点击</a></font></h3> </p>
   </body>
 </html>
