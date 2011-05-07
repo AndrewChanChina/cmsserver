@@ -60,7 +60,7 @@ $(function(){
 
 	}else if(opCode.equalsIgnoreCase("sysInfoAndLog")){
 %>
-		<li><a href="listuser.do" target="rightFrame">用户管理</a></li>
+		<li><a href="content.do?op=add" target="rightFrame">用户管理</a></li>
 		<li><a href="grouplist.do" target="rightFrame">分组管理</a></li>
 		<li><a href="listpurview.do" target="rightFrame">权限管理</a></li>
 <%	

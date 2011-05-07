@@ -116,6 +116,8 @@ public class UserAction extends MappingDispatchAction {
 		int pageSize = 10;
 		pager.setPageSize(pageSize);
 		pager.setUrl("listuser.do?");
+		
+		System.out.print("hehhee");
 
 		try {
 			List list = userService.listAllUsers(pager);

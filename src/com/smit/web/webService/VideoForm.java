@@ -10,9 +10,18 @@ public class VideoForm extends ActionForm{
 	private String method;
 	private String machineVirtualId;
 	private String apiKey;
-	private String type;
+	private String type;  
+	private String columnKey; 
 	private String start;
 	private String count;
+	
+	public String getColumnKey() {
+		return columnKey;
+	}
+	public void setColumnKey(String columnKey) {
+		this.columnKey = columnKey;
+	}
+	
 	public String getMethod() {
 		return method;
 	}

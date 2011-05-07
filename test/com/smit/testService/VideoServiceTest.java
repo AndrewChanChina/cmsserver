@@ -7,9 +7,11 @@ import junit.framework.TestCase;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import com.smit.service.ColumnService;
 import com.smit.service.collection.CollectVideoTask;
 import com.smit.service.collection.VideoService;
 import com.smit.util.SmitPage;
+import com.smit.vo.Part;
 import com.smit.vo.Video;
 
 public class VideoServiceTest extends TestCase {
@@ -56,6 +58,17 @@ public class VideoServiceTest extends TestCase {
 	
 	public void testImportVideo(){
 		CollectVideoTask ct = (CollectVideoTask)beanFactory.getBean("collectVideoTask");
-		ct.youku();
+		//ct.youku();
+		ct.tudou();
+	}
+	
+	public void insertVideoColumn(){
+		//TODO 根据具体的情况，初始化数据库关于视频分类的表
+		ColumnService cs = (ColumnService)beanFactory.getBean("columnService");
+		//cs.addColumn(1, 1, "youku-latest");
+		List<Part> list = cs.queryNextChildren("All Columns");
+		for(Part p : list){
+			System.out.println(p.getTypename());
+		}
 	}
 }

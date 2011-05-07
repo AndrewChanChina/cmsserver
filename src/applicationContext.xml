@@ -218,10 +218,11 @@
 	
 	<bean name="/video" class="com.smit.web.webService.VideoAction"	scope="prototype">
 		<property name="videoService" ref="videoService"></property>
+		<property name="columnService" ref="columnService"></property>
 	</bean>
 	
 	<bean id="collectVideoTask" class="com.smit.service.collection.CollectVideoTask" >
-		<property name="videoService" ref="videoService"></property>
+		<property name="videoService" ref="videoService"></property>		
 	</bean>
 
 	<bean id="smitLog" class="com.smit.util.SmitLog"></bean>
