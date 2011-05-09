@@ -53,5 +53,7 @@
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/asm-all-4.0_RC1.pom"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/jcaptcha-1.0-all.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/jcaptcha-integration-struts-1.0.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/jstl.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/standard.jar"/>
 	<classpathentry kind="output" path="WebRoot/WEB-INF/classes"/>
 </classpath>
