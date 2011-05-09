@@ -1,6 +1,5 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
 
-<%@ taglib uri= "/WEB-INF/struts-html.tld" prefix="tiles" %>
 <%@ taglib uri= "/WEB-INF/struts-html.tld" prefix="html"%>
 <%@ taglib uri= "/WEB-INF/struts-logic.tld" prefix="logic"%>
 <%@ taglib uri= "/WEB-INF/struts-bean.tld" prefix="bean"%>
@@ -26,12 +25,6 @@
 	<link href="./css/jquery.treeview.css" rel="stylesheet" type="text/css" />
 	<link href="./css/jquery.ui.css" rel="stylesheet" type="text/css" />
 
-	<script src="./js/fckeditor.js" type="text/javascript"></script>
-	<script src="./js/WdatePicker.js" type="text/javascript"></script>
-	<script src="./js/jquery.js" type="text/javascript"></script>
-	<script src="./js/jquery.ext.js" type="text/javascript"></script>
-	<script src="./js/pony.js" type="text/javascript"></script>
-	<script src="./js/admin.js" type="text/javascript"></script>
 	<script type="text/javascript">
 	function getTableForm() {
 		return document.getElementById('tableForm');
