@@ -37,7 +37,7 @@ public class VideoItem implements IToXML {
 	public String toXml(){
 		StringBuilder sb = new StringBuilder();
 		sb.append("<item>");
-		sb.append("<name>" + name + "</name>");
+		sb.append("<name>" +"<![CDATA["+ name +"]]>"+ "</name>");
 		
 		sb.append("<pictures>");
 		if( pictures != null){
@@ -57,6 +57,7 @@ public class VideoItem implements IToXML {
 		
 		sb.append("<description><![CDATA[" + description + "]]></description>");
 		sb.append("</item>");
+		//System.out.println(sb.toString());
 		return sb.toString();
 	}
 }

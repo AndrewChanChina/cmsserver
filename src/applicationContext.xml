@@ -238,7 +238,7 @@
 		class="org.springframework.scheduling.quartz.CronTriggerBean">
  
 		<property name="jobDetail" ref="collection" />
-		<property name="cronExpression" value="0/10 * * * * ?" />
+		<property name="cronExpression" value="0 0/10 * * * ?" />
  
 	</bean>
 	<bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">

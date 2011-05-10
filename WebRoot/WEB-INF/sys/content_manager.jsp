@@ -65,6 +65,7 @@ if(contents != null && contents.get(0)!= null){
   Iterator iter = parts.iterator();
   while(iter.hasNext()){
   	com.smit.vo.Part part = (com.smit.vo.Part)iter.next();
+  	request.setAttribute("part",part);
   	
  
 %>
