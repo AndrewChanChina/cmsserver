@@ -52,5 +52,9 @@
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/asm-all-4.0_RC1.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/asm-all-4.0_RC1.pom"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/strutstest-2.1.4.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/commons-logging.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/jta.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/quartz-all-1.6.0.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/spring-context-support.jar"/>
 	<classpathentry kind="output" path="WebRoot/WEB-INF/classes"/>
 </classpath>

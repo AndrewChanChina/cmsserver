@@ -228,6 +228,31 @@
 	<bean id="collectVideoTask" class="com.smit.service.collection.CollectVideoTask" >
 		<property name="videoService" ref="videoService"></property>		
 	</bean>
+	<!-- collect information in special time -->
+	<bean id="collection" 
+ 	class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean"> 
+		<property name="targetObject" ref="collectVideoTask" />
+		<property name="targetMethod" value="youku" /> 
+	</bean>
+	<bean id="cronTrigger"
+		class="org.springframework.scheduling.quartz.CronTriggerBean">
+ 
+		<property name="jobDetail" ref="collection" />
+		<property name="cronExpression" value="0/10 * * * * ?" />
+ 
+	</bean>
+	<bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		<property name="jobDetails">
+		   <list>
+		      <ref bean="collection" />
+		   </list>
+		</property> 
+		<property name="triggers">
+		    <list>
+			<ref bean="cronTrigger" />
+		    </list>
+		</property>
+   </bean>   
 
 	<bean id="smitLog" class="com.smit.util.SmitLog"></bean>
 	<!-- <aop:config> <aop:aspect id="b" ref="smitLog"> <aop:pointcut id="log" 
