@@ -19,6 +19,8 @@ public class Video implements Serializable {
 	private String comments;
 	private String pubDate;
 	private String enclosure_url;
+	private String flv_url;
+	
 	private String flag1;
 	private String flag2;
     private Timestamp createtime;
@@ -107,6 +109,12 @@ public class Video implements Serializable {
 	}
 	public void setPartId(Integer partId) {
 		this.partId = partId;
+	}
+	public String getFlv_url() {
+		return flv_url;
+	}
+	public void setFlv_url(String flv_url) {
+		this.flv_url = flv_url;
 	}
 
 }

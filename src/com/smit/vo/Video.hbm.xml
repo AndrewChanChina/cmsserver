@@ -15,6 +15,7 @@
   <property generated="never" lazy="false" name="comments"/>
   <property generated="never" lazy="false" name="pubDate"/>
   <property generated="never" lazy="false" name="enclosure_url"/>
+  <property generated="never" lazy="false" name="flv_url"/>
   <property generated="never" lazy="false" name="flag1"/>
   <property generated="never" lazy="false" name="flag2"/>
   <property generated="never" lazy="false" name="createtime"/>

@@ -55,7 +55,7 @@ public class VideoItem implements IToXML {
 		}
 		sb.append("</urls>");
 		
-		sb.append("<description>" + description + "</description>");
+		sb.append("<description><![CDATA[" + description + "]]></description>");
 		sb.append("</item>");
 		return sb.toString();
 	}

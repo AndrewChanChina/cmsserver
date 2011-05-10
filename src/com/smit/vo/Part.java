@@ -20,8 +20,15 @@ public class Part implements Serializable {
 	private Integer topid;
 	private Integer father_id;
 	private String path;
+	private Integer partId; 
 
 
+	public Integer getPartId() {
+		return partId;
+	}
+	public void setPartId(Integer partId) {
+		this.partId = partId;
+	}
 	public Set<Content> getContents() {
 		return contents;
 	}

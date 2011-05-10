@@ -12,5 +12,13 @@ String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 
 IToXML xml = (IToXML)request.getAttribute("xmlObject");
-out.print(xml.toXml());
+if(xml != null){
+	out.print(xml.toXml());
+}else{
+	out.print("<xml>");	
+	out.print("<ErrorData>" + pageContext.getErrorData() + "</ErrorData>");
+	out.print("<exception>" + pageContext.getException() + "</exception>");
+	out.print("</xml>");
+}
+
 %>

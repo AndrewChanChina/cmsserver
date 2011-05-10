@@ -21,5 +21,6 @@ public interface ColumnDao {
 	
 	
 	public Part findByName(String name);
-	public List<Part> queryNextChildren(String name);
+	public List<Part> queryNextChildren(Integer partId);
+	public void savePart(Part part);
 }

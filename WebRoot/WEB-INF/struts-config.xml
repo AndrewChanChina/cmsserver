@@ -286,6 +286,10 @@
 			parameter="video" name="videoForm" scope="request" validate="false">
 			<forward name="success" path="/WEB-INF/sys/webService/outPutXml.jsp"></forward>
 		</action>
+		<action path="/getVideoColumn" type="org.springframework.web.struts.DelegatingActionProxy"
+			parameter="getVideoColumn" name="videoForm" scope="request" validate="false">
+			<forward name="success" path="/WEB-INF/sys/webService/outPutXml.jsp"></forward>
+		</action>
 
 
 	</action-mappings>

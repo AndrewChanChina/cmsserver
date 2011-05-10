@@ -26,6 +26,15 @@ public class VideoActionTest extends MockStrutsTestCase {
 	        verifyNoActionErrors();
 	 }
 	 
+	 public void testQueryVideoColumn(){
+		 
+		 this.addRequestParameter("columnKey", "6");
+		 this.setRequestPathInfo("/getVideoColumn");
+		 actionPerform();
+		 verifyForward("success");
+		 verifyNoActionErrors();
+	 }
+	 
 	 public static void main(String[] args) {
 	        junit.textui.TestRunner.run(VideoActionTest.class);
 	 }

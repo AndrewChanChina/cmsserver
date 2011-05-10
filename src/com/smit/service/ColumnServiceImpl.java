@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.smit.dao.ColumnDao;
-import com.smit.dao.SysInfoDao;
+import com.smit.service.webService.ColumnItem;
+import com.smit.service.webService.IToXML;
+import com.smit.service.webService.XmlWrap;
 import com.smit.vo.Part;
 
 public class ColumnServiceImpl implements ColumnService {
@@ -85,8 +87,41 @@ public class ColumnServiceImpl implements ColumnService {
 		return columnDao.findByName(name);
 	}
 
+	/**
+	 *  convert object information into xml object
+	 */
 	@Override
-	public List<Part> queryNextChildren(String name) {
-		return columnDao.queryNextChildren(name);
+	public XmlWrap queryNextChildren(Integer partId ) {
+		List<Part> list = columnDao.queryNextChildren(partId);
+		return toXmlWrap(list);
+	}
+
+	@Override
+	public XmlWrap queryRootChildren() throws Exception {
+		List<Part> list = columnDao.queryTopColumns();
+		return toXmlWrap(list);
+	}
+	
+	private XmlWrap toXmlWrap(List<Part> list){
+		XmlWrap xmlWrap = new XmlWrap();
+		List<IToXML> items = new ArrayList<IToXML>();
+		for(Part p : list){
+			ColumnItem item = new ColumnItem();
+			item.setName(p.getTypename());
+			item.setKey(p.getPartId().toString());
+			if(columnDao.queryNextChildren(p.getId()).isEmpty()) {
+				item.setType(ColumnItem.TYPE_LEAF);
+			} else {
+				item.setType(ColumnItem.TYPE_NODE);
+			}
+			items.add(item);
+		}
+		xmlWrap.setItems(items);
+		return xmlWrap;		
+	}
+
+	@Override
+	public void savePart(Part part) {
+		columnDao.savePart(part);
 	}
 }
