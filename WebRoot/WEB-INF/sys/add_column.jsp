@@ -43,7 +43,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	List<Part> allColumns = (List<Part>)request.getAttribute("allColumns");
 	List<Part> topColumns = (List<Part>)request.getAttribute("topColumns");
 	Part rootColumn = (Part)request.getAttribute("rootColumn");
-	
 %>
 	
 <script type="text/javascript">
@@ -147,9 +146,30 @@ function getInputKeyAndValueAndStateById(id)
 	var inputTopParentID = document.getElementById("man_topParentID"+id);
 	var inputParentID = document.getElementById("man_parentID"+id);
 	array[0] = inputId.value;
-	array[1] = inputColumnName.value;
-	array[2] = inputTopParentID.value;
-	array[3] = inputParentID.value;
+	if(inputColumnName == "undefined" || inputColumnName == null)
+	{
+		array[1] = "undefined";
+	}
+	else
+	{
+		array[1] = inputColumnName.value;
+	}
+	if(inputTopParentID == "undefined" || inputTopParentID == null)
+	{
+		array[2] = 0;
+	}
+	else
+	{
+		array[2] = inputTopParentID.value;
+	}
+	if(inputTopParentID == "undefined" || inputTopParentID == null)
+	{
+		array[3] = 0;
+	}
+	else
+	{
+		array[3] = inputParentID.value;
+	}
 	return array;
 }
 

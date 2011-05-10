@@ -50,7 +50,7 @@ $(function(){
 
 <div class="lttop">
 	<a href="javascript:location.href=location.href">刷新</a>&nbsp;
-	<a href="#" target="rightFrame">模型管理</a>
+	<!-- <a href="#" target="rightFrame">模型管理</a> -->
 </div>
 <hr/>
 	
