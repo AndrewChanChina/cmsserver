@@ -62,6 +62,7 @@ public class GroupAction extends MappingDispatchAction {
 		Group g = new Group();
 		g.setCreatetime( new java.sql.Timestamp(today.getTime()) );
 		g.setGroupName(groupForm.getGroupName());
+		g.setSortRank(groupForm.getSortRank());
 		
 		for(String id : groupForm.getPurviewids()){
 			Purview p = new Purview();

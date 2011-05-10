@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:aop="http://www.springframework.org/schema/aop"
 	xmlns:p="http://www.springframework.org/schema/p"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
 						http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
@@ -9,6 +10,32 @@
     					http://www.springframework.org/schema/tx 
     					http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
 
+	<!-- 内容业务组件 -->
+	<bean name="/content" class="com.smit.web.content.actions.ContentAction">
+		<property name="contentService" ref="contentService"></property>
+		<property name="columnService" ref="columnService" />
+		<property name="userService" ref="userService" />
+	</bean>
+
+	<bean id="contentDao" class="com.smit.dao.ContentDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+
+	<bean id="contentService" class="com.smit.service.ContentServiceImpl">
+		<property name="contentDao" ref="contentDao"></property>
+	</bean>
+
+	<!-- 上传业务组件 -->
+	<bean name="/upload" class="com.smit.web.UploadAction">
+		<property name="mediaService" ref="mediaService"></property>
+	</bean>
+	<bean id="mediaDao" class="com.smit.dao.MediaDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="mediaService" class="com.smit.service.MediaServiceImpl">
+		<property name="mediaDao" ref="mediaDao"></property>
+	</bean>
+	
 	<!-- user dao & service -->
 	<bean id="userDao" class="com.smit.dao.UserDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory"></property>
@@ -16,32 +43,6 @@
 	<bean id="userService" class="com.smit.service.UserServiceImpl">
 		<property name="userDao" ref="userDao"></property>
 	</bean>
-	
-	<!-- 内容业务组件 -->
-	 <bean name="/content" class="com.smit.web.content.actions.ContentAction">
-  	<property name="contentService" ref="contentService"></property>
-  	<property name="columnService" ref="columnService"/>
-  	<property name="userService" ref="userService"/>
-  </bean>
-
-  <bean id="contentDao" class="com.smit.dao.ContentDaoImpl">
-    <property name="sessionFactory" ref="sessionFactory"></property>
-  </bean>
-  
-  <bean id="contentService" class="com.smit.service.ContentServiceImpl">
-  <property name="contentDao" ref="contentDao"></property>
-  </bean>
-  
-  <!-- 上传业务组件 -->
-  <bean name="/upload" class="com.smit.web.UploadAction">
-   <property name="mediaService" ref="mediaService"></property>
-  </bean>
-  <bean id="mediaDao" class="com.smit.dao.MediaDaoImpl">
-  <property name="sessionFactory" ref="sessionFactory"></property>
-  </bean>
-  <bean id="mediaService" class="com.smit.service.MediaServiceImpl">
-  <property name="mediaDao" ref="mediaDao"></property>
-  </bean>
 	<!-- login register action -->
 	<bean name="/login" class="com.smit.web.UserAction" scope="prototype">
 		<property name="userService" ref="userService"></property>
@@ -91,119 +92,179 @@
 		<property name="groupManager" ref="groupManagerService"></property>
 	</bean>
 
+	<!-- session factory -->
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="configLocation" value="classpath:hibernate.cfg.xml"></property>
+	</bean>
 
- 	<!-- session factory -->
-   	<bean id="sessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
-  		<property name="configLocation"	value="classpath:hibernate.cfg.xml"></property>
-   	</bean>
-  
-  
-  	
-  	<!-- purview dao & service -->
-  	<bean id="purviewDao" class="com.smit.dao.PurviewDaoImpl">
-  		<property name="sessionFactory" ref="sessionFactory"></property>
-  	</bean>
-  	<bean id="purviewService" class="com.smit.service.PurviewServiceImpl">
-  		<property name="purviewDao" ref="purviewDao"></property>
-  	</bean>
-  	
-  	<!-- purview manager action -->
-	<bean name="/listpurview" class="com.smit.web.PurviewAction" scope="prototype">
-  		<property name="purviewService" ref="purviewService"></property>
-  	</bean>
-  	<bean name="/gonewpurview" class="com.smit.web.PurviewAction" scope="prototype">
-  		<property name="purviewService" ref="purviewService"></property>
-  	</bean>
-  	<bean name="/saveupdatepurview" class="com.smit.web.PurviewAction" scope="prototype">
-  		<property name="purviewService" ref="purviewService"></property>
-  	</bean>
-  	<bean name="/deletepurview" class="com.smit.web.PurviewAction" scope="prototype">
-  		<property name="purviewService" ref="purviewService"></property>
-  	</bean>	
+	<!-- purview dao & service -->
+	<bean id="purviewDao" class="com.smit.dao.PurviewDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="purviewService" class="com.smit.service.PurviewServiceImpl">
+		<property name="purviewDao" ref="purviewDao"></property>
+	</bean>
 
-<!-- ================================================================== -->
-  <bean name="/addSysInfo" class="com.smit.web.sysinfo.SysInfoAction" scope="prototype" >
-  	<property name="sysInfoService" ref="sysInfoService"></property>
-  </bean>
-  <bean name="/deleteSysInfo" class="com.smit.web.sysinfo.SysInfoAction" scope="prototype" >
-  	<property name="sysInfoService" ref="sysInfoService"></property>
-  </bean>
-  <bean name="/updateSysInfo" class="com.smit.web.sysinfo.SysInfoAction" scope="prototype" >
-  	<property name="sysInfoService" ref="sysInfoService"></property>
-  </bean>
-  <bean name="/enableSysInfo" class="com.smit.web.sysinfo.SysInfoAction" scope="prototype" >
-  	<property name="sysInfoService" ref="sysInfoService"></property>
-  </bean>
-  <bean id="sysInfoService" class="com.smit.service.SysInfoServiceImpl">
-  	<property name="sysInfoDao" ref="sysInfoDao"></property>
-  </bean>
-  <bean id="sysInfoDao" class="com.smit.dao.SysInfoDaoImpl">
-  	<property name="sessionFactory" ref="sessionFactory"></property>
-  </bean>
-<!-- ================================================================== -->
-  <bean name="/addColumn" class="com.smit.web.column.ColumnAction" scope="prototype" >
-  	<property name="columnService" ref="columnService"></property>
-  </bean>
-    <bean name="/deleteColumn" class="com.smit.web.column.ColumnAction" scope="prototype" >
-  	<property name="columnService" ref="columnService"></property>
-  </bean>
-  <bean name="/updateColumn" class="com.smit.web.column.ColumnAction" scope="prototype" >
-  	<property name="columnService" ref="columnService"></property>
-  </bean>
-  <bean name="/selectColumnsUnderTop" class="com.smit.web.column.ColumnAction" scope="prototype" >
-  	<property name="columnService" ref="columnService"></property>
-  </bean>
-  <bean id="columnService" class="com.smit.service.ColumnServiceImpl">
-  	<property name="columnDao" ref="columnDao"></property>
-  </bean>
-  <bean id="columnDao" class="com.smit.dao.ColumnDaoImpl">
-  	<property name="sessionFactory" ref="sessionFactory"></property>
-  </bean>
- 
-<!-- ================================================================== -->
-  <bean name="/showLeftFrame" class="com.smit.web.FrameworkAction" scope="prototype" >
-  	<property name="columnService" ref="columnService"></property>
-  </bean>
-  <bean name="/showRightFrame" class="com.smit.web.FrameworkAction" scope="prototype" >
-  	<property name="columnService" ref="columnService"></property>
-  	<property name="sysInfoService" ref="sysInfoService"></property>
-  </bean>
-<!-- ================================================================== -->
-  <bean name="/showSysInfo"
-  		class="com.smit.web.FrameworkAction"
-  		scope="prototype" >
-  	<property name="sysInfoService" ref="sysInfoService"></property>
-  </bean>
-<!-- ================================================================== -->
+	<!-- purview manager action -->
+	<bean name="/listpurview" class="com.smit.web.PurviewAction"
+		scope="prototype">
+		<property name="purviewService" ref="purviewService"></property>
+	</bean>
+	<bean name="/gonewpurview" class="com.smit.web.PurviewAction"
+		scope="prototype">
+		<property name="purviewService" ref="purviewService"></property>
+	</bean>
+	<bean name="/saveupdatepurview" class="com.smit.web.PurviewAction"
+		scope="prototype">
+		<property name="purviewService" ref="purviewService"></property>
+	</bean>
+	<bean name="/deletepurview" class="com.smit.web.PurviewAction"
+		scope="prototype">
+		<property name="purviewService" ref="purviewService"></property>
+	</bean>
+
+	<!-- ================================================================== -->
+	<bean name="/addSysInfo" class="com.smit.web.sysinfo.SysInfoAction"
+		scope="prototype">
+		<property name="sysInfoService" ref="sysInfoService"></property>
+	</bean>
+	<bean name="/deleteSysInfo" class="com.smit.web.sysinfo.SysInfoAction"
+		scope="prototype">
+		<property name="sysInfoService" ref="sysInfoService"></property>
+	</bean>
+	<bean name="/updateSysInfo" class="com.smit.web.sysinfo.SysInfoAction"
+		scope="prototype">
+		<property name="sysInfoService" ref="sysInfoService"></property>
+	</bean>
+	<bean name="/enableSysInfo" class="com.smit.web.sysinfo.SysInfoAction"
+		scope="prototype">
+		<property name="sysInfoService" ref="sysInfoService"></property>
+	</bean>
+	<bean id="sysInfoService" class="com.smit.service.SysInfoServiceImpl">
+		<property name="sysInfoDao" ref="sysInfoDao"></property>
+	</bean>
+	<bean id="sysInfoDao" class="com.smit.dao.SysInfoDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<!-- ================================================================== -->
+	<bean name="/addColumn" class="com.smit.web.column.ColumnAction"
+		scope="prototype">
+		<property name="columnService" ref="columnService"></property>
+	</bean>
+	<bean name="/deleteColumn" class="com.smit.web.column.ColumnAction"
+		scope="prototype">
+		<property name="columnService" ref="columnService"></property>
+	</bean>
+	<bean name="/updateColumn" class="com.smit.web.column.ColumnAction"
+		scope="prototype">
+		<property name="columnService" ref="columnService"></property>
+	</bean>
+	<bean id="columnService" class="com.smit.service.ColumnServiceImpl">
+		<property name="columnDao" ref="columnDao"></property>
+	</bean>
+	<bean id="columnDao" class="com.smit.dao.ColumnDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+
+	<!-- ================================================================== -->
+	<bean name="/showLeftFrame" class="com.smit.web.FrameworkAction"
+		scope="prototype">
+		<property name="columnService" ref="columnService"></property>
+	</bean>
+	<bean name="/showRightFrame" class="com.smit.web.FrameworkAction"
+		scope="prototype">
+		<property name="columnService" ref="columnService"></property>
+		<property name="sysInfoService" ref="sysInfoService"></property>
+	</bean>
+	<!-- ================================================================== -->
+	<bean name="/showSysInfo" class="com.smit.web.FrameworkAction"
+		scope="prototype">
+		<property name="sysInfoService" ref="sysInfoService"></property>
+	</bean>
+	<!-- ================================================================== -->
 
 	<bean id="pushServiceDao" class="com.smit.dao.PushServiceDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory"></property>
-  	</bean>
-  	<bean id="pushManage" class="com.smit.service.push.PushManageImpl">
-  		<property name="pushServiceDao" ref="pushServiceDao"></property>
-  	</bean>
+	</bean>
+	<bean id="pushManage" class="com.smit.service.push.PushManageImpl">
+		<property name="pushServiceDao" ref="pushServiceDao"></property>
+	</bean>
 	<bean id="pushDataService" class="com.smit.service.push.PushDataServiceImpl">
-  	</bean>
-  	<bean name="/home" class="com.smit.web.PushDataAction" scope="prototype">
-  	</bean>	
-  	<bean name="/developer_register" class="com.smit.web.PushDataAction" scope="prototype">
-  		<property name="userService" ref="userService"></property>
-  	</bean>	  	
-  	<bean name="/pushdata" class="com.smit.web.PushDataAction" scope="prototype">
-  	</bean>	
-  	<bean name="/pushservicemanage" class="com.smit.web.PushServiceManage" scope="prototype">
-  		<property name="pushManage" ref="pushManage"></property>
-  	</bean>
-  	
-  	<bean id="smitLog" class="com.smit.util.SmitLog"></bean>
 	
+	</bean>
+	<bean name="/home" class="com.smit.web.PushDataAction" scope="prototype">
+	</bean>
+	<bean name="/devlogin" class="com.smit.web.PushDataAction" scope="prototype">
+		<property name="userService" ref="userService"></property>
+		<property name="pushDataService" ref="pushDataService"></property>
+	</bean>
+	<bean name="/developer_register" class="com.smit.web.PushDataAction"
+		scope="prototype">
+		<property name="userService" ref="userService"></property>
+	</bean>
+	<bean name="/pushdata" class="com.smit.web.PushDataAction" scope="prototype">
+	</bean>
+	<bean name="/pushservicemanage" class="com.smit.web.PushServiceManage"
+		scope="prototype">
+		<property name="pushManage" ref="pushManage"></property>
+	</bean>
+	<bean id="videoDao" class="com.smit.dao.VideoDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="videoService" class="com.smit.service.collection.VideoServiceImpl">
+		<property name="videoDao" ref="videoDao"></property>
+	</bean>
+	
+	<bean name="/video" class="com.smit.web.webService.VideoAction"	scope="prototype">
+		<property name="videoService" ref="videoService"></property>
+		<property name="columnService" ref="columnService"></property>
+	</bean>
+	
+	<bean name="/getVideoColumn" class="com.smit.web.webService.VideoAction"	scope="prototype">
+		<property name="columnService" ref="columnService"></property>
+	</bean>
+	
+	<bean id="collectVideoTask" class="com.smit.service.collection.CollectVideoTask" >
+		<property name="videoService" ref="videoService"></property>		
+	</bean>
+	<!-- collect information in special time -->
+	<bean id="collection" 
+ 	class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean"> 
+		<property name="targetObject" ref="collectVideoTask" />
+		<property name="targetMethod" value="youku" /> 
+	</bean>
+	<bean id="cronTrigger"
+		class="org.springframework.scheduling.quartz.CronTriggerBean">
+ 
+		<property name="jobDetail" ref="collection" />
+		<property name="cronExpression" value="0/10 * * * * ?" />
+ 
+	</bean>
+	<bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		<property name="jobDetails">
+		   <list>
+		      <ref bean="collection" />
+		   </list>
+		</property> 
+		<property name="triggers">
+		    <list>
+			<ref bean="cronTrigger" />
+		    </list>
+		</property>
+   </bean>  
 
+	<!-- logger -->
+	<bean id="smitLog" class="com.smit.util.SmitLog"></bean>
+
+	<!-- AOP -->
 	<aop:config proxy-target-class="true">
 		<aop:aspect id="logaop" ref="smitLog">
-			<aop:pointcut id="testPointcut" expression="execution(* com.smit.dao.SysInfoDaoImpl.*(..))" />
-			<aop:before pointcut-ref="testPointcut" method="before"/>
-			<aop:after pointcut-ref="testPointcut" method="after"/>
+			<aop:pointcut id="testPointcut"
+				expression="execution(* com.smit.dao.SysInfoDaoImpl.*(..))" />
+			<aop:before pointcut-ref="testPointcut" method="before" />
+			<aop:after pointcut-ref="testPointcut" method="after" />
 		</aop:aspect>
 	</aop:config>
-  
-  </beans>
+
+</beans>

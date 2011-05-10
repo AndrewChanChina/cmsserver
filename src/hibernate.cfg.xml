@@ -33,6 +33,7 @@
 	<mapping resource="com/smit/vo/Media.hbm.xml" />
 	<mapping resource="com/smit/vo/MediaType.hbm.xml" />
 	<mapping resource="com/smit/vo/PushService.hbm.xml" />
+	<mapping resource="com/smit/vo/Video.hbm.xml" />
 
 </session-factory>
 

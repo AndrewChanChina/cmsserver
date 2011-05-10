@@ -1,0 +1,6 @@
+
+测试查询栏目：
+http://localhost:8080/pring/getVideoColumn.do?columnKey=200
+
+测试返回视频的地址
+http://localhost:8080/pring/video.do?columnKey=101

@@ -55,7 +55,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    
    	<div class="body-box">
 	<div class="rhead">
-		<div class="rpos">当前位置: 会员组管理 - 列表</div>
+		<div class="rpos">前位置: 会员组管理 - 列表</div>
 		<form class="ropt">
 			<input type="submit" value="添加" onclick="this.form.action='gonewgroup.do';"/>
 		</form>

@@ -13,6 +13,7 @@ public class GroupForm extends ActionForm {
 	private String id;
 	private String hideId;
 	private String[] purviewids;
+	private Integer sortRank;
 	
 	public String getGroupName() {
 		return groupName;
@@ -38,5 +39,10 @@ public class GroupForm extends ActionForm {
 	public void setPurviewids(String[] purviewids) {
 		this.purviewids = purviewids;		
 	}
-	
+	public Integer getSortRank() {
+		return sortRank;
+	}
+	public void setSortRank(Integer sortRank) {
+		this.sortRank = sortRank;
+	}
 }

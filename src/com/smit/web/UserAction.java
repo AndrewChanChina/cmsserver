@@ -35,73 +35,80 @@ import com.smit.web.form.UserForm;
 
 public class UserAction extends MappingDispatchAction {
 
-	private IUserService userService; 
+	private IUserService userService;
 	private IGroupManagerService groupManager;
-	private IPushDataService pushDataService;
-	
+
 	public ActionForward register(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 
-		try{
-			RegisterForm loginForm = (RegisterForm)form;
-			userService.register(loginForm.getUsername(), 
-					loginForm.getPassword(), 
-					loginForm.getEmail(), 
+		try {
+			RegisterForm loginForm = (RegisterForm) form;
+			userService.register(loginForm.getUsername(),
+					loginForm.getPassword(), loginForm.getEmail(),
 					loginForm.getTel());
-					
-		}catch (Exception e){
+
+		} catch (Exception e) {
 			return mapping.findForward("fail");
 		}
 		return mapping.findForward("success");
-		
+
 	}
-	
+
 	public ActionForward login(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		HttpSession session = request.getSession();
+
 	//	String loginSuc = (String)session.getAttribute(Constants.LOGIN_SUC);
 		if (!isJcaptchaOK(request)) {
 			
 			return mapping.getInputForward();		
 	    }
-	    SmitLoginForm loginForm = (SmitLoginForm)form;		
-		
+	    SmitLoginForm loginForm = (SmitLoginForm)form;			
+
 		System.out.println(loginForm.getPasswd());
 		System.out.println(loginForm.getUserName());
-		try{
-			if(userService.login(loginForm.getUserName(), loginForm.getPasswd())){
+		try {
+			if (userService.login(loginForm.getUserName(),
+					loginForm.getPasswd())) {
 				// save some login information
 				session.setAttribute(Constants.LOGIN_SUC, Constants.SUCCESS);
+
 				session.setAttribute("userName", loginForm.getUserName());
 				return mapping.findForward("success-admin");
-			} else if(pushDataService.login(Constants.PUSH_HOST, 
-					loginForm.getUserName(), loginForm.getPasswd())) 
-			{
-				// login smack success
-				session.setAttribute(Constants.LOGIN_SUC, Constants.SUCCESS);
-				session.setAttribute("userName", loginForm.getUserName());
-				session.setAttribute(Constants.PUSH_CONNECTION, pushDataService);
-				User u = userService.findUserByName(loginForm.getUserName());
-				if(u != null){
-					session.setAttribute("id", u.getId());
-				}				
-				return mapping.findForward("success-user");
 			} else {
-				throw new Exception("dd");
+				return mapping.findForward("fail");
 			}
-			
-		}catch (Exception e){
+
+		} catch (Exception e) {
 			ActionErrors errors = new ActionErrors();
-			errors.add(ActionMessages.GLOBAL_MESSAGE,new ActionMessage("ee42452"));
+			errors.add(ActionMessages.GLOBAL_MESSAGE, new ActionMessage(
+					"ee42452"));
 			this.saveErrors(request, errors);
-			return mapping.findForward("fail");				
-		}		
-				
+			return mapping.findForward("fail");
+		}
+		
+//		 else if(pushDataService.login(Constants.PUSH_HOST, 
+//					loginForm.getUserName(), loginForm.getPasswd())) 
+//			{
+//				// login smack success
+//				session.setAttribute(Constants.LOGIN_SUC, Constants.SUCCESS);
+//				session.setAttribute("userName", loginForm.getUserName());
+//				session.setAttribute(Constants.PUSH_CONNECTION, pushDataService);
+//				User u = userService.findUserByName(loginForm.getUserName());
+//				if(u != null){
+//					session.setAttribute("id", u.getId());
+//				}				
+//				return mapping.findForward("success-user");
+//
+//			}
+
 	}
+
 	/**
 	 * logout action
+	 * 
 	 * @param mapping
 	 * @param form
 	 * @param request
@@ -109,24 +116,26 @@ public class UserAction extends MappingDispatchAction {
 	 * @return
 	 * @throws Exception
 	 */
-	public ActionForward logout(ActionMapping mapping,ActionForm form,
-		   HttpServletRequest request,HttpServletResponse response) 
-           throws Exception {
- 
+	public ActionForward logout(ActionMapping mapping, ActionForm form,
+			HttpServletRequest request, HttpServletResponse response)
+			throws Exception {
+
 		HttpSession session = request.getSession();
-		session.setAttribute(Constants.LOGIN_SUC,null);
-	    return mapping.findForward("success");
+		session.setAttribute(Constants.LOGIN_SUC, null);
+		return mapping.findForward("success");
 	}
-	
-	public ActionForward listUser(ActionMapping mapping,ActionForm form,
-			   HttpServletRequest request,HttpServletResponse response) 
-	           throws Exception {
-	 
-		SmitPage pager = new SmitPage(WebUtil.getIntByRequestParament(
-				request, SmitPage.pageNumberParameterName, 1));	
-		int pageSize = 10; 		
-		pager.setPageSize(pageSize);	
+
+	public ActionForward listUser(ActionMapping mapping, ActionForm form,
+			HttpServletRequest request, HttpServletResponse response)
+			throws Exception {
+
+		SmitPage pager = new SmitPage(WebUtil.getIntByRequestParament(request,
+				SmitPage.pageNumberParameterName, 1));
+		int pageSize = 10;
+		pager.setPageSize(pageSize);
 		pager.setUrl("listuser.do?");
+		
+		System.out.print("hehhee");
 
 		try {
 			List list = userService.listAllUsers(pager);
@@ -134,78 +143,78 @@ public class UserAction extends MappingDispatchAction {
 			request.setAttribute("listUser", list);
 		} catch (Exception e) {
 			return mapping.findForward("fail");
-		}  
+		}
 		return mapping.findForward("showuserlist");
-	} 
-	
-	public ActionForward deleteUser(ActionMapping mapping,ActionForm form,
-			   HttpServletRequest request,HttpServletResponse response) 
-	           throws Exception {
+	}
+
+	public ActionForward deleteUser(ActionMapping mapping, ActionForm form,
+			HttpServletRequest request, HttpServletResponse response)
+			throws Exception {
 		String id = request.getParameter("id");
 		User g = new User();
 		g.setId(Integer.valueOf(id));
-		
-		try{
+
+		try {
 			this.userService.delete(g);
-		}catch (Exception e){
+		} catch (Exception e) {
 			e.printStackTrace();
-			request.setAttribute("errorMsg", "can't delete user where id = " + id 
-					+ "with error:" + e.getMessage());
+			request.setAttribute("errorMsg", "can't delete user where id = "
+					+ id + "with error:" + e.getMessage());
 			request.setAttribute("backUrl", "listuser.do");
 			return mapping.findForward("fail");
 		}
 		return mapping.findForward("userright_userlist");
-		
+
 	}
 
-	public ActionForward goNewUser(ActionMapping mapping,ActionForm form,
-			   HttpServletRequest request,HttpServletResponse response) 
-	           throws Exception {
-		try{
-			UserForm userForm = new UserForm();		
+	public ActionForward goNewUser(ActionMapping mapping, ActionForm form,
+			HttpServletRequest request, HttpServletResponse response)
+			throws Exception {
+		try {
+			UserForm userForm = new UserForm();
 			userForm.setHideId(WebUtil.setHideId2Session(request.getSession()));
-			
+
 			String id = request.getParameter("id");
-			
-			if(id != null){
-				User g = userService.getUser(Integer.valueOf(id));				
+
+			if (id != null) {
+				User g = userService.getUser(Integer.valueOf(id));
 				BeanUtils.copyProperties(userForm, g);
 				userForm.setGroupId(String.valueOf(g.getGroup().getId()));
-				
+
 			}
 			List groupList = groupManager.listAllGroups(null);
-			for(Object item : groupList){
-				Group g = (Group)item;
+			for (Object item : groupList) {
+				Group g = (Group) item;
 				System.out.println(g.getGroupName());
 			}
 			request.setAttribute("userForm", userForm);
 			request.setAttribute("groupList", groupList);
-			
-		}catch(Exception e){
+
+		} catch (Exception e) {
 			return mapping.findForward("fail");
 		}
-		
+
 		return mapping.findForward("continue");
 	}
-	
-	public ActionForward saveUpdateUser(ActionMapping mapping,ActionForm form,
-			   HttpServletRequest request,HttpServletResponse response) 
-	           throws Exception {		
-		
-		UserForm userForm = (UserForm)form;
-		if( WebUtil.isHideIdEqual(request.getSession(), userForm.getHideId()) == false){
+
+	public ActionForward saveUpdateUser(ActionMapping mapping, ActionForm form,
+			HttpServletRequest request, HttpServletResponse response)
+			throws Exception {
+
+		UserForm userForm = (UserForm) form;
+		if (WebUtil.isHideIdEqual(request.getSession(), userForm.getHideId()) == false) {
 			return mapping.findForward("fail");
 		}
-		
+
 		User u = new User();
 		Group group = new Group();
 		group.setId(Integer.valueOf(userForm.getGroupId()));
 		BeanUtils.copyProperties(u, userForm);
-		u.setUserName(userForm.getUserName());	
-		u.setGroup(group);		
-	
+		u.setUserName(userForm.getUserName());
+		u.setGroup(group);
+
 		try {
-			if (userForm.getId()!=null && userForm.getId().isEmpty()==false ) {
+			if (userForm.getId() != null && userForm.getId().isEmpty() == false) {
 				u.setId(Integer.valueOf(userForm.getId()));
 				userService.update(u);
 			} else {
@@ -217,19 +226,15 @@ public class UserAction extends MappingDispatchAction {
 			return mapping.findForward("fail");
 		}
 		return mapping.findForward("userright_userlist");
-		
+
 	}
-	
+
 	public void setUserService(IUserService userService) {
 		this.userService = userService;
 	}
 
 	public void setGroupManager(IGroupManagerService groupManager) {
 		this.groupManager = groupManager;
-	}
-
-	public void setPushDataService(IPushDataService pushDataService) {
-		this.pushDataService = pushDataService;
 	}
 	public boolean isJcaptchaOK(HttpServletRequest request) 
 	{ 
@@ -268,5 +273,4 @@ public class UserAction extends MappingDispatchAction {
 		return false; 
 	} 
 
-	
 }
