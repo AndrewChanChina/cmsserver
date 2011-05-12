@@ -49,14 +49,16 @@ public class LoginFilter implements Filter {
             allowedRequest = true;
         }
         //TODO test now
-        allowedRequest = true;
+        //allowedRequest = true;
         // skip 
 		if(allowedRequest == false){
 			HttpSession session = request.getSession();
 			String str = (String)session.getAttribute(Constants.LOGIN_SUC);
 			if(Constants.SUCCESS.equals(str) == false){
-				 response.sendRedirect("login.do");
+				 response.sendRedirect("login_jsp.do");
+				 System.out.println("catch you");
 			}
+			
 		}
 		
 		arg2.doFilter(arg0, arg1);

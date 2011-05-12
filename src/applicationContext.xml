@@ -43,14 +43,28 @@
 	<bean id="userService" class="com.smit.service.UserServiceImpl">
 		<property name="userDao" ref="userDao"></property>
 	</bean>
-	<!-- login register action -->
+	<!-- 个人用户登陆 -->
 	<bean name="/login" class="com.smit.web.UserAction" scope="prototype">
+		<property name="pushDataService" ref="pushDataService"></property>
 		<property name="userService" ref="userService"></property>
 	</bean>
 	<bean name="/logout" class="com.smit.web.UserAction" scope="prototype">
 	</bean>
-	<bean name="/register" class="com.smit.web.UserAction" scope="prototype">
+	<!-- 管理员登陆 -->
+	<bean name="/login_admin" class="com.smit.web.UserAction" scope="prototype">
 		<property name="userService" ref="userService"></property>
+	</bean>
+	<bean name="/logout_admin" class="com.smit.web.UserAction" scope="prototype">
+	</bean>
+	<bean name="/register_admin" class="com.smit.web.UserAction" scope="prototype">
+		<property name="userService" ref="userService"></property>
+	</bean>
+	
+	<!-- 开发者登陆 -->
+	<bean name="/loginDev" class="com.smit.web.UserAction" scope="prototype">
+		<property name="userService" ref="userService"></property>
+	</bean>
+	<bean name="/logoutDev" class="com.smit.web.UserAction" scope="prototype">
 	</bean>
 
 	<!-- user manager action -->
@@ -238,7 +252,7 @@
 		class="org.springframework.scheduling.quartz.CronTriggerBean">
  
 		<property name="jobDetail" ref="collection" />
-		<property name="cronExpression" value="0 0/10 * * * ?" />
+		<property name="cronExpression" value="0 0 1/5 * * ?" />
  
 	</bean>
 	<bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">

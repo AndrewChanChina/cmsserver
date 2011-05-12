@@ -50,7 +50,7 @@ body {
 	</head>
 	<body>
 		
-		<form id="jvForm" action="login.do" method="post">
+		<form id="jvForm" action="login_admin.do" method="post">
 			<table width="750" border="0" align="center" cellpadding="0"
 				cellspacing="0">
 				<tr>
@@ -93,7 +93,7 @@ body {
 													cellpadding="0" cellspacing="5">
 													<tr>
 														<font color="red"> <html:errors /> </font>
-														<html:errors property="KEY"/>
+														<html:errors property="username"/>
 													</tr>
 													<tr>
 														<td width="91" height="40" align="right">

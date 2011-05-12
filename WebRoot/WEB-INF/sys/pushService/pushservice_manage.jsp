@@ -87,5 +87,6 @@
 			</tr>
 		</table>
 	</form>
+	<a href="home_developer.do">返回</a>
 </body>
 </html:html>
