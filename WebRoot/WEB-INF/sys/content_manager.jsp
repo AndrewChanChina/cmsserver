@@ -66,7 +66,6 @@ if(contents != null && contents.get(0)!= null){
   while(iter.hasNext()){
   	com.smit.vo.Part part = (com.smit.vo.Part)iter.next();
   	request.setAttribute("part",part); 
-  	
  
 %>
   <option value="${part.id}" class="sel-disabled" <% if(part.getTypename() != null && contents != null && contents.get(1) != null && part.getTypename().equals((String)contents.get(1))) {%> selected <%} %>>
