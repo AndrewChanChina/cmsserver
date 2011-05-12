@@ -43,7 +43,6 @@
 </HEAD>
 	
 	<BODY>
-	<a href="login_adminj.do">管理员登陆入口</a>
 		<DIV id=LoginContainer>
 			<IMG class=loginBgImage src="./dev/img/login_bg_left.gif">
 			<DIV id=LoginMain>
@@ -52,10 +51,10 @@
 				</DIV>
 				<DIV id=LoginFormContainer>
 					<FORM id=LoginForm
-						action="login.do"
+						action="loginDev.do"
 						method=post>
 						<p>
-							<a href="loginDevj.do">开发者到这里登陆</a>
+							<a href="login_jsp.do">个人用户到这里登陆</a>
 						</p>
 						<font color="red">
 							<html:errors property="fail"/>
@@ -107,7 +106,7 @@
 								type=submit value=登录(L)>
 							<INPUT type=hidden name=HttpRefer>
 						</P>
-						
+					
 						<DIV class=notice id=ActionMessage style="DISPLAY: none"></DIV>
 					</FORM>
 				</DIV>

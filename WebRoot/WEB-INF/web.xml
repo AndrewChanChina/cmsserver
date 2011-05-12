@@ -35,7 +35,10 @@
   	<filter-class>com.smit.web.LoginFilter</filter-class>
   	<init-param>
 		<param-name>avoid-urls</param-name>
-		<param-value>login.do,logout.do,register.do,welcome.do</param-value>		
+		<param-value>jcaptcha.do,login.do,logout.do,register.do,
+		welcome.do,login_jsp.do,loginDevj.do,
+		loginDev.do,login_admin.do,logout_admin.do,
+		register_admin.do,login_adminj.do,loginDev.do</param-value>		
 	</init-param>
   	
   </filter>
@@ -46,6 +49,7 @@
   </filter-mapping>
   
   <welcome-file-list>
+    <welcome-file>/WEB-INF/sys/pushService/login.jsp</welcome-file>
     <welcome-file>/WEB-INF/sys/index.html</welcome-file>
   </welcome-file-list>
   

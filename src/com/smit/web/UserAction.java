@@ -1,7 +1,5 @@
 package com.smit.web;
 
-
-
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -37,7 +35,71 @@ public class UserAction extends MappingDispatchAction {
 
 	private IUserService userService;
 	private IGroupManagerService groupManager;
+	private IPushDataService pushDataService;
 
+	/**
+	 * 普通用户登录
+	 */
+	public ActionForward login(ActionMapping mapping, ActionForm form,
+			HttpServletRequest request, HttpServletResponse response)
+			throws Exception {
+		HttpSession session = request.getSession();
+		String loginSuc = (String) session.getAttribute(Constants.LOGIN_SUC);
+		if (loginSuc != null) {
+			response.sendRedirect("home.do");
+			return null;
+		}
+
+		SmitLoginForm loginForm = (SmitLoginForm) form;
+
+		System.out.println(loginForm.getPasswd());
+		System.out.println(loginForm.getUserName());
+		try {
+			 if(pushDataService.login(Constants.PUSH_HOST,			 
+			    loginForm.getUserName(), loginForm.getPasswd())){		
+				// login smack success
+				session.setAttribute(Constants.LOGIN_SUC, Constants.SUCCESS);
+				session.setAttribute(Constants.CURUSERNAME,
+						loginForm.getUserName());
+				session.setAttribute(Constants.PUSH_CONNECTION, pushDataService);
+				session.setAttribute(Constants.LEVEL, Constants.LEVEL_USER);
+				User u = userService.findUserByName(loginForm.getUserName());
+				if (u != null) {
+					session.setAttribute(Constants.CUR_USER_ID, u.getId());
+				}
+				response.sendRedirect("home.do");
+				return null;
+			} else {
+				throw new Exception("dd");
+			}
+
+		} catch (Exception e) {
+			ActionErrors errors = new ActionErrors();
+			errors.add(ActionMessages.GLOBAL_MESSAGE, new ActionMessage(
+					"ee42452"));
+			this.saveErrors(request, errors);
+			return mapping.findForward("fail");
+		}
+	}
+
+	/**
+	 * 普通用户登出
+	 */
+	public ActionForward logout(ActionMapping mapping, ActionForm form,
+			HttpServletRequest request, HttpServletResponse response)
+			throws Exception {
+		HttpSession session = request.getSession();
+		session.setAttribute(Constants.LOGIN_SUC, null);
+		pushDataService = (IPushDataService) session
+				.getAttribute(Constants.PUSH_CONNECTION);
+		// pushDataService.getConnection().disconnect();
+		response.sendRedirect("login_jsp.do");
+		return null;
+	}
+
+	/**
+	 * 注册
+	 */
 	public ActionForward register(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
@@ -55,17 +117,21 @@ public class UserAction extends MappingDispatchAction {
 
 	}
 
-	public ActionForward login(ActionMapping mapping, ActionForm form,
-			HttpServletRequest request, HttpServletResponse response)
-			throws Exception {
+	/**
+	 * 开发者登录
+	 */
+	public ActionForward login_developer(ActionMapping mapping,
+			ActionForm form, HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
 		HttpSession session = request.getSession();
 
-	//	String loginSuc = (String)session.getAttribute(Constants.LOGIN_SUC);
-		if (!isJcaptchaOK(request)) {
-			
-			return mapping.getInputForward();		
-	    }
-	    SmitLoginForm loginForm = (SmitLoginForm)form;			
+		String loginSuc = (String) session.getAttribute(Constants.LOGIN_SUC);
+		if (loginSuc != null) {
+			response.sendRedirect("home_developer.do");
+			return null;
+		}
+
+		SmitLoginForm loginForm = (SmitLoginForm) form;
 
 		System.out.println(loginForm.getPasswd());
 		System.out.println(loginForm.getUserName());
@@ -74,55 +140,91 @@ public class UserAction extends MappingDispatchAction {
 					loginForm.getPasswd())) {
 				// save some login information
 				session.setAttribute(Constants.LOGIN_SUC, Constants.SUCCESS);
-
 				session.setAttribute("userName", loginForm.getUserName());
-				return mapping.findForward("success-admin");
+				session.setAttribute(Constants.LEVEL, Constants.LEVEL_DEVELOPER);
+				User u = userService.findUserByName(loginForm.getUserName());
+				if (u != null) {
+					session.setAttribute(Constants.CUR_USER_ID, u.getId());
+				}
+				response.sendRedirect("home_developer.do");
+				return null;
 			} else {
+				ActionErrors errors = new ActionErrors();
+				errors.add("fail", new ActionMessage("err.login.fail"));
+				this.saveErrors(request, errors);
 				return mapping.findForward("fail");
 			}
 
 		} catch (Exception e) {
-			ActionErrors errors = new ActionErrors();
-			errors.add(ActionMessages.GLOBAL_MESSAGE, new ActionMessage(
-					"ee42452"));
-			this.saveErrors(request, errors);
-			return mapping.findForward("fail");
+			return mapping.findForward("exception");
 		}
-		
-//		 else if(pushDataService.login(Constants.PUSH_HOST, 
-//					loginForm.getUserName(), loginForm.getPasswd())) 
-//			{
-//				// login smack success
-//				session.setAttribute(Constants.LOGIN_SUC, Constants.SUCCESS);
-//				session.setAttribute("userName", loginForm.getUserName());
-//				session.setAttribute(Constants.PUSH_CONNECTION, pushDataService);
-//				User u = userService.findUserByName(loginForm.getUserName());
-//				if(u != null){
-//					session.setAttribute("id", u.getId());
-//				}				
-//				return mapping.findForward("success-user");
-//
-//			}
-
 	}
 
 	/**
-	 * logout action
-	 * 
-	 * @param mapping
-	 * @param form
-	 * @param request
-	 * @param response
-	 * @return
-	 * @throws Exception
+	 * 管理员登出
 	 */
-	public ActionForward logout(ActionMapping mapping, ActionForm form,
+	public ActionForward logout_developer(ActionMapping mapping,
+			ActionForm form, HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+
+		HttpSession session = request.getSession();
+		session.setAttribute(Constants.LOGIN_SUC, null);
+		return mapping.findForward("success");
+	}
+
+	/**
+	 * 管理员登录
+	 */
+	public ActionForward login_admin(ActionMapping mapping, ActionForm form,
+			HttpServletRequest request, HttpServletResponse response)
+			throws Exception {
+		HttpSession session = request.getSession();
+
+		if (!isJcaptchaOK(request)) {
+			return mapping.getInputForward();
+		}
+
+		SmitLoginForm loginForm = (SmitLoginForm) form;
+
+		System.out.println(loginForm.getPasswd());
+		System.out.println(loginForm.getUserName());
+		try {
+			//TODO 还有防止他们用用户的账号登陆
+			if (userService.login(loginForm.getUserName(),
+					loginForm.getPasswd())) {
+				// save some login information
+				session.setAttribute(Constants.LOGIN_SUC, Constants.SUCCESS);
+				session.setAttribute("userName", loginForm.getUserName());
+				session.setAttribute(Constants.LEVEL, Constants.LEVEL_ADMIN);
+				User u = userService.findUserByName(loginForm.getUserName());
+				if (u != null) {
+					session.setAttribute(Constants.CUR_USER_ID, u.getId());
+				}
+				response.sendRedirect("index.do");
+				return null;
+			} else {
+				ActionErrors errors = new ActionErrors();
+				errors.add("fail", new ActionMessage(
+						"err.login.fail"));
+				this.saveErrors(request, errors);
+				return mapping.findForward("fail");
+			}
+
+		} catch (Exception e) {			
+			return mapping.findForward("exception");
+		}
+	}
+
+	/**
+	 * 管理员登出
+	 */
+	public ActionForward logout_admin(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 
 		HttpSession session = request.getSession();
 		session.setAttribute(Constants.LOGIN_SUC, null);
-		return mapping.findForward("success");
+		return mapping.findForward("login_admin.do");
 	}
 
 	public ActionForward listUser(ActionMapping mapping, ActionForm form,
@@ -134,7 +236,7 @@ public class UserAction extends MappingDispatchAction {
 		int pageSize = 10;
 		pager.setPageSize(pageSize);
 		pager.setUrl("listuser.do?");
-		
+
 		System.out.print("hehhee");
 
 		try {
@@ -229,6 +331,40 @@ public class UserAction extends MappingDispatchAction {
 
 	}
 
+	public boolean isJcaptchaOK(HttpServletRequest request) {
+		CaptchaService service = CaptchaServicePlugin.getInstance()
+				.getService();
+		String responseKey = CaptchaServicePlugin.getInstance()
+				.getResponseKey();
+		String captchaID = CaptchaModuleConfigHelper.getId(request);
+		String challengeResponse = request.getParameter(responseKey);
+
+		request.removeAttribute(responseKey);
+		boolean isResponseCorrect = false;
+		if (challengeResponse != null)
+			try {
+				isResponseCorrect = service.validateResponseForID(captchaID,
+				challengeResponse).booleanValue();
+			} catch (CaptchaServiceException e) {
+
+				request.setAttribute(CaptchaServicePlugin.getInstance()
+						.getMessageKey(), CaptchaModuleConfigHelper
+						.getMessage(request));
+
+				throw (e);// 抛出程序应用异常
+			}
+		if (isResponseCorrect) {
+
+			return true;// 正确
+		}
+
+		ActionErrors errors = new ActionErrors();// 用ActionError替换了他自己的Message
+		errors.add("jcaptcha_error_msg", new ActionMessage(
+				"error.jcaptcha.error.inputInvalid"));
+		this.addErrors(request, errors);
+		return false;
+	}
+
 	public void setUserService(IUserService userService) {
 		this.userService = userService;
 	}
@@ -236,41 +372,9 @@ public class UserAction extends MappingDispatchAction {
 	public void setGroupManager(IGroupManagerService groupManager) {
 		this.groupManager = groupManager;
 	}
-	public boolean isJcaptchaOK(HttpServletRequest request) 
-	{ 
-		
-		CaptchaService service = CaptchaServicePlugin.getInstance () 
-		.getService(); 
-		String responseKey = CaptchaServicePlugin.getInstance () 
-		.getResponseKey(); 
-		String captchaID = CaptchaModuleConfigHelper.getId (request); 
-		String challengeResponse = request.getParameter(responseKey); 
-	
-		request.removeAttribute(responseKey); 
-		boolean isResponseCorrect = false ; 
-		if (challengeResponse != null ) 
-		try { 
-		isResponseCorrect = service.validateResponseForID(captchaID, 
-		challengeResponse).booleanValue(); 
-		} catch (CaptchaServiceException e) { 
-	
-		request.setAttribute(CaptchaServicePlugin 
-		.getInstance ().getMessageKey(), 
-		CaptchaModuleConfigHelper 
-		.getMessage (request)); 
-		
-		throw (e);//抛出程序应用异常 
-		} 
-		if (isResponseCorrect) { 
-	
-		return true;//正确 
-		} 
-		
-		ActionErrors errors = new ActionErrors();//用ActionError替换了他自己的Message 
-		errors.add("jcaptcha_error_msg", new ActionMessage( 
-		"error.jcaptcha.error.inputInvalid")); 
-		this.addErrors(request, errors); 
-		return false; 
-	} 
+
+	public void setPushDataService(IPushDataService pushDataService) {
+		this.pushDataService = pushDataService;
+	}
 
 }
