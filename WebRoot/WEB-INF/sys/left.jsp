@@ -67,10 +67,8 @@ $(function(){
 			</li>
 			<li>
 				<a href="listpurview.do" target="rightFrame">权限管理</a>
-			</li>
-		
+			</li>	
 
-		
 <%	
 	}else if(opCode.equalsIgnoreCase("content")){
 %>

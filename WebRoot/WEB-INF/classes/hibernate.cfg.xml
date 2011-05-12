@@ -13,6 +13,7 @@
 
 
 	<property name="connection.password">123456</property>
+
 	<property name="connection.driver_class">com.mysql.jdbc.Driver</property>
 	<property name="myeclipse.connection.profile">sss</property>
 
@@ -29,6 +30,7 @@
 	<mapping resource="com/smit/vo/Media.hbm.xml" />
 	<mapping resource="com/smit/vo/MediaType.hbm.xml" />
 	<mapping resource="com/smit/vo/PushService.hbm.xml" />
+	<mapping resource="com/smit/vo/Video.hbm.xml" />
 
 </session-factory>
 

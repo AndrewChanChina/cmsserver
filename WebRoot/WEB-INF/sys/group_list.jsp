@@ -26,12 +26,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<link href="./css/jquery.treeview.css" rel="stylesheet" type="text/css"/>
 	<link href="./css/jquery.ui.css" rel="stylesheet" type="text/css"/>
 
-	<script src="./js/fckeditor.js" type="text/javascript"></script>
-	<script src="./js/WdatePicker.js" type="text/javascript"></script>
-	<script src="./js/jquery.js" type="text/javascript"></script>
-	<script src="./js/jquery.ext.js" type="text/javascript"></script>
-	<script src="./js/pony.js" type="text/javascript"></script>
-	<script src="./js/admin.js" type="text/javascript"></script>
 	<script type="text/javascript">
 		function getTableForm() {
 			return document.getElementById('tableForm');
@@ -61,7 +55,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    
    	<div class="body-box">
 	<div class="rhead">
-		<div class="rpos">当前位置: 会员组管理 - 列表</div>
+		<div class="rpos">前位置: 会员组管理 - 列表</div>
 		<form class="ropt">
 			<input type="submit" value="添加" onclick="this.form.action='gonewgroup.do';"/>
 		</form>

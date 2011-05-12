@@ -69,7 +69,7 @@ public class PushServiceManage extends DispatchAction {
 			HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		if(this.isTokenValid(request, true) == false){
-			return mapping.findForward("fail"); // repeat submit form data
+			return mapping.findForward("repeatForm"); // repeat submit form data
 		}
 		try{
 			// TODO keep user name to be unique, modify database setting			

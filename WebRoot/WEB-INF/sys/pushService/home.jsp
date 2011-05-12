@@ -27,12 +27,19 @@
 </head>
 
 <body>
-	<a href="pushservicemanage.do?opt=list">显示所有服务</a><br>
-	<a href="pushservicemanage.do?opt=pushData">开发者推送服务</a><br>
+	
 	
 	<form method="post" action="pushdata.do" id="jvForm">
 			<table width="100%" class="pn-ftable" cellpadding="2" cellspacing="1"
 				border="0">
+				<tr>
+				<td>
+				</td>
+				<td>
+				<p>这是个人用户界面，这里提供了向你的设备推送信息的功能</p>
+				<a href="logout.do">登出</a>
+				</td>
+				</tr>
 				<tr>
 					<td width="12%" class="pn-flabel pn-flabel-h">
 						服务类型：

@@ -25,12 +25,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <link href="./css/jquery.treeview.css" rel="stylesheet" type="text/css"/>
 <link href="./css/jquery.ui.css" rel="stylesheet" type="text/css"/>
 
-<script src="./js/fckeditor.js" type="text/javascript"></script>
-<script src="./js/WdatePicker.js" type="text/javascript"></script>
-<script src="./js/jquery.js" type="text/javascript"></script>
-<script src="./js/jquery.ext.js" type="text/javascript"></script>
-<script src="./js/pony.js" type="text/javascript"></script>
-<script src="./js/admin.js" type="text/javascript"></script>
 <script type="text/javascript">
 function getTableForm() {
 	return document.getElementById('tableForm');

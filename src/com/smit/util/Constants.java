@@ -12,12 +12,19 @@ public class Constants {
 	public final static String CURUSERNAME = "current_user_name"; 	// String
 	public final static String CUR_USER_ID = "current_user_id";		// Integer
 	public final static String IS_DEVELOPER	= "is_developer";		// Boolean
+	public final static String CUR_GROUPNAME = "current_group_name";
+	//  管理员的level是1；用户的level是2，开发者的level是3
+	public final static String LEVEL = "level";
+	public final static Integer LEVEL_ADMIN = 1;
+	public final static Integer LEVEL_USER = 2;
+	public final static Integer LEVEL_DEVELOPER = 3;
+	
 	
 	public final static String OPERATOR = "opt";
 
 	// for push service
 	
-	public final static String PUSH_HOST = "192.168.0.113";
+	public final static String PUSH_HOST = "localhost";//"192.168.0.181";
 	public final static String PUSH_CONNECTION	= "pushConnection";
 	
 	// push service type

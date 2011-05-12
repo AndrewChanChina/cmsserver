@@ -1,6 +1,6 @@
 ﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<%@ page language="java" pageEncoding="utf-8"%>
-<%@ taglib uri="http://struts.apache.org/tags-html" prefix="html"%>
+<%@ page language="java" pageEncoding="UTF-8"%>
+<%@ taglib uri= "/WEB-INF/struts-html.tld" prefix="html"%> 
 <%@ taglib uri="/WEB-INF/jcaptcha.tld" prefix="jcaptcha" %> 
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
@@ -14,12 +14,6 @@
 			type="text/css" />
 		<link href="./css/jquery.ui.css" rel="stylesheet" type="text/css" />
 
-		<script src="./js/fckeditor.js" type="text/javascript"></script>
-		<script src="./js/WdatePicker.js" type="text/javascript"></script>
-		<script src="./js/jquery.js" type="text/javascript"></script>
-		<script src="./js/jquery.ext.js" type="text/javascript"></script>
-		<script src="./js/pony.js" type="text/javascript"></script>
-		<script src="./js/admin.js" type="text/javascript"></script>
 		<style type="text/css">
 body {
 	margin: 0;
@@ -55,8 +49,8 @@ body {
 </script>
 	</head>
 	<body>
-
-		<form id="jvForm" action="login.do" method="post">
+		
+		<form id="jvForm" action="login_admin.do" method="post">
 			<table width="750" border="0" align="center" cellpadding="0"
 				cellspacing="0">
 				<tr>
@@ -99,7 +93,7 @@ body {
 													cellpadding="0" cellspacing="5">
 													<tr>
 														<font color="red"> <html:errors /> </font>
-														<html:errors property="KEY"/>
+														<html:errors property="username"/>
 													</tr>
 													<tr>
 														<td width="91" height="40" align="right">

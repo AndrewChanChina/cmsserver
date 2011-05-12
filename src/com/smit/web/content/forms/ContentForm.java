@@ -10,6 +10,10 @@ import com.smit.vo.Part;
 public class ContentForm extends ActionForm{
 
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 4767023827329542424L;
 	private Integer id;
 	private String title;
 	private String shortTitle;

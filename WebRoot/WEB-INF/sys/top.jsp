@@ -1,6 +1,5 @@
-
 <%@ page contentType= "text/html;charset=UTF-8" language= "java"%>
-<%@page import="org.hibernate.impl.SessionFactoryImpl"%>
+<%@ page import="org.hibernate.impl.SessionFactoryImpl"%>
 <%@ page import="java.util.*"%>
 <%@ page import="com.smit.dao.*"%>
 <%@ page import="com.smit.vo.*"%>
@@ -122,7 +121,7 @@ function changeSite(siteId) {
           <tr>
             <td width="260" height="30">
 			<img src="./images/admin/ico1.gif"><span id="welcome">你好,<%=userName %></span>
-			<img src="./images/admin/ico2.jpg"><a href="logout.do" target="_top" id="logout" onclick="">退出</a></td>
+			<img src="./images/admin/ico2.jpg"><a href="login_adminj.do" target="_top" id="logout" onclick="">退出</a></td>
             <td align="right">
          
             </td>

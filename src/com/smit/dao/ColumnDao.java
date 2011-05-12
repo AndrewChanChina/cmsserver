@@ -3,6 +3,7 @@ package com.smit.dao;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.smit.vo.Group;
 import com.smit.vo.Part;
 
 public interface ColumnDao {
@@ -17,4 +18,9 @@ public interface ColumnDao {
 	public boolean updateColumn(final ArrayList<Part> columnList);
 	
 	Part queryByColumnId(final Integer id) throws Exception;
+	
+	
+	public Part findByName(String name);
+	public List<Part> queryNextChildren(Integer partId);
+	public void savePart(Part part);
 }

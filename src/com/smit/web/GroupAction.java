@@ -19,11 +19,8 @@ import com.smit.vo.Group;
 import com.smit.vo.Purview;
 import com.smit.web.form.GroupForm;
 
-public class GroupAction extends MappingDispatchAction {
-	
-	private final static String METHOD_PARAM = "show";
-	private final static String METHOD_DEFAULT = "grouplist";
-	private final static String METHOD_USER	= "userlist";
+public class GroupAction extends MappingDispatchAction {	
+
 	private IGroupManagerService groupManager;
 	private IPurviewService purviewService;
 	
@@ -62,6 +59,7 @@ public class GroupAction extends MappingDispatchAction {
 		Group g = new Group();
 		g.setCreatetime( new java.sql.Timestamp(today.getTime()) );
 		g.setGroupName(groupForm.getGroupName());
+		g.setSortRank(groupForm.getSortRank());
 		
 		for(String id : groupForm.getPurviewids()){
 			Purview p = new Purview();

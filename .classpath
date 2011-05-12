@@ -51,7 +51,12 @@
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/dom4j-1.6.1.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/asm-all-4.0_RC1.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/asm-all-4.0_RC1.pom"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/strutstest-2.1.4.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/quartz-all-1.6.0.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/spring-context-support.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/jcaptcha-1.0-all.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/jcaptcha-integration-struts-1.0.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/jstl.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/standard.jar"/>
 	<classpathentry kind="output" path="WebRoot/WEB-INF/classes"/>
 </classpath>

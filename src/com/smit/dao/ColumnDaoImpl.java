@@ -5,20 +5,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
-import org.slf4j.Logger;
 import org.springframework.orm.hibernate3.HibernateCallback;
 import org.springframework.orm.hibernate3.HibernateTemplate;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 import com.smit.vo.Part;
-import com.smit.vo.SysInfo;
 
 public class ColumnDaoImpl extends HibernateDaoSupport implements ColumnDao
 {
@@ -284,5 +279,37 @@ public class ColumnDaoImpl extends HibernateDaoSupport implements ColumnDao
 			ht.save(partRoot);
 			return partRoot;
 		}
+	}
+
+
+	@Override
+	public Part findByName(String name) {
+		String hql = "from com.smit.vo.Part s where s.typename='" + name + "'";		
+		List list = this.getHibernateTemplate().find(hql);
+		
+		if(list.size() < 1){
+			return null;
+		}
+		return (Part)list.get(0);
+	}
+	
+	@Override
+	public List<Part> queryNextChildren(Integer partId){
+		String hql = "from com.smit.vo.Part s where s.partId = '" + partId + "'";
+		List<Part> list = this.getHibernateTemplate().find(hql);
+		if(list.isEmpty())
+			return list;
+		
+		hql = "from com.smit.vo.Part s where s.father_id = '" + list.get(0).getId() + "'";
+		list = this.getHibernateTemplate().find(hql);
+		
+		return list;		
+	}
+
+
+
+	@Override
+	public void savePart(Part part) {
+		this.getHibernateTemplate().save(part);
 	}
 }
