@@ -12,7 +12,16 @@ public class PushDataForm extends ValidatorForm {
 	private String ticket;
 	private String uri;
 	private String message;
+	private String[] deviceIds;
 	
+	
+	
+	public String[] getDeviceIds() {
+		return deviceIds;
+	}
+	public void setDeviceIds(String[] deviceIds) {
+		this.deviceIds = deviceIds;
+	}
 	public String getServicetype() {
 		return servicetype;
 	}

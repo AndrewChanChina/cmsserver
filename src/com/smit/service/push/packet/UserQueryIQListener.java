@@ -8,7 +8,7 @@ import org.jivesoftware.smack.packet.Packet;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.smit.service.push.IPushManage;
+import com.smit.service.push.IPushManageService;
 import com.smit.vo.UserAccountResource;
 
 public class UserQueryIQListener implements PacketListener {
@@ -22,7 +22,7 @@ public class UserQueryIQListener implements PacketListener {
 			
 			UserQueryIQ iq = (UserQueryIQ)packet;
 			BeanFactory beanFactory = new ClassPathXmlApplicationContext("applicationContext.xml");
-			IPushManage pm = (IPushManage)beanFactory.getBean("pushManage");
+			IPushManageService pm = (IPushManageService)beanFactory.getBean("pushManage");
 			
 			List<UserAccountResource> list = new ArrayList<UserAccountResource>();
 			List<String> resources = iq.getResources();
@@ -41,7 +41,8 @@ public class UserQueryIQListener implements PacketListener {
 			}
 			if(i > 0){
 				pm.updateUserAccountAllRes(list);
-			}			
+			}	
+			beanFactory = null;
 		}
 	}
 

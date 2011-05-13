@@ -11,7 +11,7 @@ import com.smit.util.WebUtil;
 import com.smit.vo.PushService;
 import com.smit.vo.UserAccountResource;
 
-public class PushManageImpl implements IPushManage {
+public class PushManageServiceImpl implements IPushManageService {
 
 	IPushServiceDao pushServiceDao;
 	

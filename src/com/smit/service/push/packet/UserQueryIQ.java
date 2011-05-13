@@ -16,6 +16,7 @@ public class UserQueryIQ extends IQ {
 	private String deviceName;		// 可以提交设备的名称
 	private String deviceId;		// 可以提交设备的唯一id
 	private String opCode;			// 可以是save or query
+	private String resource;
 	
 	// 以下是接收到的数据
 	private List<String> resources = new ArrayList<String>(); // 返回的
@@ -53,6 +54,9 @@ public class UserQueryIQ extends IQ {
 		
 		if(deviceId != null)
 		buf.append("<deviceId>").append(deviceId).append("</deviceId>");
+		
+		if(resource != null)
+			buf.append("<resource>").append(resource).append("</resource>");
 		
 		if(opCode != null)
 		buf.append("<opCode>").append(opCode).append("</opCode>");
@@ -116,5 +120,12 @@ public class UserQueryIQ extends IQ {
 	public void setStatus(String status) {
 		this.status = status;
 	}
+	public String getResource() {
+		return resource;
+	}
+	public void setResource(String resource) {
+		this.resource = resource;
+	}
 
+	
 }

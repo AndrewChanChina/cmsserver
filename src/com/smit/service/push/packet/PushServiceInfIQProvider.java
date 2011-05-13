@@ -22,12 +22,12 @@ public class PushServiceInfIQProvider implements IQProvider {
 	                if ("userAccount".equals(parser.getName())) {
 	                	pushServiceInfIQ.setUserAccount(parser.nextText());
 	                }
-	                if ("pushId".equals(parser.getName())) {
+	                if ("pushID".equals(parser.getName())) {
 	                	pushServiceInfIQ.getPushIds().add(parser.nextText());
 	                }
 	                
 	            } else if (eventType == 3
-	                    && PushServerIQ.getElementName().equals(parser.getName())) {
+	                    && pushServiceInfIQ.getElementName().equals(parser.getName())) {
 	                done = true;	               
 	            }
 	        }

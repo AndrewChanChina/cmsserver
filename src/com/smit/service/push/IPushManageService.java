@@ -6,7 +6,7 @@ import com.smit.util.SmitPage;
 import com.smit.vo.PushService;
 import com.smit.vo.UserAccountResource;
 
-public interface IPushManage {
+public interface IPushManageService {
 
 	public void save(PushService ps);
 	public void update(PushService ps);

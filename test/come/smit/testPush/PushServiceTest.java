@@ -8,18 +8,18 @@ import org.hibernate.HibernateException;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.smit.service.push.IPushManage;
+import com.smit.service.push.IPushManageService;
 import com.smit.vo.PushService;
 import com.smit.vo.UserAccountResource;
 
 public class PushServiceTest extends TestCase {
 
 	private BeanFactory beanFactory;
-	private IPushManage pm;
+	private IPushManageService pm;
 	protected void setUp() throws Exception {
 		try {
 			beanFactory = new ClassPathXmlApplicationContext("applicationContext.xml");
-			pm = (IPushManage)beanFactory.getBean("pushManage");
+			pm = (IPushManageService)beanFactory.getBean("pushManage");
 			
 		}catch(HibernateException e){
 			e.printStackTrace();

@@ -17,6 +17,7 @@ public class UserQueryIQProvider implements IQProvider {
 	               
 	            	 if("userAccount".equals(parser.getName())) {
 		                	userQueryIQ.setUserAccount(parser.nextText());
+		                	 //done = true;
 		                }
 	                if("resource".equals(parser.getName())) {
 	                	userQueryIQ.getResources().add(parser.nextText());
@@ -31,7 +32,7 @@ public class UserQueryIQProvider implements IQProvider {
 	                	userQueryIQ.setStatus(parser.nextText());
 	                }	
 	            } else if (eventType == 3
-	                    && PushServerIQ.getElementName().equals(parser.getName())) {
+	                    && userQueryIQ.getElementName().equals(parser.getName())) {
 	                done = true;	               
 	            }
 	        }

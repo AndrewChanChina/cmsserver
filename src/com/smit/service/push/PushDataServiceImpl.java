@@ -6,28 +6,43 @@ import org.jivesoftware.smack.ConnectionConfiguration;
 import org.jivesoftware.smack.PacketListener;
 import org.jivesoftware.smack.XMPPConnection;
 import org.jivesoftware.smack.XMPPException;
+import org.jivesoftware.smack.filter.MessageTypeFilter;
+import org.jivesoftware.smack.filter.NotFilter;
 import org.jivesoftware.smack.filter.PacketFilter;
 import org.jivesoftware.smack.filter.PacketTypeFilter;
+import org.jivesoftware.smack.packet.Message;
 import org.jivesoftware.smack.packet.Packet;
+import org.jivesoftware.smack.provider.ProviderManager;
 
 import com.smit.service.push.packet.PushServerIQ;
+import com.smit.service.push.packet.PushServiceInfIQ;
+import com.smit.service.push.packet.PushServiceInfIQListener;
+import com.smit.service.push.packet.PushServiceInfIQProvider;
 import com.smit.service.push.packet.PushUserIQ;
 import com.smit.service.push.packet.UserQueryIQ;
 import com.smit.service.push.packet.UserQueryIQListener;
+import com.smit.service.push.packet.UserQueryIQProvider;
 
 public class PushDataServiceImpl implements IPushDataService {
 	
 	private static String resource = "contentServer";	
 	private XMPPConnection connection = null;
+	private PacketListener userQueryIQListener = null;
+	private String user;
 	
+	public PushDataServiceImpl(){
+		userQueryIQListener = new UserQueryIQListener();
+	}
 	@Override
 	public boolean login(String host,String user,String password){
+		this.user = user;
 		ConnectionConfiguration config = new ConnectionConfiguration(host,5222, resource);
 		connection = new XMPPConnection(config); 
 		try{
 	    	connection.connect();
 	    	connection.login(user,password);
 	    	initLogin();
+	    	getInitInf();
 	    }catch(XMPPException e){
 	    	e.printStackTrace();
 	    	return false;
@@ -146,6 +161,14 @@ public class PushDataServiceImpl implements IPushDataService {
 	}
 	@Override
 	public boolean sendQueryResourceId(String userName) {
+//		UserQueryIQ iq1 = new UserQueryIQ();
+//		iq1.setUserAccount(userName);
+//		iq1.setOpCodeSave();
+//		iq1.setDeviceId("111111");
+//		iq1.setDeviceName("111111");
+//		iq1.setResource("1111111");
+//		this.sendPacket(iq1);
+		
 		UserQueryIQ iq = new UserQueryIQ();
 		iq.setUserAccount(userName);
 		iq.setOpCodeQuery();
@@ -154,11 +177,44 @@ public class PushDataServiceImpl implements IPushDataService {
 	
 	private void initLogin(){
 		
+		 // packet provider
+        ProviderManager.getInstance().addIQProvider(UserQueryIQ.getElementName(),
+        		UserQueryIQ.getNamespace(),
+                new UserQueryIQProvider());
+        ProviderManager.getInstance().addIQProvider(PushServiceInfIQ.getElementName(),
+        		PushServiceInfIQ.getNamespace(),
+                new PushServiceInfIQProvider());
+		
 		 PacketFilter packetFilter = new PacketTypeFilter(
 				 UserQueryIQ.class);                    
-	        PacketListener packetListener = new UserQueryIQListener();
+	        PacketListener packetListener = userQueryIQListener;
 	        connection.addPacketListener(packetListener, packetFilter);
+	        
+	        connection.addPacketListener(new PushServiceInfIQListener(),
+	        		new PacketTypeFilter(PushServiceInfIQ.class));
+	        
+	        PacketFilter charFilter = new MessageTypeFilter(Message.Type.chat);	       	        
+	        // TODO-ANDREW test need to delete
+	        NotFilter notFilter = new NotFilter(charFilter);
+	        connection.addPacketListener(new PacketListener(){
+	        	public void processPacket(Packet packet) {
+	        		System.out.println(packet.toXML());
+	        	}
+	        },notFilter);  
 		
+	}
+	private void getInitInf(){
+		//获取用户的所有的resource id
+		sendQueryResourceId(user);
+		//sendPushServiceInf("web","test2");
+	}
+	@Override
+	public boolean sendPushServiceInf(String serviceName, String account) {
+		PushServiceInfIQ iq = new PushServiceInfIQ();
+		iq.setUserAccount(account);
+		iq.setPushServiceName(serviceName);
+		this.sendPacket(iq);
+		return true;
 	}
 }
 

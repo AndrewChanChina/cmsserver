@@ -201,7 +201,7 @@
 	<bean id="pushServiceDao" class="com.smit.dao.PushServiceDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
-	<bean id="pushManage" class="com.smit.service.push.PushManageImpl">
+	<bean id="pushManageService" class="com.smit.service.push.PushManageServiceImpl">
 		<property name="pushServiceDao" ref="pushServiceDao"></property>
 	</bean>
 	<bean id="pushDataService" class="com.smit.service.push.PushDataServiceImpl">
@@ -209,12 +209,11 @@
 	</bean>
 	<bean name="/home" class="com.smit.web.UserAction" scope="prototype">
 	</bean>
-	<bean name="/devlogin" class="com.smit.web.PushDataAction" scope="prototype">
-		<property name="userService" ref="userService"></property>
-		<property name="pushDataService" ref="pushDataService"></property>
-	</bean>
+	
 	<!-- 推送服务 -->
 	<bean name="/pushdata" class="com.smit.web.PushDataAction" scope="prototype">
+		<property name="pushManageService" ref="pushManageService"></property>
+		<property name="pushDataService" ref="pushDataService"></property>
 	</bean>
 	<bean name="/pushservicemanage" class="com.smit.web.PushServiceManage"
 		scope="prototype">

@@ -10,7 +10,7 @@ import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.actions.DispatchAction;
 
-import com.smit.service.push.IPushManage;
+import com.smit.service.push.IPushManageService;
 import com.smit.util.Constants;
 import com.smit.util.SmitPage;
 import com.smit.util.WebUtil;
@@ -19,7 +19,7 @@ import com.smit.web.form.PushServiceForm;
 
 public class PushServiceManage extends DispatchAction {
 
-	IPushManage pushManage;
+	IPushManageService pushManage;
 		
 	public ActionForward list(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -137,7 +137,7 @@ public class PushServiceManage extends DispatchAction {
 		return mapping.findForward("sendData");
 	}
 	
-	public void setPushManage(IPushManage pushManage) {
+	public void setPushManage(IPushManageService pushManage) {
 		this.pushManage = pushManage;
 	}
 }
