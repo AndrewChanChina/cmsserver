@@ -54,8 +54,7 @@ public class MultiFileUploadAction extends MappingDispatchAction{
 		LogForm logForm = (LogForm) form;
 		String filename = logForm.getUpload().getFileName();
 		System.out.println(logForm.getUpload().getFileName());
-		//SimpleDateFormat format = new SimpleDateFormat("yyyy\\MM\\dd");
-		//String basePath = format.format(new Date());
+		
 		//String basePath = this.servlet.getServletContext().getRealPath(arg0)+"/";
 		String basePath = "D:\\filedown\\";
 		File file = new File(basePath);
@@ -99,6 +98,9 @@ public class MultiFileUploadAction extends MappingDispatchAction{
 		baseLog.setSysVersion(logForm.getSystemVersion());
 		baseLog.setSoftwareVersion(logForm.getSoftwareVersion());
 		baseLog.setTestStatus(logForm.getTestStatus());
+		baseLog.setLogFile("d:\\filedown\\"+logForm.getUpload().getFileName());
+		SimpleDateFormat format = new SimpleDateFormat("yyyyMMddHHmmss");
+		baseLog.setCreate_time(format.format(new Date()));
 		logService.insertBaseLog(baseLog);
 	}
 	

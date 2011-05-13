@@ -34,7 +34,7 @@
 </div>
 <form action="queryOrder.do" method="post" style="padding-top:5px;" id="orderForm">
 生产代号: <input type="text" name="order_code" value="" style="width:100px"/>
-产品型号: <input type="text" name="device_type" value="" style="width:100px"/>
+产品型号: <input type="text" name="production_code" value="" style="width:100px"/>
 <input type="submit" value="查询"/><input type="button" value="添加" onclick="add();"/><input type="button" value="修改"/><input type="button" value="删除"/>
 </form>
 <form action="order.do" method="post">

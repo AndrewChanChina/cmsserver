@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
 <hibernate-mapping>
-	<class name="com.smit.vo.Order" table="product_order">
+	<class name="com.smit.vo.Order" table="product_order" >
 		<id name="id">
 			<generator class="native"></generator>
 		</id>
@@ -14,6 +14,14 @@
 		<property name="production_code"></property>
 		<property name="sn"></property>
 		<property name="inf_code"></property>
+		<set name="options" table="tb_order_option" cascade="save-update" lazy="false" inverse="false">
+			<key column="order_id"></key>
+			<many-to-many class="com.smit.vo.TestOption" column="option_id"></many-to-many>
+		</set>
+		<set name="devices" cascade="save-update" lazy="true">
+			<key column="oid"></key>
+			<one-to-many class="com.smit.vo.Device"/>
+		</set>
 	</class>
 </hibernate-mapping>
 

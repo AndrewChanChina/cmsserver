@@ -10,9 +10,9 @@
 		<property name="create_time"></property>
 		 
 		<many-to-one name="testOption" column="testOption_id"
-			class="com.smit.vo.TestOption" ></many-to-one>
+			class="com.smit.vo.TestOption" cascade="save-update" ></many-to-one>
 			
-		<many-to-one name="device" column="device_id" class="com.smit.vo.Device"></many-to-one>
+		<many-to-one name="device" column="device_id" class="com.smit.vo.Device" cascade="save-update" insert="true"></many-to-one>
 		
 	</class>
 </hibernate-mapping>

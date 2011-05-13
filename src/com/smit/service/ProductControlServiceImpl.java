@@ -50,6 +50,12 @@ public class ProductControlServiceImpl implements ProductControlService{
 		return productDao.loadOption(id);
 	}
 
+	@Override
+	public List<TestOption> getOptions() {
+		List<TestOption> list = productDao.getOptionsList();
+		return list;
+	}
+
 	//method of device =========================================
 	@Override
 	public boolean addDevice(Device device) {
@@ -108,6 +114,17 @@ public class ProductControlServiceImpl implements ProductControlService{
 	@Override
 	public List<Order> loadOrder(String order_code) {
 		return productDao.loadOrder(order_code);
+	}
+
+	@Override
+	public List<Order> loadOrder(String order_code,String device_type) {
+		return productDao.loadOrder(order_code,device_type);
+	}
+
+	@Override
+	public List<Device> getDevice(String checkID) {
+		List<Device> list = productDao.getDevice(checkID);
+		return list;
 	}
 
 	//method of product ==========================================

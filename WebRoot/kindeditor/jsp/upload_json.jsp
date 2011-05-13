@@ -97,4 +97,5 @@ private String getError(String message) {
 	obj.put("message", message);
 	return obj.toJSONString();
 }
+
 %>

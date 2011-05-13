@@ -1,5 +1,6 @@
 package com.smit.web;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.security.auth.message.callback.PrivateKeyCallback.Request;
@@ -15,6 +16,7 @@ import com.smit.service.ColumnService;
 import com.smit.service.SysInfoService;
 import com.smit.vo.Part;
 import com.smit.vo.SysInfo;
+import com.smit.vo.TestOption;
 
 public class FrameworkAction extends MappingDispatchAction {
 	private ColumnService columnService;
@@ -88,6 +90,8 @@ public class FrameworkAction extends MappingDispatchAction {
 		}else if(classType.equals("detail")){
 			return mapping.findForward("detail");
 		}else if(classType.equals("order")){
+			List<TestOption> list = new ArrayList();
+			request.setAttribute("optionList", list);
 			return mapping.findForward("order");	
 		}else if(classType.equals("test")){
 			return mapping.findForward("testOption");
@@ -105,6 +109,10 @@ public class FrameworkAction extends MappingDispatchAction {
 			return mapping.findForward("requestAuth");
 		}else if(type.equals("active")){
 			return mapping.findForward("active");
+		}else if(type.equals("product")){
+			return mapping.findForward("product");
+		}else if(type.equals("confirm")){
+			return mapping.findForward("confirm");
 		}
 		return null;
 	}

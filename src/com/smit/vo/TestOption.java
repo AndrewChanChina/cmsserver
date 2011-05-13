@@ -15,6 +15,7 @@ public class TestOption implements Serializable{
 	private String test_id;
 	private String create_time;
 	private Set<DetailLog> detailLogs = new  HashSet<DetailLog>();//多对1
+	private Set<Order> orders = new HashSet<Order>();
 	public int getId() {
 		return id;
 	}
@@ -48,6 +49,12 @@ public class TestOption implements Serializable{
 	}
 	public void setDetailLogs(Set<DetailLog> detailLogs) {
 		this.detailLogs = detailLogs;
+	}
+	public Set<Order> getOrders() {
+		return orders;
+	}
+	public void setOrders(Set<Order> orders) {
+		this.orders = orders;
 	}
 	
 	

@@ -67,15 +67,18 @@ $(function(){
 	}else if(opCode.equalsIgnoreCase("log")){
 %>
 		<li><a href="showBaseLog.do?class=test" target="rightFrame">测试选项</a></li>
+		<li><a href="showBaseLog.do?class=order" target="rightFrame">生产批次</a></li>
 		<li><a href="showBaseLog.do?class=base" target="rightFrame">基本信息</a></li>
 		<li><a href="showBaseLog.do?class=detail" target="rightFrame">细分状态</a></li>
-		<li><a href="showBaseLog.do?class=order" target="rightFrame">生产</a></li>
+		
 <%
 	}else if(opCode.equalsIgnoreCase("auth")){
  %>
  		<li><a href="showAuth.do?class=login" target="rightFrame">登录鉴权</a></li>
  		<li><a href="showAuth.do?class=reqAuth" target="rightFrame">请求授权</a></li>
  		<li><a href="showAuth.do?class=active" target="rightFrame">激活</a></li>
+ 		<li><a href="showAuth.do?class=product" target="rightFrame">正品查询</a></li>
+ 		<li><a href="showAuth.do?class=confirm" target="rightFrame">确认启用</a></li>
  <%
  	}else if(opCode.equalsIgnoreCase("content")){
 %>

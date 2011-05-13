@@ -11,6 +11,9 @@
 		<property name="username"></property>
 		<property name="password"></property>
 		<property name="create_time"></property>
+		<property name="auth_code"></property>
+		<property name="machineID" column="machine_id"></property>
+		<property name="active_status"></property>
 		<set name="products" cascade="save-update,delete" lazy="true">
 			<key column="did"></key>
 			<one-to-many class="com.smit.vo.CertifiedProduct"/>
@@ -19,7 +22,7 @@
 			<key column="device_id"></key>
 			<one-to-many class="com.smit.vo.DetailLog"/>
 		</set>
-		
+		<many-to-one name="order" column="oid" class="com.smit.vo.Order"></many-to-one>
 	</class>
 </hibernate-mapping>
 

@@ -127,7 +127,36 @@ public class ProductControlServiceTest extends TestCase{
 		BeanFactory beanFactory = new ClassPathXmlApplicationContext("applicationContext.xml");
 		ProductControlService ps = (ProductControlService) beanFactory.getBean("productControlService");
 		
-		List<Order> list = ps.loadOrder("456");
+		List<Order> list = ps.loadOrder("456","");
 		System.out.println(list.size());
+	}
+	
+	public void testLoadOptions(){
+		BeanFactory beanFactory = new ClassPathXmlApplicationContext("applicationContext.xml");
+		ProductControlService ps = (ProductControlService) beanFactory.getBean("productControlService");
+		
+		List<TestOption> options = ps.getOptions();
+		System.out.println(options.size());
+		System.out.println(options.get(0).getId());
+	}
+	
+	public void testOrderOption(){
+		BeanFactory beanFactory = new ClassPathXmlApplicationContext("applicationContext.xml");
+		ProductControlService ps = (ProductControlService) beanFactory.getBean("productControlService");
+		
+		Order order = new Order();
+		order.setName("trfr");
+		
+	//	TestOption op = ps.loadOption(1);
+		//TestOption op2 = ps.loadOption(2);
+		TestOption op2 = new TestOption();
+		op2.setId(2);
+		op2.setName("546");
+		//order.getOptions().add(op);
+		order.getOptions().add(op2);
+		
+		//op.setOrders(orders)
+		
+		ps.insertOrder(order);
 	}
 }

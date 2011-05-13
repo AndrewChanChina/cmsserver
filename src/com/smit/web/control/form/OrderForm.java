@@ -13,7 +13,8 @@ public class OrderForm extends ActionForm{
 	private String production_code;//产品型号
 	private String sn;             //序列号
 	private String inf_code;
-	//private String testO
+	private String[] options;
+	private String[] ids;
 	public String getName() {
 		return name;
 	}
@@ -68,6 +69,19 @@ public class OrderForm extends ActionForm{
 	public void setInf_code(String inf_code) {
 		this.inf_code = inf_code;
 	}
+	public String[] getOptions() {
+		return options;
+	}
+	public void setOptions(String[] options) {
+		this.options = options;
+	}
+	public String[] getIds() {
+		return ids;
+	}
+	public void setIds(String[] ids) {
+		this.ids = ids;
+	}
+	
 	
 	
 }

@@ -45,11 +45,20 @@ public class ProductControlImpl extends HibernateDaoSupport implements ProductCo
 	public TestOption loadOption(int id) {
 		TestOption testOption = null;
 		try{
+			
 			testOption = this.getHibernateTemplate().get(TestOption.class, id);
 		}catch (HibernateException e){
 			throw new DaoException("根据ID查找测试项失败！"+e.getMessage());
 		}
 		return testOption;
+	}
+
+	
+	@Override
+	public List<TestOption> getOptionsList() {
+		String hql = "from TestOption to";
+		List<TestOption> list = this.getHibernateTemplate().find(hql);
+		return list;
 	}
 
 	//method of device =================================
@@ -79,14 +88,14 @@ public class ProductControlImpl extends HibernateDaoSupport implements ProductCo
 		}catch (HibernateException e){
 			throw new DaoException("根据ID查找设备失败："+e.getMessage());
 		}
-		
 		return device;
 	}
 
 	//method of order =========================================
 	@Override
 	public boolean insertOrder(Order order) {
-		this.getHibernateTemplate().save(order);
+		this.getHibernateTemplate().merge(order);
+		//this.getHibernateTemplate().save(order);
 		return true;
 	}
 
@@ -114,6 +123,32 @@ public class ProductControlImpl extends HibernateDaoSupport implements ProductCo
 		String hql = "from Order o where o.order_code='"+order_code+"'";
 		List<Order> list = this.getHibernateTemplate().find(hql);
 		return list;
+	}
+
+	@Override
+	public List<Order> loadOrder(String order_code,String production_code) {
+		StringBuffer sb = new StringBuffer();
+		sb.append("from Order o ");
+		if(!("".equals(order_code))&& null != order_code){
+			sb.append("where o.order_code='"+order_code.trim()+"'");
+			if(!("".equals(production_code))&& null!= production_code){
+				sb.append(" and o.production_code='"+production_code.trim()+"'");
+			}
+		}else{
+			if(!("".equals(production_code))&& null!= production_code){
+				sb.append(" where o.production_code='"+production_code.trim()+"'");
+			}
+			
+		}
+		//String hql = "from Order o where o.order_code='"+order_code+"'";
+		List<Order> list = this.getHibernateTemplate().find(sb.toString());
+		return list;
+	}
+
+	@Override
+	public List<Device> getDevice(String checkID) {
+		String hql = "from Device d where d.check_id='"+checkID+"'";
+		return this.getHibernateTemplate().find(hql);
 	}
 
 	//method of product =============================================

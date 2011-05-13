@@ -20,8 +20,8 @@ public class Encoding implements Filter{
 	@Override
 	public void doFilter(ServletRequest arg0, ServletResponse arg1,
 			FilterChain arg2) throws IOException, ServletException {
-		arg0.setCharacterEncoding("GBK");
-		arg1.setCharacterEncoding("GBK");
+		arg0.setCharacterEncoding("utf-8");
+		arg1.setCharacterEncoding("utf-8");
 		arg2.doFilter(arg0, arg1);
 
 	}

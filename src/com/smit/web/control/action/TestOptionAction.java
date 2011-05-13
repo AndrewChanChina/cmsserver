@@ -1,8 +1,13 @@
 package com.smit.web.control.action;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
@@ -13,7 +18,10 @@ import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.actions.MappingDispatchAction;
 
+import antlr.collections.impl.LList;
+
 import com.smit.service.ProductControlService;
+import com.smit.vo.Order;
 import com.smit.vo.TestOption;
 
 public class TestOptionAction extends MappingDispatchAction{
@@ -28,9 +36,54 @@ public class TestOptionAction extends MappingDispatchAction{
 		this.service = service;
 	}
 	
+	public ActionForward showAddOption(ActionMapping mapping,ActionForm form,
+			HttpServletRequest request,HttpServletResponse response){
+		return mapping.findForward("showAddOption");
+	}
+	
+	public ActionForward showDelOption(ActionMapping mapping,ActionForm form,
+			HttpServletRequest request,HttpServletResponse response){
+		List<TestOption> options = service.getOptions();
+		if(options.size()>0){
+			request.setAttribute("options", options);
+		}
+		return mapping.findForward("showDelOption");
+	}
+	
+	public ActionForward queryOption(ActionMapping mapping,ActionForm form,
+			HttpServletRequest request,HttpServletResponse response) throws IOException{
+		String order_code = request.getParameter("order_code");
+		List<Order> order = service.loadOrder(order_code);
+		createXMLResult(response, order);
+		return null;
+	}
+
+	private void createXMLResult(HttpServletResponse response, List<Order> order)
+			throws IOException {
+		response.setContentType("text/xml;charset=utf-8");
+		response.setCharacterEncoding("utf-8");
+		PrintWriter pw = response.getWriter();
+		StringBuffer sb = new StringBuffer();
+		sb.append("<global>");
+		if(order.size()>0){
+			//订单号唯一，根据订单号只能找到一个订单；
+			Set<TestOption> set = order.get(0).getOptions();
+			for(Iterator<TestOption> i = set.iterator();i.hasNext();){
+				System.out.println("********=====>");
+				sb.append("<item>"+i.next().getName()+"</item>");
+			}
+			//sb.append("<checkID>")
+		}else{
+			sb.append("<statusCode>109</statusCode>");
+		}
+		sb.append("</global>");
+		pw.println(sb.toString());
+	}
+	
 	public ActionForward addOption(ActionMapping mapping ,ActionForm form,
 			HttpServletRequest request, HttpServletResponse response) throws IOException{
 		String[] names = request.getParameterValues("name");
+		System.out.println("+============="+names[0]);
 		String[] ids = request.getParameterValues("test_id");
 		String[] times = request.getParameterValues("create_time");
 		System.out.println(names.length+">======"+ids.length);
@@ -43,16 +96,20 @@ public class TestOptionAction extends MappingDispatchAction{
 			String[] ids,String[] times) throws IOException {
 		Arrays.sort(ids);
 		Set<String> set = new HashSet<String>();
+		SimpleDateFormat format = new SimpleDateFormat("yyyyMMddHHmmss");
 		for(int i=0;i<ids.length;i++){
 			set.add(ids[i]);
 		}
 		if(set.size() == ids.length){
+			Date date = new Date();
 			for(int i=0;i<names.length;i++){
-				TestOption option = new TestOption();
-				option.setName(names[i]);
-				option.setTest_id(ids[i]);
-				option.setCreate_time(times[i]);
-				service.insertOption(option);
+				if(!("".equals(names[i]))){
+					TestOption option = new TestOption();
+					option.setName(names[i]);
+					option.setTest_id(ids[i]);
+					option.setCreate_time(format.format(date));
+					service.insertOption(option);	
+				}
 			}
 			response.getWriter().println("success!");
 		}else{
@@ -60,5 +117,10 @@ public class TestOptionAction extends MappingDispatchAction{
 		}
 	}
 	
+	public ActionForward deleteOption(ActionMapping mapping ,ActionForm form,
+			HttpServletRequest request, HttpServletResponse response) throws IOException{
+		
+		return null;
+	}
 
 }

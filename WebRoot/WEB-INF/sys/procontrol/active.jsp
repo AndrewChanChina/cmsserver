@@ -16,17 +16,15 @@
 <script src="./js/jquery.ext.js" type="text/javascript"></script>
 <script src="./js/pony.js" type="text/javascript"></script>
 <script src="./js/admin.js" type="text/javascript"></script>
-<title>Insert title here</title>
+<title>Active</title>
+
 </head>
 <body>
-<div class="rhead">
-	<div class="rpos">当前位置: 登录鉴权 </div>
-	<div class="clear"></div>
-</div>
- <form method="post" action="loginAuth.do">
- <table>
- 	<tr><td>machineID:<input type="text" name="machineID" ><td><td>orderCode:<input type="text" name="order_code"></td></tr>
- </table>
- <input type="submit" value="提交"><input type="reset" value="取消">
- </form></body>
+<form action="active.do" method="post">
+<table>
+<tr><td>version</td><td><input type="text""/></td><td>checkID</td><td><input type="text" name="checkId"/></td><td>machineID</td><td><input type="text""/></td></tr>
+<tr><td><input type="submit" value="提交"/></td><td><input type="reset" value="取消"/></td></tr>
+</table>
+</form>
+</body>
 </html>

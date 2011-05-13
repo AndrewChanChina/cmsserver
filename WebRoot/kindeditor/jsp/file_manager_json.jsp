@@ -138,5 +138,5 @@ public class TypeComparator implements Comparator {
 			return ((String)hashA.get("filetype")).compareTo((String)hashB.get("filetype"));
 		}
 	}
-}
+
 %>

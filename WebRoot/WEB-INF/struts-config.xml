@@ -268,13 +268,36 @@
  		<action path="/showAuth" type="org.springframework.web.struts.DelegatingActionProxy"
  		parameter="showAuth">
  			<forward name="loginAuth" path="/WEB-INF/sys/procontrol/auth.jsp"></forward>
- 			<forward name="requestAuth" path="/WEB-INF/sys/procontrol/auth.jsp"></forward>
- 			<forward name="active" path="/WEB-INF/sys/procontrol/auth.jsp"></forward>
+ 			<forward name="requestAuth" path="/WEB-INF/sys/procontrol/req_auth.jsp"></forward>
+ 			<forward name="active" path="/WEB-INF/sys/procontrol/active.jsp"></forward>
+ 			<forward name="product" path="/WEB-INF/sys/procontrol/product.jsp"></forward>
+ 			<forward name="confirm" path="/WEB-INF/sys/procontrol/confirm.jsp"></forward>
  		</action>
  		<action path="/testOption" type="org.springframework.web.struts.DelegatingActionProxy" 
  		parameter="addOption"></action>
+ 		<action path="/showAddOption" type="org.springframework.web.struts.DelegatingActionProxy" 
+ 		parameter="showAddOption">
+ 			<forward name="showAddOption" path="/WEB-INF/sys/procontrol/option_test_add.jsp"></forward>
+ 		</action>
+ 		<action path="/showDelOption" type="org.springframework.web.struts.DelegatingActionProxy" 
+ 		parameter="showDelOption">
+ 			<forward name="showDelOption" path="/WEB-INF/sys/procontrol/option_test_del.jsp"></forward>
+ 		</action>
+ 		<action path="/queryOption" type="org.springframework.web.struts.DelegatingActionProxy" 
+ 		parameter="queryOption">
+ 		</action>
  		<action path="/loginAuth" type="org.springframework.web.struts.DelegatingActionProxy"
  		parameter="loginAuth"></action>
+ 		<action path="/reqAuth" type="org.springframework.web.struts.DelegatingActionProxy"
+ 		parameter="reqAuth">
+ 		</action>
+ 		<action path="/active" type="org.springframework.web.struts.DelegatingActionProxy"
+ 		parameter="active">
+ 		</action>
+ 		<action path="/product" type="org.springframework.web.struts.DelegatingActionProxy"
+ 		parameter="queryProduct"></action>
+ 		<action path="/confirm" type="org.springframework.web.struts.DelegatingActionProxy"
+ 		parameter="confirm"></action>
  		<!-- end of luocheng ============================-->
 		<!-- 上传控制器 -->
 		<action path="/uploadfile" type="org.apache.struts.actions.ForwardAction"

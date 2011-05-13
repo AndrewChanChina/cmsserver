@@ -19,7 +19,12 @@ public class Device implements Serializable{
 	private String create_time;
 	private Set<CertifiedProduct> products = new HashSet<CertifiedProduct>();
 	private Set<DetailLog> logs = new HashSet<DetailLog>();
+	private Order order;
 	
+	//增加2个字段
+	private String auth_code;//授权码
+	private String machineID;//用户提交原始信息
+	private String active_status;
 	public int getId() {
 		return id;
 	}
@@ -76,6 +81,32 @@ public class Device implements Serializable{
 	}
 	public void setLogs(Set<DetailLog> logs) {
 		this.logs = logs;
+	}
+	
+	
+	public String getAuth_code() {
+		return auth_code;
+	}
+	public void setAuth_code(String auth_code) {
+		this.auth_code = auth_code;
+	}
+	public String getMachineID() {
+		return machineID;
+	}
+	public void setMachineID(String machineID) {
+		this.machineID = machineID;
+	}
+	public Order getOrder() {
+		return order;
+	}
+	public void setOrder(Order order) {
+		this.order = order;
+	}
+	public String getActive_status() {
+		return active_status;
+	}
+	public void setActive_status(String active_status) {
+		this.active_status = active_status;
 	}
 	
 	

@@ -210,7 +210,28 @@
     <bean name="/testOption" class="com.smit.web.control.action.TestOptionAction">
     	<property name="service" ref="productControlService"></property>
     </bean>
+    <bean name="/showAddOption" class="com.smit.web.control.action.TestOptionAction">
+    	<property name="service" ref="productControlService"></property>
+    </bean>
+    <bean name="/showDelOption" class="com.smit.web.control.action.TestOptionAction">
+    	<property name="service" ref="productControlService"></property>
+    </bean>
+     <bean name="/queryOption" class="com.smit.web.control.action.TestOptionAction">
+    	<property name="service" ref="productControlService"></property>
+    </bean>
     <bean name="/loginAuth" class="com.smit.web.control.action.AuthAction">
+    	<property name="productService" ref="productControlService"></property>
+    </bean>
+    <bean name="/reqAuth" class="com.smit.web.control.action.AuthAction">
+    	<property name="productService" ref="productControlService"></property>
+    </bean>
+    <bean name="/active" class="com.smit.web.control.action.AuthAction">
+    	<property name="productService" ref="productControlService"></property>
+    </bean>
+    <bean name="/product" class="com.smit.web.control.action.ProductAction">
+    	<property name="productService" ref="productControlService"></property>
+    </bean>
+     <bean name="/confirm" class="com.smit.web.control.action.ProductAction">
     	<property name="productService" ref="productControlService"></property>
     </bean>
 <!-- &&&& end of luocheng================================================================== -->
