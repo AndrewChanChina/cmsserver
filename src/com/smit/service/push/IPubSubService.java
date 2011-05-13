@@ -4,6 +4,11 @@ import java.util.List;
 
 import org.jivesoftware.smack.XMPPConnection;
 
+/**
+ * 话题相关的接口
+ * @author andrew
+ *
+ */
 public interface IPubSubService {
 
 	 public void setConnection(XMPPConnection con);

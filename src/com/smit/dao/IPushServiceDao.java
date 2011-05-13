@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.smit.util.SmitPage;
 import com.smit.vo.PushService;
+import com.smit.vo.UserAccountResource;
 
 public interface IPushServiceDao {
 
@@ -13,5 +14,11 @@ public interface IPushServiceDao {
 	public PushService getById(Integer id);
 	// for pagination
 	// if page == null return all objects
-	public List listAll(SmitPage page);
+	public List<PushService> listAll(SmitPage page);
+	
+	
+	public void saveOrUpdate(UserAccountResource us);
+	public void delete(UserAccountResource us);
+	public void deleteByAccount(String account);
+	public List<UserAccountResource> listAllResource();
 }

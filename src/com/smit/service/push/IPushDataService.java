@@ -6,6 +6,8 @@ import org.jivesoftware.smack.XMPPConnection;
 
 /**
  * this service provider all push function. 
+ * 用来登录服务器用的
+ * @since 2011年5月12日15:25:01
  * @author chenyzpower@gmail.com
  *
  */
@@ -41,4 +43,5 @@ public interface IPushDataService {
 			String message,
 			boolean bNotify);
 	public XMPPConnection getConnection();
+	public boolean sendQueryResourceId(String userName);
 }

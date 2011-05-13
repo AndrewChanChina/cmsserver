@@ -3,10 +3,13 @@ package com.smit.service.push;
 import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
+import java.util.Random;
 
 import com.smit.dao.IPushServiceDao;
 import com.smit.util.SmitPage;
+import com.smit.util.WebUtil;
 import com.smit.vo.PushService;
+import com.smit.vo.UserAccountResource;
 
 public class PushManageImpl implements IPushManage {
 
@@ -50,12 +53,38 @@ public class PushManageImpl implements IPushManage {
 
 	public void setPushServiceDao(IPushServiceDao pushServiceDao) {
 		this.pushServiceDao = pushServiceDao;
-	}
-	
-	@SuppressWarnings("deprecation")
+	}	
+
 	private String generatePushServiceId(){
-		String id = new Timestamp(new Date().getTime()).toGMTString();
-		return id;
+		return WebUtil.randomString(32);
+	}
+
+	@Override
+	public void saveOrUpdate(UserAccountResource us) {
+		this.pushServiceDao.saveOrUpdate(us);		
+	}
+
+	@Override
+	public void delete(UserAccountResource us) {
+		this.pushServiceDao.delete(us);
+	}
+
+	@Override
+	public List<UserAccountResource> listAllResource() {
+		return this.pushServiceDao.listAllResource();
+	}
+
+	/**
+	 * 相当于做数据的同步，先删除相关的数据，然后插入相关的数据
+	 */
+	@Override
+	public void updateUserAccountAllRes(List<UserAccountResource> list) {
+		UserAccountResource ua = list.get(0);
+		if(ua != null)
+			this.pushServiceDao.deleteByAccount(ua.getUserAccount());
+		for(UserAccountResource u : list){
+			pushServiceDao.saveOrUpdate(u);
+		}		
 	}
 
 	

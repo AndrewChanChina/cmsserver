@@ -38,6 +38,15 @@ public class UserAction extends MappingDispatchAction {
 	private IPushDataService pushDataService;
 
 	/**
+	 * 个人用户的主页
+	 */
+	public ActionForward home(ActionMapping mapping, ActionForm form,
+			HttpServletRequest request, HttpServletResponse response)
+			throws Exception {
+		// set some data
+		return mapping.findForward("success");
+	}
+	/**
 	 * 普通用户登录
 	 */
 	public ActionForward login(ActionMapping mapping, ActionForm form,
@@ -46,7 +55,8 @@ public class UserAction extends MappingDispatchAction {
 		HttpSession session = request.getSession();
 		String loginSuc = (String) session.getAttribute(Constants.LOGIN_SUC);
 		if (loginSuc != null) {
-			response.sendRedirect("home.do");
+			//response.sendRedirect("home.do");
+			response.sendRedirect("pushdata.do?opt=input");
 			return null;
 		}
 
@@ -64,10 +74,15 @@ public class UserAction extends MappingDispatchAction {
 				session.setAttribute(Constants.PUSH_CONNECTION, pushDataService);
 				session.setAttribute(Constants.LEVEL, Constants.LEVEL_USER);
 				User u = userService.findUserByName(loginForm.getUserName());
-				if (u != null) {
+				if (u != null) {					
 					session.setAttribute(Constants.CUR_USER_ID, u.getId());
+				} else {
+					userService.regUser(loginForm.getUserName(), loginForm.getPasswd());
+					User u2 = userService.findUserByName(loginForm.getUserName());
+					session.setAttribute(Constants.CUR_USER_ID, u2.getId());
 				}
-				response.sendRedirect("home.do");
+				//response.sendRedirect("home.do");
+				response.sendRedirect("pushdata.do?opt=input");
 				return null;
 			} else {
 				throw new Exception("dd");
@@ -92,31 +107,31 @@ public class UserAction extends MappingDispatchAction {
 		session.setAttribute(Constants.LOGIN_SUC, null);
 		pushDataService = (IPushDataService) session
 				.getAttribute(Constants.PUSH_CONNECTION);
-		// pushDataService.getConnection().disconnect();
+		if(pushDataService != null)
+			pushDataService.getConnection().disconnect();
 		response.sendRedirect("login_jsp.do");
 		return null;
-	}
-
+	}	
 	/**
-	 * 注册
+	 * register a user in 'developer' group
+	 * 注册开发者
 	 */
 	public ActionForward register(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 
-		try {
-			RegisterForm loginForm = (RegisterForm) form;
-			userService.register(loginForm.getUsername(),
-					loginForm.getPassword(), loginForm.getEmail(),
+		try{
+			RegisterForm loginForm = (RegisterForm)form;
+			userService.regDeveloper(loginForm.getUsername(), 
+					loginForm.getPassword(), 
+					loginForm.getEmail(), 
 					loginForm.getTel());
-
-		} catch (Exception e) {
+					
+		}catch (Exception e){
 			return mapping.findForward("fail");
 		}
-		return mapping.findForward("success");
-
+		return mapping.findForward("success");		
 	}
-
 	/**
 	 * 开发者登录
 	 */
@@ -161,7 +176,7 @@ public class UserAction extends MappingDispatchAction {
 	}
 
 	/**
-	 * 管理员登出
+	 * 开发者登出
 	 */
 	public ActionForward logout_developer(ActionMapping mapping,
 			ActionForm form, HttpServletRequest request,
@@ -169,7 +184,8 @@ public class UserAction extends MappingDispatchAction {
 
 		HttpSession session = request.getSession();
 		session.setAttribute(Constants.LOGIN_SUC, null);
-		return mapping.findForward("success");
+		response.sendRedirect("login_developer.do");
+		return null;
 	}
 
 	/**

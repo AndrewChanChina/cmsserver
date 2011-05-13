@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.smit.util.SmitPage;
 import com.smit.vo.PushService;
+import com.smit.vo.UserAccountResource;
 
 public interface IPushManage {
 
@@ -14,4 +15,9 @@ public interface IPushManage {
 	// for pagination
 	// if page == null return all objects
 	public List listAll(SmitPage page);
+	
+	public void saveOrUpdate(UserAccountResource us);
+	public void updateUserAccountAllRes(List<UserAccountResource> list);
+	public void delete(UserAccountResource us);
+	public List<UserAccountResource> listAllResource();
 }

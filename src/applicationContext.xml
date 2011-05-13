@@ -207,16 +207,13 @@
 	<bean id="pushDataService" class="com.smit.service.push.PushDataServiceImpl">
 	
 	</bean>
-	<bean name="/home" class="com.smit.web.PushDataAction" scope="prototype">
+	<bean name="/home" class="com.smit.web.UserAction" scope="prototype">
 	</bean>
 	<bean name="/devlogin" class="com.smit.web.PushDataAction" scope="prototype">
 		<property name="userService" ref="userService"></property>
 		<property name="pushDataService" ref="pushDataService"></property>
 	</bean>
-	<bean name="/developer_register" class="com.smit.web.PushDataAction"
-		scope="prototype">
-		<property name="userService" ref="userService"></property>
-	</bean>
+	<!-- 推送服务 -->
 	<bean name="/pushdata" class="com.smit.web.PushDataAction" scope="prototype">
 	</bean>
 	<bean name="/pushservicemanage" class="com.smit.web.PushServiceManage"

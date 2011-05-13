@@ -6,6 +6,11 @@ import org.jivesoftware.smack.packet.IQ;
 import org.jivesoftware.smack.packet.Message.Type;
 import org.jivesoftware.smack.util.StringUtils;
 
+/**
+ * 这个是用来发送 push 的详细消息的IQ，限于用户自己使用
+ * @author USER
+ *
+ */
 public class PushUserIQ extends IQ {
 
 	private Type type = Type.notification;

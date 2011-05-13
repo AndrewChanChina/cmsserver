@@ -29,7 +29,7 @@
 <body>
 	
 	
-	<form method="post" action="pushdata.do" id="jvForm">
+	<form method="post" action="pushdata.do?opt=pushuser" id="jvForm">
 			<table width="100%" class="pn-ftable" cellpadding="2" cellspacing="1"
 				border="0">
 				<tr>

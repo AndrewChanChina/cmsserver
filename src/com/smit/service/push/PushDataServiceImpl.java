@@ -1,12 +1,19 @@
 package com.smit.service.push;
 
+import java.util.List;
+
 import org.jivesoftware.smack.ConnectionConfiguration;
+import org.jivesoftware.smack.PacketListener;
 import org.jivesoftware.smack.XMPPConnection;
 import org.jivesoftware.smack.XMPPException;
-import org.jivesoftware.smack.packet.*;
-import com.smit.service.push.packet.*;
+import org.jivesoftware.smack.filter.PacketFilter;
+import org.jivesoftware.smack.filter.PacketTypeFilter;
+import org.jivesoftware.smack.packet.Packet;
 
-import java.util.List;
+import com.smit.service.push.packet.PushServerIQ;
+import com.smit.service.push.packet.PushUserIQ;
+import com.smit.service.push.packet.UserQueryIQ;
+import com.smit.service.push.packet.UserQueryIQListener;
 
 public class PushDataServiceImpl implements IPushDataService {
 	
@@ -20,6 +27,7 @@ public class PushDataServiceImpl implements IPushDataService {
 		try{
 	    	connection.connect();
 	    	connection.login(user,password);
+	    	initLogin();
 	    }catch(XMPPException e){
 	    	e.printStackTrace();
 	    	return false;
@@ -135,6 +143,22 @@ public class PushDataServiceImpl implements IPushDataService {
 	@Override
 	public XMPPConnection getConnection(){
 		return this.connection;
+	}
+	@Override
+	public boolean sendQueryResourceId(String userName) {
+		UserQueryIQ iq = new UserQueryIQ();
+		iq.setUserAccount(userName);
+		iq.setOpCodeQuery();
+		return this.sendPacket(iq);
+	}
+	
+	private void initLogin(){
+		
+		 PacketFilter packetFilter = new PacketTypeFilter(
+				 UserQueryIQ.class);                    
+	        PacketListener packetListener = new UserQueryIQListener();
+	        connection.addPacketListener(packetListener, packetFilter);
+		
 	}
 }
 

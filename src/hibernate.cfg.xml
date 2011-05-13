@@ -7,7 +7,9 @@
 <hibernate-configuration>
 
 <session-factory>
-	<property name="dialect">org.hibernate.dialect.MySQLDialect</property>
+	<property name="dialect">
+		org.hibernate.dialect.MySQLDialect
+	</property>
 	<property name="connection.url">
 		jdbc:mysql://localhost:3306/smit
 	</property>
@@ -34,6 +36,7 @@
 	<mapping resource="com/smit/vo/MediaType.hbm.xml" />
 	<mapping resource="com/smit/vo/PushService.hbm.xml" />
 	<mapping resource="com/smit/vo/Video.hbm.xml" />
+	<mapping resource="com/smit/vo/UserAccountResource.hbm.xml" />
 
 </session-factory>
 

@@ -23,6 +23,7 @@ public class Constants {
 	public final static String OPERATOR = "opt";
 
 	// for push service
+	public final static String PUSH_GROUPNAME = "user";
 	
 	public final static String PUSH_HOST = "localhost";//"192.168.0.181";
 	public final static String PUSH_CONNECTION	= "pushConnection";
