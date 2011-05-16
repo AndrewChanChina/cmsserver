@@ -20,6 +20,7 @@ import org.apache.struts.actions.MappingDispatchAction;
 
 import com.smit.service.ProductControlService;
 import com.smit.vo.Order;
+import com.smit.vo.OrderAndOption;
 import com.smit.vo.TestOption;
 import com.smit.web.control.form.OrderForm;
 
@@ -53,8 +54,6 @@ public class OrderAction extends MappingDispatchAction{
 		SimpleDateFormat format = new SimpleDateFormat("yyyyMMddHHmmss");
 		String order_code = format.format(new Date());
 		OrderForm orderForm = (OrderForm) form;
-		System.out.println("========>"+orderForm.getOptions().length);
-		//System.out.println("get ids is===========>"+orderForm.getIds().length);
 		insertOrder(orderForm,order_code);
 		
 		response.setContentType("text/xml;charset=utf-8");
@@ -102,15 +101,17 @@ public class OrderAction extends MappingDispatchAction{
 		order.setProduction_code(orderForm.getProduction_code());
 		order.setSn(orderForm.getSn());
 		order.setInf_code(orderForm.getInf_code());
-		//Set<TestOption> options = new HashSet<TestOption>();
-		String[] options = orderForm.getOptions();
-		System.out.println("has ids=============>"+options.length);
+		String[] options = orderForm.getSelOption().split(";");
 		
 		for(int i=0;i<options.length;i++){
 			System.out.println("id is :^^^^^^^^^^^^"+options[i]);
-			TestOption op = null;
-			op = productService.loadOption(Integer.parseInt(options[i]));
-			order.getOptions().add(op);
+			TestOption op =	productService.getOption(options[i]);
+			OrderAndOption orderOption = new OrderAndOption();
+			orderOption.setOrder_code(order_code);
+			orderOption.setOption_id(op.getId());
+			orderOption.setOption_name(op.getName());
+			
+			productService.insertOrderOption(orderOption);
 		}
 
 		productService.insertOrder(order);

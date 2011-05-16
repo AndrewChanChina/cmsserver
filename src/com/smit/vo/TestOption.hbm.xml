@@ -13,10 +13,7 @@
 			<key column="testOption_id"></key>
 			<one-to-many class="com.smit.vo.DetailLog"/>
 		</set>
-		<set name="orders" table="tb_order_option"  inverse="true" lazy="false" cascade="save-update,delete">
-			<key column="option_id"></key>
-			<many-to-many class="com.smit.vo.Order" column="order_id" ></many-to-many>
-		</set>
+		
 	</class>
 </hibernate-mapping>
 

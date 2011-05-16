@@ -12,6 +12,7 @@ import com.smit.util.DaoException;
 import com.smit.vo.CertifiedProduct;
 import com.smit.vo.Device;
 import com.smit.vo.Order;
+import com.smit.vo.OrderAndOption;
 import com.smit.vo.TestOption;
 
 public class ProductControlImpl extends HibernateDaoSupport implements ProductControlDao{
@@ -59,6 +60,17 @@ public class ProductControlImpl extends HibernateDaoSupport implements ProductCo
 		String hql = "from TestOption to";
 		List<TestOption> list = this.getHibernateTemplate().find(hql);
 		return list;
+	}
+
+	
+	@Override
+	public TestOption getOption(String name) {
+		String hql = "from TestOption t where t.name='"+name+"'";
+		List<TestOption> list = this.getHibernateTemplate().find(hql);
+		if(list.size()>0){
+			return list.get(0);
+		}
+		return null;
 	}
 
 	//method of device =================================
@@ -138,7 +150,6 @@ public class ProductControlImpl extends HibernateDaoSupport implements ProductCo
 			if(!("".equals(production_code))&& null!= production_code){
 				sb.append(" where o.production_code='"+production_code.trim()+"'");
 			}
-			
 		}
 		//String hql = "from Order o where o.order_code='"+order_code+"'";
 		List<Order> list = this.getHibernateTemplate().find(sb.toString());
@@ -181,4 +192,19 @@ public class ProductControlImpl extends HibernateDaoSupport implements ProductCo
 		return list;
 	}
 
+	//中间表
+	@Override
+	public List<OrderAndOption> getOptionByCode(String order_code) {
+		String hql = "from OrderAndOption oo where oo.order_code='"+order_code+"'";
+		List<OrderAndOption> list = this.getHibernateTemplate().find(hql);
+		return list;
+	}
+
+	@Override
+	public boolean insertOrderOption(OrderAndOption oo) {
+		this.getHibernateTemplate().save(oo);
+		return true;
+	}
+
+		
 }

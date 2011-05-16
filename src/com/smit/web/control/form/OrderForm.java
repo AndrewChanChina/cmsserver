@@ -14,7 +14,9 @@ public class OrderForm extends ActionForm{
 	private String sn;             //序列号
 	private String inf_code;
 	private String[] options;
-	private String[] ids;
+	//
+	private String selOption;
+	
 	public String getName() {
 		return name;
 	}
@@ -75,13 +77,12 @@ public class OrderForm extends ActionForm{
 	public void setOptions(String[] options) {
 		this.options = options;
 	}
-	public String[] getIds() {
-		return ids;
+	public String getSelOption() {
+		return selOption;
 	}
-	public void setIds(String[] ids) {
-		this.ids = ids;
+	public void setSelOption(String selOption) {
+		this.selOption = selOption;
 	}
-	
 	
 	
 }

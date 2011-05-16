@@ -52,42 +52,41 @@ public class MultiFileUploadAction extends MappingDispatchAction{
 			HttpServletRequest request, HttpServletResponse response)
 			{
 		LogForm logForm = (LogForm) form;
-		String filename = logForm.getUpload().getFileName();
-		System.out.println(logForm.getUpload().getFileName());
-		
-		//String basePath = this.servlet.getServletContext().getRealPath(arg0)+"/";
-		String basePath = "D:\\filedown\\";
-		File file = new File(basePath);
-		if(!(file.exists())){
-			file.mkdirs();
-		}
-		FileOutputStream fos = null;
-		InputStream is = null;
+		FormFile  ff = logForm.getUpload();
+
 		try{
+			if(ff!=null&&!(ff.getFileName().equals(""))){
+			//String basePath = this.servlet.getServletContext().getRealPath(arg0)+"/";
+				String basePath = "D:\\filedown\\";
+				File file = new File(basePath);
+				if(!(file.exists())){
+					file.mkdirs();
+				}
+				FileOutputStream fos = null;
+				InputStream is = null;
 				//构建文件在服务器保存的路径
-				//File file = new File(basePath,"WEB-INF/"+filename);
-				fos = new FileOutputStream(basePath+filename);
+				fos = new FileOutputStream(basePath+ff.getFileName());
 				//获得输入流
 				is = logForm.getUpload().getInputStream();
 				byte[] buffer = new byte[8192];
 				int count = 0;
 				while((count = is.read(buffer))>0){
-					fos.write(buffer,0,count);
-				}
-				fos.close();
-				is.close();
-				insertBaseLog(logForm);
-				createRespXML(response,"200");
-			}catch (Exception e){
-				e.printStackTrace();
-				try {
-					createRespXML(response,"109");
-				} catch (IOException e1) {
-					e1.printStackTrace();
-				}
+				fos.write(buffer,0,count);
 			}
-			
-			return null;
+			fos.close();
+			is.close();
+		}
+			insertBaseLog(logForm);
+			createRespXML(response,"200");
+		}catch (Exception e){
+			e.printStackTrace();
+			try {
+				createRespXML(response,"109");
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
+		}
+		return null;
 	}
 
 
@@ -98,7 +97,7 @@ public class MultiFileUploadAction extends MappingDispatchAction{
 		baseLog.setSysVersion(logForm.getSystemVersion());
 		baseLog.setSoftwareVersion(logForm.getSoftwareVersion());
 		baseLog.setTestStatus(logForm.getTestStatus());
-		baseLog.setLogFile("d:\\filedown\\"+logForm.getUpload().getFileName());
+		//baseLog.setLogFile("d:\\filedown\\"+logForm.getUpload().getFileName());
 		SimpleDateFormat format = new SimpleDateFormat("yyyyMMddHHmmss");
 		baseLog.setCreate_time(format.format(new Date()));
 		logService.insertBaseLog(baseLog);

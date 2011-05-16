@@ -153,7 +153,7 @@ public class ProductControlServiceTest extends TestCase{
 		op2.setId(2);
 		op2.setName("546");
 		//order.getOptions().add(op);
-		order.getOptions().add(op2);
+	//	order.getOptions().add(op2);
 		
 		//op.setOrders(orders)
 		

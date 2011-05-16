@@ -20,7 +20,7 @@ public class Order implements Serializable{
 	private String production_code;//产品型号
 	private String sn;             //序列号
 	private String inf_code;
-	private Set<TestOption> options = new HashSet<TestOption>(); 
+	
 	private Set<Device> devices = new HashSet<Device>();
 	public int getId() {
 		return id;
@@ -87,12 +87,7 @@ public class Order implements Serializable{
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-	public Set<TestOption> getOptions() {
-		return options;
-	}
-	public void setOptions(Set<TestOption> options) {
-		this.options = options;
-	}
+	
 	public Set<Device> getDevices() {
 		return devices;
 	}

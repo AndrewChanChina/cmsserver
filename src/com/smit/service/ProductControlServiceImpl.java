@@ -6,6 +6,7 @@ import com.smit.dao.ProductControlDao;
 import com.smit.vo.CertifiedProduct;
 import com.smit.vo.Device;
 import com.smit.vo.Order;
+import com.smit.vo.OrderAndOption;
 import com.smit.vo.TestOption;
 
 public class ProductControlServiceImpl implements ProductControlService{
@@ -54,6 +55,11 @@ public class ProductControlServiceImpl implements ProductControlService{
 	public List<TestOption> getOptions() {
 		List<TestOption> list = productDao.getOptionsList();
 		return list;
+	}
+
+	@Override
+	public TestOption getOption(String name) {
+		return productDao.getOption(name);
 	}
 
 	//method of device =========================================
@@ -157,5 +163,20 @@ public class ProductControlServiceImpl implements ProductControlService{
 		
 		return productDao.getProductList(device);
 	}
+
+	//中间表
+	@Override
+	public List<OrderAndOption> getOptionsByCode(String order_code) {
+		
+		return productDao.getOptionByCode(order_code);
+	}
+	
+	public boolean insertOrderOption(OrderAndOption orderOption){
+		if(productDao.insertOrderOption(orderOption)){
+			return true;
+		}
+		return false;
+	}
+	
 
 }

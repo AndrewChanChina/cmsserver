@@ -22,6 +22,7 @@ import antlr.collections.impl.LList;
 
 import com.smit.service.ProductControlService;
 import com.smit.vo.Order;
+import com.smit.vo.OrderAndOption;
 import com.smit.vo.TestOption;
 
 public class TestOptionAction extends MappingDispatchAction{
@@ -53,24 +54,26 @@ public class TestOptionAction extends MappingDispatchAction{
 	public ActionForward queryOption(ActionMapping mapping,ActionForm form,
 			HttpServletRequest request,HttpServletResponse response) throws IOException{
 		String order_code = request.getParameter("order_code");
-		List<Order> order = service.loadOrder(order_code);
-		createXMLResult(response, order);
+		//List<Order> order = service.loadOrder(order_code);
+		createXMLResult(response, order_code);
 		return null;
 	}
 
-	private void createXMLResult(HttpServletResponse response, List<Order> order)
+	private void createXMLResult(HttpServletResponse response, String order_code)
 			throws IOException {
 		response.setContentType("text/xml;charset=utf-8");
 		response.setCharacterEncoding("utf-8");
 		PrintWriter pw = response.getWriter();
 		StringBuffer sb = new StringBuffer();
 		sb.append("<global>");
-		if(order.size()>0){
+		
+		List<OrderAndOption> list = service.getOptionsByCode(order_code);
+		if(list.size()>0){
 			//订单号唯一，根据订单号只能找到一个订单；
-			Set<TestOption> set = order.get(0).getOptions();
-			for(Iterator<TestOption> i = set.iterator();i.hasNext();){
+			
+			for(OrderAndOption oo : list){
 				System.out.println("********=====>");
-				sb.append("<item>"+i.next().getName()+"</item>");
+				sb.append("<item>"+oo.getOption_name()+"</item>");
 			}
 			//sb.append("<checkID>")
 		}else{

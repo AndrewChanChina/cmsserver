@@ -5,6 +5,7 @@ import java.util.List;
 import com.smit.vo.CertifiedProduct;
 import com.smit.vo.Device;
 import com.smit.vo.Order;
+import com.smit.vo.OrderAndOption;
 import com.smit.vo.TestOption;
 
 public interface ProductControlDao {
@@ -15,6 +16,7 @@ public interface ProductControlDao {
 	public boolean deleteOption(TestOption option);
 	public TestOption loadOption(int id);
 	public List<TestOption> getOptionsList();
+	public TestOption getOption(String name);
 	
 	//device
 	public boolean addDevice(Device device);
@@ -36,4 +38,8 @@ public interface ProductControlDao {
 	public boolean updateProduct(CertifiedProduct product);
 	public boolean deleteProduct(CertifiedProduct product);
 	public List<CertifiedProduct> getProductList(Device device);
+	
+	//order option中间表
+	public List<OrderAndOption> getOptionByCode(String order_code);
+	public boolean insertOrderOption(OrderAndOption oo);
 }

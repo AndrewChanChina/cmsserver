@@ -23,6 +23,7 @@ public class LogForm extends ActionForm{
 	private String softwareVersion;
 	private String testStatus;
 	
+	
 	//detail log attr
 	//private String deviceType;
 	//private String note;

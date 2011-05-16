@@ -5,6 +5,7 @@ import java.util.List;
 import com.smit.vo.CertifiedProduct;
 import com.smit.vo.Device;
 import com.smit.vo.Order;
+import com.smit.vo.OrderAndOption;
 import com.smit.vo.TestOption;
 
 public interface ProductControlService {
@@ -14,6 +15,8 @@ public interface ProductControlService {
 	public boolean deleteOption(TestOption option);
 	public TestOption loadOption(int id);
 	public List<TestOption> getOptions();
+	public TestOption getOption(String name);
+	
 	//device
 	public boolean addDevice(Device device);
 	public boolean updateDevice(Device device);
@@ -34,4 +37,8 @@ public interface ProductControlService {
 	public boolean updateProduct(CertifiedProduct product);
 	public boolean deleteProduct(CertifiedProduct product);
 	public List<CertifiedProduct> getProductList(Device device);
+	
+	//中间表
+	public List<OrderAndOption> getOptionsByCode(String order_code);
+	public boolean insertOrderOption(OrderAndOption orderOption);
 }

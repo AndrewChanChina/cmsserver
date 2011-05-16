@@ -14,10 +14,7 @@
 		<property name="production_code"></property>
 		<property name="sn"></property>
 		<property name="inf_code"></property>
-		<set name="options" table="tb_order_option" cascade="save-update" lazy="false" inverse="false">
-			<key column="order_id"></key>
-			<many-to-many class="com.smit.vo.TestOption" column="option_id"></many-to-many>
-		</set>
+		
 		<set name="devices" cascade="save-update" lazy="true">
 			<key column="oid"></key>
 			<one-to-many class="com.smit.vo.Device"/>
