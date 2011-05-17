@@ -129,6 +129,7 @@
 			type="org.springframework.web.struts.DelegatingActionProxy"
 			parameter="opt" name="pushDataForm">
 			<forward name="inputForm" path="/WEB-INF/sys/pushService/home.jsp" />
+			<forward name="inputFormDev" path="/WEB-INF/sys/pushService/developer_pushData.jsp"></forward>
 		</action>		
 		
 		<!-- 管理开发者的推送服务 -->
@@ -139,8 +140,7 @@
 			<forward name="listPage" path="/WEB-INF/sys/pushService/pushservice_list.jsp" />
 			<forward name="managePage"
 				path="/WEB-INF/sys/pushService/pushservice_manage.jsp" />
-			<forward name="back2ListPage" path="/pushservicemanage.do?opt=list" />
-			<forward name="sendData" path="/WEB-INF/sys/pushService/developer_pushData.jsp"></forward>
+			<forward name="back2ListPage" path="/pushservicemanage.do?opt=list" />			
 		</action>
 
 		<!-- language -->

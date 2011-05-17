@@ -20,5 +20,5 @@ public interface IPushServiceDao {
 	public void saveOrUpdate(UserAccountResource us);
 	public void delete(UserAccountResource us);
 	public void deleteByAccount(String account);
-	public List<UserAccountResource> listAllResource();
+	public List<UserAccountResource> listAllResource(String userName);
 }

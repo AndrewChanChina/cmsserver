@@ -70,8 +70,8 @@ public class PushManageServiceImpl implements IPushManageService {
 	}
 
 	@Override
-	public List<UserAccountResource> listAllResource() {
-		return this.pushServiceDao.listAllResource();
+	public List<UserAccountResource> listAllResource(String userName) {
+		return this.pushServiceDao.listAllResource(userName);
 	}
 
 	/**

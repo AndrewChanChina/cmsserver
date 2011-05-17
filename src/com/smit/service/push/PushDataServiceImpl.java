@@ -26,13 +26,10 @@ import com.smit.service.push.packet.UserQueryIQProvider;
 public class PushDataServiceImpl implements IPushDataService {
 	
 	private static String resource = "contentServer";	
-	private XMPPConnection connection = null;
-	private PacketListener userQueryIQListener = null;
+	private XMPPConnection connection = null;	
+	private IPushManageService pushManageService = null;
 	private String user;
-	
-	public PushDataServiceImpl(){
-		userQueryIQListener = new UserQueryIQListener();
-	}
+
 	@Override
 	public boolean login(String host,String user,String password){
 		this.user = user;
@@ -186,21 +183,22 @@ public class PushDataServiceImpl implements IPushDataService {
                 new PushServiceInfIQProvider());
 		
 		 PacketFilter packetFilter = new PacketTypeFilter(
-				 UserQueryIQ.class);                    
-	        PacketListener packetListener = userQueryIQListener;
-	        connection.addPacketListener(packetListener, packetFilter);
-	        
-	        connection.addPacketListener(new PushServiceInfIQListener(),
-	        		new PacketTypeFilter(PushServiceInfIQ.class));
-	        
-	        PacketFilter charFilter = new MessageTypeFilter(Message.Type.chat);	       	        
-	        // TODO-ANDREW test need to delete
-	        NotFilter notFilter = new NotFilter(charFilter);
-	        connection.addPacketListener(new PacketListener(){
-	        	public void processPacket(Packet packet) {
-	        		System.out.println(packet.toXML());
-	        	}
-	        },notFilter);  
+				 UserQueryIQ.class); 
+		 UserQueryIQListener uqlistener = new UserQueryIQListener();
+		 uqlistener.setPushManageService(pushManageService);
+        connection.addPacketListener(uqlistener, packetFilter);
+        
+        connection.addPacketListener(new PushServiceInfIQListener(),
+        		new PacketTypeFilter(PushServiceInfIQ.class));
+        
+        PacketFilter charFilter = new MessageTypeFilter(Message.Type.chat);	       	        
+        // TODO-ANDREW test need to delete
+        NotFilter notFilter = new NotFilter(charFilter);
+        connection.addPacketListener(new PacketListener(){
+        	public void processPacket(Packet packet) {
+        		System.out.println(packet.toXML());
+        	}
+        },notFilter);  
 		
 	}
 	private void getInitInf(){
@@ -216,5 +214,13 @@ public class PushDataServiceImpl implements IPushDataService {
 		this.sendPacket(iq);
 		return true;
 	}
+	public IPushManageService getPushManageService() {
+		return pushManageService;
+	}
+	public void setPushManageService(IPushManageService pushManageService) {
+		this.pushManageService = pushManageService;
+	}
+	
+	
 }
 

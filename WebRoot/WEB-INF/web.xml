@@ -38,7 +38,7 @@
 		<param-value>jcaptcha.do,login.do,logout.do,register.do,
 		welcome.do,login_jsp.do,loginDevj.do,
 		loginDev.do,login_admin.do,logout_admin.do,
-		register_admin.do,login_adminj.do,loginDev.do</param-value>		
+		register_admin.do,login_adminj.do,loginDev.do,logoutDev.do</param-value>		
 	</init-param>
   	
   </filter>

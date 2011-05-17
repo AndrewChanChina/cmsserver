@@ -20,8 +20,7 @@ import com.smit.web.form.PushDataForm;
 
 public class PushDataAction extends DispatchAction {
 
-	private IPushManageService pushManageService;
-	private IPushDataService pushDataService;
+	private IPushManageService pushManageService;		// 开发者服务管理	
 	
 	@Override
 	public ActionForward unspecified(ActionMapping mapping, ActionForm form,
@@ -34,7 +33,8 @@ public class PushDataAction extends DispatchAction {
 	public ActionForward input(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
-		List<UserAccountResource> list = pushManageService.listAllResource();
+		List<UserAccountResource> list = pushManageService.listAllResource(
+			(String)request.getSession().getAttribute(Constants.CURUSERNAME));
 		request.setAttribute("list", list);
 		return mapping.findForward("inputForm");
 		
@@ -89,19 +89,50 @@ public class PushDataAction extends DispatchAction {
 				
 	}
 	/**
-	 * 给开发者推送信息用的
+	 * 跳转到发送表单
 	 */
-	public ActionForward pushdev(ActionMapping mapping, ActionForm form,
+	public ActionForward inputDev(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
-			throws Exception {
+			throws Exception {		
 		
-		HttpSession session = request.getSession();
-		PushDataForm pf = (PushDataForm)form;
-		return null;
+		try{
+			List list = pushManageService.listAll(null);
+			request.setAttribute("pushServiceList", list);
+		}catch(Exception e){
+			e.printStackTrace();
+			return mapping.findForward("fail");
+		}
+		//response.sendRedirect("home.do");
+		return mapping.findForward("inputFormDev");
 	}
 	
-	public void setPushDataService(IPushDataService pushDataService) {
-		this.pushDataService = pushDataService;
+	/**
+	 * 给开发者推送信息用的
+	 */
+	public ActionForward pushDev(ActionMapping mapping, ActionForm form,
+			HttpServletRequest request, HttpServletResponse response)
+			throws Exception {
+		HttpSession session = request.getSession();
+		PushDataForm pf = (PushDataForm)form;
+		
+		try{
+			IPushDataService pd = (IPushDataService)session.
+				getServletContext().getAttribute(Constants.PUSH_CONNECTION);
+			if(pd != null){
+				boolean bDelay = false;
+				if( "yes".equalsIgnoreCase(pf.getIsDelay()) )
+					bDelay = true;
+				pd.sendPushDataFromDevToAll(pf.getServiceName(), 
+						bDelay, pf.getCollapseKey(), 
+						pf.getTitle(), pf.getTicket(), 
+						pf.getUri(), pf.getMessage());
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+			return mapping.findForward("fail");
+		}
+		//response.sendRedirect("home.do");
+		return mapping.findForward("inputFormDev");
 	}
 
 	public void setPushManageService(IPushManageService pushManageService) {

@@ -1,4 +1,4 @@
-<%@ page language="java" import="java.util.*" pageEncoding="GB18030"%>
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
@@ -17,9 +17,9 @@
   </head>
   
   <body>
-    <p>ÕâÊÇ¿ª·¢ÕßµÄÖ÷½çÃæ.</p>
-    <a href="pushservicemanage.do?opt=list">ÏÔÊ¾ËùÓÐ·þÎñ</a><br>
-	<a href="pushservicemanage.do?opt=pushData">¿ª·¢ÕßÍÆËÍ·þÎñ</a><br>
-	<a href="logoutDev.do">µÇ³ö</a><br>
+    <p>è¿™æ˜¯å¼€å‘è€…çš„ä¸»ç•Œé¢.</p>
+    <a href="pushservicemanage.do?opt=list">æ˜¾ç¤ºæ‰€æœ‰æœåŠ¡</a><br>
+	<a href="pushdata.do?opt=inputDev">å¼€å‘è€…æŽ¨é€æœåŠ¡</a><br>
+	<a href="logoutDev.do">ç™»å‡º</a><br>
   </body>
 </html>

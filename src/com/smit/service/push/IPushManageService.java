@@ -19,5 +19,5 @@ public interface IPushManageService {
 	public void saveOrUpdate(UserAccountResource us);
 	public void updateUserAccountAllRes(List<UserAccountResource> list);
 	public void delete(UserAccountResource us);
-	public List<UserAccountResource> listAllResource();
+	public List<UserAccountResource> listAllResource(String userName);
 }

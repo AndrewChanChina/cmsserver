@@ -13,6 +13,22 @@ import com.smit.vo.UserAccountResource;
 
 public class UserQueryIQListener implements PacketListener {
 
+	private IPushManageService pushManageService = null;
+	
+	
+	public void setPushManageService(IPushManageService pushManageService) {
+		this.pushManageService = pushManageService;
+	}
+	private IPushManageService getService(){
+		if(pushManageService == null){
+			BeanFactory beanFactory = new ClassPathXmlApplicationContext("applicationContext.xml");
+			
+			pushManageService = (IPushManageService)beanFactory.getBean("pushManage");		
+			beanFactory = null;
+		}
+		return pushManageService;
+				
+	}
 	@Override	
 	public void processPacket(Packet packet) {
 		System.out.print("packet.toXML()=" + packet.toXML());
@@ -21,8 +37,7 @@ public class UserQueryIQListener implements PacketListener {
 			System.out.println("user query iq return");	
 			
 			UserQueryIQ iq = (UserQueryIQ)packet;
-			BeanFactory beanFactory = new ClassPathXmlApplicationContext("applicationContext.xml");
-			IPushManageService pm = (IPushManageService)beanFactory.getBean("pushManage");
+			
 			
 			List<UserAccountResource> list = new ArrayList<UserAccountResource>();
 			List<String> resources = iq.getResources();
@@ -30,7 +45,7 @@ public class UserQueryIQListener implements PacketListener {
 			List<String> deviceIds = iq.getDeviceIds();
 			String userAccount = iq.getUserAccount();
 			int i = 0;
-			for(String res : iq.getResources()){
+			for(String res : resources){
 				UserAccountResource us = new UserAccountResource();
 				us.setUserAccount(userAccount);
 				us.setResource(res);
@@ -40,9 +55,9 @@ public class UserQueryIQListener implements PacketListener {
 				list.add(us);
 			}
 			if(i > 0){
-				pm.updateUserAccountAllRes(list);
+				getService().updateUserAccountAllRes(list);
 			}	
-			beanFactory = null;
+			
 		}
 	}
 

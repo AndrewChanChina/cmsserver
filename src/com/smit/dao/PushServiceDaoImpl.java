@@ -76,9 +76,10 @@ public class PushServiceDaoImpl extends HibernateDaoSupport implements IPushServ
 	}
 
 	@Override
-	public List<UserAccountResource> listAllResource() {
+	public List<UserAccountResource> listAllResource(String userName) {
 		return (List<UserAccountResource>)this.getHibernateTemplate()
-		.find("SELECT u FROM com.smit.vo.UserAccountResource u");
+		.find("SELECT u FROM com.smit.vo.UserAccountResource u WHERE userAccount='"
+				+userName + "'");
 	}
 
 	@Override

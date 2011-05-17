@@ -2,6 +2,7 @@ package com.smit.web;
 
 import java.util.List;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -160,7 +161,9 @@ public class UserAction extends MappingDispatchAction {
 				User u = userService.findUserByName(loginForm.getUserName());
 				if (u != null) {
 					session.setAttribute(Constants.CUR_USER_ID, u.getId());
-				}
+				}				
+				// 登录服务器
+				loginServer(session);
 				response.sendRedirect("home_developer.do");
 				return null;
 			} else {
@@ -184,7 +187,8 @@ public class UserAction extends MappingDispatchAction {
 
 		HttpSession session = request.getSession();
 		session.setAttribute(Constants.LOGIN_SUC, null);
-		response.sendRedirect("login_developer.do");
+		response.sendRedirect("loginDevj.do");
+		//session.getServletContext().setAttribute(Constants.PUSH_CONNECTION, null);
 		return null;
 	}
 
@@ -379,6 +383,19 @@ public class UserAction extends MappingDispatchAction {
 				"error.jcaptcha.error.inputInvalid"));
 		this.addErrors(request, errors);
 		return false;
+	}
+	
+	private void loginServer(HttpSession session){
+		ServletContext application = session.getServletContext();
+		IPushDataService ps = (IPushDataService)application.getAttribute(Constants.PUSH_CONNECTION);
+		if(ps == null){
+			if(pushDataService.login(Constants.PUSH_HOST,			 
+				    Constants.PUSH_SERVERNAME, Constants.PUSH_SERVERPASSWORD)){		
+					// login smack success
+					application.setAttribute(Constants.LOGIN_SUC, Constants.SUCCESS);				
+					application.setAttribute(Constants.PUSH_CONNECTION, pushDataService);
+			}
+		}
 	}
 
 	public void setUserService(IUserService userService) {
