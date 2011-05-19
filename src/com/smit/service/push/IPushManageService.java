@@ -18,6 +18,8 @@ public interface IPushManageService {
 	
 	public void saveOrUpdate(UserAccountResource us);
 	public void updateUserAccountAllRes(List<UserAccountResource> list);
+	public void updateUserPresence(String fromUser, boolean presence);
 	public void delete(UserAccountResource us);
+	public void delete(String userAccount);
 	public List<UserAccountResource> listAllResource(String userName);
 }

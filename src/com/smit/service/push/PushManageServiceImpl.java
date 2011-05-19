@@ -68,6 +68,11 @@ public class PushManageServiceImpl implements IPushManageService {
 	public void delete(UserAccountResource us) {
 		this.pushServiceDao.delete(us);
 	}
+	
+	@Override
+	public void delete(String userAccount){
+		this.pushServiceDao.deleteByAccount(userAccount);
+	}
 
 	@Override
 	public List<UserAccountResource> listAllResource(String userName) {
@@ -85,6 +90,15 @@ public class PushManageServiceImpl implements IPushManageService {
 		for(UserAccountResource u : list){
 			pushServiceDao.saveOrUpdate(u);
 		}		
+	}
+
+	@Override
+	public void updateUserPresence(String fromUser, boolean presence) {
+		int n = fromUser.lastIndexOf("@");
+		String user = fromUser.substring(0,n);
+		n = fromUser.lastIndexOf("/");
+		String resource = fromUser.substring(n+1);
+		pushServiceDao.updateUserPresence(user, resource, presence);
 	}
 
 	

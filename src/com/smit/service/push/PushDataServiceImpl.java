@@ -12,8 +12,10 @@ import org.jivesoftware.smack.filter.PacketFilter;
 import org.jivesoftware.smack.filter.PacketTypeFilter;
 import org.jivesoftware.smack.packet.Message;
 import org.jivesoftware.smack.packet.Packet;
+import org.jivesoftware.smack.packet.Presence;
 import org.jivesoftware.smack.provider.ProviderManager;
 
+import com.smit.service.push.packet.PresenceListener;
 import com.smit.service.push.packet.PushServerIQ;
 import com.smit.service.push.packet.PushServiceInfIQ;
 import com.smit.service.push.packet.PushServiceInfIQListener;
@@ -131,16 +133,16 @@ public class PushDataServiceImpl implements IPushDataService {
 			String ticker,
 			String uri,
 			String message,
-			boolean bNotify){
+			String type) throws Exception{
 		
 		PushUserIQ iq = new PushUserIQ();
 		if(userList == null){
 			return false;
 		}
-		PushUserIQ.Type type = PushUserIQ.Type.alert;
-		if(bNotify)
-			type = PushUserIQ.Type.notification;
-		iq.setInfType(type);
+		if(iq.isRightType(type) == false){
+			throw new Exception("error type");
+		}
+		iq.setIQType(type);
 		iq.setUserList(userList);
 		iq.setDelay(bDelay);
 		iq.setCollapseKey(collapseKey);
@@ -199,6 +201,12 @@ public class PushDataServiceImpl implements IPushDataService {
         		System.out.println(packet.toXML());
         	}
         },notFilter);  
+        
+        
+        PacketFilter presenceFilter = new PacketTypeFilter(Presence.class);
+        PresenceListener presenceListener = new PresenceListener();
+        connection.addPacketListener(presenceListener,presenceFilter);
+        presenceListener.setPushManageService(pushManageService);
 		
 	}
 	private void getInitInf(){

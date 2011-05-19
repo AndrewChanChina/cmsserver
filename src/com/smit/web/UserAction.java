@@ -60,6 +60,13 @@ public class UserAction extends MappingDispatchAction {
 			response.sendRedirect("pushdata.do?opt=input");
 			return null;
 		}
+		// 先登录开发者的账号
+		loginServer(session);
+		ServletContext application = session.getServletContext();
+		IPushDataService ps = (IPushDataService)application.getAttribute(Constants.PUSH_CONNECTION);
+		if(ps != null){
+			pushDataService = ps;			
+		}
 
 		SmitLoginForm loginForm = (SmitLoginForm) form;
 
@@ -73,6 +80,8 @@ public class UserAction extends MappingDispatchAction {
 				session.setAttribute(Constants.CURUSERNAME,
 						loginForm.getUserName());
 				session.setAttribute(Constants.PUSH_CONNECTION, pushDataService);
+				application.setAttribute(Constants.PUSH_CONNECTION, pushDataService);
+				
 				session.setAttribute(Constants.LEVEL, Constants.LEVEL_USER);
 				User u = userService.findUserByName(loginForm.getUserName());
 				if (u != null) {					
@@ -163,6 +172,7 @@ public class UserAction extends MappingDispatchAction {
 					session.setAttribute(Constants.CUR_USER_ID, u.getId());
 				}				
 				// 登录服务器
+				//TODO 将来要放到 开机启动的时候执行，首先执行一次登录的action吧！
 				loginServer(session);
 				response.sendRedirect("home_developer.do");
 				return null;

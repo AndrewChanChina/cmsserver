@@ -41,7 +41,7 @@ public interface IPushDataService {
 			String ticker,
 			String uri,
 			String message,
-			boolean bNotify);
+			String type) throws Exception;
 	public XMPPConnection getConnection();
 	public boolean sendQueryResourceId(String userName);
 	public boolean sendPushServiceInf(String serviceName,String account);

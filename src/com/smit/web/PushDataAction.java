@@ -78,12 +78,13 @@ public class PushDataAction extends DispatchAction {
 			
 			ps.sendPushDataFromUser(userList,
 					bDelay, pf.getCollapseKey(), pf.getTitle(),
-					pf.getTicket(), pf.getUri(), pf.getMessage(), true);
+					pf.getTicket(), pf.getUri(), pf.getMessage(),
+					pf.getServicetype());
 			
 		}catch (Exception e){			
 			return mapping.findForward("fail");				
 		}
-		response.sendRedirect("home.do");
+		response.sendRedirect("pushdata.do?opt=input");
 		return null;
 		//return mapping.findForward("success");
 				

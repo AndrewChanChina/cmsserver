@@ -49,7 +49,12 @@
 					</td>
 					<td colspan="1" width="38%" class="pn-fcontent">						
 						<c:forEach items="${list}" var="resource">
-							<input type='checkbox' name='deviceIds' value="${resource.resource}" />	${resource.deviceName}<br>
+							<input type='checkbox' name='deviceIds' value="${resource.resource}" />
+								${resource.deviceName}&nbsp;&nbsp;&nbsp;当前状态：&nbsp;								
+								<c:if test="${resource.presence == true}">在线</c:if>
+								<c:if test="${resource.presence == false}">不在线</c:if>
+							
+							<br>
 						</c:forEach>
 					</td>
 				</tr>
@@ -62,7 +67,7 @@
 				<td colspan="1" width="38%" class="pn-fcontent">
 					<input type="radio" name="servicetype" value="message" checked>
 					文本消息&nbsp
-					<input type="radio" name="servicetype" value="nofity">
+					<input type="radio" name="servicetype" value="notification">
 					提示消息&nbsp
 					<input type="radio" name="servicetype" value="alert">
 					震动&nbsp

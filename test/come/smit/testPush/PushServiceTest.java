@@ -72,10 +72,10 @@ public class PushServiceTest extends TestCase {
 	}
 	
 	public void testQueryResource(){
-		List<UserAccountResource> list = pm.listAllResource();
+		/*List<UserAccountResource> list = pm.listAllResource();
 		for(UserAccountResource ps : list){
 			System.out.println(ps.getDeviceName());
 			System.out.println(ps.getId());
-		}
+		}*/
 	}
 }

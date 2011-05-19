@@ -16,7 +16,7 @@ public class PushUserIQProvider implements IQProvider {
 	            int eventType = parser.next();
 	            if (eventType == 2) {
 	                if ("type".equals(parser.getName())) {
-	                	pushUserIQ.setInfType(PushUserIQ.Type.fromString(parser.nextText()));
+	                	pushUserIQ.setIQType(parser.nextText());
 	                }
 	                if("user".equals(parser.getName())) {
 	                	List.add(parser.nextText());

@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
+ <class name="com.smit.vo.UserAccountResource" table="smitUserAccountResource">
+  <id name="id">
+   <generator class="native"/>
+  </id>
+  <property column="userAccount" generated="never" lazy="false" name="userAccount"/>
+  <property column="resource" generated="never" lazy="false" name="resource"/>
+  <property column="deviceName" generated="never" lazy="false" name="deviceName"/>
+  <property column="deviceId" generated="never" lazy="false" name="deviceId"/>
+  <property column="presence" generated="never" lazy="false" name="presence"/>
+  <property column="flag" generated="never" lazy="false" name="flag"/>
 
-<class name="com.smit.vo.UserAccountResource" table="smitUserAccountResource">
- <id name="id">
- <generator class="native"></generator>
- </id>
- <property name="userAccount" column="userAccount"/>
- <property name="resource" column="resource"/>
- <property name="deviceName" column="deviceName"/>
- <property name="deviceId" column="deviceId"/>
-</class>
+ </class>
 </hibernate-mapping>

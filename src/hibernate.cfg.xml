@@ -26,6 +26,9 @@
 	<property name="hbm2ddl.auto">update</property>
 	<property name="connection.autocommit">true</property>
 	<property name="format_sql">true</property>
+	<property name="c3p0.idle_test_period">100</property>
+	<property name="c3p0.acquire_increment">1</property>
+	<property name="c3p0.timeout">10</property>
 	<mapping resource="com/smit/vo/User.hbm.xml" />
 	<mapping resource="com/smit/vo/Group.hbm.xml" />
 	<mapping resource="com/smit/vo/Purview.hbm.xml" />

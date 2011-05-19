@@ -39,7 +39,7 @@
 					</td>
 					<td colspan="1" width="38%" class="pn-fcontent">
 						<input type="radio" name="servicetype" value = "message" checked>文本消息&nbsp
-						<input type="radio" name="servicetype" value = "nofity">提示消息&nbsp
+						<input type="radio" name="servicetype" value = "notification">提示消息&nbsp
 						<input type="radio" name="servicetype" value = "alert">震动&nbsp
 					</td>					
 				</tr>

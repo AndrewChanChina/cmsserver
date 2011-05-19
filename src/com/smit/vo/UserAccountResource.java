@@ -7,6 +7,8 @@ public class UserAccountResource implements Serializable {
 	private String resource;
 	private String deviceName;
 	private String deviceId;
+	private boolean presence;
+	private String flag;
 
 	public Integer getId()
 	{
@@ -44,4 +46,17 @@ public class UserAccountResource implements Serializable {
 	public void setDeviceId(String deviceId) {
 		this.deviceId = deviceId;
 	}
+	public boolean isPresence() {
+		return presence;
+	}
+	public void setPresence(boolean presence) {
+		this.presence = presence;
+	}
+	public String getFlag() {
+		return flag;
+	}
+	public void setFlag(String flag) {
+		this.flag = flag;
+	}
+	
 }
