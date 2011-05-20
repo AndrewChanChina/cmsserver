@@ -17,6 +17,7 @@ import com.smit.service.SysInfoService;
 import com.smit.vo.Part;
 import com.smit.vo.SysInfo;
 import com.smit.vo.TestOption;
+import com.smit.web.control.action.Page;
 
 public class FrameworkAction extends MappingDispatchAction {
 	private ColumnService columnService;
@@ -86,6 +87,10 @@ public class FrameworkAction extends MappingDispatchAction {
 			HttpServletRequest request, HttpServletResponse response) throws Exception{
 		String classType = request.getParameter("class");
 		if(classType.equals("base")){
+			Page page = new Page();
+			page.setCount(page.pageCount());
+			request.setAttribute("page", page);
+			request.setAttribute("checkID", "");
 			return mapping.findForward("baseLog");
 		}else if(classType.equals("detail")){
 			return mapping.findForward("detail");

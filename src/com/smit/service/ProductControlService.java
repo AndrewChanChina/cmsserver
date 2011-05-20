@@ -30,7 +30,7 @@ public interface ProductControlService {
 	public Order loadOrder(int id);
 	public List<Order> loadOrder(String order_code);
 	public List<Order> loadOrder(String order_code,String device_type);
-	
+	public List<Order> loadOrder();
 	
 	//product
 	public boolean insertProduct(CertifiedProduct product);

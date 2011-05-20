@@ -18,9 +18,13 @@
 			<key column="did"></key>
 			<one-to-many class="com.smit.vo.CertifiedProduct"/>
 		</set>
-		<set name="logs" cascade="save-update,delete" lazy="true">
+		<set name="logs" cascade="save-update,delete" lazy="false">
 			<key column="device_id"></key>
 			<one-to-many class="com.smit.vo.DetailLog"/>
+		</set>
+		<set name="baseLogs" lazy="false">
+			<key column="device_id"></key>
+			<one-to-many class="com.smit.vo.BaseLog"/>
 		</set>
 		<many-to-one name="order" column="oid" class="com.smit.vo.Order"></many-to-one>
 	</class>

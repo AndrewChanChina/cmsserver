@@ -156,6 +156,13 @@ public class ProductControlImpl extends HibernateDaoSupport implements ProductCo
 		return list;
 	}
 
+	
+	@Override
+	public List<Order> loadOrder() {
+		String hql = "from Order";
+		return this.getHibernateTemplate().find(hql);
+	}
+
 	@Override
 	public List<Device> getDevice(String checkID) {
 		String hql = "from Device d where d.check_id='"+checkID+"'";

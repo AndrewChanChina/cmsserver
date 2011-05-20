@@ -127,6 +127,13 @@ public class ProductControlServiceImpl implements ProductControlService{
 		return productDao.loadOrder(order_code,device_type);
 	}
 
+	
+	@Override
+	public List<Order> loadOrder() {
+		
+		return productDao.loadOrder();
+	}
+
 	@Override
 	public List<Device> getDevice(String checkID) {
 		List<Device> list = productDao.getDevice(checkID);

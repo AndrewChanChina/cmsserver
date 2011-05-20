@@ -12,6 +12,7 @@
 		<property name="testStatus"></property>
 		<property name="logFile"></property>
 		<property name="create_time"></property>
+		<many-to-one name="device" column="device_id" class="com.smit.vo.Device"></many-to-one>
 	</class>
 </hibernate-mapping>
 

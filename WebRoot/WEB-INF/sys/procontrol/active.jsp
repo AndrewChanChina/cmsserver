@@ -20,9 +20,13 @@
 
 </head>
 <body>
+<div class="rhead">
+		<div class="rpos">当前位置: 授权 - 激活</div>
+		<div class="clear"></div>
+</div>
 <form action="active.do" method="post">
 <table>
-<tr><td>version</td><td><input type="text""/></td><td>checkID</td><td><input type="text" name="checkId"/></td><td>machineID</td><td><input type="text""/></td></tr>
+<tr><td>version</td><td><input type="text""/></td><td>checkID</td><td><input type="text" name="checkID"/></td><td>machineID</td><td><input type="text""/></td></tr>
 <tr><td><input type="submit" value="提交"/></td><td><input type="reset" value="取消"/></td></tr>
 </table>
 </form>

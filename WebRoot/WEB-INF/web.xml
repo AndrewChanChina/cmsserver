@@ -76,11 +76,12 @@
     <url-pattern>*.do</url-pattern>
 </filter-mapping>
  -->
+ <!--  
 <error-page>
         <error-code>404</error-code>
         <location>/auth.jsp</location>
     </error-page>
-
+-->
   <welcome-file-list>
     <welcome-file>/WEB-INF/sys/index.html</welcome-file>
   </welcome-file-list>

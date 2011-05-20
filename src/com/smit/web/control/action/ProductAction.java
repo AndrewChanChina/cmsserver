@@ -90,12 +90,10 @@ public class ProductAction extends MappingDispatchAction{
 			Device device = list.get(0);
 			device.setCheck_id(new_check_id);
 			productService.updateDevice(device);
-			
 			sendXML(response, "", "confirm_suc");
 		}else{
 			sendXML(response, "", "confirm_fail");
 		}
-		
 		return null;
 	}
 }

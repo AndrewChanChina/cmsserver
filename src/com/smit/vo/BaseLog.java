@@ -16,6 +16,8 @@ public class BaseLog implements Serializable{
 	private String testStatus;
 	private String logFile;//upload file path
 	private String create_time;
+	private Device device;
+	
 	public int getId() {
 		return id;
 	}
@@ -67,6 +69,12 @@ public class BaseLog implements Serializable{
 	}
 	public void setCreate_time(String create_time) {
 		this.create_time = create_time;
+	}
+	public Device getDevice() {
+		return device;
+	}
+	public void setDevice(Device device) {
+		this.device = device;
 	}
 	
 }

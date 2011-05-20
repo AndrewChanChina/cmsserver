@@ -55,21 +55,20 @@
 	<div class="clear"></div>
 </div>
 <html:form action="order.do" method="post">
-<table id="table">
-<tr><td>名称</td><td><html:text property="name" value=""></html:text></td><td>设备类型</td><td><html:text property="device_type" value=""></html:text></td>
-<tr><td>开始时间</td><td><html:text property="start_time" value=""></html:text></td><td>结束时间</td><td><html:text property="end_time" value=""></html:text><label style="color: red">&nbsp&nbsp*注意：开始和结束时间格式必须类似：2011/05/08</label></td></tr>
-<tr><td>生产商代号</td><td><html:text property="manufacturer_code" value=""></html:text></td><td>产品型号</td><td><html:text property="production_code" value=""></html:text></td></tr>
-<tr><td>序列号</td><td><html:text property="sn" value=""></html:text></td><td>其他</td><td><html:text property="inf_code" value=""></html:text></td></tr>
-<tr><td>测试选项</td><td>
-	<input type="text" name="selOption" value=""  id="op"/></td><td>
+<table id="table" class="pn-ltable">
+<tr><td class="pn-flabel pn-flabel-h">名称</td><td class="pn-fcontent"><html:text property="name" value=""></html:text></td><td class="pn-flabel pn-flabel-h">设备类型</td><td class="pn-fcontent"><html:text property="device_type" value=""></html:text></td>
+<tr><td class="pn-flabel pn-flabel-h">开始时间</td><td class="pn-fcontent"><html:text property="start_time" value=""></html:text></td><td class="pn-flabel pn-flabel-h">结束时间</td><td class="pn-fcontent"><html:text property="end_time" value=""></html:text><label style="color: red">&nbsp&nbsp*注意：开始和结束时间格式必须类似：2011/05/08</label></td></tr>
+<tr><td class="pn-flabel pn-flabel-h">生产商代号</td><td class="pn-fcontent"><html:text property="manufacturer_code" value=""></html:text></td><td class="pn-flabel pn-flabel-h">产品型号</td><td class="pn-fcontent"><html:text property="production_code" value=""></html:text></td></tr>
+<tr><td class="pn-flabel pn-flabel-h">序列号</td><td class="pn-fcontent"><html:text property="sn" value=""></html:text></td><td class="pn-flabel pn-flabel-h">其他</td><td class="pn-fcontent"><html:text property="inf_code" value=""></html:text></td></tr>
+<tr><td class="pn-flabel pn-flabel-h">测试选项</td><td class="pn-fcontent">
+	<input type="text" name="selOption" value=""  id="op" class="required" style="width: 200px"/></td><td>
 	<select name="option" multiple="multiple" onclick="add();" id="sel" > 
 <logic:iterate id="option" name="options">
 	<option value="${option.name}"><bean:write name="option" property="name"/></option>
-</logic:iterate></select></td><td><input type="button" value="增加" onclick="add();"><input type="button" value="删除" onclick="del();"></td></tr>
+</logic:iterate></select></td><td class="pn-fcontent"><input type="button" value="增加" onclick="add();"><input type="button" value="删除" onclick="del();"></td></tr>
+<tr style="top:50px"><td class="pn-flabel pn-flabel-h" colspan="2" align="center"><html:submit property="" value="提交" ></html:submit></td><td><html:reset property="" value="取消"></html:reset></td><td><html:button property="" value="返回" onclick="back();"></html:button></td></tr>
 </table>
-<table>
-<tr style="top:50px"><td style="left:30%" colspan="2" align="center"><html:submit property="" value="提交" ></html:submit></td><td><html:reset property="" value="取消"></html:reset></td><td><html:button property="" value="返回" onclick="back();"></html:button></td></tr>
-</table>
+
 </html:form>
 </body>
 </html>

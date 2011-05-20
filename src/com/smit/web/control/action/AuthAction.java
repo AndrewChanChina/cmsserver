@@ -107,8 +107,8 @@ public class AuthAction extends MappingDispatchAction{
 	//请求授权
 	public ActionForward reqAuth(ActionMapping mapping , ActionForm form,
 			HttpServletRequest request, HttpServletResponse response) throws IOException{
-		String machineID = request.getParameter("machineId");
-		String checkID = request.getParameter("checkId");
+		String machineID = request.getParameter("machineID");
+		String checkID = request.getParameter("checkID");
 		List<Device> list = productService.getDevice(checkID.trim());
 		sendAuthCode(response, machineID, list);
 		return null;
@@ -142,7 +142,7 @@ public class AuthAction extends MappingDispatchAction{
 	//激活
 	public ActionForward active(ActionMapping mapping ,ActionForm form,
 			HttpServletRequest request, HttpServletResponse response) throws IOException{
-		String checkID = request.getParameter("checkId");
+		String checkID = request.getParameter("checkID");
 		List<Device> list = productService.getDevice(checkID);
 		response.setContentType("text/xm" +
 				"l;charset=utf-8");

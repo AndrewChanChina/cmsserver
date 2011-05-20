@@ -163,7 +163,7 @@ function chgStatus() {
 	当前第<%=contentsPage.getCurrentPage() %>页&nbsp;&nbsp;
 
 	<a href="content.do?op=list&pid=<%=request.getAttribute("pid") %>&pn=<%=contentsPage.getPerPage()%>">上一页</a>
-	<a href="content.do?op=list&pid=<%=request.getAttribute("pid") %>&pn=<%=contentsPage.getNextPage()%>">上一页</a>&nbsp;&nbsp;
+	<a href="content.do?op=list&pid=<%=request.getAttribute("pid") %>&pn=<%=contentsPage.getNextPage()%>">下一页</a>&nbsp;&nbsp;
 	共<%=contentsPage.pageCount() %>页&nbsp;&nbsp;
 	共<%=contentsPage.getTotalRecord() %>记录数&nbsp;&nbsp;
 	跳转<input type="text" name="pn" id="pn"/>页

@@ -90,6 +90,7 @@ public class OrderAction extends MappingDispatchAction{
 			order.setStart_time(format.format(date));
 		}else{
 			order.setStart_time(start_time);
+			 
 		}
 		if("".equals(end_time)|| null == end_time){
 			order.setEnd_time(format.format(DateUtils.addMonths(date, 1)));

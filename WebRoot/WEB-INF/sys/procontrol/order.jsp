@@ -34,12 +34,12 @@
 </div>
 <form action="queryOrder.do" method="post" style="padding-top:5px;" id="orderForm">
 生产代号: <input type="text" name="order_code" value="" style="width:100px"/>
-产品型号: <input type="text" name="production_code" value="" style="width:100px"/>
+产品型号: <input type="text" name="production_code" value="" style="width:100px" maxlength="255"/>
 <input type="submit" value="查询"/><input type="button" value="添加" onclick="add();"/><input type="button" value="修改"/><input type="button" value="删除"/>
 </form>
 <form action="order.do" method="post">
 	
-<table class="pn-ltable" style="" width="100%" cellspacing="1" cellpadding="0" border="0">
+<table class="pn-ltable"  width="100%" cellspacing="1" cellpadding="0" border="0">
 <thead class="pn-lthead"><tr>
 	<th width="20"><input type='checkbox' onclick='Pn.checkbox("ids",this.checked)'/></th>
 	<th>ID</th>

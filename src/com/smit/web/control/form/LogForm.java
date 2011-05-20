@@ -23,7 +23,7 @@ public class LogForm extends ActionForm{
 	private String softwareVersion;
 	private String testStatus;
 	
-	
+	private String checkID;
 	//detail log attr
 	//private String deviceType;
 	//private String note;
@@ -77,40 +77,12 @@ public class LogForm extends ActionForm{
 		this.testStatus = testStatus;
 	}
 
-//	public String getDeviceType() {
-//		return deviceType;
-//	}
-
-//	public void setDeviceType(String deviceType) {
-//		this.deviceType = deviceType;
-//	}
-//
-//	public String getNote() {
-//		return note;
-//	}
-//
-//	public void setNote(String note) {
-//		this.note = note;
-//	}
-
-//	public List<FormFile> getUpload() {
-//		return upload;
-//	}
-//
-//	public void setUpload(List<FormFile> upload) {
-//		this.upload = upload;
-//	}
-//
-
-	/**
-	public FormFile getUploadFile(int index){
-		int size = uploadFiles.size();
-		if(index>size-1){
-			for(int i=0;i<index-size+1;i++){
-				uploadFiles.add(new FormFile());
-			}
-		}
-		return uploadFiles.get(index);
+	public String getCheckID() {
+		return checkID;
 	}
-**/
+
+	public void setCheckID(String checkID) {
+		this.checkID = checkID;
+	}
+
 }

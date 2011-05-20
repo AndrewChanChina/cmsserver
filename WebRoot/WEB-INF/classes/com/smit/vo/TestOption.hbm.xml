@@ -9,7 +9,7 @@
 		<property name="test_id"></property>
 		<property name="create_time"></property>
 		 
-		<set name="detailLogs" cascade="all" lazy="false" inverse="true">
+		<set name="detailLogs" cascade="all" lazy="false">
 			<key column="testOption_id"></key>
 			<one-to-many class="com.smit.vo.DetailLog"/>
 		</set>

@@ -159,4 +159,13 @@ public class ProductControlServiceTest extends TestCase{
 		
 		ps.insertOrder(order);
 	}
+	
+	public void testDetailLog(){
+		BeanFactory beanFactory = new ClassPathXmlApplicationContext("applicationContext.xml");
+		ProductControlService ps = (ProductControlService) beanFactory.getBean("productControlService");
+		
+		List<Device> list = ps.getDevice("11051813490577599789879870000000");
+		Device device = list.get(0);
+		System.out.println(device.getLogs().iterator().next().getTestOption().getName());
+	}
 }

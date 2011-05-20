@@ -173,9 +173,9 @@
 
 	<bean id="smitLog" class="com.smit.util.SmitLog"></bean>
     <!-- &&&add by luocheng 2011-04-26 ==================================== -->
-    <bean name="/showBaseLog" class="com.smit.web.FrameworkAction" scope="prototype">
-    	<property name="sysInfoService" ref="sysInfoService"></property>
-    </bean>
+   <bean name="/showBaseLog" class="com.smit.web.FrameworkAction">
+   		<property name="sysInfoService" ref="sysInfoService"></property>
+   </bean>
     <!-- &&&log file upload , add by luocheng-->
     <bean id="logDao" class="com.smit.dao.LogDaoImpl">
     	<property name="sessionFactory" ref="sessionFactory"></property>
@@ -183,11 +183,29 @@
     <bean id="logService" class="com.smit.service.LogServiceImpl">
     	<property name="logDao" ref="logDao"></property>
     </bean>
+    <bean name="/showAddBase" class="com.smit.web.control.action.MultiFileUploadAction">
+    	<property name="logService" ref="logService"></property>
+    	<property name="service" ref="productControlService"></property>
+    </bean>
+    <bean name="/showAddDetail" class="com.smit.web.control.action.MultiFileUploadAction">
+    	<property name="logService" ref="logService"></property>
+    	<property name="service" ref="productControlService"></property>
+    </bean>
+     <bean name="/queryBase" class="com.smit.web.control.action.MultiFileUploadAction">
+    	<property name="logService" ref="logService"></property>
+    	<property name="service" ref="productControlService"></property>
+    </bean>
+    <bean name="/queryDetail" class="com.smit.web.control.action.MultiFileUploadAction">
+    	<property name="logService" ref="logService"></property>
+    	<property name="service" ref="productControlService"></property>
+    </bean>
     <bean name="/logUpload" class="com.smit.web.control.action.MultiFileUploadAction">
     	<property name="logService" ref="logService"></property>
+    	<property name="service" ref="productControlService"></property>
     </bean>
     <bean name="/detailLog" class="com.smit.web.control.action.MultiFileUploadAction">
     	<property name="logService" ref="logService"></property>
+    	<property name="service" ref="productControlService"></property>
     </bean>
     <bean name="productDao" class="com.smit.dao.ProductControlImpl">
     	<property name="sessionFactory" ref="sessionFactory"></property>
@@ -208,6 +226,9 @@
     	<property name="sysInfoService" ref="sysInfoService"></property>
     </bean>
     <bean name="/testOption" class="com.smit.web.control.action.TestOptionAction">
+    	<property name="service" ref="productControlService"></property>
+    </bean>
+    <bean name="/showOption" class="com.smit.web.control.action.TestOptionAction">
     	<property name="service" ref="productControlService"></property>
     </bean>
     <bean name="/showAddOption" class="com.smit.web.control.action.TestOptionAction">

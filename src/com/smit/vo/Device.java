@@ -20,6 +20,7 @@ public class Device implements Serializable{
 	private Set<CertifiedProduct> products = new HashSet<CertifiedProduct>();
 	private Set<DetailLog> logs = new HashSet<DetailLog>();
 	private Order order;
+	private Set<BaseLog> baseLogs = new HashSet<BaseLog>();
 	
 	//增加2个字段
 	private String auth_code;//授权码
@@ -107,6 +108,12 @@ public class Device implements Serializable{
 	}
 	public void setActive_status(String active_status) {
 		this.active_status = active_status;
+	}
+	public Set<BaseLog> getBaseLogs() {
+		return baseLogs;
+	}
+	public void setBaseLogs(Set<BaseLog> baseLogs) {
+		this.baseLogs = baseLogs;
 	}
 	
 	

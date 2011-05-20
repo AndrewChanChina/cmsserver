@@ -53,16 +53,14 @@
 </div>
 <br>
 <form action="testOption.do" method="post">
-	<table align="center" border="0" bordercolor="black" id="table" class="pn-ltable">
-	<thead>
-	<tr><th>设备名称</th><th>testID:</th><th>创建时间</th><th>操作</th></tr></thead>
-	<tbody id="tab">
-	<tr><td><input type="text" name="name"/></td><td><input type="text" name="test_id"/></td><td><input type="text" name="create_time"/></td><td><input type="button" value="增加" onclick="add(0);"/><!--  <input type="button" value="删除"/>--></td></tr>
-	</tbody>
-	</table>
-	<br>
-	<table><tr><td colspan="3" width="50%" style="margin-left: 200px;"><input type="submit" value="提交"/></td><td colspan="1" width="50%"><input type="reset" value="取消"/></td></tr></table>
-	<br>
+<table  border="0" bordercolor="black" id="table" class="pn-ltable" >
+<thead>
+<tr><th class="pn-flabel pn-flabel-h" align="center">设备名称</th><th class="pn-flabel pn-flabel-h" align="center">testID:</th><th class="pn-flabel pn-flabel-h" align="center">创建时间</th><th class="pn-flabel pn-flabel-h" align="center">操作</th></tr></thead>
+<tbody id="tab">
+<tr><td class="pn-fcontent"><input type="text" name="name"/></td><td class="pn-fcontent"><input type="text" name="test_id"/></td><td class="pn-fcontent"><input type="text" name="create_time"/></td><td class="pn-fcontent"><input type="button" value="增加" onclick="add(0);" style="width: 100px"/><!--  <input type="button" value="删除"/>--></td></tr>
+</tbody>
+</table>
+<table class="pn-ltable"><tr><td colspan="2" width="50%" align="center" class="pn-fcontent"><input type="submit" value="提交"/></td><td colspan="2" width="50%" align="center" class="pn-fcontent"><input type="reset" value="取消"/></td></tr></table>
 </form>
 
 </body>

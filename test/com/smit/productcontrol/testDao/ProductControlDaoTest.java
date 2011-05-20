@@ -2,11 +2,15 @@ package com.smit.productcontrol.testDao;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.criterion.DetachedCriteria;
 
+import com.smit.vo.BaseLog;
+import com.smit.vo.Device;
 import com.smit.vo.TestOption;
 
 import junit.framework.TestCase;
@@ -54,6 +58,17 @@ public class ProductControlDaoTest extends TestCase{
 		option.setCreate_time(format.format(new Date()));
 		session.saveOrUpdate(option);
 		session.beginTransaction().commit();
+		//DetachedCriteria 
+	}
+	
+	public void testdid(){
+		Device device = new Device();
+		device.setId(1);
+		String hql = "from BaseLog bl where bl.device.id =1";
+		List<BaseLog> list = session.createQuery(hql).list();
+		for(BaseLog log : list){
+			System.out.println(log.getMachineID());
+		}
 	}
 	
 }

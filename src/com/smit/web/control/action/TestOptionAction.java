@@ -37,6 +37,15 @@ public class TestOptionAction extends MappingDispatchAction{
 		this.service = service;
 	}
 	
+	public ActionForward showOption(ActionMapping mapping,ActionForm form,
+			HttpServletRequest request,HttpServletResponse response){
+		List<Order> orders = service.loadOrder();
+		if(orders.size()>0){
+			request.setAttribute("orders", orders);
+		}
+		return mapping.findForward("showOption");
+	}
+	
 	public ActionForward showAddOption(ActionMapping mapping,ActionForm form,
 			HttpServletRequest request,HttpServletResponse response){
 		return mapping.findForward("showAddOption");

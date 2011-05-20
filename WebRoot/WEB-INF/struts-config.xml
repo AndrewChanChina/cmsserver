@@ -231,20 +231,32 @@
 		</action>
 
 		<!-- add by luocheng 2011-04-26 #########################-->
-		<action path="/showBaseLog" type="org.springframework.web.struts.DelegatingActionProxy"
-			parameter="showLogPage">
-			<forward name="baseLog" path="/WEB-INF/sys/base.jsp"></forward>
-		</action>
 		<action path="/showDetailLog" type="org.springframework.web.struts.DelegatingActionProxy"
 			parameter="showLogPage">
 			<forward name="baseLog" path="/WEB-INF/sys/base.jsp"></forward>
 		</action>
 		<action path="/showBaseLog" type="org.springframework.web.struts.DelegatingActionProxy"
 			parameter="showLogPage">
-			<forward name="baseLog" path="/WEB-INF/sys/base.jsp"></forward>
-			<forward name="detail" path="/WEB-INF/sys/detail.jsp"></forward>
+			<forward name="baseLog" path="/WEB-INF/sys/showbase.jsp"></forward>
+			<forward name="detail" path="/WEB-INF/sys/showdetail.jsp"></forward>
 			<forward name="order" path="/WEB-INF/sys/procontrol/order.jsp"></forward>
 			<forward name="testOption" path="/WEB-INF/sys/procontrol/option_test.jsp"></forward>
+		</action>
+		<action path="/showAddBase" type="org.springframework.web.struts.DelegatingActionProxy"
+			parameter="showAddBaseLog">
+			<forward name="showAddBase" path="/WEB-INF/sys/base.jsp"></forward>
+		</action>
+		<action path="/showAddDetail" type="org.springframework.web.struts.DelegatingActionProxy"
+			parameter="showAddDetailLog">
+			<forward name="showAddDetail" path="/WEB-INF/sys/detail.jsp"></forward>
+		</action>
+		<action path="/queryBase" type="org.springframework.web.struts.DelegatingActionProxy"
+			parameter="queryBaseLog">
+			<forward name="queryBase" path="/WEB-INF/sys/showbase.jsp"></forward>
+		</action>
+		<action path="/queryDetail" type="org.springframework.web.struts.DelegatingActionProxy"
+			parameter="queryDetailLog">
+			<forward name="queryDetail" path="/WEB-INF/sys/showdetail.jsp"></forward>
 		</action>
  		<action path="/logUpload" name="logForm" parameter="log"
  		type="org.springframework.web.struts.DelegatingActionProxy">
@@ -275,6 +287,10 @@
  		</action>
  		<action path="/testOption" type="org.springframework.web.struts.DelegatingActionProxy" 
  		parameter="addOption"></action>
+ 		<action path="/showOption" type="org.springframework.web.struts.DelegatingActionProxy" 
+ 		parameter="showOption">
+ 			<forward name="showOption" path="/WEB-INF/sys/procontrol/option_test.jsp"></forward>
+ 		</action>
  		<action path="/showAddOption" type="org.springframework.web.struts.DelegatingActionProxy" 
  		parameter="showAddOption">
  			<forward name="showAddOption" path="/WEB-INF/sys/procontrol/option_test_add.jsp"></forward>

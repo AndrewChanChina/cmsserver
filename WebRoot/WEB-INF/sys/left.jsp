@@ -66,7 +66,7 @@ $(function(){
 <%	
 	}else if(opCode.equalsIgnoreCase("log")){
 %>
-		<li><a href="showBaseLog.do?class=test" target="rightFrame">测试选项</a></li>
+		<li><a href="showOption.do?class=test" target="rightFrame">测试选项</a></li>
 		<li><a href="showBaseLog.do?class=order" target="rightFrame">生产批次</a></li>
 		<li><a href="showBaseLog.do?class=base" target="rightFrame">基本信息</a></li>
 		<li><a href="showBaseLog.do?class=detail" target="rightFrame">细分状态</a></li>
