@@ -5,7 +5,7 @@ import org.jivesoftware.smack.util.StringUtils;
 
 import java.util.List;
 /*
- * this is the packet for servers comuication
+ * 这是服务器自己进行通信的IQ
  * author: chenyzpower@gmail.com
  */
 public class PushServerIQ extends IQ {

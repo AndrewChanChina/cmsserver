@@ -2,6 +2,7 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
 	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
 	xmlns:p="http://www.springframework.org/schema/p"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
 						http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
@@ -62,9 +63,31 @@
 	
 	<!-- 开发者登陆 -->
 	<bean name="/loginDev" class="com.smit.web.UserAction" scope="prototype">
+		<property name="pushDataService" ref="pushDataService"></property>
 		<property name="userService" ref="userService"></property>
 	</bean>
 	<bean name="/logoutDev" class="com.smit.web.UserAction" scope="prototype">
+	</bean>
+	
+	<bean id="pushServiceDao" class="com.smit.dao.PushServiceDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="pushManageService" class="com.smit.service.push.PushManageServiceImpl">
+		<property name="pushServiceDao" ref="pushServiceDao"></property>
+	</bean>
+	<bean id="pushDataService" class="com.smit.service.push.PushDataServiceImpl">
+		<property name="pushManageService" ref="pushManageService"></property>	
+	</bean>
+	<bean name="/home" class="com.smit.web.UserAction" scope="prototype">
+	</bean>
+	
+	<!-- 推送服务 -->
+	<bean name="/pushdata" class="com.smit.web.PushDataAction" scope="prototype">
+		<property name="pushManageService" ref="pushManageService"></property>
+	</bean>
+	<bean name="/pushservicemanage" class="com.smit.web.PushServiceManage"
+		scope="prototype">
+		<property name="pushManage" ref="pushManageService"></property>
 	</bean>
 
 	<!-- user manager action -->
@@ -198,31 +221,8 @@
 	</bean>
 	<!-- ================================================================== -->
 
-	<bean id="pushServiceDao" class="com.smit.dao.PushServiceDaoImpl">
-		<property name="sessionFactory" ref="sessionFactory"></property>
-	</bean>
-	<bean id="pushManage" class="com.smit.service.push.PushManageImpl">
-		<property name="pushServiceDao" ref="pushServiceDao"></property>
-	</bean>
-	<bean id="pushDataService" class="com.smit.service.push.PushDataServiceImpl">
 	
-	</bean>
-	<bean name="/home" class="com.smit.web.PushDataAction" scope="prototype">
-	</bean>
-	<bean name="/devlogin" class="com.smit.web.PushDataAction" scope="prototype">
-		<property name="userService" ref="userService"></property>
-		<property name="pushDataService" ref="pushDataService"></property>
-	</bean>
-	<bean name="/developer_register" class="com.smit.web.PushDataAction"
-		scope="prototype">
-		<property name="userService" ref="userService"></property>
-	</bean>
-	<bean name="/pushdata" class="com.smit.web.PushDataAction" scope="prototype">
-	</bean>
-	<bean name="/pushservicemanage" class="com.smit.web.PushServiceManage"
-		scope="prototype">
-		<property name="pushManage" ref="pushManage"></property>
-	</bean>
+	
 	<bean id="videoDao" class="com.smit.dao.VideoDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
@@ -243,7 +243,7 @@
 		<property name="videoService" ref="videoService"></property>		
 	</bean>
 	<!-- collect information in special time -->
-	<bean id="collection" 
+	<!-- bean id="collection" 
  	class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean"> 
 		<property name="targetObject" ref="collectVideoTask" />
 		<property name="targetMethod" value="youku" /> 
@@ -266,18 +266,40 @@
 			<ref bean="cronTrigger" />
 		    </list>
 		</property>
-   </bean>  
+   </bean-->  
+   
+   <bean id="transactionManager"  
+        class="org.springframework.orm.hibernate3.HibernateTransactionManager">  
+        <property name="sessionFactory">  
+            <ref bean="sessionFactory" />  
+        </property>  
+    </bean>  
+    <!-- 事务通知 -->  
+    <tx:advice id="txAdvice" transaction-manager="transactionManager">  
+        <tx:attributes>  
+            <tx:method name="add*" propagation="REQUIRED" />  
+            <tx:method name="del*" propagation="REQUIRED" />  
+            <tx:method name="mod*" propagation="REQUIRED" />  
+            <tx:method name="*" read-only="true" />  
+        </tx:attributes>  
+    </tx:advice>  
 
 	<!-- logger -->
 	<bean id="smitLog" class="com.smit.util.SmitLog"></bean>
+	<bean id="purviewControl" class="com.smit.purview.PurviewControl"></bean>
 
 	<!-- AOP -->
 	<aop:config proxy-target-class="true">
 		<aop:aspect id="logaop" ref="smitLog">
 			<aop:pointcut id="testPointcut"
-				expression="execution(* com.smit.dao.SysInfoDaoImpl.*(..))" />
+				expression="execution(* com.smit.web.UserAction.*(..))" />			
 			<aop:before pointcut-ref="testPointcut" method="before" />
 			<aop:after pointcut-ref="testPointcut" method="after" />
+		</aop:aspect>
+		<aop:aspect id="purview" ref="purviewControl">
+			<aop:pointcut id="userPointcut"
+				expression="execution(* com.smit.web.PushDataAction.*(..))" />
+			<aop:before pointcut-ref="userPointcut" method="login"/>
 		</aop:aspect>
 	</aop:config>
 

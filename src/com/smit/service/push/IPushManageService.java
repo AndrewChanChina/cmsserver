@@ -1,4 +1,4 @@
-package com.smit.dao;
+package com.smit.service.push;
 
 import java.util.List;
 
@@ -6,7 +6,7 @@ import com.smit.util.SmitPage;
 import com.smit.vo.PushService;
 import com.smit.vo.UserAccountResource;
 
-public interface IPushServiceDao {
+public interface IPushManageService {
 
 	public void save(PushService ps);
 	public void update(PushService ps);
@@ -14,12 +14,12 @@ public interface IPushServiceDao {
 	public PushService getById(Integer id);
 	// for pagination
 	// if page == null return all objects
-	public List<PushService> listAll(SmitPage page);
-	
+	public List listAll(SmitPage page);
 	
 	public void saveOrUpdate(UserAccountResource us);
-	public void updateUserPresence(String user, String resource, boolean presence);
+	public void updateUserAccountAllRes(List<UserAccountResource> list);
+	public void updateUserPresence(String fromUser, boolean presence);
 	public void delete(UserAccountResource us);
-	public void deleteByAccount(String account);
+	public void delete(String userAccount);
 	public List<UserAccountResource> listAllResource(String userName);
 }

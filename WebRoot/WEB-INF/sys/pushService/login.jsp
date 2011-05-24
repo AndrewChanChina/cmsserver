@@ -43,7 +43,9 @@
 </HEAD>
 	
 	<BODY>
-	<a href="login_adminj.do">管理员登陆入口</a>
+	<p><a href="login_adminj.do">管理员登陆入口</a>
+		<br><a href="loginDevj.do">开发者到这里登陆</a>
+						</p>
 		<DIV id=LoginContainer>
 			<IMG class=loginBgImage src="./dev/img/login_bg_left.gif">
 			<DIV id=LoginMain>
@@ -54,9 +56,7 @@
 					<FORM id=LoginForm
 						action="login.do"
 						method=post>
-						<p>
-							<a href="loginDevj.do">开发者到这里登陆</a>
-						</p>
+						
 						<font color="red">
 							<html:errors property="fail"/>
 						</font>

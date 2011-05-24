@@ -54,7 +54,12 @@
 
 	<action-mappings>
 
-		<!-- 个人 login -->
+		<!-- 个人 相关的 -->
+		<action path="/home"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			parameter="home">
+			<forward name="success" path="/WEB-INF/sys/pushService/home.jsp" />
+		</action>	
 		<action path="/login_jsp" type="org.apache.struts.actions.ForwardAction"
 			parameter="/WEB-INF/sys/pushService/login.jsp" scope="request" validate="false">
 		</action>
@@ -68,8 +73,9 @@
 			type="org.springframework.web.struts.DelegatingActionProxy"
 			parameter="logout">
 			<forward name="success" path="/WEB-INF/sys/pushService/login.jsp" />
-		</action>		
-		<!-- 开发者 login -->
+		</action>	
+			
+		<!-- 开发者 相关 -->
 		<action path="/loginDevj" type="org.apache.struts.actions.ForwardAction"
 			parameter="/WEB-INF/sys/pushService/developer_login.jsp" scope="request" validate="false">
 		</action>
@@ -86,6 +92,17 @@
 		</action>	
 		<action path="/home_developer" type="org.apache.struts.actions.ForwardAction"
 			parameter="/WEB-INF/sys/pushService/developer_home.jsp" scope="request" validate="false">
+		</action>
+		<action path="/devregister_page" type="org.apache.struts.actions.ForwardAction"
+			parameter="/WEB-INF/sys/pushService/developer_register.jsp" scope="request"
+			validate="false">
+		</action>
+		<action path="/register"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			parameter="register" name="registerForm" input="/register.jsp"
+			validate="true">
+			<forward name="success" path="/WEB-INF/sys/index.html" />
+			<forward name="fail" path="/fail.jsp" />
 		</action>	
 		
 		<!-- 管理员登陆 -->
@@ -105,39 +122,17 @@
 			type="org.springframework.web.struts.DelegatingActionProxy"
 			parameter="logout_admin">
 			<forward name="success" path="/login.jsp" />
-		</action>
+		</action>		
 		
-		<action path="/register_admin"
-			type="org.springframework.web.struts.DelegatingActionProxy"
-			parameter="register" name="registerForm" input="/register.jsp"
-			validate="true">
-			<forward name="success" path="/WEB-INF/sys/index.html" />
-			<forward name="fail" path="/fail.jsp" />
-		</action>
-		
-		<!-- push service -->
-		<action path="/home"
-			type="org.springframework.web.struts.DelegatingActionProxy"
-			parameter="home">
-			<forward name="success" path="/WEB-INF/sys/pushService/home.jsp" />
-		</action>	
+		<!-- push service -->		
 		<action path="/pushdata"
 			type="org.springframework.web.struts.DelegatingActionProxy"
-			parameter="pushData" name="pushDataForm">
-			<forward name="success" path="/home.do" />
-		</action>
-		
-		<!-- developer push -->	
-		<action path="/developer_register"
-			type="org.springframework.web.struts.DelegatingActionProxy"
-			parameter="developerRegister" name="registerForm" input="/devregister_page.do"
-			validate="true">
-			<forward name="success" path="/login.jsp" />
+			parameter="opt" name="pushDataForm">
+			<forward name="inputForm" path="/WEB-INF/sys/pushService/home.jsp" />
+			<forward name="inputFormDev" path="/WEB-INF/sys/pushService/developer_pushData.jsp"></forward>
 		</action>		
-		<action path="/devregister_page" type="org.apache.struts.actions.ForwardAction"
-			parameter="/WEB-INF/sys/pushService/developer_register.jsp" scope="request"
-			validate="false">
-		</action>
+		
+		<!-- 管理开发者的推送服务 -->
 		<action path="/pushservicemanage"
 			type="org.springframework.web.struts.DelegatingActionProxy"
 			parameter="opt" name="pushServiceForm">
@@ -145,8 +140,7 @@
 			<forward name="listPage" path="/WEB-INF/sys/pushService/pushservice_list.jsp" />
 			<forward name="managePage"
 				path="/WEB-INF/sys/pushService/pushservice_manage.jsp" />
-			<forward name="back2ListPage" path="/pushservicemanage.do?opt=list" />
-			<forward name="sendData" path="/WEB-INF/sys/pushService/developer_pushData.jsp"></forward>
+			<forward name="back2ListPage" path="/pushservicemanage.do?opt=list" />			
 		</action>
 
 		<!-- language -->

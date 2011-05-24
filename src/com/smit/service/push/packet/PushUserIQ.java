@@ -6,9 +6,16 @@ import org.jivesoftware.smack.packet.IQ;
 import org.jivesoftware.smack.packet.Message.Type;
 import org.jivesoftware.smack.util.StringUtils;
 
+/**
+ * 这个是用来发送 push 的详细消息的IQ，限于用户自己使用
+ * @author USER
+ *
+ */
 public class PushUserIQ extends IQ {
 
-	private Type type = Type.notification;
+
+	private String type;
+	
 	private List<String> userList;
 	private boolean bDelay = false;
 	private String collapseKey;
@@ -41,10 +48,10 @@ public class PushUserIQ extends IQ {
 		if(this.bDelay)
 			delay = "true";
 		
-		buf.append("<type>").append(type).append("</type>");
 		for (String groupName : userList) {
             buf.append("<user>").append(StringUtils.escapeForXML(groupName)).append("</user>");
         }
+		buf.append("<type>").append(type).append("</type>");
 		buf.append("<delayWhileIdle>").append(delay).append("</delayWhileIdle>");
 		buf.append("<collapseKey>").append(collapseKey).append("</collapseKey>");
 		buf.append("<title>").append(title).append("</title>");
@@ -53,14 +60,14 @@ public class PushUserIQ extends IQ {
 		buf.append("<message>").append(message).append("</message>");
 		return buf.toString();
 	}
-
-   
-	public void setInfType(Type type){
-		this.type = type;
-	}
-	public Type getInfType(){
+	
+	public String getIQType() {
 		return type;
 	}
+	public void setIQType(String type) {
+		this.type = type;
+	}
+	
 	public void setDelay(boolean bdelay){
 		this.bDelay = bdelay;
 	}
@@ -81,7 +88,7 @@ public class PushUserIQ extends IQ {
 	public void setUserList(List<String> list){
 		this.userList = list;
 	}
-	public List getUserList(){
+	public List<String> getUserList(){
 		return this.userList;
 	}
 	public String getTitle() {
@@ -115,28 +122,8 @@ public class PushUserIQ extends IQ {
     public String getTicker(){
     	return ticker;
     }
+   
     
-    public enum Type {
-
-        /**
-         * (Default) a normal text message used in email like interface.
-         */
-    	notification,
-
-        /**
-         * Typically short text message used in line-by-line chat interfaces.
-         */
-    	alert;
-
-        public static Type fromString(String name) {
-            try {
-                return Type.valueOf(name);
-            }
-            catch (Exception e) {
-                return notification;
-            }
-        }
-
-    }
+    
 
 }

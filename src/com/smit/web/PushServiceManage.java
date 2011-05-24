@@ -10,7 +10,7 @@ import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.actions.DispatchAction;
 
-import com.smit.service.push.IPushManage;
+import com.smit.service.push.IPushManageService;
 import com.smit.util.Constants;
 import com.smit.util.SmitPage;
 import com.smit.util.WebUtil;
@@ -19,7 +19,7 @@ import com.smit.web.form.PushServiceForm;
 
 public class PushServiceManage extends DispatchAction {
 
-	IPushManage pushManage;
+	IPushManageService pushManage;
 		
 	public ActionForward list(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -75,7 +75,7 @@ public class PushServiceManage extends DispatchAction {
 			// TODO keep user name to be unique, modify database setting			
 			PushServiceForm sForm = (PushServiceForm)form;
 			
-			if(sForm.getId()==null){
+			if(sForm.getId()==0 || sForm.getId()==null){
 				Integer userId = (Integer)request.getSession().getAttribute(Constants.CUR_USER_ID);
 				PushService ps = new PushService();
 				
@@ -90,6 +90,7 @@ public class PushServiceManage extends DispatchAction {
 			}			
 			
 		}catch(Exception e){
+			request.setAttribute("returnBack", "pushservicemanage.do?opt=list");
 			return mapping.findForward("fail");
 		}
 		response.sendRedirect("pushservicemanage.do?opt=list");
@@ -119,25 +120,8 @@ public class PushServiceManage extends DispatchAction {
 		}
 		return mapping.findForward("back2ListPage");		
 	}
-
-	/**
-	 * prepare data then go to send data page
-	 */
-	public ActionForward pushData(ActionMapping mapping, ActionForm form,
-			HttpServletRequest request, HttpServletResponse response)
-			throws Exception {
-		try{
-			List list = pushManage.listAll(null);
-			request.setAttribute("pushServiceList", list);
-		}catch(Exception e){
-			e.printStackTrace();
-			return mapping.findForward("fail");
-		}
-		//response.sendRedirect("home.do");
-		return mapping.findForward("sendData");
-	}
 	
-	public void setPushManage(IPushManage pushManage) {
+	public void setPushManage(IPushManageService pushManage) {
 		this.pushManage = pushManage;
 	}
 }

@@ -3,6 +3,7 @@ package com.smit.service;
 import java.util.List;
 
 import com.smit.dao.IUserDao;
+import com.smit.util.Constants;
 import com.smit.util.SmitPage;
 import com.smit.vo.User;
 
@@ -52,6 +53,13 @@ public class UserServiceImpl implements IUserService {
 		user.setTel(telphone);
 		
 		userDao.register(user,"developer");
+	}
+	public void regUser(String userName,String password){
+		User user = new User();
+		user.setUserName(userName);	
+		user.setPassword(password);
+		
+		userDao.register(user,Constants.PUSH_GROUPNAME);
 	}
 	@Override
 	public User findUserByName(String userName) {

@@ -12,6 +12,7 @@ import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 import com.smit.util.SmitPage;
 import com.smit.vo.Purview;
 import com.smit.vo.PushService;
+import com.smit.vo.UserAccountResource;
 
 public class PushServiceDaoImpl extends HibernateDaoSupport implements IPushServiceDao {
 
@@ -62,6 +63,45 @@ public class PushServiceDaoImpl extends HibernateDaoSupport implements IPushServ
 	
 	private List listAll(){
 		return this.getHibernateTemplate().find("SELECT u FROM com.smit.vo.PushService u");
+	}
+
+	@Override
+	public void saveOrUpdate(UserAccountResource us) {
+		this.getHibernateTemplate().saveOrUpdate(us);		
+	}
+
+	@Override
+	public void delete(UserAccountResource us) {
+		this.getHibernateTemplate().delete(us);
+	}
+
+	@Override
+	public List<UserAccountResource> listAllResource(String userName) {
+		return (List<UserAccountResource>)this.getHibernateTemplate()
+		.find("SELECT u FROM com.smit.vo.UserAccountResource u WHERE userAccount='"
+				+userName + "'");
+	}
+
+	@Override
+	public void deleteByAccount(String account) {
+		List list = getHibernateTemplate()
+		.find("SELECT u FROM com.smit.vo.UserAccountResource u WHERE userAccount = '" + account + "'");
+		if(list.size() > 0){
+			getHibernateTemplate().deleteAll(list);
+		}
+		
+			
+	}
+
+	@Override
+	public void updateUserPresence(String user, String resource, boolean presence) {
+		List<UserAccountResource> list = getHibernateTemplate()
+		.find("SELECT u FROM com.smit.vo.UserAccountResource u WHERE userAccount = '" +
+				user + "' AND resource ='" + resource + "' AND presence = " + !presence + "");
+		for(UserAccountResource u : list){
+			u.setPresence(presence);
+			getHibernateTemplate().update(u);
+		}
 	}
 
 

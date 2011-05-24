@@ -8,8 +8,8 @@ public class PushServiceForm extends ActionForm {
 	 * 
 	 */
 	private static final long serialVersionUID = -794673755238123515L;
-	private Integer id;
-	private String serviceName;
+	private Integer id = null;
+	private String serviceName = null;
 
 	
 	public Integer getId() {

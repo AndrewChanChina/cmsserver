@@ -80,6 +80,7 @@
 				<td colspan="4" class="pn-fbutton">									
 					<input type="hidden" name="org.apache.struts.taglib.html.TOKEN"
 					value="${sessionScope['org.apache.struts.action.TOKEN']}"></input>
+					<input type="hidden" name="id" value="${pushService.id}"></input>
 					<input type="submit" value="提交" />
 					&nbsp;
 					<input type="reset" value="重置" />

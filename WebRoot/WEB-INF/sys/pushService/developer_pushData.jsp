@@ -1,4 +1,8 @@
 <%@ page language="java" import="java.util.*" pageEncoding="GB18030"%>
+<%@ taglib uri="/WEB-INF/struts-html.tld" prefix="html"%>
+<%@ taglib uri="/WEB-INF/struts-logic.tld" prefix="logic"%>
+<%@ taglib uri="/WEB-INF/struts-bean.tld" prefix="bean"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
@@ -17,7 +21,7 @@
   </head>
   
   <body>
-   <form method="post" action="XXX.do" id="jvForm">
+   <form method="post" action="pushdata.do?opt=pushDev" id="jvForm">
 			<table width="100%" class="pn-ftable" cellpadding="2" cellspacing="1"
 				border="0">
 				<tr>
@@ -35,7 +39,7 @@
 					</td>
 					<td colspan="1" width="38%" class="pn-fcontent">
 						<input type="radio" name="servicetype" value = "message" checked>文本消息&nbsp
-						<input type="radio" name="servicetype" value = "nofity">提示消息&nbsp
+						<input type="radio" name="servicetype" value = "notification">提示消息&nbsp
 						<input type="radio" name="servicetype" value = "alert">震动&nbsp
 					</td>					
 				</tr>
@@ -47,7 +51,7 @@
 					<td colspan="1" width="38%" class="pn-fcontent">
 						<select name="serviceName">
 							<c:forEach items="${pushServiceList}" var="pushService">
-								<option value="${pushService.id}" >								
+								<option value="${pushService.serviceId}" >								
 								${pushService.serviceName}
 								</option>	
 							</c:forEach>						

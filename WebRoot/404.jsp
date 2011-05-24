@@ -16,15 +16,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<meta http-equiv="expires" content="0">    
 	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 	<meta http-equiv="description" content="This is my page">
-	<!--
-	<link rel="stylesheet" type="text/css" href="styles.css">
-	-->
+
 
   </head>
   
   <body>
     <h1>页面找不到</h1>
     <p>对不起，你访问的页面不存在</p>
-    <p>${pageContext.exception}</p>
+    
   </body>
 </html>
