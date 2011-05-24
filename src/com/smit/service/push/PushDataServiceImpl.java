@@ -139,9 +139,7 @@ public class PushDataServiceImpl implements IPushDataService {
 		if(userList == null){
 			return false;
 		}
-		if(iq.isRightType(type) == false){
-			throw new Exception("error type");
-		}
+		
 		iq.setIQType(type);
 		iq.setUserList(userList);
 		iq.setDelay(bDelay);

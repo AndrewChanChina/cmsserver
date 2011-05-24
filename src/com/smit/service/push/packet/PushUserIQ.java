@@ -13,9 +13,7 @@ import org.jivesoftware.smack.util.StringUtils;
  */
 public class PushUserIQ extends IQ {
 
-	public static final String TYPE_NOTIFY = "notification";
-	public static final String TYPE_MESSAGE = "message";
-	public static final String TYPE_ALERT = "alert";
+
 	private String type;
 	
 	private List<String> userList;
@@ -124,17 +122,7 @@ public class PushUserIQ extends IQ {
     public String getTicker(){
     	return ticker;
     }
-    /*
-     * 用于检查是否输入的类型是否正确
-     */
-    public boolean isRightType(String type){
-    	if(TYPE_ALERT.endsWith(type)
-    			|| TYPE_MESSAGE.endsWith(type)
-    			|| TYPE_NOTIFY.endsWith(type)){
-    		return true;
-    	}
-    	return false;
-    }
+   
     
     
 

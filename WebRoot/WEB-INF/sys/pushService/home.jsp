@@ -65,12 +65,18 @@
 					服务类型：
 				</td>
 				<td colspan="1" width="38%" class="pn-fcontent">
-					<input type="radio" name="servicetype" value="message" checked>
-					文本消息&nbsp
-					<input type="radio" name="servicetype" value="notification">
-					提示消息&nbsp
-					<input type="radio" name="servicetype" value="alert">
-					震动&nbsp
+					<input type="radio" name="servicetype" value="TEXT" checked>
+					文本消息&nbsp;
+					<input type="radio" name="servicetype" value="WARNING">
+					震动&nbsp;
+					<input type="radio" name="servicetype" value="URL">
+					网址&nbsp;
+					<input type="radio" name="servicetype" value="PICTURE">
+					图片&nbsp;
+					<input type="radio" name="servicetype" value="VIDEO">
+					视频&nbsp;
+					<input type="radio" name="servicetype" value="STORY">
+					小说&nbsp;
 				</td>
 			</tr>
 			<logic:notEmpty name='pushServiceList'>
@@ -103,9 +109,9 @@
 				</td>
 				<td colspan="1" width="38%" class="pn-fcontent">
 					<input type="radio" name="isDelay" value="yes" checked>
-					是 &nbsp
+					是 &nbsp;
 					<input type="radio" name="isDelay" value="no">
-					否 &nbsp
+					否 &nbsp;
 				</td>
 			</tr>
 			<tr>
