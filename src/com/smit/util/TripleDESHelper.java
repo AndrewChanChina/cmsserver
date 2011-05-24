@@ -1,4 +1,4 @@
-package com.smit.productcontrol.testServcie;
+package com.smit.util;
 
 import java.io.IOException;
 import java.security.InvalidKeyException;

@@ -21,6 +21,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script src="./js/jquery.ext.js" type="text/javascript"></script>
 <script src="./js/pony.js" type="text/javascript"></script>
 <script src="./js/admin.js" type="text/javascript"></script>
+<script type="text/javascript">
+	$(document).ready(
+		$("#file").blind("click", function(){
+		//alert("34654");
+			var checkid = $("#checkid");
+			if("".equals(checkid)|| null === checkid){
+				alert("请输入checkid！");
+			}
+		})
+	);
+
+</script>
 </head>
 <body>
 <div class="rhead">
@@ -29,16 +41,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </div>
 <form method="post" action="detailLog.do" id="detailForm" enctype="multipart/form-data"><table border="0" width="200">
 <tbody>
-<!--  
 <tr>
-<td width="10%" class="pn-flabel pn-flabel-h" style="overflow:hidden;white-space:nowrap;">机器类型:</td>
-<td>&nbsp;<input type="text" name="deviceType"></td></tr>
-<tr>
-<td  width="10%"style="overflow:hidden;white-space:nowrap;" class="pn-flabel pn-flabel-h">上传时间:</td>
-<td>&nbsp;<input type="text" name="testStatus"></td></tr>
---><tr>
+<td>CheckID:</td><td><input type="text" name="checkID" id="checkid"></td>
 <td style="overflow:hidden;white-space:nowrap;" class="pn-flabel pn-flabel-h">选择文件:</td>
-<td>&nbsp;<input type="file" name="upload"></td></tr><tr><td valign="top"><input type="submit" value="确定" name="ok"></td><td valign="top"><input type="reset" value="取消" name="reset"></td></tr>
+<td>&nbsp;<input type="file" name="upload" id="file"></td></tr><tr><td valign="top"><input type="submit" value="确定" name="ok"></td><td valign="top"><input type="reset" value="取消" name="reset"></td></tr>
 </tbody></table></form> 
     
   </body>

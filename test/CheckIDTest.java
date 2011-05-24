@@ -1,5 +1,7 @@
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import org.apache.commons.lang3.RandomStringUtils;
 
@@ -22,8 +24,19 @@ public class CheckIDTest {
 		//RandomStringUtils.r
 		//String str= RandomStringUtils.random(12).toString();
 		//System.out.println(str);
-		System.out.println(num);
+		//System.out.println(num);
 	//	System.out.println(checkID);
+		String str = "r";
+		String str1 = "4";
+		String str2 = "";
+		if(str2.matches("\\d+")){
+			System.out.println("hhfhf");
+		}
+		System.out.println(str.matches("\\d*"));
+		System.out.println(str1.matches("\\d*"));
+		
+		List list = new ArrayList();
+		System.out.println(list.get(0));
 	}
 
 }

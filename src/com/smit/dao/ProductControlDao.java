@@ -43,4 +43,7 @@ public interface ProductControlDao {
 	//order option中间表
 	public List<OrderAndOption> getOptionByCode(String order_code);
 	public boolean insertOrderOption(OrderAndOption oo);
+	
+	//log
+	
 }

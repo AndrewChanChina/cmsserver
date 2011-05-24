@@ -19,6 +19,7 @@ import org.apache.struts.actions.MappingDispatchAction;
 
 import com.smit.service.ProductControlService;
 import com.smit.util.StringUtils;
+import com.smit.util.TripleDESHelper;
 import com.smit.vo.CertifiedProduct;
 import com.smit.vo.Device;
 import com.smit.vo.Order;
@@ -93,9 +94,10 @@ public class AuthAction extends MappingDispatchAction{
 		response.setHeader("Cache-Control", "no-cache");
 		PrintWriter pw = response.getWriter();
 		StringBuffer sb = new StringBuffer();
+		TripleDESHelper helper = new TripleDESHelper("123456789ABCDEFG");
 		sb.append("<global>");
 		if(type.equals("success")){
-			sb.append("<checkID>"+checkID+"</checkID>");
+			sb.append("<checkID>"+helper.encode(checkID)+"</checkID>");
 		}else if(type.equals("fail")){
 			sb.append("<statusCode>101</statusCode>");
 		}
@@ -125,9 +127,11 @@ public class AuthAction extends MappingDispatchAction{
 			machineID = StringUtils.formatMachineId(machineID, 32);
 			String m_code = StringUtils.formatMachineId(order.getManufacturer_code(), 8);
 			String p_code = StringUtils.formatMachineId(order.getProduction_code(), 8);
-			String authCode = machineID + m_code + p_code;
-			
-			sb.append("<authCode>"+authCode+"</authCode>");
+			String define = "0000000000000000";
+			String authCode = machineID + m_code + p_code + define;
+			System.out.println(authCode.length()+"auth_code is:"+authCode);
+			TripleDESHelper helper = new TripleDESHelper("123456789ABCDEFG");
+			sb.append("<authCode>"+helper.encode(authCode)+"</authCode>");
 			Device device = list.get(0);
 			device.setAuth_code(authCode);
 			productService.updateDevice(device);

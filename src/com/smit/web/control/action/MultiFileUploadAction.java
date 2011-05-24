@@ -71,92 +71,118 @@ public class MultiFileUploadAction extends MappingDispatchAction{
 	
 	public ActionForward queryDetailLog(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response) throws IOException{
-		String checkID = request.getParameter("checkID");
-		List<Device> list = service.getDevice(checkID);
-		//sendDetailLog(response, list);
-		if(list.size()>0){
-			Set<DetailLog> logs = list.get(0).getLogs();
+		String deviceID = request.getParameter("deviceID");
+		String currentStr = request.getParameter("currentPage");
+		String type = request.getParameter("type");
+		
+		if(deviceID.matches("\\d+")){
+			Device device = service.findById(Integer.parseInt(deviceID));
+			List logs = null;
+			getLogs(request, device, currentStr, type, logs, "detail");
+		}else{
 			Page page = new Page();
-			page.setCurrentPage(1);
-			page.setTotalRecord(list.size());
-			request.setAttribute("devices", logs);
 			request.setAttribute("page", page);
+			request.setAttribute("deviceID", deviceID);
 		}
 		return mapping.findForward("queryDetail");
 	}
 
-	private void sendDetailLog(HttpServletResponse response, List<Device> list) throws IOException {
-		response.setContentType("text/xml;charset=utf-8");
-		response.setCharacterEncoding("utf-8");
-		StringBuffer sb = new StringBuffer();
-		sb.append("<global>");
-		if(list.size()>0){
-			Set<DetailLog> detailLog = list.get(0).getLogs();
-			for(Iterator<DetailLog> i =detailLog.iterator();i.hasNext();){
-				DetailLog log = i.next();
-				sb.append("<device>");
-				sb.append("<name>"+log.getTestOption().getName()+"</name>");
-				sb.append("<testStatus>"+log.getTestStatus()+"</testStatus>");
-				sb.append("<note>"+log.getNote()+"</note>");
-				sb.append("<createTime>"+log.getCreate_time()+"</createTime>");
-				sb.append("</device>");
+	private void getLogs(HttpServletRequest request, Device device,
+			String currentStr, String type,
+			List logs, String logType) {
+		Page page = new Page();
+		if(null != device){
+			setTotalRecord(logType, page, device);
+			if("pre".equals(type)){
+				logs = getPrePage(currentStr, logs, logType, page, device);
+			}else if("next".equals(type)){
+				logs = getNextPage(currentStr, logs, logType, page, device);
+			}else{
+				logs = getPage(logs, logType, page, device);
 			}
-		}else{
-			sb.append("<statusCode>103</statusCode>");
 		}
-		sb.append("</global>");
-		response.getWriter().println(sb.toString());
+		request.setAttribute("logs", logs);
+		request.setAttribute("deviceID", device.getId());
+		request.setAttribute("page", page);
 	}
+
+	private void setTotalRecord(String logType, Page page, Device device) {
+		if("detail".equals(logType)){
+			page.setTotalRecord(device.getLogs().size());
+		}else if("base".equals(logType)){
+			page.setTotalRecord(device.getBaseLogs().size());
+		}
+	}
+
+	private List getPage(List logs, String logType, Page page, Device device) {
+		if("detail".equals(logType)){
+			logs = logService.getDetailLogs(device.getId(), 0, page.size);
+		}else if("base".equals(logType)){
+			logs = logService.getBaseLogs(device.getId(), 0, page.size);
+		}
+		page.setCurrentPage(1);
+		page.setCount(page.pageCount());
+		return logs;
+	}
+
+	private List getNextPage(String currentStr, List logs, String logType,
+			Page page, Device device) {
+		int currentPage = Integer.parseInt(currentStr);
+		int start = 0;
+		if(currentPage<page.pageCount()){
+			page.setCurrentPage(currentPage+1);
+			start = currentPage*(page.size);
+		}else{
+			page.setCurrentPage(page.pageCount());
+			start = (currentPage-1)*(page.size);
+		}
+		System.out.println("start is :" + start);
+		int num = page.size;
+		if("detail".equals(logType)){
+			logs = logService.getDetailLogs(device.getId(), start, num);
+		}else if("base".equals(logType)){
+			logs = logService.getBaseLogs(device.getId(), start, num);
+		}
+		return logs;
+	}
+
+	private List getPrePage(String currentStr, List logs, String logType,
+			Page page, Device device) {
+		int currentPage = Integer.parseInt(currentStr);
+		if(currentPage>1){
+			page.setCurrentPage(currentPage-1);
+		}else{
+			page.setCurrentPage(1);
+		}
+		int begin = (currentPage-2)*(page.size);
+		int start = begin>=0 ? begin : 0;
+		System.out.println("start is :" + start);
+		int num = page.size;
+		if("detail".equals(logType)){
+			logs = logService.getDetailLogs(device.getId(), start, num);
+		}else if("base".equals(logType)){
+			logs = logService.getBaseLogs(device.getId(), start, num);
+		}
+		return logs;
+	}
+
 	public ActionForward queryBaseLog(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response) throws IOException{
-		String checkID = request.getParameter("checkID");
+		String deviceID = request.getParameter("deviceID");
 		String currentStr = request.getParameter("currentPage");
-		System.out.println("当前是第" + currentStr +"页");
-//		if(Integer.parseInt(currentStr)>0){
-//			
-//		}
-		List<Device> list = service.getDevice(checkID);
-		Page page = new Page();
-		if(list.size()>0){
-			Set<BaseLog> logs = list.get(0).getBaseLogs();
-			//Collections.
-			page.setCurrentPage(1);
-			page.setTotalRecord(logs.size());
-			page.setCount(page.pageCount());
-			
-			request.setAttribute("baseLogs", logs);
+		String type = request.getParameter("type");
+		if(deviceID.matches("\\d+")){
+			Device device = service.findById(Integer.parseInt(deviceID));
+			List logs = null;
+			getLogs(request, device, currentStr, type, logs, "base");	
+		}else{
+			Page page = new Page();
+			request.setAttribute("page", page);
+			request.setAttribute("deviceID", "");
 		}
-		request.setAttribute("checkID", checkID);
-		request.setAttribute("page", page);
 		return mapping.findForward("queryBase");
 	}
 
-	private void sendXMLLogInfo(HttpServletResponse response, List<Device> list)
-			throws IOException {
-		response.setContentType("text/xml;charset=utf-8");
-		response.setCharacterEncoding("utf-8");
-		StringBuffer sb = new StringBuffer();
-		sb.append("<global>");
-		if(list.size()>0){
-			Set<BaseLog> baseLog = list.get(0).getBaseLogs();
-			for(Iterator<BaseLog> i =baseLog.iterator();i.hasNext();){
-				BaseLog log = i.next();
-				sb.append("<log>");
-				sb.append("<machineID>"+log.getMachineID()+"</machineID>");
-				sb.append("<machineType>"+log.getMachineType()+"</machineType>");
-				sb.append("<systemVersion>"+log.getSysVersion()+"</systemVersion>");
-				sb.append("<softwareVersion>"+log.getSoftwareVersion()+"</softwareVersion>");
-				sb.append("<testStatus>"+log.getTestStatus()+"</testStatus>");
-				sb.append("<createTime>"+log.getCreate_time()+"</createTime>");
-				sb.append("</log>");
-			}
-		}else{
-			sb.append("<statusCode>102</statusCode>");
-		}
-		sb.append("</global>");
-		response.getWriter().println(sb.toString());
-	}
-	
 	public ActionForward log(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 			{
@@ -216,6 +242,11 @@ public class MultiFileUploadAction extends MappingDispatchAction{
 			HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		DetailLogForm df = (DetailLogForm) form;
+		String checkID = request.getParameter("checkID");
+		if(("".equals(checkID))||(null == checkID)|| service.getDevice(checkID).size()==0){
+			createRespXML(response, "103");
+			return null;
+		}
 		FormFile file = df.getUpload();
 		byte[] buffer = new byte[8192];
 		String xml = null;
@@ -235,7 +266,7 @@ public class MultiFileUploadAction extends MappingDispatchAction{
 			}else{
 				xml = request.getParameter("uploadFile");
 			}
-			parseXML(xml);
+			parseXML(xml,checkID);
 			createRespXML(response,"200");
 		}catch (Exception e){
 			e.printStackTrace();
@@ -244,19 +275,23 @@ public class MultiFileUploadAction extends MappingDispatchAction{
 		return null;
 	}
 
-	private void parseXML(String xml) throws DocumentException {
+	private void parseXML(String xml,String checkID) throws DocumentException {
 		System.out.println(xml.toString());
 		Document doc = DocumentHelper.parseText(xml.trim());
 		Element root = doc.getRootElement();
 		for(Iterator i =root.elementIterator();i.hasNext();){
 			DetailLog log = new DetailLog();
-			Element device = (Element) i.next();
-			String name = device.elementText("name");
+			Element dv = (Element) i.next();
+			String name = dv.elementText("name");
 			TestOption option = service.getOption(name);
-			
+			List<Device> list = service.getDevice(checkID);
+			if(list.size()>0){
+				log.setDevice(list.get(0));
+			}
 			log.setTestOption(option);
-			log.setTestStatus(device.elementText("status"));
-			log.setNote(device.elementText("note"));
+			
+			log.setTestStatus(dv.elementText("status"));
+			log.setNote(dv.elementText("note"));
 			SimpleDateFormat format = new SimpleDateFormat("yyyyMMddHHmmss");
 			log.setCreate_time(format.format(new Date()));
 			logService.insertDetailLog(log);

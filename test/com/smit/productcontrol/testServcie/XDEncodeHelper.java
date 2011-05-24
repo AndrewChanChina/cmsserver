@@ -34,7 +34,7 @@ public class XDEncodeHelper {
 			ebs64 = new BASE64Encoder();
 			dbs64 = new BASE64Decoder();
 			//c1 = Cipher.getInstance(TYPE);
-			c1 = Cipher.getInstance("DESede/ECB/PKCS5Padding");
+			c1 = Cipher.getInstance("DESede/CBC/PKCS5Padding");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

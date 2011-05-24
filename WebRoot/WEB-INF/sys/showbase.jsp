@@ -36,10 +36,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	}
 	$(document).ready(function(){
 		$("a#curPage").click(function(){
-			alert("hello!");
-			$.post("queryBase.do",null,function(data){
-				//alert(data);
-			},"html");
+			
 		});
 	});
 	</script>
@@ -48,7 +45,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    <form method="post" action="queryBase.do" style="padding-top:5px;">
    <table border="0">
 <tbody><tr>
-<td>CheckID:</td><td><input type="text" name="checkID"></td>
+<td>DeviceID:</td><td><input type="text" name="deviceID"></td>
 <td><input type="submit" value="查询"></td>
 <td><input type="button" value="上传"  onclick="upload();"></td></tr>
 </tbody></table></form>
@@ -64,8 +61,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<th>CreateTime</th>
 	</tr></thead>
 <tbody  class="pn-ltbody">
-<logic:notEmpty name="baseLogs">
- <logic:iterate id="baseLog" name="baseLogs">
+<logic:notEmpty name="logs">
+ <logic:iterate id="baseLog" name="logs">
 	<tr>
 	<td><input type="checkbox" onclick='Pn.checkbox("ids",this.checked)'/></td>
 	<td><bean:write name="baseLog" property="machineID"></bean:write></td>
@@ -82,8 +79,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<table width="100%" border="0" cellpadding="0" cellspacing="0"><tr><td align="center" class="pn-sp">
 	当前第<bean:write name="page" property="currentPage"/>页&nbsp;&nbsp;
 
-	<a id="curPage" href="queryBase.do?currentPage=<bean:write name='page' property='currentPage'/>&checkID=<bean:write name='checkID'/>">上一页</a>
-	<a href="content.do?op=list&pid=<%=request.getAttribute("pid") %>&pn=">下一页</a>&nbsp;&nbsp;
+	<a id="curPage" href="queryBase.do?type=pre&currentPage=<bean:write name='page' property='currentPage'/>&deviceID=<bean:write name='deviceID'/>">上一页</a>
+	<a id="prePage" href="queryBase.do?type=next&currentPage=<bean:write name='page' property='currentPage'/>&deviceID=<bean:write name='deviceID'/>">下一页</a>&nbsp;&nbsp;
 	共<bean:write name="page" property="count"/>页&nbsp;&nbsp;
 	共<bean:write name="page" property="totalRecord"/>记录数&nbsp;&nbsp;
 	跳转<input type="text" name="pn" id="pn"/>页<input type="hidden" />

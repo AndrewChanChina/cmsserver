@@ -90,9 +90,13 @@ public class FrameworkAction extends MappingDispatchAction {
 			Page page = new Page();
 			page.setCount(page.pageCount());
 			request.setAttribute("page", page);
-			request.setAttribute("checkID", "");
+			request.setAttribute("deviceID", "");
 			return mapping.findForward("baseLog");
 		}else if(classType.equals("detail")){
+			Page page = new Page();
+			page.setCount(page.pageCount());
+			request.setAttribute("page", page);
+			request.setAttribute("deviceID", "");
 			return mapping.findForward("detail");
 		}else if(classType.equals("order")){
 			List<TestOption> list = new ArrayList();

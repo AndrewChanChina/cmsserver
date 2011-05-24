@@ -83,7 +83,7 @@ public class ProductAction extends MappingDispatchAction{
 	public ActionForward confirm(ActionMapping mapping,ActionForm form,
 			HttpServletRequest request,HttpServletResponse response) throws IOException{
 		String old_check_id = request.getParameter("old_check_id");
-		String new_check_id = request.getParameter("new_check_Id");
+		String new_check_id = request.getParameter("new_check_id");
 		String auth_code = request.getParameter("auth_code");
 		List<Device> list = productService.getDevice(old_check_id);
 		if(list.size()>0){

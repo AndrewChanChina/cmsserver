@@ -2,7 +2,7 @@ package com.smit.web.control.action;
 
 public class Page {
 
-	public  int size = 1;
+	public  int size = 10;
 	private int currentPage;//当前页
 	private int totalRecord;//总记录数
 	private int count;//总页数
@@ -50,7 +50,7 @@ public class Page {
 		this.currentPage = currentPage;
 	}
 	public int getCount() {
-		return count;
+		return this.pageCount();
 	}
 	public void setCount(int count) {
 		this.count = count;

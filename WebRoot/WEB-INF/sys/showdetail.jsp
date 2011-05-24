@@ -35,7 +35,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <body>
   <form method="post" action="queryDetail.do" >
   <table>
-  <tr><td>CheckID:</td><td><input type="text" name="checkID"/></td><td><input type="submit" value="查询"/></td><td><input type="button" onclick="showdetail();" value="添加"/></td></tr>
+  <tr><td>DeviceID:</td><td><input type="text" name="deviceID"/></td><td><input type="submit" value="查询"/></td><td><input type="button" onclick="showdetail();" value="添加"/></td></tr>
   </table>
 
 </form>
@@ -49,19 +49,29 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<th>创建时间</th>
 	</tr></thead>
 <tbody  class="pn-ltbody">
-<logic:notEmpty name="devices">
- <logic:iterate id="device" name="devices">
+<logic:notEmpty name="logs">
+ <logic:iterate id="detailLog" name="logs">
 	<tr>
 	<td><input type="checkbox" onclick='Pn.checkbox("ids",this.checked)'/></td>
-	<td><bean:write name="device" property="testOption.name"></bean:write></td>
-	<td><bean:write name="device" property="testStatus"></bean:write></td>
-	<td><bean:write name="device" property="note"></bean:write></td>
-	<td><bean:write name="device" property="create_time"></bean:write></td>
+	<td><bean:write name="detailLog" property="testOption.name"></bean:write></td>
+	<td><bean:write name="detailLog" property="testStatus"></bean:write></td>
+	<td><bean:write name="detailLog" property="note"></bean:write></td>
+	<td><bean:write name="detailLog" property="create_time"></bean:write></td>
 	</tr>
 	</logic:iterate>
 	</logic:notEmpty>
 	</tbody>
 	</table>
+	<table width="100%" border="0" cellpadding="0" cellspacing="0"><tr><td align="center" class="pn-sp">
+	当前第<bean:write name="page" property="currentPage"/>页&nbsp;&nbsp;
+
+	<a id="curPage" href="queryDetail.do?type=pre&currentPage=<bean:write name='page' property='currentPage'/>&deviceID=<bean:write name='deviceID'/>">上一页</a>
+	<a id="prePage" href="queryDetail.do?type=next&currentPage=<bean:write name='page' property='currentPage'/>&deviceID=<bean:write name='deviceID'/>">下一页</a>&nbsp;&nbsp;
+	共<bean:write name="page" property="count"/>页&nbsp;&nbsp;
+	共<bean:write name="page" property="totalRecord"/>记录数&nbsp;&nbsp;
+	跳转<input type="text" name="pn" id="pn"/>页<input type="hidden" />
+	<input type="button" value="go" onclick="goPage()"/>
+</td></tr></table>
 </form>
   </body>
 </html>
