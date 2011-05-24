@@ -32,9 +32,23 @@ public class ProductAction extends MappingDispatchAction{
 			HttpServletRequest request,HttpServletResponse response) throws IOException{
 		String auth_code = request.getParameter("auth_code");
 		String checkID = request.getParameter("checkId");
-		List<Device> list = productService.getDevice(checkID);
-		processQuery(response, auth_code, checkID, list);
+		try{
+			List<Device> list = productService.getDevice(checkID);
+			processQuery(response, auth_code, checkID, list);
+		}catch (Exception e){
+			sendError(response,"107");
+		}
 		return null;
+	}
+
+	private void sendError(HttpServletResponse response,String code) throws IOException {
+		response.setContentType("text/xml;charset=utf-8");
+		response.setCharacterEncoding("utf-8");
+		StringBuffer sb = new StringBuffer();
+		sb.append("<global>");
+		sb.append("<statusCode>"+code+"</statusCode>");
+		sb.append("</global>");
+		response.getWriter().println(sb.toString());
 	}
 
 	private void processQuery(HttpServletResponse response, String auth_code,
@@ -85,15 +99,20 @@ public class ProductAction extends MappingDispatchAction{
 		String old_check_id = request.getParameter("old_check_id");
 		String new_check_id = request.getParameter("new_check_id");
 		String auth_code = request.getParameter("auth_code");
-		List<Device> list = productService.getDevice(old_check_id);
-		if(list.size()>0){
-			Device device = list.get(0);
-			device.setCheck_id(new_check_id);
-			productService.updateDevice(device);
-			sendXML(response, "", "confirm_suc");
-		}else{
-			sendXML(response, "", "confirm_fail");
+		try{
+			List<Device> list = productService.getDevice(old_check_id);
+			if(list.size()>0){
+				Device device = list.get(0);
+				device.setCheck_id(new_check_id);
+				productService.updateDevice(device);
+				sendXML(response, "", "confirm_suc");
+			}else{
+				sendXML(response, "", "confirm_fail");
+			}
+		}catch (Exception e){
+			sendError(response, "108");
 		}
+		
 		return null;
 	}
 }

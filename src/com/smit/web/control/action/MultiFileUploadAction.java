@@ -74,15 +74,18 @@ public class MultiFileUploadAction extends MappingDispatchAction{
 		String deviceID = request.getParameter("deviceID");
 		String currentStr = request.getParameter("currentPage");
 		String type = request.getParameter("type");
-		
-		if(deviceID.matches("\\d+")){
-			Device device = service.findById(Integer.parseInt(deviceID));
-			List logs = null;
-			getLogs(request, device, currentStr, type, logs, "detail");
-		}else{
-			Page page = new Page();
-			request.setAttribute("page", page);
-			request.setAttribute("deviceID", deviceID);
+		try{
+			if(deviceID.matches("\\d+")){
+				Device device = service.findById(Integer.parseInt(deviceID));
+				List logs = null;
+				getLogs(request, device, currentStr, type, logs, "detail");
+			}else{
+				Page page = new Page();
+				request.setAttribute("page", page);
+				request.setAttribute("deviceID", deviceID);
+			}
+		}catch (Exception e){
+			
 		}
 		return mapping.findForward("queryDetail");
 	}
@@ -171,14 +174,18 @@ public class MultiFileUploadAction extends MappingDispatchAction{
 		String deviceID = request.getParameter("deviceID");
 		String currentStr = request.getParameter("currentPage");
 		String type = request.getParameter("type");
-		if(deviceID.matches("\\d+")){
-			Device device = service.findById(Integer.parseInt(deviceID));
-			List logs = null;
-			getLogs(request, device, currentStr, type, logs, "base");	
-		}else{
-			Page page = new Page();
-			request.setAttribute("page", page);
-			request.setAttribute("deviceID", "");
+		try{
+			if(deviceID.matches("\\d+")){
+				Device device = service.findById(Integer.parseInt(deviceID));
+				List logs = null;
+				getLogs(request, device, currentStr, type, logs, "base");	
+			}else{
+				Page page = new Page();
+				request.setAttribute("page", page);
+				request.setAttribute("deviceID", "");
+			}	
+		}catch (Exception e){
+			
 		}
 		return mapping.findForward("queryBase");
 	}
@@ -188,10 +195,8 @@ public class MultiFileUploadAction extends MappingDispatchAction{
 			{
 		LogForm logForm = (LogForm) form;
 		FormFile  ff = logForm.getUpload();
-
 		try{
 			if(ff!=null&&!(ff.getFileName().equals(""))){
-			//String basePath = this.servlet.getServletContext().getRealPath(arg0)+"/";
 				String basePath = "D:\\filedown\\";
 				File file = new File(basePath);
 				if(!(file.exists())){
@@ -243,6 +248,7 @@ public class MultiFileUploadAction extends MappingDispatchAction{
 			throws Exception {
 		DetailLogForm df = (DetailLogForm) form;
 		String checkID = request.getParameter("checkID");
+		try{
 		if(("".equals(checkID))||(null == checkID)|| service.getDevice(checkID).size()==0){
 			createRespXML(response, "103");
 			return null;
@@ -250,8 +256,7 @@ public class MultiFileUploadAction extends MappingDispatchAction{
 		FormFile file = df.getUpload();
 		byte[] buffer = new byte[8192];
 		String xml = null;
-		try{
-			if(file != null){
+		if(file != null){
 				System.out.println(file.getFileName());
 				if(!(file.getFileName().endsWith(".xml"))){
 					createRespXML(response, "输入文件必须为XML格式！");

@@ -233,30 +233,30 @@
 		<!-- add by luocheng 2011-04-26 #########################-->
 		<action path="/showDetailLog" type="org.springframework.web.struts.DelegatingActionProxy"
 			parameter="showLogPage">
-			<forward name="baseLog" path="/WEB-INF/sys/base.jsp"></forward>
+			<forward name="baseLog" path="/WEB-INF/productControl/base.jsp"></forward>
 		</action>
 		<action path="/showBaseLog" type="org.springframework.web.struts.DelegatingActionProxy"
 			parameter="showLogPage">
-			<forward name="baseLog" path="/WEB-INF/sys/showbase.jsp"></forward>
-			<forward name="detail" path="/WEB-INF/sys/showdetail.jsp"></forward>
-			<forward name="order" path="/WEB-INF/sys/procontrol/order.jsp"></forward>
-			<forward name="testOption" path="/WEB-INF/sys/procontrol/option_test.jsp"></forward>
+			<forward name="baseLog" path="/WEB-INF/productControl/showbase.jsp"></forward>
+			<forward name="detail" path="/WEB-INF/productControl/showdetail.jsp"></forward>
+			<forward name="order" path="/WEB-INF/productControl/order.jsp"></forward>
+			<forward name="testOption" path="/WEB-INF/productControl/option_test.jsp"></forward>
 		</action>
 		<action path="/showAddBase" type="org.springframework.web.struts.DelegatingActionProxy"
 			parameter="showAddBaseLog">
-			<forward name="showAddBase" path="/WEB-INF/sys/base.jsp"></forward>
+			<forward name="showAddBase" path="/WEB-INF/productControl/base.jsp"></forward>
 		</action>
 		<action path="/showAddDetail" type="org.springframework.web.struts.DelegatingActionProxy"
 			parameter="showAddDetailLog">
-			<forward name="showAddDetail" path="/WEB-INF/sys/detail.jsp"></forward>
+			<forward name="showAddDetail" path="/WEB-INF/productControl/detail.jsp"></forward>
 		</action>
 		<action path="/queryBase" type="org.springframework.web.struts.DelegatingActionProxy"
 			parameter="queryBaseLog">
-			<forward name="queryBase" path="/WEB-INF/sys/showbase.jsp"></forward>
+			<forward name="queryBase" path="/WEB-INF/productControl/showbase.jsp"></forward>
 		</action>
 		<action path="/queryDetail" type="org.springframework.web.struts.DelegatingActionProxy"
 			parameter="queryDetailLog">
-			<forward name="queryDetail" path="/WEB-INF/sys/showdetail.jsp"></forward>
+			<forward name="queryDetail" path="/WEB-INF/productControl/showdetail.jsp"></forward>
 		</action>
  		<action path="/logUpload" name="logForm" parameter="log"
  		type="org.springframework.web.struts.DelegatingActionProxy">
@@ -266,8 +266,8 @@
  		</action>
  		<action path="/showOrder"  parameter="showOrder"
  		type="org.springframework.web.struts.DelegatingActionProxy">
- 			<forward name="add" path="/WEB-INF/sys/procontrol/order_add.jsp"></forward>
- 			<forward name="delete" path="/WEB-INF/sys/procontrol/delete.jsp"></forward>
+ 			<forward name="add" path="/WEB-INF/productControl/order_add.jsp"></forward>
+ 			<forward name="delete" path="/WEB-INF/productControl/delete.jsp"></forward>
  		</action> 
  		<action path="/order" name="orderForm" type="org.springframework.web.struts.DelegatingActionProxy"
  		parameter="addOrder">
@@ -275,29 +275,29 @@
  		</action>
  		<action path="/queryOrder"  type="org.springframework.web.struts.DelegatingActionProxy"
  		parameter="queryOrder">
- 			<forward name="showOrders" path="/WEB-INF/sys/procontrol/order.jsp"></forward>
+ 			<forward name="showOrders" path="/WEB-INF/productControl/order.jsp"></forward>
  		</action>
  		<action path="/showAuth" type="org.springframework.web.struts.DelegatingActionProxy"
  		parameter="showAuth">
- 			<forward name="loginAuth" path="/WEB-INF/sys/procontrol/auth.jsp"></forward>
- 			<forward name="requestAuth" path="/WEB-INF/sys/procontrol/req_auth.jsp"></forward>
- 			<forward name="active" path="/WEB-INF/sys/procontrol/active.jsp"></forward>
- 			<forward name="product" path="/WEB-INF/sys/procontrol/product.jsp"></forward>
- 			<forward name="confirm" path="/WEB-INF/sys/procontrol/confirm.jsp"></forward>
+ 			<forward name="loginAuth" path="/WEB-INF/productControl/auth.jsp"></forward>
+ 			<forward name="requestAuth" path="/WEB-INF/productControl/req_auth.jsp"></forward>
+ 			<forward name="active" path="/WEB-INF/productControl/active.jsp"></forward>
+ 			<forward name="product" path="/WEB-INF/productControl/product.jsp"></forward>
+ 			<forward name="confirm" path="/WEB-INF/productControl/confirm.jsp"></forward>
  		</action>
  		<action path="/testOption" type="org.springframework.web.struts.DelegatingActionProxy" 
  		parameter="addOption"></action>
  		<action path="/showOption" type="org.springframework.web.struts.DelegatingActionProxy" 
  		parameter="showOption">
- 			<forward name="showOption" path="/WEB-INF/sys/procontrol/option_test.jsp"></forward>
+ 			<forward name="showOption" path="/WEB-INF/productControl/option_test.jsp"></forward>
  		</action>
  		<action path="/showAddOption" type="org.springframework.web.struts.DelegatingActionProxy" 
  		parameter="showAddOption">
- 			<forward name="showAddOption" path="/WEB-INF/sys/procontrol/option_test_add.jsp"></forward>
+ 			<forward name="showAddOption" path="/WEB-INF/productControl/option_test_add.jsp"></forward>
  		</action>
  		<action path="/showDelOption" type="org.springframework.web.struts.DelegatingActionProxy" 
  		parameter="showDelOption">
- 			<forward name="showDelOption" path="/WEB-INF/sys/procontrol/option_test_del.jsp"></forward>
+ 			<forward name="showDelOption" path="/WEB-INF/productControl/option_test_del.jsp"></forward>
  		</action>
  		<action path="/queryOption" type="org.springframework.web.struts.DelegatingActionProxy" 
  		parameter="queryOption">

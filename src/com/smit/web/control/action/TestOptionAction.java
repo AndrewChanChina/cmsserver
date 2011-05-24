@@ -62,8 +62,10 @@ public class TestOptionAction extends MappingDispatchAction{
 	public ActionForward queryOption(ActionMapping mapping,ActionForm form,
 			HttpServletRequest request,HttpServletResponse response) throws IOException{
 		String order_code = request.getParameter("order_code");
-		//List<Order> order = service.loadOrder(order_code);
-		createXMLResult(response, order_code);
+		try{
+			createXMLResult(response, order_code);
+		}catch (Exception e){
+		}
 		return null;
 	}
 
@@ -78,12 +80,10 @@ public class TestOptionAction extends MappingDispatchAction{
 		List<OrderAndOption> list = service.getOptionsByCode(order_code);
 		if(list.size()>0){
 			//订单号唯一，根据订单号只能找到一个订单；
-			
 			for(OrderAndOption oo : list){
 				System.out.println("********=====>");
 				sb.append("<item>"+oo.getOption_name()+"</item>");
 			}
-			//sb.append("<checkID>")
 		}else{
 			sb.append("<statusCode>109</statusCode>");
 		}
@@ -94,12 +94,12 @@ public class TestOptionAction extends MappingDispatchAction{
 	public ActionForward addOption(ActionMapping mapping ,ActionForm form,
 			HttpServletRequest request, HttpServletResponse response) throws IOException{
 		String[] names = request.getParameterValues("name");
-		System.out.println("+============="+names[0]);
 		String[] ids = request.getParameterValues("test_id");
 		String[] times = request.getParameterValues("create_time");
-		System.out.println(names.length+">======"+ids.length);
-		
-		checkAndAddOption(response, names, ids,times);
+		try{
+			checkAndAddOption(response, names, ids,times);
+		}catch (Exception e){
+		}
 		return null;
 	}
 
@@ -130,7 +130,6 @@ public class TestOptionAction extends MappingDispatchAction{
 	
 	public ActionForward deleteOption(ActionMapping mapping ,ActionForm form,
 			HttpServletRequest request, HttpServletResponse response) throws IOException{
-		
 		return null;
 	}
 

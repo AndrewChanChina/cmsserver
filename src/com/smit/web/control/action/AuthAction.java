@@ -41,13 +41,18 @@ public class AuthAction extends MappingDispatchAction{
 			HttpServletRequest request, HttpServletResponse response) throws IOException, ParseException{
 		String machineID = request.getParameter("machineID");
 		String order_code = request.getParameter("order_code");
-		if(!("".equals(machineID))&& null!= machineID){
-			machineID = StringUtils.formatMachineId(machineID,16);
-			List<Order> orderList = productService.loadOrder(order_code);
-			processOrder(response, machineID, order_code, orderList);
-		}else{
-			createResult(response, "", "fail");
+		try{
+			if(!("".equals(machineID))&& null!= machineID){
+				machineID = StringUtils.formatMachineId(machineID,16);
+				List<Order> orderList = productService.loadOrder(order_code);
+				processOrder(response, machineID, order_code, orderList);
+			}else{
+				createResult(response, "", "fail");
+			}
+		}catch (Exception e){
+			sendErrorResult(response, "101");
 		}
+		
 		return null;
 	}
 
@@ -111,9 +116,24 @@ public class AuthAction extends MappingDispatchAction{
 			HttpServletRequest request, HttpServletResponse response) throws IOException{
 		String machineID = request.getParameter("machineID");
 		String checkID = request.getParameter("checkID");
-		List<Device> list = productService.getDevice(checkID.trim());
-		sendAuthCode(response, machineID, list);
+		try{
+			List<Device> list = productService.getDevice(checkID.trim());
+			sendAuthCode(response, machineID, list);
+		}catch (Exception e){
+			sendErrorResult(response,"105");
+		}
 		return null;
+	}
+
+	private void sendErrorResult(HttpServletResponse response,String code)
+			throws IOException {
+		response.setContentType("text/xml;charset=utf-8");
+		response.setCharacterEncoding("utf-8");
+		StringBuffer sb = new StringBuffer();
+		sb.append("<global>");
+		sb.append("<statusCode>"+code+"</statusCode>");
+		sb.append("</global>");
+		response.getWriter().println(sb.toString());
 	}
 
 	private void sendAuthCode(HttpServletResponse response, String machineID,
@@ -147,22 +167,27 @@ public class AuthAction extends MappingDispatchAction{
 	public ActionForward active(ActionMapping mapping ,ActionForm form,
 			HttpServletRequest request, HttpServletResponse response) throws IOException{
 		String checkID = request.getParameter("checkID");
-		List<Device> list = productService.getDevice(checkID);
-		response.setContentType("text/xm" +
-				"l;charset=utf-8");
-		response.setCharacterEncoding("utf-8");
-		StringBuffer sb = new StringBuffer();
-		sb.append("<global>");
-		if(list.size()>0){
-			sb.append("<statusCode>200</statusCode>");
-			Device device = list.get(0);
-			device.setActive_status("200");
-			productService.updateDevice(device);
-		}else{
-			sb.append("<statusCode>106</statusCode>");
+		try{
+			List<Device> list = productService.getDevice(checkID);
+			response.setContentType("text/xm" +
+					"l;charset=utf-8");
+			response.setCharacterEncoding("utf-8");
+			StringBuffer sb = new StringBuffer();
+			sb.append("<global>");
+			if(list.size()>0){
+				sb.append("<statusCode>200</statusCode>");
+				Device device = list.get(0);
+				device.setActive_status("200");
+				productService.updateDevice(device);
+			}else{
+				sb.append("<statusCode>106</statusCode>");
+			}
+			sb.append("</global>");
+			response.getWriter().println(sb.toString());
+		}catch (Exception e){
+			sendErrorResult(response, "106");
 		}
-		sb.append("</global>");
-		response.getWriter().println(sb.toString());
+		
 		return null;
 	}
 	

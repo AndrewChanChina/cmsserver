@@ -50,19 +50,22 @@ public class OrderAction extends MappingDispatchAction{
 	}
 	public ActionForward addOrder(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response) throws IOException{
-		System.out.println("success come to here!");
-		SimpleDateFormat format = new SimpleDateFormat("yyyyMMddHHmmss");
-		String order_code = format.format(new Date());
-		OrderForm orderForm = (OrderForm) form;
-		insertOrder(orderForm,order_code);
-		
-		response.setContentType("text/xml;charset=utf-8");
-		response.setCharacterEncoding("utf-8");
-		StringBuffer sb = new StringBuffer();
-		sb.append("<global>");
-		sb.append("<order_code>"+order_code+"</order_code>");
-		sb.append("</global>");
-		response.getWriter().println(sb.toString());
+		try{
+			SimpleDateFormat format = new SimpleDateFormat("yyyyMMddHHmmss");
+			String order_code = format.format(new Date());
+			OrderForm orderForm = (OrderForm) form;
+			insertOrder(orderForm,order_code);
+			
+			response.setContentType("text/xml;charset=utf-8");
+			response.setCharacterEncoding("utf-8");
+			StringBuffer sb = new StringBuffer();
+			sb.append("<global>");
+			sb.append("<order_code>"+order_code+"</order_code>");
+			sb.append("</global>");
+			response.getWriter().println(sb.toString());	
+		}catch (Exception e){
+			
+		}
 		return null;
 	}
 
@@ -70,11 +73,14 @@ public class OrderAction extends MappingDispatchAction{
 			HttpServletRequest request, HttpServletResponse response){
 		String order_code = request.getParameter("order_code");
 		String device_type = request.getParameter("production_code");
-		List<Order> orders = productService.loadOrder(order_code,device_type);
-		if(orders.size()>0){
-			request.setAttribute("list", orders);
+		try{
+			List<Order> orders = productService.loadOrder(order_code,device_type);
+			if(orders.size()>0){
+				request.setAttribute("list", orders);
+			}	
+		}catch (Exception e){
+			
 		}
-				
 		return mapping.findForward("showOrders");
 	}
 	private void insertOrder(OrderForm orderForm,String order_code) {

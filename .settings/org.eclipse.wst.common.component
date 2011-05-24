@@ -4,7 +4,6 @@
         <wb-resource deploy-path="/" source-path="/WebRoot"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/test"/>
-        <wb-resource deploy-path="/WEB-INF/classes" source-path="/WebRoot/WEB-INF/sys/procontrol"/>
         <property name="context-root" value="/pring"/>
         <property name="java-output-path" value="/pring/WebRoot/WEB-INF/classes"/>
     </wb-module>
