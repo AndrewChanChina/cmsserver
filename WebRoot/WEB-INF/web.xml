@@ -35,24 +35,47 @@
   	<filter-class>com.smit.web.LoginFilter</filter-class>
   	<init-param>
 		<param-name>avoid-urls</param-name>
-		<param-value>jcaptcha.do,login.do,logout.do,register.do,
-		welcome.do,login_jsp.do,loginDevj.do,
-		loginDev.do,login_admin.do,logout_admin.do,
-		register_admin.do,login_adminj.do,loginDev.do,logoutDev.do</param-value>		
-	</init-param>
-  	
+		<param-value>
+		jcaptcha.do,
+		login.do,
+		logout.do,
+		register.do,
+		welcome.do,
+		login_jsp.do,
+		loginDevj.do,
+		loginDev.do,
+		login_admin.do,
+		logout_admin.do,
+		register_admin.do,
+		login_adminj.do,
+		loginDev.do,
+		logoutDev.do</param-value>		
+	</init-param>  	
   </filter>
   
   <filter-mapping>
   	<filter-name>loginFilter</filter-name>
   	<url-pattern>*.do</url-pattern>
   </filter-mapping>
+
   
   <error-page> 
   	<error-code>404</error-code> 
   	<location>/errorpage/404.jsp</location> 
   </error-page> 
   
+
+  
+  <filter>
+  		<filter-name>encoding</filter-name>
+  		<filter-class>com.smit.web.content.actions.Encoding</filter-class>
+  </filter>
+  <filter-mapping>
+  		<filter-name>encoding</filter-name>
+  		<url-pattern>/*</url-pattern>
+  </filter-mapping>
+ 
+
   <welcome-file-list>
     <welcome-file>/WEB-INF/sys/pushService/login.jsp</welcome-file>
     <welcome-file>/WEB-INF/sys/index.html</welcome-file>

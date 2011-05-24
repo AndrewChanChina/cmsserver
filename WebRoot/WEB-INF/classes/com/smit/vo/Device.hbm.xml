@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+	<class name="com.smit.vo.Device" table="device">
+		<id name="id">
+			<generator class="native"></generator>
+		</id>
+		<property name="name"></property>
+		<property name="order_code"></property>
+		<property name="check_id"></property>
+		<property name="username"></property>
+		<property name="password"></property>
+		<property name="create_time"></property>
+		<property name="auth_code"></property>
+		<property name="machineID" column="machine_id"></property>
+		<property name="active_status"></property>
+		<set name="products" cascade="save-update,delete" lazy="true">
+			<key column="did"></key>
+			<one-to-many class="com.smit.vo.CertifiedProduct"/>
+		</set>
+		<set name="logs" cascade="save-update,delete" lazy="false">
+			<key column="device_id"></key>
+			<one-to-many class="com.smit.vo.DetailLog"/>
+		</set>
+		<set name="baseLogs" lazy="false">
+			<key column="device_id"></key>
+			<one-to-many class="com.smit.vo.BaseLog"/>
+		</set>
+		<many-to-one name="order" column="oid" class="com.smit.vo.Order"></many-to-one>
+	</class>
+</hibernate-mapping>
+

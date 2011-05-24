@@ -1,7 +1,9 @@
 package com.smit.web;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.security.auth.message.callback.PrivateKeyCallback.Request;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -14,6 +16,8 @@ import com.smit.service.ColumnService;
 import com.smit.service.SysInfoService;
 import com.smit.vo.Part;
 import com.smit.vo.SysInfo;
+import com.smit.vo.TestOption;
+import com.smit.web.control.action.Page;
 
 public class FrameworkAction extends MappingDispatchAction {
 	private ColumnService columnService;
@@ -88,5 +92,49 @@ public class FrameworkAction extends MappingDispatchAction {
 		List<SysInfo> allSysInfos = sysInfoService.queryAllSysInfo();
 		request.setAttribute("allSysInfos", allSysInfos);
 		return mapping.findForward("sysInfo");
+	}
+	
+	//add by luocheng 2011-04-26
+	public ActionForward showLogPage(ActionMapping mapping,ActionForm form,
+			HttpServletRequest request, HttpServletResponse response) throws Exception{
+		String classType = request.getParameter("class");
+		if(classType.equals("base")){
+			Page page = new Page();
+			page.setCount(page.pageCount());
+			request.setAttribute("page", page);
+			request.setAttribute("deviceID", "");
+			return mapping.findForward("baseLog");
+		}else if(classType.equals("detail")){
+			Page page = new Page();
+			page.setCount(page.pageCount());
+			request.setAttribute("page", page);
+			request.setAttribute("deviceID", "");
+			return mapping.findForward("detail");
+		}else if(classType.equals("order")){
+			List<TestOption> list = new ArrayList();
+			request.setAttribute("optionList", list);
+			return mapping.findForward("order");	
+		}else if(classType.equals("test")){
+			return mapping.findForward("testOption");
+		}
+		return null;
+	}
+	
+	//add by luocheng 2011-05-05
+	public ActionForward showAuth(ActionMapping mapping, ActionForm form,
+			HttpServletRequest request, HttpServletResponse response){
+		String type = request.getParameter("class");
+		if(type.equals("login")){
+			return mapping.findForward("loginAuth");
+		}else if(type.equals("reqAuth")){
+			return mapping.findForward("requestAuth");
+		}else if(type.equals("active")){
+			return mapping.findForward("active");
+		}else if(type.equals("product")){
+			return mapping.findForward("product");
+		}else if(type.equals("confirm")){
+			return mapping.findForward("confirm");
+		}
+		return null;
 	}
 }

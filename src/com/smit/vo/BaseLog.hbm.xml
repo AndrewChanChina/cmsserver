@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+	<class name="com.smit.vo.BaseLog" table="base_log">
+		<id name="id">
+			<generator class="native"></generator>
+		</id>
+		<property name="machineID"></property>
+		<property name="machineType"></property>
+		<property name="sysVersion"></property>
+		<property name="softwareVersion"></property>
+		<property name="testStatus"></property>
+		<property name="logFile"></property>
+		<property name="create_time"></property>
+		<many-to-one name="device" column="device_id" class="com.smit.vo.Device"></many-to-one>
+	</class>
+</hibernate-mapping>
+

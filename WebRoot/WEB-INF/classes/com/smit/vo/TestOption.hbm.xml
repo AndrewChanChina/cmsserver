@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+	<class name="com.smit.vo.TestOption" table="test_option" >
+		<id name="id">
+			<generator class="native"></generator>
+		</id>
+		<property name="name"></property>
+		<property name="test_id"></property>
+		<property name="create_time"></property>
+		 
+		<set name="detailLogs" cascade="all" lazy="false">
+			<key column="testOption_id"></key>
+			<one-to-many class="com.smit.vo.DetailLog"/>
+		</set>
+		
+	</class>
+</hibernate-mapping>
+

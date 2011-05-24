@@ -11,6 +11,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
 import com.smit.vo.PushService;
+import com.smit.vo.TestOption;
 
 public class PushTest extends TestCase {
 
@@ -38,4 +39,15 @@ public class PushTest extends TestCase {
 		ps.setUserId(123456);		
 		session.save(ps);		
 	}
+	public void testGet(){
+		//PushService ps = (PushService)session.load(PushService.class, 200);
+		//TestOption option = (TestOption) session.load(TestOption.class, 1);
+		String hql = "from TestOption t where t.id=1";
+		TestOption option = (TestOption) session.createQuery(hql).list().get(0);
+		if(option != null){
+			System.out.println(option.getName()+"=====>"+option.getCreate_time());
+		}
+	}
+	
+	//public void 
 }

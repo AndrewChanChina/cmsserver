@@ -1,11 +1,19 @@
+<<<<<<< HEAD
 #Wed Apr 27 09:52:24 CST 2011
+=======
+#Fri May 20 13:52:09 CST 2011
+>>>>>>> luocheng
 =\=\=\=\=\=\=
 <<<<<<<=HEAD
 >>>>>>>=qfshen
 eclipse.preferences.version=1
 encoding//WebRoot/WEB-INF/sys/add_column.jsp=UTF-8
 encoding//WebRoot/WEB-INF/sys/column_tree.jsp=UTF-8
+<<<<<<< HEAD
 encoding//WebRoot/WEB-INF/sys/pushService/login.jsp=UTF-8
+=======
+encoding//WebRoot/css/theme.css=UTF-8
+>>>>>>> luocheng
 encoding//WebRoot/login.jsp=UTF-8
 encoding//src/com/smit/web/res/ApplicationResources_zh_CN.properties=UTF-8
 encoding/<project>=UTF-8

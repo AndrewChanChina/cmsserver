@@ -51,18 +51,29 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<frame src="showLeftFrame.do?class=user" name="leftFrame" noresize="noresize" id="leftFrame" />
 			<frame src="listuser.do" name="rightFrame" id="rightFrame" />
 	<%
+	}else if(classification.equalsIgnoreCase("log")){
+	%>
+			<frame src="showLeftFrame.do?class=log" name="leftFrame" noresize="noresize" id="leftFrame" />
+			<frame src="showRightFrame.do?class=log" name="rightFrame" id="rightFrame" />
+	<%
+		}else if(classification.equalsIgnoreCase("auth")){
+	 %>
+	 		<frame src="showLeftFrame.do?class=auth" name="leftFrame" noresize="noresize" id="leftFrame" />
+			<frame src="showRightFrame.do?class=auth" name="rightFrame" id="rightFrame" />
+	<%
 		}else if(classification.equalsIgnoreCase("content")){
 	%>
 		<frame src="showLeftFrame.do?class=content" name="leftFrame" noresize="noresize" id="leftFrame" />
 		<frame src="showRightFrame.do?class=content" name="rightFrame" id="rightFrame" />
    <%
-	} else if(classification.equalsIgnoreCase("upload")) {
+	}else if(classification.equalsIgnoreCase("upload")) {
 	%>
-			<frame src="showLeftFrame.do?class=upload" name="leftFrame" noresize="noresize" id="leftFrame" />
+		<frame src="showLeftFrame.do?class=upload" name="leftFrame" noresize="noresize" id="leftFrame" />
 		<frame src="showRightFrame.do?class=upload" name="rightFrame" id="rightFrame" />
-   <% 
+   <%
    }
    %>
+
 </frameset>
 <noframes><body></body></noframes>
 </html>

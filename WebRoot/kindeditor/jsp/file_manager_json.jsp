@@ -40,7 +40,7 @@ if (path.indexOf("..") >= 0) {
 }
 
 //最后一个字符不是/
-if (!"".equals(path) && !path.endsWith("/")) {
+if (!"".equals(path) && !path.endsWith("/")){
 	out.println("Parameter is not valid.");
 	return;
 }
@@ -139,5 +139,5 @@ public class TypeComparator implements Comparator {
 			return ((String)hashA.get("filetype")).compareTo((String)hashB.get("filetype"));
 		}
 	}
-}
+
 %>

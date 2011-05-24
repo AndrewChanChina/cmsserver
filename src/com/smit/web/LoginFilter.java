@@ -73,7 +73,7 @@ public class LoginFilter implements Filter {
         urlList = new ArrayList<String>();
  
         while (token.hasMoreTokens()) {
-            urlList.add(token.nextToken());
+            urlList.add(token.nextToken().trim());
         }       
 
 	}

@@ -141,7 +141,13 @@ function changeSite(siteId) {
 		
 			<li class="sep"></li><li id="tb_14" onclick="HoverLi(1,4,10);"><a href="showMainFrame.do?class=content" target="mainFrame">内容</a></li>
 		
-			<li class="sep"></li><li id="tb_15" onclick="HoverLi(1,5,10);"><a href="showMainFrame.do?class=upload" target="mainFrame">上传</a></li>
+
+			<li class="sep"></li><li id="tb_15" onclick="HoverLi(1,5,10);"><a href="showMainFrame.do?class=column" target="mainFrame">上传</a></li>
+			
+			<li class="sep"></li><li id="tb_16" onclick="HoverLi(1,6,10);"><a href="showMainFrame.do?class=log" target="mainFrame">测试</a></li>
+			
+			<li class="sep"></li><li id="tb_17" onclick="HoverLi(1,7,10);"><a href="showMainFrame.do?class=auth" target="mainFrame">授权</a></li>
+
 			</ul>
 		</td>
       </tr>
