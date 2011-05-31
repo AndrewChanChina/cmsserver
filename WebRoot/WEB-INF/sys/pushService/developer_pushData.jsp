@@ -32,18 +32,7 @@
 				<a href="logoutDev.do">登出</a><br>
 				<a href="home_developer.do">返回</a>
 				</td>
-				</tr>
-				<tr>
-					<td width="12%" class="pn-flabel pn-flabel-h">
-						服务类型：
-					</td>
-					<td colspan="1" width="38%" class="pn-fcontent">
-						<input type="radio" name="servicetype" value = "message" checked>文本消息&nbsp
-						<input type="radio" name="servicetype" value = "notification">提示消息&nbsp
-						<input type="radio" name="servicetype" value = "alert">震动&nbsp
-					</td>					
-				</tr>
-				<logic:notEmpty name='pushServiceList'>
+				</tr>	
 				<tr>
 					<td width="12%" class="pn-flabel pn-flabel-h">
 						服务名称:
@@ -55,10 +44,20 @@
 								${pushService.serviceName}
 								</option>	
 							</c:forEach>						
-						</select>						
+						</select>
+						<logic:empty name="pushServiceList">
+						你的服务列表是空的，请添加！
+						</logic:empty>						
 					</td>
 				</tr>
-				</logic:notEmpty>
+				<tr>
+					<td width="12%" class="pn-flabel pn-flabel-h">
+						输入用户的push id:（以分号隔开）
+					</td>
+					<td colspan="1" width="38%" class="pn-fcontent">
+						<input type="text" name="pushIds">
+					</td>
+				</tr>
 				<tr>
 					<td width="12%" class="pn-flabel pn-flabel-h">
 						消息唯一标示:

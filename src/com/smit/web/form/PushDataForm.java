@@ -13,6 +13,7 @@ public class PushDataForm extends ValidatorForm {
 	private String uri;
 	private String message;
 	private String[] deviceIds;
+	private String pushIds;
 	
 	
 	
@@ -70,5 +71,12 @@ public class PushDataForm extends ValidatorForm {
 	public void setMessage(String message) {
 		this.message = message;
 	}
+	public String getPushIds() {
+		return pushIds;
+	}
+	public void setPushIds(String pushIds) {
+		this.pushIds = pushIds;
+	}
+	
 
 }
