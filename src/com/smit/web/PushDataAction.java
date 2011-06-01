@@ -33,6 +33,7 @@ public class PushDataAction extends DispatchAction {
 	public ActionForward input(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
+		// TODO 当前在线功能希望用异步请求来做
 		List<UserAccountResource> list = pushManageService.listAllResource(
 			(String)request.getSession().getAttribute(Constants.CURUSERNAME));
 		request.setAttribute("list", list);

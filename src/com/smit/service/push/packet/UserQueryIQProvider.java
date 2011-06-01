@@ -28,6 +28,9 @@ public class UserQueryIQProvider implements IQProvider {
 	                if ("deviceId".equals(parser.getName())) {
 	                	userQueryIQ.getDeviceIds().add(parser.nextText());
 	                }	
+	                if ("presence".equals(parser.getName())) {
+	                	userQueryIQ.getPresences().add(parser.nextText());
+	                }	
 	                if ("status".equals(parser.getName())) {
 	                	userQueryIQ.setStatus(parser.nextText());
 	                }	

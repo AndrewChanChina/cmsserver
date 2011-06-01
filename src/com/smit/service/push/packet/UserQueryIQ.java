@@ -22,6 +22,7 @@ public class UserQueryIQ extends IQ {
 	private List<String> resources = new ArrayList<String>(); // 返回的
 	private List<String> deviceNames = new ArrayList<String>();
 	private List<String> deviceIds = new ArrayList<String>();
+	private List<String> presences = new ArrayList<String>(); 
 	
 	private String status;			// 返回的状态
 	
@@ -126,6 +127,13 @@ public class UserQueryIQ extends IQ {
 	public void setResource(String resource) {
 		this.resource = resource;
 	}
+	public List<String> getPresences() {
+		return presences;
+	}
+	public void setPresences(List<String> presences) {
+		this.presences = presences;
+	}
+	
 
 	
 }
