@@ -68,11 +68,13 @@
 					<input type="radio" name="servicetype" value="TEXT" checked>
 					文本消息&nbsp;
 					<input type="radio" name="servicetype" value="WARNING">
-					震动&nbsp;
+					让你的设备震动起来&nbsp;
 					<input type="radio" name="servicetype" value="URL">
 					网址&nbsp;
 					<input type="radio" name="servicetype" value="PICTURE">
 					图片&nbsp;
+					<input type="radio" name="servicetype" value="AUDIO">
+					音频&nbsp;
 					<input type="radio" name="servicetype" value="VIDEO">
 					视频&nbsp;
 					<input type="radio" name="servicetype" value="STORY">

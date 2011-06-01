@@ -69,7 +69,7 @@ public class PushDataAction extends DispatchAction {
 			List<String> userList = new ArrayList<String>();
 			for(int i=0;i<pf.getDeviceIds().length;i++)
 				userList.add(session.getAttribute(Constants.CURUSERNAME)
-						+ "@smitnn/" + pf.getDeviceIds()[i]);
+						+ "@smit/" + pf.getDeviceIds()[i]);
 			
 			
 			boolean bDelay = false;
