@@ -1,4 +1,4 @@
-package com.smit.testService;
+package com.smit.testRss;
 
 import java.util.List;
 

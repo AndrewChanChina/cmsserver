@@ -33,6 +33,7 @@ public class PushDataAction extends DispatchAction {
 	public ActionForward input(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
+		// TODO 当前在线功能希望用异步请求来做
 		List<UserAccountResource> list = pushManageService.listAllResource(
 			(String)request.getSession().getAttribute(Constants.CURUSERNAME));
 		request.setAttribute("list", list);
@@ -124,17 +125,31 @@ public class PushDataAction extends DispatchAction {
 				boolean bDelay = false;
 				if( "yes".equalsIgnoreCase(pf.getIsDelay()) )
 					bDelay = true;
-				pd.sendPushDataFromDevToAll(pf.getServiceName(), 
-						bDelay, pf.getCollapseKey(), 
-						pf.getTitle(), pf.getTicket(), 
-						pf.getUri(), pf.getMessage());
+				String[] pushIds = pf.getPushIds().split(";");
+				if(pushIds == null || pushIds.length == 0){
+					pd.sendPushDataFromDevToAll(pf.getServiceName(), 
+							bDelay, pf.getCollapseKey(), 
+							pf.getTitle(), pf.getTicket(), 
+							pf.getUri(), pf.getMessage());
+				}else{
+					List<String> pushIdList = new ArrayList<String>();
+					for(String s : pushIds){
+						pushIdList.add(s);
+					}
+					pd.sendPushDataFromDev(pf.getServiceName(), pushIdList,
+							bDelay, pf.getCollapseKey(), 
+							pf.getTitle(), pf.getTicket(), 
+							pf.getUri(), pf.getMessage());
+					
+				}
+				
 			}
 		}catch(Exception e){
 			e.printStackTrace();
 			return mapping.findForward("fail");
 		}
-		//response.sendRedirect("home.do");
-		return mapping.findForward("inputFormDev");
+		response.sendRedirect("pushdata.do?opt=inputDev");
+		return null;
 	}
 
 	public void setPushManageService(IPushManageService pushManageService) {

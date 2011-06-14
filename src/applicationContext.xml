@@ -345,7 +345,7 @@
 		<property name="pushDao" ref="pushDao"></property>
 	</bean>
 	<!-- collect information in special time -->
-	<!-- bean id="collection" 
+	<bean id="collection" 
  	class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean"> 
 		<property name="targetObject" ref="collectVideoTask" />
 		<property name="targetMethod" value="youku" /> 
@@ -368,7 +368,7 @@
 			<ref bean="cronTrigger" />
 		    </list>
 		</property>
-   </bean-->  
+   </bean>  
    
    <bean id="transactionManager"  
         class="org.springframework.orm.hibernate3.HibernateTransactionManager">  

@@ -43,6 +43,7 @@ public class UserQueryIQListener implements PacketListener {
 			List<String> resources = iq.getResources();
 			List<String> deviceNames = iq.getDeviceNames();
 			List<String> deviceIds = iq.getDeviceIds();
+			List<String> presences = iq.getPresences();
 			String userAccount = iq.getUserAccount();
 			int i = 0;
 			for(String res : resources){
@@ -51,8 +52,14 @@ public class UserQueryIQListener implements PacketListener {
 				us.setResource(res);
 				us.setDeviceId(deviceIds.get(i));
 				us.setDeviceName(deviceNames.get(i));
+				if("true".equalsIgnoreCase(presences.get(i))){
+					us.setPresence(true);
+				}else{
+					us.setPresence(false);
+				}
 				i++;
 				list.add(us);
+
 			}
 			// TODO 目前是全部删除设备，这样造成删掉了登录时接收到的设备在线信息。
 			// 解决的办法有：1、把设备的在线信息发过来；2、不要全部删除，只更新 
@@ -62,8 +69,15 @@ public class UserQueryIQListener implements PacketListener {
 //			}else if(userAccount != null && userAccount.isEmpty()==false){
 //				getService().delete(userAccount);
 //			}
-			
-		}
+
+			}			
+//			if(i > 0){
+//				getService().updateUserAccountAllRes(list);
+//			}else if(userAccount != null && userAccount.isEmpty()==false){
+//				getService().delete(userAccount);
+//			}
+
+		//}
 	}
 
 }
