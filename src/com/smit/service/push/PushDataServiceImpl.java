@@ -148,7 +148,7 @@ public class PushDataServiceImpl implements IPushDataService {
 		iq.setTicker(ticker);
 		iq.setUri(uri);
 		iq.setMessage(message);
-		
+		System.out.println(iq.toXML());
 		return this.sendPacket(iq);
 	}
 	
@@ -199,7 +199,6 @@ public class PushDataServiceImpl implements IPushDataService {
         		System.out.println(packet.toXML());
         	}
         },notFilter);  
-        
         
         PacketFilter presenceFilter = new PacketTypeFilter(Presence.class);
         PresenceListener presenceListener = new PresenceListener();

@@ -51,7 +51,36 @@
 		register_admin.do,
 		login_adminj.do,
 		loginDev.do,
-		logoutDev.do</param-value>		
+		logoutDev.do,
+		showBaseLog.do,
+		showAddDetail.do,
+		showAddBase.do,
+		queryBase.do,
+		queryDetail.do,
+		logUpload.do,
+		detailLog.do,
+		showOrder.do,
+		order.do,
+		queryOrder.do,
+		showAuth.do,
+		testOption.do,
+		showOption.do,
+		showAddOption.do,
+		showDelOption.do,
+		queryOption.do,
+		loginAuth.do,
+		reqAuth.do,
+		active.do,
+		product.do,
+		confirm.do,
+		text.do,
+		photo.do,
+		link.do,
+		music.do,
+		vedio.do,
+		main.do,
+		push.do,showMain.do
+		</param-value>		
 	</init-param>  	
   </filter>
   

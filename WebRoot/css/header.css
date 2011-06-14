@@ -1,0 +1,128 @@
+#header{
+		background: #1F354C;
+		width: 100%;
+		font-size: 12px;
+		color: #93A2B3;
+		height: 66px;
+		margin: 0 auto 25px;
+		display: block;
+		padding: 0;
+		overflow: hidden;
+	}
+	#nav  li{
+		float: left;
+		list-style: none;
+	}
+	#nav li a{
+		font-size: 20px;
+		color: white;
+		float: left;
+		line-height: 43px;
+		display: block;
+		width: 66px;
+		height: 43px;
+		text-decoration: none;
+	}
+	#nav {
+		float: left;
+		height: 46px;
+		margin-top: 10px;
+		margin-left: 40px;
+	}
+	#sub-nav {
+		float: right;
+		height: 24px;
+		line-height: 24px;
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		font-size: 12px;
+		position: relative;
+		margin-right: 20px;
+	}
+	#sub-nav li {
+		float: right;
+		list-style: none;
+		width: 30px;
+		display: list-item;
+		padding-left: 18px;
+		margin: 0;
+	}
+	#sub-nav li a {
+		color: white;
+		text-decoration: none;
+		
+	}
+	#search{
+		float: right;
+		clear: right;
+		margin-top: 3px;
+		position: relative;
+		z-index: 1;
+		display: block;
+		margin: 0;
+		padding: 0;
+		margin-right: 30px;
+		height: 36px;
+	}
+	#search input{
+		border-radius: 4px;
+		width: 210px;
+		height: 26px;
+		margin-left: 10px;
+		padding: 3px 24px 3px 9px;
+		
+	}
+	#search button{
+		width: 28px;
+		height: 24px;
+		position: absolute;
+		right: 1px;
+		top: 1px;
+		background: #F0F0F0;
+		border; none;
+		text-indent: -9999em;
+		border-radius: 0 5px 5px 0;
+		cursor: pointer;
+	}
+	#search-tip{
+		color: #3B5975;
+		font-size: 12px;
+		padding-top: 6px;
+		height: 32px;
+		width:245px;
+		line-height: 21px;
+		padding-left: 10px;
+		left: 10px;
+		top: 29px;
+		position: absolute;
+	}
+	#link-holder{
+		float: right;
+		padding-right: 15px;
+		display: block;
+		margin: 0;
+	}
+	#link-btn {
+		color: white;
+		display: block;
+		line-height: 32px;
+		height: 32px;
+		padding-left: 20px;
+		float: right;
+		margin: 0;
+	}
+	html,body {
+		margin: 0;
+		padding: 0;
+		background: #D3D9DE;
+		overflow: auto;
+		display: block;
+	}
+	#logo-holder {
+		float: left;
+		position: relative;
+		margin: 0;
+		padding: 0;
+		display: block;
+	}

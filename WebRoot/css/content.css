@@ -1,0 +1,171 @@
+#pb-main {
+		width: 600px;
+		padding:22px 28px;
+		float: left;
+		display: block;
+		background: #fff;
+		margin-left: 30px;
+		margin-bottom: 30px;
+	}
+	#main-title {
+		color: #2D4159;
+		font-size: 32px;
+		margin: 0 0 30px;
+		display: block;
+		padding: 0;
+		font-weight: bold;
+	}
+	#post-area {
+		margin: 0;
+		padding: 0;
+		/*height: 230px;*/
+	}
+	.pb-section-title {
+		color: #5B6772;
+		font-size: 16px;
+		font-weight: normal;
+		margin: 30px 0 5px;
+	}
+	.input-text {
+		height: 35px;
+		box-shadow: 0 -42px 3px white inset,0 0 3px rgba(0, 0, 0, 0.5) inset;
+		border: 1px solid #bbb;
+		font-size: 24px;
+		color: #333;
+		line-height: 30px;
+		padding: 7px;
+		width: 584px;
+		outline: none;
+	}
+	#nl {
+		color: #AAB5C1;
+		font-size: 12px;
+		margin-left: 15px;
+	}
+	#pb-text-upload-pic {
+		float: right;
+		display: block;
+		margin-top: -23px;
+	}
+	object {
+		height: 20px;
+		width: 80px;
+	}
+	#pb-action-holder {
+		margin: 30px 0 0;
+		display: block;
+		padding: 0;
+	}
+	.blue-button {
+		border: 1px solid #006DAB;
+		background: #006DAB;
+		font-size: 14px;
+		display: block;
+		padding: 0 20px;
+		border-radius: 4px;
+		cursor: pointer;
+		float: right;
+		height: 32px;
+		margin-left: 15px;
+		line-height: 32px;
+	}
+	#pb-cancel{
+		float: left;
+		margin: 0;
+		height: 32px;
+		line-height: 32px;
+		border: 1px solid #787878; 
+		font-size: 14px;
+		padding: 0 20px;
+		color: #333;
+		border-radius: 4px;
+		background: #787878;
+		cursor: pointer;
+	}
+	.cke_skin_v2 {
+		margin: 0;
+		padding: 0;
+		border: 0;
+		font: normal normal normal 100% Sans-Serif;
+		width: auto;
+		height: auto;
+		border-collapse: collapse;
+		text-align: left;
+		vertical-align: baseline;
+		white-space: nowrap;
+		cursor: auto;
+		color: black;
+		font-size: 11px;	
+	}
+	#photo-pick-holder {
+		background: #eee;
+		padding: 10px;
+		height:24px;
+		line-height: 24px;
+		border-radius: 4px;
+		color: #999;
+		margin: 10px 0 30px;
+	}
+	#photo-flash-holder {
+		float: left;
+		padding-right: 10px;
+		display: block;
+		line-height: 34px;
+		color: #999;
+		height: 24px;
+	}
+	#photo-pick-tip {
+		float: left;
+		display: block;
+		font-size: 12px;
+	}
+	#photo-file-tip {
+		float: right;
+		display: block;
+		line-height: 24px;
+		font-size: 12px;
+	}
+	#photos-desc-holder {
+		
+	}
+	.cke_skin_v2 {
+		visibility: inherit;
+		display: block;
+	}
+	#audio-preview-holder {
+		margin: 30px 0 0;
+		border-radius: 5px;
+		background: #eee;
+		font-size: 12px;
+	}
+	
+	#pb-text-textarea {
+		width: 584px;
+		height: 100px;
+	}
+	#pb-link-holder {
+		margin: 30px 0;
+		display: block;
+	}
+	#pb-link-holder a{
+		color: #444;
+		text-decoration: underline;
+		font-size: 14px;
+	}
+	#photo-holder,#photo-list {
+		margin: 0;
+		padding: 0;
+		display: block;
+	}
+	.clearfix {
+		background: #eee;
+		padding: 10px;
+		border-radius: 5px;
+		list-style: none;
+		margin: 10px 0;
+		line-height: 16px;
+		position: relative;
+		display: block;
+	}
+	
+	

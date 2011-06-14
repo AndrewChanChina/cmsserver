@@ -51,7 +51,8 @@
 	<mapping resource="com/smit/vo/PushService.hbm.xml" />
 	<mapping resource="com/smit/vo/Video.hbm.xml" />
 	<mapping resource="com/smit/vo/UserAccountResource.hbm.xml" />
-
+	
+	<mapping resource="com/smit/vo/PushContent.hbm.xml"/>
 
 </session-factory>
 

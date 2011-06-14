@@ -59,5 +59,6 @@
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/jstl.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/standard.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/commons-lang3-3.0-beta.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/json_simple-1.1.jar"/>
 	<classpathentry kind="output" path="WebRoot/WEB-INF/classes"/>
 </classpath>

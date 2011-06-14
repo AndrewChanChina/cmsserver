@@ -330,6 +330,20 @@
 	<bean id="collectVideoTask" class="com.smit.service.collection.CollectVideoTask" >
 		<property name="videoService" ref="videoService"></property>		
 	</bean>
+	<!-- push action add by luocheng 2011/06/02 -->
+	<bean name="/push" class="com.smit.web.push.action.PushAction">
+		<property name="service" ref="pushService"></property>
+		<property name="pushManageService" ref="pushManageService"></property>
+	</bean>
+	<bean name="/showMain" class="com.smit.web.push.action.PushAction">
+		<property name="service" ref="pushService"></property>
+	</bean>
+	<bean name="pushDao" class="com.smit.dao.PushContentImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean name="pushService" class="com.smit.service.PushServiceImpl">
+		<property name="pushDao" ref="pushDao"></property>
+	</bean>
 	<!-- collect information in special time -->
 	<bean id="collection" 
  	class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean"> 
