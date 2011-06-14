@@ -1,0 +1,183 @@
+#content-holder{
+		width:900px;
+		margin: 0 auto;
+		padding-bottom: 20px;
+		display: block;
+		padding: 0;
+	}
+	#content{
+		border-radius: 5px;
+		display: block;
+	}
+	#publish{
+		margin-bottom: 25px;
+		z-index: 100;
+		display: block;
+		position: relative;
+		height: 83px;
+		
+	}
+	.blog-photo{
+		float: left;
+		display: block;
+		margin-left: 0;
+		padding: 0;
+		left: 0;
+	}
+	#photo-action{
+		float: left;
+		margin-left: 21px;
+		width: 540px;
+		display: block;
+		border-bottom: 2px solid #B9BDC2;
+		margin-top: 2px;
+		
+	}
+	#pb-triangle {
+		position: absolute;
+		top: 25px;
+		left:76px;
+		width: 9px;
+		height: 13px;
+		background: url(../images/pushservice/triangle.png);
+		display: block;
+	}
+	#pb-action {
+		padding: 13px 5px 12px;
+		background: white;
+		border-radius: 7px;
+		margin: 0;
+		display: block;
+		overflow: hidden;
+	}
+	.ph li{
+		float: left;
+		text-align: center;
+		width: 100px;
+		margin: 0;
+		padding: 0;
+	}
+	.ph li a{
+		display: block;
+		width: 106px;
+		height: 65px;
+		background: url(../images/pushservice/wpmv.png) no-repeat 0 0;
+		text-indent: -9999px;
+		outline: none;
+	}
+	#main {
+		float: left;
+		width: 628px;
+		display: block;
+		margin: 0;
+		pause: 0;
+		background: #D3D9DE;
+		margin-left: 40px;
+	}
+	.ph {
+		position: relative;
+		display: block;
+		list-style: none;
+		height: 65px;
+		margin: 0;
+		padding: 0;
+	}
+	#blog-avatar {
+		display: block;
+		width: 64px;
+		height: 64px;
+		background-image: url(../images/pushservice/avatar.png);
+		background-position: center center;
+		border-radius: 5px;
+		text-indent: -9999px;
+		outline: none;
+		margin: 0;
+		padding: 0;
+	}
+	#feed-list {
+		
+		border-radius: 7px;
+		clear: both;
+		/*margin-left: 50px;*/
+		overflow: auto;
+	}
+	.feed-title {
+		color: #444;
+		font-size: 22px;
+		font-weight: normal;
+		line-height: 1.3em;
+		margin: 5px 0;
+		clear: both;
+		display: block;
+		padding: 0;
+	}
+	.pb-content {
+		background: #fff;
+		border-radius: 7px;	
+		padding: 15px 20px;
+		display: block;
+		float: right;
+		width: 500px;
+		margin-top: 10px;
+	}
+	.feed-comment {
+		clear: both;
+		margin: 10px 0 10px;
+		width: 500px;
+		overflow: hidden;
+	}
+	.feed-comment p {
+		margin: 0 0 .5em;
+		display: block;	
+		padding: 0;
+	}
+	.feed-act {
+		float: right;
+		width: 230px;
+		margin-right: 0;
+		padding: 0;
+		color: #444;
+		font-size: 12px;
+	}
+	.feed-del,.feed-edit,.feed-cmt {
+		margin-left: 5px;
+		float: right;
+		display: block;
+		height: 14px;
+		line-height: 14px;
+	}
+	.feed-act a {
+		color: #B3BBC3;
+		text-decoration: none;
+		cursor: pointer;
+	}
+	.feed-photo {
+		float: left;
+		position: relative;
+		height: 64px;
+		width: 64px;
+		margin-left: 0;
+		/*left: 40px;*/
+		margin-top: 10px;
+		overflow: hidden;
+	}
+	.feed-text {
+		overflow: auto;
+	}
+	.feed-img {
+		float: left;
+		width: 100px;
+		height: 100px;
+		display: block;
+	}
+	.photo-list {
+		display: block;
+		overflow: auto;
+	}
+	.pb-comment {
+		overflow: auto;
+	}
+	.photo-desc {
+		margin-top: 10px;
+		line-height: 24px;
+	}

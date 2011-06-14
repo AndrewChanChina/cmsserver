@@ -36,8 +36,8 @@ public class PushDataAction extends DispatchAction {
 		List<UserAccountResource> list = pushManageService.listAllResource(
 			(String)request.getSession().getAttribute(Constants.CURUSERNAME));
 		request.setAttribute("list", list);
+		System.out.println("user list size is:###"+list.size());
 		return mapping.findForward("inputForm");
-		
 	}
 	/*
 	 * 请求更新，数据中的resource表数据，同步数据 
@@ -81,7 +81,8 @@ public class PushDataAction extends DispatchAction {
 					pf.getTicket(), pf.getUri(), pf.getMessage(),
 					pf.getServicetype());
 			
-		}catch (Exception e){			
+		}catch (Exception e){	
+			e.printStackTrace();
 			return mapping.findForward("fail");				
 		}
 		response.sendRedirect("pushdata.do?opt=input");

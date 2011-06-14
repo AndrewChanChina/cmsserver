@@ -92,7 +92,8 @@ public class UserAction extends MappingDispatchAction {
 					session.setAttribute(Constants.CUR_USER_ID, u2.getId());
 				}
 				//response.sendRedirect("home.do");
-				response.sendRedirect("pushdata.do?opt=input");
+				//response.sendRedirect("pushdata.do?opt=input");
+				response.sendRedirect("push.do?op=showMain");
 				return null;
 			} else {
 				throw new Exception("dd");

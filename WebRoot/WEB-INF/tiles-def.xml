@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE component-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 1.3//EN" "tiles-config_1_3.dtd" >
+<component-definitions>
+  <definition name="text" path="/WEB-INF/push/tile_text.jsp">
+  		<put name="header" value="/WEB-INF/push/header.jsp"></put>
+  		<put name="aside" value="/WEB-INF/push/content_right.jsp"></put>
+  		<put name="text_content" value="/WEB-INF/push/text_content.jsp"></put>
+  </definition>
+  <definition name="photo" path="/WEB-INF/push/tile_photo.jsp">
+  		<put name="header" value="/WEB-INF/push/header.jsp"></put>
+  		<put name="aside" value="/WEB-INF/push/content_right.jsp"></put>
+  		<put name="photo_content" value="/WEB-INF/push/photo_content.jsp"></put>
+  </definition>
+  
+  <definition name="music" path="/WEB-INF/push/tile_music.jsp">
+  		<put name="header" value="/WEB-INF/push/header.jsp"></put>
+  		<put name="aside" value="/WEB-INF/push/content_right.jsp"></put>
+  		<put name="music_content" value="/WEB-INF/push/music_content.jsp"></put>
+  </definition>
+  
+  <definition name="link" path="/WEB-INF/push/tile_link.jsp">
+  		<put name="header" value="/WEB-INF/push/header.jsp"></put>
+  		<put name="aside" value="/WEB-INF/push/content_right.jsp"></put>
+  		<put name="link_content" value="/WEB-INF/push/link_content.jsp"></put>
+  </definition>
+  
+  <definition name="vedio" path="/WEB-INF/push/tile_vedio.jsp">
+  		<put name="header" value="/WEB-INF/push/header.jsp"></put>
+  		<put name="aside" value="/WEB-INF/push/content_right.jsp"></put>
+  		<put name="vedio_content" value="/WEB-INF/push/vedio_content.jsp"></put>
+  </definition>
+  
+  <definition name="main" path="/WEB-INF/push/tile_main.jsp">
+  		<put name="header" value="/WEB-INF/push/header.jsp"></put>
+  		<put name="main_right" value="/WEB-INF/push/main_right.jsp"></put>
+  		<put name="body" value="/WEB-INF/push/body.jsp"></put>
+  </definition>
+</component-definitions>

@@ -11,9 +11,11 @@ import org.springframework.beans.factory.BeanFactory;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.smit.service.ProductControlService;
+import com.smit.service.PushService;
 import com.smit.vo.CertifiedProduct;
 import com.smit.vo.Device;
 import com.smit.vo.Order;
+import com.smit.vo.PushContent;
 import com.smit.vo.TestOption;
 
 public class ProductControlServiceTest extends TestCase{
@@ -167,5 +169,16 @@ public class ProductControlServiceTest extends TestCase{
 		List<Device> list = ps.getDevice("11051813490577599789879870000000");
 		Device device = list.get(0);
 		System.out.println(device.getLogs().iterator().next().getTestOption().getName());
+	}
+	
+	public void testContent(){
+		BeanFactory beanFactory = new ClassPathXmlApplicationContext("applicationContext.xml");
+		PushService ps = (PushService) beanFactory.getBean("pushService");
+		
+		List<PushContent> contents = ps.getContent();
+		for(PushContent pc : contents){
+			System.out.println(pc.getCreate_time());
+		}
+		
 	}
 }
