@@ -36,6 +36,8 @@
   	<init-param>
 		<param-name>avoid-urls</param-name>
 		<param-value>
+		video.do,
+		getVideoColumn.do,
 		jcaptcha.do,
 		login.do,
 		logout.do,
