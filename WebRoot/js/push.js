@@ -1,14 +1,17 @@
 $(document).ready(function(){
 	$("#pb-submit").click(function(){
-		$("#content-form").submit();
+		var linkurl = $("#pb-link-url-input").val();
+		if(linkurl!= null && linkurl.length>50){
+			alert("链接地址长度不能超过50!");
+		}else{
+			$("#content-form").submit();
+		}
 	});
 	
-//	$(".feed-del").click(function(){
-//		var input_id = $("#id-input").val();
-//		$.post("push.do?op=delete",{id:input_id},function(data){
-//			alert("success");
-//		});
-//	});
+	$("#pb-cancel").click(function(){
+		$("form")[0].reset();
+	});
+
 	
 	$("#up-photo").bind("change",function(){
 		var p = $("#photo-names");
@@ -30,12 +33,6 @@ $(document).ready(function(){
 		});
 		});
 	
-	$("#nextpage").click(function(){
-		$.get("push.do?op=content",function(data){
-			
-			
-		},"json");
-	});
 });
 	
 	

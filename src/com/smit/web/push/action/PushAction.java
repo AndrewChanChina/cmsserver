@@ -59,14 +59,30 @@ public class PushAction extends DispatchAction{
 	
 	public  ActionForward showMain(ActionMapping mapping,ActionForm form,
 			HttpServletRequest request, HttpServletResponse response){
-		String currentPage = request.getParameter("currentpage");
-		List<PushContent> list = service.getContent(0,10);
+		
+		List<PushContent> list = service.getContent();
+		int count = list.size();
+		if(count>10){
+			list = list.subList(0, 10);
+		}
 		setPhotos(list);
 		System.out.println(list.size());
-		
+		int total = setTotal(count);
+		request.getSession().setAttribute("count", count);
+		request.setAttribute("total", total);
 		request.setAttribute("list", list);
 		request.setAttribute("currentpage", 1);
 		return new ActionForward("/main.do");
+	}
+
+	private int setTotal(int count) {
+		int total;
+		if(count%10==0){
+			total = count/10;
+		}else{
+			total = count/10+1;
+		}
+		return total;
 	}
 	public  ActionForward showLink(ActionMapping mapping,ActionForm form,
 			HttpServletRequest request, HttpServletResponse response){
@@ -93,7 +109,14 @@ public class PushAction extends DispatchAction{
 		service.insertContent(pc);
 		pushData(request, pc);
 		
+		int count = 0;
+		int countStr  = (Integer) request.getSession().getAttribute("count");
+		count = countStr+1;
+		int total = setTotal(count);
 		List<PushContent> list = getContentList(0,10);
+		
+		request.getSession().setAttribute("count", count);
+		request.setAttribute("total", total);
 		request.getSession().setAttribute("list", list);
 		request.setAttribute("currentpage", 1);
 		return  new ActionForward("/main.do");
@@ -166,7 +189,13 @@ public class PushAction extends DispatchAction{
 			service.insertContent(pc);
 			pushData(request, pc);
 			
+			int count = 0;
+			int countStr  = (Integer) request.getSession().getAttribute("count");
+			count = countStr+1;
+			int total = setTotal(count);
 			List<PushContent> list = getContentList(0,10);
+			request.getSession().setAttribute("count", count);
+			request.setAttribute("total", total);
 			request.setAttribute("list", list);
 			request.setAttribute("currentpage", 1);
 			return new ActionForward("/main.do");
@@ -179,6 +208,7 @@ public class PushAction extends DispatchAction{
 		String[] paths = photoStr.split(";");
 		//List<String> list = new ArrayList<String>();
 		String path = "";
+		
 		for(String s : paths){
 			String[] p = s.replace("\\", "#").split("#");
 			String photo = p[p.length-1];
@@ -189,14 +219,26 @@ public class PushAction extends DispatchAction{
 		PushContent pc = new PushContent();
 		pc.setDes(desc);
 		pc.setPath(path);
+		//注意这只保存最后一张图的url
+		String[] s = paths[paths.length-1].replace("\\", "#").split("#");
+		String loadurl = "http://"+request.getServerName()+
+		":"+request.getServerPort()+request.getContextPath()+"/images/"+s[s.length-1];
+		System.out.println(loadurl);
+		pc.setUrl(loadurl);
 		pc.setContent_type("picture");
 		SimpleDateFormat formater = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		pc.setCreate_time(formater.format(new Date()));
 		service.insertContent(pc);
 		pushData(request, pc);
 		
+		int count = 0;
+		int countStr  = (Integer) request.getSession().getAttribute("count");
+		count = countStr+1;
+		int total = setTotal(count);
 		System.out.println("upload photos is:"+photoStr);
 		List<PushContent> list = getContentList(0,10);
+		request.getSession().setAttribute("count", count);
+		request.setAttribute("total", total);
 		request.setAttribute("list", list);
 		request.setAttribute("currentpage", 1);
 		return new ActionForward("/main.do");
@@ -217,7 +259,13 @@ public class PushAction extends DispatchAction{
 		service.insertContent(pc);
 		pushData(request, pc);
 		
+		int count = 0;
+		int countStr  = (Integer) request.getSession().getAttribute("count");
+		count = countStr+1;
+		int total = setTotal(count);
 		List<PushContent> list = getContentList(0,10);
+		request.getSession().setAttribute("count", count);
+		request.setAttribute("total", total);
 		request.setAttribute("list", list);
 		request.setAttribute("currentpage", 1);
 		return new ActionForward("/main.do");
@@ -238,7 +286,14 @@ public class PushAction extends DispatchAction{
 		service.insertContent(pc);
 		pushData(request, pc);
 		
+		int count = 0;
+		int countStr  = (Integer) request.getSession().getAttribute("count");
+		count = countStr+1;
+		int total = setTotal(count);
+		
 		List<PushContent> list = getContentList(0,10);
+		request.getSession().setAttribute("count", count);
+		request.setAttribute("total", total);
 		request.setAttribute("list", list);
 		request.setAttribute("currentpage", 1);
 		return new ActionForward("/main.do");
@@ -246,10 +301,11 @@ public class PushAction extends DispatchAction{
 	
 	public void pushData(HttpServletRequest request,PushContent pc) throws Exception{
 		HttpSession session = request.getSession();
+		String deviceId = request.getParameter("deviceId");
 		IPushDataService ps = (IPushDataService)session.getAttribute(Constants.PUSH_CONNECTION);
 		List<String> userList = new ArrayList<String>();
 		userList.add(session.getAttribute(Constants.CURUSERNAME)
-						+ "@smit/Smack" );
+						+ "@smit/"+ deviceId);
 		ps.sendPushDataFromUser(userList, false, RandomStringUtils.randomNumeric(4), pc.getTitle(), "", pc.getUrl(), pc.getContent(), pc.getContent_type());
 	}
 	public  ActionForward content(ActionMapping mapping,ActionForm form,
@@ -260,6 +316,11 @@ public class PushAction extends DispatchAction{
 		int currentPage = Integer.parseInt(currrentpage);
 		int start = 0;
 		int count = 0;
+		if(p.size()%10==0){
+			count = p.size()/10;
+		}else{
+			count = p.size()/10+1;
+		}
 		List<PushContent> list = null;
 		if("pre".equals(type)){
 			if(currentPage>1){
@@ -268,11 +329,7 @@ public class PushAction extends DispatchAction{
 			int begin = (currentPage-2)*10;
 			start = begin>=0 ? begin : 0;
 		}else if("next".equals(type)){
-			if(p.size()%10==0){
-				count = p.size()/10;
-			}else{
-				count = p.size()/10+1;
-			}
+			
 			if(currentPage<count){
 				//page.setCurrentPage(currentPage+1);
 				start = currentPage*(10);
@@ -285,6 +342,8 @@ public class PushAction extends DispatchAction{
 		
 		list = service.getContent(start, 10);
 		setPhotos(list);
+		request.getSession().setAttribute("count", p.size());
+		request.setAttribute("total", count);
 		request.setAttribute("list", list);
 		request.setAttribute("currentpage", currentPage);
 		return new ActionForward("/main.do");

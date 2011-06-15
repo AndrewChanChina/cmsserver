@@ -11,7 +11,7 @@
 <span>(支持优酷/土豆/酷6/六间房/56网/音悦台的视频发布)</span>
 </h3>
 <div class="pb-input-tip" id="pb-video-search-tip"></div>
-<input type="text" class="input-text" id="pb-video-search-input" name="url">
+<input type="text" class="input-text" id="pb-link-url-input" name="url">
 </div>
 <div id="pb-video-preview-holder" class="pb-post-media-preview clearfix" style="display:none;">
 <a id="pb-video-repick-btn" class="pb-post-media-preview-close">重新选择视频</a>

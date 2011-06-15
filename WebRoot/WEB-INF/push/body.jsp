@@ -73,7 +73,7 @@
 				</div>
 					</logic:iterate>
 				</logic:present>
-				<div style="text-align: center;" id="nextpage">共 页   当前第<bean:write name="currentpage"/> 页  
+				<div style="text-align: center;" id="nextpage">共 <bean:write name="total"/>页   当前第<bean:write name="currentpage"/> 页  
 				<a href="push.do?op=content&type=pre&currentpage=<bean:write name="currentpage"/>">上一页</a>  
 				<a href="push.do?op=content&type=next&currentpage=<bean:write name="currentpage"/>">下一页</a> </div>
 			</div>

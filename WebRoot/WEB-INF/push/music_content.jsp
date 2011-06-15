@@ -9,7 +9,7 @@
 </h3>
 <textarea class="pb-input-text" id="pb-audio-desc-input" style="visibility: hidden; display: none; "></textarea>
 <div class="pb-input-tip" id="pb-audio-search-tip"></div>
-<input type="text" class="input-text" id="pb-audio-search-input" name="url">
+<input type="text" class="input-text" id="pb-link-url-input" name="url">
 </div>
 <div id="audio-preview-holder" class="pb-post-media-preview clearfix" style="display:none;">
 <a id="pb-audio-repick-btn" class="pb-post-media-preview-close">重新选择音乐</a>

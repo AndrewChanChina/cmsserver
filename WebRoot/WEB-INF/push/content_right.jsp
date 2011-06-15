@@ -5,13 +5,13 @@
 <div id="pb-aside">
 	<div id="post-holder">
 		<label for="post-to-select" style="font-size: 14px">发布至</label>
-		<select id="post-select" class="aside-item">
-			<logic:notEmpty name="list">
+		<select id="post-select" class="aside-item" name="deviceId">
+			<logic:notEmpty name="list" >
 				<logic:iterate id="resource" name="list">
-					<option value="${resource.deviceName}">${resource.deviceName}</option>
+					<option value="${resource.resource}">${resource.deviceName}</option>
 				</logic:iterate>
 			</logic:notEmpty>
-			<!--  <option value="cluo">cluo</option>-->
+			 <option value="0" selected="selected">请选择</option>
 		</select>
 	</div>
 	<hr class="separator">
