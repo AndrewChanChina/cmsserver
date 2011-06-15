@@ -1,15 +1,21 @@
 $(document).ready(function(){
 	$("#pb-submit").click(function(){
 		var linkurl = $("#pb-link-url-input").val();
+		var to = $("#post-select").val();
 		if(linkurl!= null && linkurl.length>50){
 			alert("链接地址长度不能超过50!");
-		}else{
-			$("#content-form").submit();
+			return;
 		}
+		if(to==0){
+			alert("请选择要发送的对象!");
+			return;
+		}
+		$("#content-form").submit();
 	});
 	
 	$("#pb-cancel").click(function(){
 		$("form")[0].reset();
+		history.back();
 	});
 
 	

@@ -35,14 +35,14 @@
 				<div class="pb-content">
 					<!--  <div id="pb-triangle"></div>-->
 						<div class="pb-comment">
-							<logic:equal value="url" name="list" property="content_type">
+							<logic:equal value="URL" name="list" property="content_type">
 								<a href="<bean:write name="list" property="url"/>" class="feed-title"><bean:write name="list" property="title"/></a>
 							</logic:equal>
-							<logic:equal value="text" name="list" property="content_type">
+							<logic:equal value="TEXT" name="list" property="content_type">
 								<h4 class="feed-title"><bean:write name="list" property="title"/></h4>
 								<div class="feed-comment"><p><bean:write name="list" property="content"/></p></div>
 							</logic:equal>
-							<logic:equal value="picture" name="list" property="content_type">
+							<logic:equal value="PICTURE" name="list" property="content_type">
 							  <div class="photo-list">
 								<logic:iterate id="photo" name="list" property="photos">
 								<div class="feed-img"><img class="img" src="./images/<bean:write name='photo'/>"
@@ -51,11 +51,11 @@
 							 </div>
 							 <div class="photo-desc"><bean:write name="list" property="des"/></div>
 							</logic:equal>
-							<logic:equal value="audio" name="list" property="content_type">
+							<logic:equal value="AUDIO" name="list" property="content_type">
 								<h3><bean:write name="list" property="des"/></h3>
 								<div>音乐链接地址：<a href="<bean:write name="list" property="url"/>"><bean:write name="list" property="url"/></a></div>
 							</logic:equal>
-							<logic:equal value="vedio" name="list" property="content_type">
+							<logic:equal value="VIDEO" name="list" property="content_type">
 								<h3><bean:write name="list" property="des"/></h3>
 								<div>视频链接地址：<a href="<bean:write name="list" property="url"/>"><bean:write name="list" property="url"/></a></div>
 							</logic:equal>

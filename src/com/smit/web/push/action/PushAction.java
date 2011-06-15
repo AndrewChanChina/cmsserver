@@ -103,7 +103,7 @@ public class PushAction extends DispatchAction{
 		PushContent pc = new PushContent();
 		pc.setTitle(title);
 		pc.setContent(content);
-		pc.setContent_type("text");
+		pc.setContent_type("TEXT");
 		SimpleDateFormat formater = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		pc.setCreate_time(formater.format(new Date()));
 		service.insertContent(pc);
@@ -131,7 +131,7 @@ public class PushAction extends DispatchAction{
 	private void setPhotos(List<PushContent> list) {
 		if(list.size()>0){
 			for(PushContent p : list){
-				if("picture".equals(p.getContent_type())){
+				if("PICTURE".equals(p.getContent_type())){
 					String[] photos = p.getPath().split(";");
 					for(String s: photos){
 						p.getPhotos().add(s);
@@ -183,7 +183,7 @@ public class PushAction extends DispatchAction{
 			PushContent pc = new PushContent();
 			pc.setTitle(title);
 			pc.setUrl(url);
-			pc.setContent_type("url");
+			pc.setContent_type("URL");
 			SimpleDateFormat formater = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 			pc.setCreate_time(formater.format(new Date()));
 			service.insertContent(pc);
@@ -225,7 +225,7 @@ public class PushAction extends DispatchAction{
 		":"+request.getServerPort()+request.getContextPath()+"/images/"+s[s.length-1];
 		System.out.println(loadurl);
 		pc.setUrl(loadurl);
-		pc.setContent_type("picture");
+		pc.setContent_type("PICTURE");
 		SimpleDateFormat formater = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		pc.setCreate_time(formater.format(new Date()));
 		service.insertContent(pc);
@@ -253,7 +253,7 @@ public class PushAction extends DispatchAction{
 		PushContent pc = new PushContent();
 		pc.setUrl(url);
 		pc.setDes(des);
-		pc.setContent_type("audio");
+		pc.setContent_type("AUDIO");
 		SimpleDateFormat formater = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		pc.setCreate_time(formater.format(new Date()));
 		service.insertContent(pc);
@@ -280,7 +280,7 @@ public class PushAction extends DispatchAction{
 		PushContent pc = new PushContent();
 		pc.setUrl(url);
 		pc.setDes(des);
-		pc.setContent_type("vedio");
+		pc.setContent_type("VIDEO");
 		SimpleDateFormat formater = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		pc.setCreate_time(formater.format(new Date()));
 		service.insertContent(pc);
@@ -304,6 +304,7 @@ public class PushAction extends DispatchAction{
 		String deviceId = request.getParameter("deviceId");
 		IPushDataService ps = (IPushDataService)session.getAttribute(Constants.PUSH_CONNECTION);
 		List<String> userList = new ArrayList<String>();
+		System.out.println("deviceId is:"+deviceId);
 		userList.add(session.getAttribute(Constants.CURUSERNAME)
 						+ "@smit/"+ deviceId);
 		ps.sendPushDataFromUser(userList, false, RandomStringUtils.randomNumeric(4), pc.getTitle(), "", pc.getUrl(), pc.getContent(), pc.getContent_type());
