@@ -22,7 +22,7 @@
 	 	<input type="hidden" name="photos" id="photo-names">
 	 </form>
 	</div>
- <div id="photo-pick-tip">在文件列表中，按住Ctrl多选照片</div>
+ <div id="photo-pick-tip"></div>
  <div id="pb-photo-upload-file-status"></div>
  <div id="photo-file-tip">JPG, GIF, PNG或BMP. 不超过8MB</div>
  <div id="pb-photo-upload-total-status"></div>

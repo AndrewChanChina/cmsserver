@@ -22,10 +22,12 @@
   <body>
   	<div id="wrap">
   		<tiles:insert attribute="header"></tiles:insert>
+  		<div style="margin-left: auto;margin-right: auto; width: 1000px;overflow: auto;">
   		<form method="post" action="push.do?op=photo" id="content-form">
   		<tiles:insert attribute="photo_content"></tiles:insert>
   		<tiles:insert attribute="aside"></tiles:insert>
   		</form>
+  		</div>
   	</div>
   </body>
 </html>

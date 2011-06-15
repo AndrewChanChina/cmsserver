@@ -33,17 +33,23 @@
 				</li>
 			</ul>-->
 	</div>
-		<hr class="separator">				
+		<hr class="separator">		
+		<!--		
 		<div class="sidebox">
+		<!--  
 			<h5>我收藏的标签</h5>
 			<div class="sidebox-ct"><a class="explore-link" href="http://www.diandian.com/wall/">发现点点</a></div>
+		-->
 		</div>
 		
 		<div id="act-coffee" class="sidebox">
 			<div class="sidebox-ct">
+			<!--  
 			<a href="http://iam.diandian.com/post/2279a7d0-651d-11e0-93c6-9e1aca9c0121">
 			<img src="./images/pushservice/starbar.jpg" alt="星巴克,免费享" title="星巴克,免费享">
-			</a></div>
+			</a>
+			
+			</div>
 		</div>
 			<hr class="separator">
 			<div class="side-special-link sidebox">
@@ -54,5 +60,6 @@
 				<a href="http://www.diandian.com/jobs">招贤纳士，虚位以待</a>
 				</div>
 			</div>
+			-->
 </div>
 					

@@ -12,10 +12,12 @@
     <link rel="stylesheet" type="text/css" href="./css/aside.css">
   </head>
   <body>
-  	<div id="wrap" style="overflow: auto;">
+  	<div id="wrap" style="overflow: auto;margin: 0 auto;">
   		<tiles:insert attribute="header"></tiles:insert>
+  		<div style="margin-left: auto;margin-right: auto; width: 1000px;overflow: auto" id="content_area">
   		<tiles:insert attribute="body"></tiles:insert>
   		<tiles:insert attribute="main_right"></tiles:insert>
+  		</div>
   	</div>
   </body>
 </html>

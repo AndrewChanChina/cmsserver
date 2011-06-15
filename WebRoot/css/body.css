@@ -67,12 +67,12 @@
 	}
 	#main {
 		float: left;
-		width: 628px;
+		/*width: 628px;*/
 		display: block;
 		margin: 0;
 		pause: 0;
 		background: #D3D9DE;
-		margin-left: 40px;
+		margin-left: 50px;
 	}
 	.ph {
 		position: relative;

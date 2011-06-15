@@ -33,5 +33,16 @@ public class PushServiceImpl implements PushService{
 		
 		return pushDao.queryContent();
 	}
+
+	@Override
+	public void deleteContent(PushContent content) {
+		pushDao.deleteContent(content);
+	}
+
+	@Override
+	public PushContent getById(int id) {
+		PushContent pc = pushDao.getById(id);
+		return pc;
+	}
 	
 }

@@ -8,4 +8,6 @@ public interface PushService {
 	public boolean insertContent(PushContent content);
 	public List<PushContent> getContent(int start,int num);
 	public List<PushContent> getContent();
+	public void deleteContent(PushContent content);
+	public PushContent getById(int id);
 }

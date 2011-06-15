@@ -61,9 +61,12 @@
 							</logic:equal>
 						</div>
 							<div class="feed-act">
-								<a class="feed-del">删除</a>
+								<a class="feed-del" href="push.do?op=delete&id=<bean:write name="list" property="id"/>">删除</a>
+								<input type="hidden" value="<bean:write name="list" property="id"/>" name="id" id="id-input"/>
+								<!--  
 								<a href="" class="feed-edit">编辑</a>
 								<a class="feed-cmt">回应</a>
+								-->
 							</div>
 							
 				</div>

@@ -8,7 +8,7 @@
 		<select id="post-select" class="aside-item">
 			<logic:notEmpty name="list">
 				<logic:iterate id="resource" name="list">
-					<option value="${resource.resource}">${resource.resource}</option>
+					<option value="${resource.deviceName}">${resource.deviceName}</option>
 				</logic:iterate>
 			</logic:notEmpty>
 			<!--  <option value="cluo">cluo</option>-->

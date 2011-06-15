@@ -43,5 +43,15 @@ public class PushContentImpl extends HibernateDaoSupport implements PushContentD
 		List<PushContent> list = this.getHibernateTemplate().find(hql);
 		return list;
 	}
+	@Override
+	public void deleteContent(PushContent content) {
+		this.getHibernateTemplate().delete(content);
+	}
+	@Override
+	public PushContent getById(int id) {
+		PushContent c = this.getHibernateTemplate().load(PushContent.class, id);
+		return c;
+	}
+	
 	
 }

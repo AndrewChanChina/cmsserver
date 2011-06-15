@@ -1,8 +1,14 @@
 $(document).ready(function(){
 	$("#pb-submit").click(function(){
-		alert("hello");
 		$("#content-form").submit();
 	});
+	
+//	$(".feed-del").click(function(){
+//		var input_id = $("#id-input").val();
+//		$.post("push.do?op=delete",{id:input_id},function(data){
+//			alert("success");
+//		});
+//	});
 	
 	$("#up-photo").bind("change",function(){
 		var p = $("#photo-names");

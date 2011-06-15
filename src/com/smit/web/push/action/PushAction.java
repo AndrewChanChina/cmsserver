@@ -289,4 +289,20 @@ public class PushAction extends DispatchAction{
 		request.setAttribute("currentpage", currentPage);
 		return new ActionForward("/main.do");
 	}
+	
+	public  ActionForward delete(ActionMapping mapping,ActionForm form,
+			HttpServletRequest request, HttpServletResponse response){
+		String idStr = request.getParameter("id");
+		int id = 0;
+		if(!"".equals(idStr)){
+			id = Integer.parseInt(idStr);
+		}
+		PushContent content = service.getById(id);
+		service.deleteContent(content);
+		List<PushContent> list = service.getContent(0, 10);
+		setPhotos(list);
+		request.setAttribute("list", list);
+		request.setAttribute("currentpage", 1);
+		return new ActionForward("/main.do");
+	}
 }
