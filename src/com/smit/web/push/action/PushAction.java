@@ -103,6 +103,7 @@ public class PushAction extends DispatchAction{
 		PushContent pc = new PushContent();
 		pc.setTitle(title);
 		pc.setContent(content);
+		pc.setDes(content);
 		pc.setContent_type("TEXT");
 		SimpleDateFormat formater = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		pc.setCreate_time(formater.format(new Date()));
@@ -307,7 +308,7 @@ public class PushAction extends DispatchAction{
 		System.out.println("deviceId is:"+deviceId);
 		userList.add(session.getAttribute(Constants.CURUSERNAME)
 						+ "@smit/"+ deviceId);
-		ps.sendPushDataFromUser(userList, false, RandomStringUtils.randomNumeric(4), pc.getTitle(), "", pc.getUrl(), pc.getContent(), pc.getContent_type());
+		ps.sendPushDataFromUser(userList, false, RandomStringUtils.randomNumeric(4), pc.getTitle(), "", pc.getUrl(), pc.getDes(), pc.getContent_type());
 	}
 	public  ActionForward content(ActionMapping mapping,ActionForm form,
 			HttpServletRequest request, HttpServletResponse response){
