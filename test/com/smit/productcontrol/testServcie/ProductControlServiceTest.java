@@ -12,11 +12,15 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.smit.service.ProductControlService;
 import com.smit.service.PushService;
+import com.smit.service.push.IPushManageService;
+import com.smit.service.push.PushManageServiceImpl;
+import com.smit.util.Constants;
 import com.smit.vo.CertifiedProduct;
 import com.smit.vo.Device;
 import com.smit.vo.Order;
 import com.smit.vo.PushContent;
 import com.smit.vo.TestOption;
+import com.smit.vo.UserAccountResource;
 
 public class ProductControlServiceTest extends TestCase{
 	
@@ -179,6 +183,21 @@ public class ProductControlServiceTest extends TestCase{
 		for(PushContent pc : contents){
 			System.out.println(pc.getCreate_time());
 		}
-		
 	}
+	
+	public void testpresence(){
+		BeanFactory beanFactory = new ClassPathXmlApplicationContext("applicationContext.xml");
+		IPushManageService ps =  (IPushManageService) beanFactory.getBean("pushManageService");
+		
+		List<UserAccountResource> list = ps.listAllResource("test888");
+			
+		System.out.println(list.size());
+		for(UserAccountResource u:list){
+			System.out.println(u.isPresence());
+			
+		}
+		//ps.updateUserPresence("test888@smit/adsmack", false);
+	}
+	
+	
 }

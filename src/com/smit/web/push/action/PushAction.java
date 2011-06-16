@@ -91,7 +91,9 @@ public class PushAction extends DispatchAction{
 				(String)request.getSession().getAttribute(Constants.CURUSERNAME));
 			request.setAttribute("list", list);
 		System.out.println(list.size());
-		
+		for(UserAccountResource u:list){
+			System.out.println(u.isPresence());
+		}
 		return new ActionForward("/"+type+".do");
 	}
 	public ActionForward text(ActionMapping mapping,ActionForm form,
@@ -222,7 +224,7 @@ public class PushAction extends DispatchAction{
 		pc.setPath(path);
 		//注意这只保存最后一张图的url
 		String[] s = paths[paths.length-1].replace("\\", "#").split("#");
-		String loadurl = "http://"+request.getServerName()+
+		String loadurl = "http://"+request.getLocalAddr()+
 		":"+request.getServerPort()+request.getContextPath()+"/images/"+s[s.length-1];
 		System.out.println(loadurl);
 		pc.setUrl(loadurl);
@@ -353,7 +355,7 @@ public class PushAction extends DispatchAction{
 	}
 	
 	public  ActionForward delete(ActionMapping mapping,ActionForm form,
-			HttpServletRequest request, HttpServletResponse response){
+			HttpServletRequest request, HttpServletResponse response) throws Exception{
 		String idStr = request.getParameter("id");
 		int id = 0;
 		if(!"".equals(idStr)){
@@ -370,6 +372,7 @@ public class PushAction extends DispatchAction{
 		request.setAttribute("total", total);
 		request.setAttribute("list", list);
 		request.setAttribute("currentpage", 1);
-		return new ActionForward("/main.do");
+		response.sendRedirect("push.do?op=showMain");
+		return null;
 	}
 }

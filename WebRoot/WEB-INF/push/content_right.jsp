@@ -2,6 +2,7 @@
 <%@ taglib uri="/WEB-INF/struts-logic.tld" prefix="logic"%>
 <%@ taglib uri="/WEB-INF/struts-html.tld" prefix="html"%>
 <%@ taglib uri="/WEB-INF/struts-bean.tld" prefix="bean"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <div id="pb-aside">
 	<div id="post-holder">
 		<label for="post-to-select" style="font-size: 14px">发布至</label>
@@ -30,8 +31,12 @@
 					<logic:iterate id="resource" name="list">
 						<input type="checkbox" name="deviceIds" value="${resource.resource}"/>
 						${resource.deviceName}当前状态:						
-								<logic:equal name="resource" value="true" property="presence">在线</logic:equal>
-								<logic:equal value="false" name="resource" property="presence">不在线</logic:equal>
+								<!-- <logic:equal name="resource" value="true" property="presence">在线</logic:equal>
+								<logic:equal value="true" name="resource" property="presence">不在线</logic:equal>
+								 -->
+								<c:if test="${resource.presence == true}">在线</c:if>
+								<c:if test="${resource.presence == false}">不在线</c:if>
+								
 								<br>	
 					</logic:iterate>
 				</logic:notEmpty>
