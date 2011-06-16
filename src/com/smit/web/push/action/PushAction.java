@@ -302,12 +302,13 @@ public class PushAction extends DispatchAction{
 	
 	public void pushData(HttpServletRequest request,PushContent pc) throws Exception{
 		HttpSession session = request.getSession();
-		String deviceId = request.getParameter("deviceId");
+		String[] deviceIds = request.getParameterValues("deviceIds");
 		IPushDataService ps = (IPushDataService)session.getAttribute(Constants.PUSH_CONNECTION);
 		List<String> userList = new ArrayList<String>();
-		System.out.println("deviceId is:"+deviceId);
-		userList.add(session.getAttribute(Constants.CURUSERNAME)
-						+ "@smit/"+ deviceId);
+		for(String s:deviceIds){
+			userList.add(session.getAttribute(Constants.CURUSERNAME)
+					+ "@smit/"+ s);
+		}
 		ps.sendPushDataFromUser(userList, false, RandomStringUtils.randomNumeric(4), pc.getTitle(), "", pc.getUrl(), pc.getDes(), pc.getContent_type());
 	}
 	public  ActionForward content(ActionMapping mapping,ActionForm form,
@@ -362,6 +363,11 @@ public class PushAction extends DispatchAction{
 		service.deleteContent(content);
 		List<PushContent> list = service.getContent(0, 10);
 		setPhotos(list);
+		int num = (Integer) request.getSession().getAttribute("count");
+		int count = num-1;
+		int total = setTotal(count);
+		request.getSession().setAttribute("count", count);
+		request.setAttribute("total", total);
 		request.setAttribute("list", list);
 		request.setAttribute("currentpage", 1);
 		return new ActionForward("/main.do");

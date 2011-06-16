@@ -5,14 +5,14 @@
 <div id="pb-aside">
 	<div id="post-holder">
 		<label for="post-to-select" style="font-size: 14px">发布至</label>
-		<select id="post-select" class="aside-item" name="deviceId">
+		<!--  <select id="post-select" class="aside-item" name="deviceId">
 			<logic:notEmpty name="list" >
 				<logic:iterate id="resource" name="list">
 					<option value="${resource.resource}">${resource.deviceName}</option>
 				</logic:iterate>
 			</logic:notEmpty>
 			 <option value="0" selected="selected">请选择</option>
-		</select>
+		</select>-->
 	</div>
 	<hr class="separator">
 	<div id="privacy-holder">
@@ -23,11 +23,18 @@
 		-->
 	</div>
 	<hr class="separator">
-	<div id="tag-holder" style="display: block;">
+	<div id="tag-holder" style="display: block;overflow: auto;">
 		<div id="post-tag">
-			<ul id="tag-list" style="clear: both;visibility: hidden;display: block;height: 0;"></ul>
 			<div id="tag-input-holder">
-				<input type="text" id="tag-input">
+				<logic:notEmpty name="list">
+					<logic:iterate id="resource" name="list">
+						<input type="checkbox" name="deviceIds" value="${resource.resource}"/>
+						${resource.deviceName}当前状态:						
+								<logic:equal name="resource" value="true" property="presence">在线</logic:equal>
+								<logic:equal value="false" name="resource" property="presence">不在线</logic:equal>
+								<br>	
+					</logic:iterate>
+				</logic:notEmpty>
 			</div>
 		</div>
 	</div>

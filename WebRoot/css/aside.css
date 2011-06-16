@@ -119,4 +119,6 @@
 	.following-count a {
 		background-position: -494px -39px;
 	}
-	
+	#tag-holder {
+		font-size: 12px;
+	}
