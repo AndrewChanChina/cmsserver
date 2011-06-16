@@ -5,6 +5,8 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -209,14 +211,12 @@ public class PushAction extends DispatchAction{
 		String desc = request.getParameter("desc");
 		String photoStr = request.getParameter("photos");
 		String[] paths = photoStr.split(";");
-		//List<String> list = new ArrayList<String>();
-		String path = "";
 		
+		String path = "";
 		for(String s : paths){
 			String[] p = s.replace("\\", "#").split("#");
 			String photo = p[p.length-1];
 			System.out.println(photo);
-			//list.add(photo);
 			path += photo+";";
 		}
 		PushContent pc = new PushContent();
@@ -224,7 +224,7 @@ public class PushAction extends DispatchAction{
 		pc.setPath(path);
 		//注意这只保存最后一张图的url
 		String[] s = paths[paths.length-1].replace("\\", "#").split("#");
-		String loadurl = "http://"+request.getLocalAddr()+
+		String loadurl = "http://"+getHostAddr()+
 		":"+request.getServerPort()+request.getContextPath()+"/images/"+s[s.length-1];
 		System.out.println(loadurl);
 		pc.setUrl(loadurl);
@@ -246,7 +246,9 @@ public class PushAction extends DispatchAction{
 		request.setAttribute("currentpage", 1);
 		return new ActionForward("/main.do");
 	}
-	
+	public String getHostAddr() throws UnknownHostException{
+		return InetAddress.getLocalHost().getHostAddress();
+	}
 	public ActionForward music(ActionMapping mapping,ActionForm form,
 			HttpServletRequest request, HttpServletResponse response) throws Exception{
 		String url = request.getParameter("url");

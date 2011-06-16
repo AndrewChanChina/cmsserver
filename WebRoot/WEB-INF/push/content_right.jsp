@@ -30,14 +30,10 @@
 				<logic:notEmpty name="list">
 					<logic:iterate id="resource" name="list">
 						<input type="checkbox" name="deviceIds" value="${resource.resource}"/>
-						${resource.deviceName}当前状态:						
-								<!-- <logic:equal name="resource" value="true" property="presence">在线</logic:equal>
-								<logic:equal value="true" name="resource" property="presence">不在线</logic:equal>
-								 -->
-								<c:if test="${resource.presence == true}">在线</c:if>
-								<c:if test="${resource.presence == false}">不在线</c:if>
-								
-								<br>	
+						${resource.deviceName}
+						<c:if test="${resource.presence == true}"><span style="float: right;margin-right:10px;color: green">在线</span></c:if>
+						<c:if test="${resource.presence == false}"><span style="float: right;margin-right:10px;color: #666">不在线</span></c:if>
+						<br>	
 					</logic:iterate>
 				</logic:notEmpty>
 			</div>
