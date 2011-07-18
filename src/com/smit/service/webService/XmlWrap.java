@@ -13,7 +13,7 @@ public class XmlWrap implements IToXML{
 		this.items = items;
 	}
 	@Override
-	public String toXml(){
+	public String toXml() throws Exception{
 		StringBuilder sb = new StringBuilder();
 		sb.append("<xml>");
 		sb.append("<items>");

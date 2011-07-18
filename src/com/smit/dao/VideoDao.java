@@ -14,4 +14,7 @@ public interface VideoDao {
 	public List<Video> findByPartId(SmitPage page, Integer partId);
 	public Video getById(Integer id);
 	public List<Video> listAll(SmitPage page);
+	
+	public List<Video> getVideos();
 }
+

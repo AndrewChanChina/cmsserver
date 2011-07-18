@@ -70,9 +70,19 @@ public class VideoServiceImpl implements VideoService {
 			List<String> urls = new ArrayList<String>();
 			urls.add(v.getEnclosure_url());
 			item.setUrls(urls);
+			//add by luocheng
+			List<String> pictures = new ArrayList<String>();
+			pictures.add(v.getImg());
+			item.setPictures(pictures);
+			item.setTime(v.getFlag1());
 			listXml.add(item);
 		}
 		return listXml;
+	}
+
+	@Override
+	public List<Video> getVideos() {
+		return videoDao.getVideos();
 	}
 	
 

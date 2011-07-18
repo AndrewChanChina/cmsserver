@@ -2,10 +2,15 @@ package com.smit.service.collection;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
-import org.apache.commons.beanutils.BeanUtils;
+import javax.management.RuntimeErrorException;
 
+import org.apache.commons.beanutils.BeanUtils;
+import org.apache.commons.lang3.StringUtils;
+
+import com.smit.dao.VideoDao;
 import com.smit.vo.Content;
 import com.smit.vo.Video;
 
@@ -13,9 +18,11 @@ import com.smit.vo.Video;
 public class CollectVideoTask {
 	
 	VideoService videoService;
-	
-	public void youku(){		
-		System.out.println("Run youku task ~");	
+	private List<Video> videos;
+	public void youku() throws Exception{		
+		System.out.println("Run youku task ~"+"time is:"+new Date());
+		//get all videos save in database;
+		//videos = videoService.getVideos();
 		//推荐视频
 		String url = "http://www.youku.com/index/rss_cool_v/";
 		getYoukuVideo(url,101);
@@ -114,119 +121,135 @@ public class CollectVideoTask {
 		url = "http://www.youku.com/index/rss_category_videos/cateid/106";
 		getYoukuVideo(url,126);
 		
+		//run tudou task
+		//tudou();
+		url = "http://rss.tudou.com/feed?type=recommend";
+		getYoukuVideo(url,207);
+		
+		//run tudou
+		tudou();
 	}	
 	
 	
 	
-	public void tudou(){
+	public void tudou() throws Exception{
 		//TODO 因为土豆的描述字段没有使用CDATA，所有暂时无法解析
 		System.out.println("Run tudou task ~");	
 		
 		//最新视频
 		String url = "http://rss.tudou.com/feed?type=date";
-		getYoukuVideo(url,201);
+		getTudouVideo(url,201);
 		
 		//高清视频
 		url = "http://rss.tudou.com/feed?type=h264";
-		getYoukuVideo(url,202);
+		getTudouVideo(url,202);
 		
 		//今日人气最旺视频
 		url = "http://rss.tudou.com/feed?type=hot";
-		getYoukuVideo(url,203);
+		getTudouVideo(url,203);
 		
 		//今日打分最高的视频
 		url = "http://rss.tudou.com/feed?type=rating";
-		getYoukuVideo(url,204);
+		getTudouVideo(url,204);
 		
 		//今日评论最狠视频
 		url = "http://rss.tudou.com/feed?type=comment";
-		getYoukuVideo(url,205);
+		getTudouVideo(url,205);
 		
 		//今日收藏最多视频
 		url = "http://rss.tudou.com/feed?type=favorite";
-		getYoukuVideo(url,206);
+		getTudouVideo(url,206);
 		
 		//所有推荐视频
 		url = "http://rss.tudou.com/feed?type=recommend";
-		getYoukuVideo(url,207);
+		getTudouVideo(url,207);
 		
 		//所有人气最旺视频
 		url = "http://rss.tudou.com/feed?type=hot&p=all";
-		getYoukuVideo(url,208);
+		getTudouVideo(url,208);
 		
 		//所有打分最高的视频
 		url = "http://rss.tudou.com/feed?type=rating&p=all";
-		getYoukuVideo(url,209);
+		getTudouVideo(url,209);
 		
 		//所有评论最狠的视频
 		url = "http://rss.tudou.com/feed?type=comment&p=all";
-		getYoukuVideo(url,210);
+		getTudouVideo(url,210);
 		
 		//所有收藏最多的视频
 		url = "http://rss.tudou.com/feed?type=favorite&p=all";
-		getYoukuVideo(url,211);
+		getTudouVideo(url,211);
 		
 		//娱乐
 		url = "http://rss.tudou.com/feed?type=recommend&p=1";
-		getYoukuVideo(url,212);
+		getTudouVideo(url,212);
 		
 		//乐活
 		url = "http://rss.tudou.com/feed?type=recommend&p=3";
-		getYoukuVideo(url,213);
+		getTudouVideo(url,213);
 		
 		//动画
 		url = "http://rss.tudou.com/feed?type=recommend&p=9";
-		getYoukuVideo(url,214);
+		getTudouVideo(url,214);
 		
 		//游戏
 		url = "http://rss.tudou.com/feed?type=recommend&p=10";
-		getYoukuVideo(url,215);
+		getTudouVideo(url,215);
 		
 		//音乐
 		url = "http://rss.tudou.com/feed?type=recommend&p=14";
-		getYoukuVideo(url,216);
+		getTudouVideo(url,216);
 		
 		//体育
 		url = "http://rss.tudou.com/feed?type=recommend&p=15";
-		getYoukuVideo(url,217);
+		getTudouVideo(url,217);
 		
 		//科技
 		url = "http://rss.tudou.com/feed?type=recommend&p=21";
-		getYoukuVideo(url,218);
+		getTudouVideo(url,218);
 		
 		//影视
 		url = "http://rss.tudou.com/feed?type=recommend&p=22";
-		getYoukuVideo(url,219);
+		getTudouVideo(url,219);
 		
 		
 		//财富
 		url = "http://rss.tudou.com/feed?type=recommend&p=24";
-		getYoukuVideo(url,220);
+		getTudouVideo(url,220);
 		
 		//教育
 		url = "http://rss.tudou.com/feed?type=recommend&p=25";
-		getYoukuVideo(url,221);
+		getTudouVideo(url,221);
 		
 		
 		//汽车
 		url = "http://rss.tudou.com/feed?type=recommend&p=26";
-		getYoukuVideo(url,222);
+		getTudouVideo(url,222);
 		
 		//女性
 		url = "http://rss.tudou.com/feed?type=recommend&p=27";
-		getYoukuVideo(url,223);
+		getTudouVideo(url,223);
 		
 		//热点
 		url = "http://rss.tudou.com/feed?type=recommend&p=29";
-		getYoukuVideo(url,224);
+		getTudouVideo(url,224);
 		
 		//搞笑
 		url = "http://rss.tudou.com/feed?type=recommend&p=5";
-		getYoukuVideo(url,225);
+		getTudouVideo(url,225);
 		
 	}
-	
-	private void getYoukuVideo(String url,int partId){
+	public void other(){
+		System.out.println("Run other task~");
+		//6间房本日推荐
+		String url = "http://6.cn/rss.php";
+		getYoukuVideo(url, 0);
+		
+		//6间房最新节目
+		url = "http://6.cn/rss.php?action=new";
+		getYoukuVideo(url, 0);
+	}
+	public void getYoukuVideo(String url,int partId){
 			
 		try {
 			
@@ -235,17 +258,30 @@ public class CollectVideoTask {
 			List<FeedVideo> list = p.readFeed();
 			List<Video> listVideo = new ArrayList<Video>();
 			int n = 0;
+			int count = 0;
+			if(null == videos){
+				videos = videoService.getVideos();
+			}
+			
 			for(FeedVideo v : list){
 				System.out.println(v.getEnclosure_url());
+				for(Video vs:videos){
+					if(v.getGuid().equals(vs.getGuid())){
+						count++;
+					}
+				}
 				n++;
 				Video video = new Video();
 				video.setPartId(partId);
 				video.setFlag1(v.getItunes_duration());
 				video.setFlag2(v.getItunes_keywords());
 				BeanUtils.copyProperties(video,v);	
-				listVideo.add(video);				
+				if(count<=0){
+					listVideo.add(video);
+				}
 			} 
 			videoService.save(listVideo);
+			videos.addAll(listVideo);
 			
 		} catch (IllegalAccessException e) {
 			e.printStackTrace();
@@ -256,8 +292,36 @@ public class CollectVideoTask {
 		}
 	}
 	
+	public void getTudouVideo(String url,int partid) throws Exception{
+		try{
+			FeedParser fp = new FeedParser(url);
+			List<FeedVideo> vs = fp.parse();
+			List<Video> listVideo = new ArrayList<Video>();
+			if(null==videos){
+				videos = videoService.getVideos();
+			}
+			int count = 0;
+			for(FeedVideo v:vs){
+				for(Video d:videos){
+					if(v.getGuid().equals(d.getGuid())){
+						count++;
+					}
+				}
+				if(count<=0){
+					Video video = new Video();
+					video.setPartId(partid);
+					BeanUtils.copyProperties(video, v);
+					listVideo.add(video);
+				}
+			}
+			videoService.save(listVideo);
+			videos.addAll(listVideo);
+		}catch (Exception e){
+			e.printStackTrace();
+		}
+		
+	}
 	
-
 	public VideoService getVideoService() {
 		return videoService;
 	}
@@ -265,7 +329,6 @@ public class CollectVideoTask {
 	public void setVideoService(VideoService videoService) {
 		this.videoService = videoService;
 	}
-
 
 
 }

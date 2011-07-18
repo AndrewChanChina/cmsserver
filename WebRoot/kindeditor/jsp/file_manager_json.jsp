@@ -2,17 +2,9 @@
 <%@ page import="java.util.*,java.io.*" %>
 <%@ page import="java.text.SimpleDateFormat" %>
 <%@ page import="org.json.simple.*" %>
+<!--  
 <%
 
-/**
- * KindEditor JSP
- *
- * 本JSP程序是演示程序，建议不要直接在实际项目中使用。
- * 如果您确定直接使用本程序，使用之前请仔细确认相关安全设置。
- *
- */
-
-//根目录路径，可以指定绝对路径，比如 /var/www/attached/
 String rootPath = pageContext.getServletContext().getRealPath("/") + "attached/";
 //根目录URL，可以指定绝对路径，比如 http://www.yoursite.com/attached/
 String rootUrl  = request.getContextPath() + "/attached/";
@@ -77,7 +69,7 @@ if(currentPathFile.listFiles() != null) {
 	}
 }
 
-if ("size".equals(order)) {
+/*if ("size".equals(order)) {
 	Collections.sort(fileList, new SizeComparator());
 } else if ("type".equals(order)) {
 	Collections.sort(fileList, new TypeComparator());
@@ -89,12 +81,14 @@ result.put("moveup_dir_path", moveupDirPath);
 result.put("current_dir_path", currentDirPath);
 result.put("current_url", currentUrl);
 result.put("total_count", fileList.size());
-result.put("file_list", fileList);
+result.put("file_list", fileList);*/
 
-response.setContentType("application/json; charset=UTF-8");
-out.println(result.toJSONString());
-%>
-<%!
+//response.setContentType("application/json; charset=UTF-8");
+//out.println(result.toJSONString());
+%>-->
+<!--  
+
+
 public class NameComparator implements Comparator {
 	public int compare(Object a, Object b) {
 		Hashtable hashA = (Hashtable)a;
@@ -108,7 +102,7 @@ public class NameComparator implements Comparator {
 		}
 	}
 }
-public class SizeComparator implements Comparator {
+ class SizeComparator implements Comparator {
 	public int compare(Object a, Object b) {
 		Hashtable hashA = (Hashtable)a;
 		Hashtable hashB = (Hashtable)b;
@@ -140,4 +134,4 @@ public class TypeComparator implements Comparator {
 		}
 	}
 
-%>
+%>-->

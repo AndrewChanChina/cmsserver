@@ -20,5 +20,6 @@
   <property generated="never" lazy="false" name="flag2"/>
   <property generated="never" lazy="false" name="createtime"/>
   <property column="part_id" generated="never" lazy="false" name="partId"/>
+  <property name="img"></property>
  </class>
 </hibernate-mapping>

@@ -53,7 +53,11 @@
 	<mapping resource="com/smit/vo/UserAccountResource.hbm.xml" />
 	
 	<mapping resource="com/smit/vo/PushContent.hbm.xml"/>
-
+	<mapping resource="com/smit/vo/News.hbm.xml"/>
+	<mapping resource="com/smit/vo/UserAnalysis.hbm.xml"/>
+	<mapping resource="com/smit/vo/Subscriber.hbm.xml"/>
+	<mapping resource="com/smit/vo/RssRecord.hbm.xml"/>
+	<mapping resource="com/smit/vo/AtomRecord.hbm.xml"/>
 </session-factory>
 
 </hibernate-configuration>

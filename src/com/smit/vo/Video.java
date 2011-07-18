@@ -25,7 +25,7 @@ public class Video implements Serializable {
 	private String flag2;
     private Timestamp createtime;
     private Integer partId; 	// 为了减少表的负担，不使用外键功能。手动进行数据的同步
-    
+    private String img;
 	public String getTitle() {
 		return title;
 	}
@@ -115,6 +115,12 @@ public class Video implements Serializable {
 	}
 	public void setFlv_url(String flv_url) {
 		this.flv_url = flv_url;
+	}
+	public String getImg() {
+		return img;
+	}
+	public void setImg(String img) {
+		this.img = img;
 	}
 
 }

@@ -2,12 +2,18 @@ package com.smit.service.webService;
 
 import java.util.List;
 
+import org.dom4j.Document;
+import org.dom4j.DocumentException;
+import org.dom4j.DocumentHelper;
+import org.dom4j.Element;
+
 public class VideoItem implements IToXML {
 	
-	private String name;
-	private String description;
-	private List<String> pictures;
-	private List<String> urls;
+	private String name;//title
+	private String description;//description
+	private List<String> pictures;//img
+	private List<String> urls;//url
+	private String time;//播放时长
 	
 	public String getName() {
 		return name;
@@ -34,7 +40,13 @@ public class VideoItem implements IToXML {
 		this.urls = urls;
 	}
 	
-	public String toXml(){
+	public String getTime() {
+		return time;
+	}
+	public void setTime(String time) {
+		this.time = time;
+	}
+	public String toXml() throws Exception{
 		StringBuilder sb = new StringBuilder();
 		sb.append("<item>");
 		sb.append("<name>" +"<![CDATA["+ name +"]]>"+ "</name>");
@@ -55,9 +67,24 @@ public class VideoItem implements IToXML {
 		}
 		sb.append("</urls>");
 		
-		sb.append("<description><![CDATA[" + description + "]]></description>");
+		sb.append("<description><![CDATA[" + getDes(description) + "]]></description>");
+		sb.append("<time>" + time + "</time>");
 		sb.append("</item>");
 		//System.out.println(sb.toString());
 		return sb.toString();
+	}
+	
+	public String getDes(String s) throws Exception{
+		Document doc = DocumentHelper.parseText("<root>" + description +"</root>");
+		Element root = doc.getRootElement();
+		List<Element> pEles = root.elements("p");
+		String des = null;
+		for(Element e:pEles){
+			String text = e.getTextTrim();
+			if(!"".equals(text)&&null!=text){
+				des = text;
+			}
+		}
+		return des;
 	}
 }

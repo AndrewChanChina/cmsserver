@@ -18,8 +18,8 @@ public class ColumnImport {
 	private List<String> secondName = new ArrayList<String>();
 	private List<String> secondPartId = new ArrayList<String>();
 	private ColumnService columnService;
-	
-
+	private List<Part> parts = new ArrayList<Part>();
+	//private int parentId;
 
 	public void setTopColumn(String name,Integer partId,ColumnService columnService){
 		this.name = name;
@@ -32,9 +32,13 @@ public class ColumnImport {
 		firstPartId.add(partId);
 	}
 	
-	public void addSecondColumn(String name, String partId){
-		secondName.add(name);
-		secondPartId.add(partId);
+	public void addSecondColumn(String name, int partId,int parentId){
+		Part part = new Part();
+		part.setTypename(name);
+		part.setPartId(partId);
+		part.setFather_id(parentId);
+		part.setTopid(parentId);
+		parts.add(part);
 	}
 	
 	
@@ -63,6 +67,10 @@ public class ColumnImport {
 		}
 	}
 	
-	
+	public void savesecond(){
+		for(Part p : parts){
+			columnService.savePart(p);
+		}
+	}
 
 }

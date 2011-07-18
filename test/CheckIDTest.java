@@ -35,8 +35,9 @@ public class CheckIDTest {
 		System.out.println(str.matches("\\d*"));
 		System.out.println(str1.matches("\\d*"));
 		
-		List list = new ArrayList();
-		System.out.println(list.get(0));
+	
+		String str3="08:56  中国756775";
+		System.out.println(str3.substring(0,5).matches("^\\d\\d{1}\\:\\d{2}"));
 	}
 
 }

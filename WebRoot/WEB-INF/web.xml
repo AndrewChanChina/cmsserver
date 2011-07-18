@@ -36,6 +36,7 @@
   	<init-param>
 		<param-name>avoid-urls</param-name>
 		<param-value>
+		news.do,
 		video.do,
 		getVideoColumn.do,
 		jcaptcha.do,
@@ -79,7 +80,13 @@
 		music.do,
 		vedio.do,
 		main.do,
-		push.do,showMain.do
+		push.do,showMain.do,
+		analysis.do,
+		publish.do,
+		subscribe.do,
+		subcallback.do,
+		live.do,
+		channel.do
 		</param-value>		
 	</init-param>  	
   </filter>

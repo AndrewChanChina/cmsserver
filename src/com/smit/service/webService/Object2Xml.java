@@ -14,7 +14,7 @@ public class Object2Xml implements IToXML {
 	}
 
 	@Override
-	public String toXml() {
+	public String toXml() throws Exception {
 		StringBuilder sb = new StringBuilder();
 		sb.append("<xml>");
 		sb.append("<items>");

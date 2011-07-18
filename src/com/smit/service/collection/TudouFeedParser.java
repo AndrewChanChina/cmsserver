@@ -16,6 +16,13 @@ import javax.xml.stream.events.XMLEvent;
 
 import javax.xml.stream.events.Attribute;
 
+import org.dom4j.Document;
+import org.dom4j.DocumentException;
+import org.dom4j.DocumentHelper;
+import org.dom4j.Element;
+
+import com.smit.vo.Video;
+
 public class TudouFeedParser {
 
 	static final String TITLE = "title";
@@ -33,16 +40,19 @@ public class TudouFeedParser {
 	
 	final URL url;
 
+	//modify by luocheng 2011-06-20
+	
 	public TudouFeedParser(String feedUrl) {
 		try {
 			this.url = new URL(feedUrl);
+			
 		} catch (MalformedURLException e) {
 			throw new RuntimeException(e);
 		}
 	}
 	
 	
-	public List<FeedVideo> readFeed() {
+	public List<FeedVideo> readFeed() throws Exception {
 		List<FeedVideo> list = new ArrayList<FeedVideo>();
 		try {
 		
@@ -59,7 +69,8 @@ public class TudouFeedParser {
 		    String comments = "";
 		    String pubDate = "";
 		    String enclosure_url = "";
-
+		    
+		    String img = "";
 			// First create a new XMLInputFactory
 			XMLInputFactory inputFactory = XMLInputFactory.newInstance();
 			// Setup a new eventReader
@@ -87,6 +98,14 @@ public class TudouFeedParser {
 					if (event.asStartElement().getName().getLocalPart() == (DESCRIPTION)) {
 						event = eventReader.nextEvent();
 						description= event.asCharacters().getData(); 
+						//modify by luocheng 2011-06-22
+						if(!("".equals(description))&&null!=description){
+							Document doc = getDoc(description);
+							List<Element> elements = doc.getRootElement().elements("a");
+							if(elements.size()>0){
+								img = elements.get(0).element("img").attributeValue("src");
+							}	
+						}
 						continue;
 					}
 
@@ -108,11 +127,14 @@ public class TudouFeedParser {
 					}
 					if (event.asStartElement().getName().getLocalPart() == (KEYWORDS)) {
 						event = eventReader.nextEvent();
-						itunes_keywords= event.asCharacters().getData(); 
+						if(event.isCharacters()){
+							itunes_keywords= event.asCharacters().getData();
+						}
 						continue;
 					}
 					if (event.asStartElement().getName().getLocalPart() == (AUTHOR)) {
 						event = eventReader.nextEvent();
+						//System.out.println("author event is "+event);
 						author= event.asCharacters().getData(); 
 						continue;
 					}
@@ -153,6 +175,7 @@ public class TudouFeedParser {
 						video.setItunes_keywords(itunes_keywords);
 						video.setPubDate(pubDate);
 						video.setSize(size);
+						video.setImg(img);
 						list.add(video);						
 						event = eventReader.nextEvent();
 						continue;
@@ -173,4 +196,11 @@ public class TudouFeedParser {
 			throw new RuntimeException(e);
 		}
 	}
+	private Document getDoc(String text) throws Exception{
+		Document doc = DocumentHelper.parseText("<root>"+text+"</root>");
+		return doc;
+	}
+
+
+	
 }

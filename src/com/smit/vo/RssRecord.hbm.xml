@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+	<class name="com.smit.vo.RssRecord" table="rss_record">
+		<id name="id">
+			<generator class="native"></generator>
+		</id>
+		<property name="title"></property>
+		<property name="link"></property>
+		<property name="author"></property>
+		<property name="guid"></property>
+		<property name="pubDate"></property>
+		<property name="description" type="text"></property>
+		<property name="feed_url"></property>
+		<property name="create_time"></property>
+	</class>
+</hibernate-mapping>
+

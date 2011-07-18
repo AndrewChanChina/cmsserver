@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+	<class name="com.smit.vo.UserAnalysis" table="user_analysis">
+		<id name="id">
+			<generator class="native"></generator>
+		</id>
+		<property name="app_name"></property>
+		<property name="p_name"></property>
+		<property name="ver_name"></property>
+		<property name="ver_code"></property>
+		<property name="machine_id"></property>
+		<property name="permission" type="text"></property>
+		<property name="install_time"></property>
+		<property name="run_time"></property>
+		<property name="uninstall_time"></property>
+	</class>
+</hibernate-mapping>
+

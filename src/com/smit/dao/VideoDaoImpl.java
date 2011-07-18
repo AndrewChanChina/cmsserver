@@ -88,5 +88,10 @@ public class VideoDaoImpl extends HibernateDaoSupport implements VideoDao {
 		return this.getHibernateTemplate().find("SELECT g FROM com.smit.vo.Video g");
 	}
 
+	@Override
+	public List<Video> getVideos() {
+		return this.getHibernateTemplate().find("from Video v");
+	}
+
 	
 }

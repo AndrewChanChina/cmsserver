@@ -110,6 +110,9 @@ public class VideoDatabaseImport extends TestCase {
 		
 	}
 	
+	public void testSinaNews(){
+		ColumnService cs = (ColumnService)beanFactory.getBean("columnService");
+	}
 	public static void main(String[] args) {
 	    junit.textui.TestRunner.run(VideoDatabaseImport.class);
 	}

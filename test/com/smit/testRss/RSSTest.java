@@ -9,7 +9,7 @@ import com.smit.service.collection.TudouFeedParser;
 
 public class RSSTest extends TestCase {
 	
-	public void testRead(){
+	public void testRead() throws Exception{
 		String url = "http://www.youku.com/index/rss_category_videos/cateid/86";
 		TudouFeedParser p = new TudouFeedParser(url);
 		List<FeedVideo> list = p.readFeed();

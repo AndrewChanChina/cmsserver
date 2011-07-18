@@ -224,7 +224,7 @@
 
 	
     <!-- &&&add by luocheng 2011-04-26 ==================================== -->
-   <bean name="/showBaseLog" class="com.smit.web.FrameworkAction">
+   <bean name="/showBaseLog" class="com.smit.web.FrameworkAction" scope="prototype">
    		<property name="sysInfoService" ref="sysInfoService"></property>
    </bean>
     <!-- &&&log file upload , add by luocheng-->
@@ -234,27 +234,27 @@
     <bean id="logService" class="com.smit.service.LogServiceImpl">
     	<property name="logDao" ref="logDao"></property>
     </bean>
-    <bean name="/showAddBase" class="com.smit.web.control.action.MultiFileUploadAction">
+    <bean name="/showAddBase" class="com.smit.web.control.action.MultiFileUploadAction" scope="prototype">
     	<property name="logService" ref="logService"></property>
     	<property name="service" ref="productControlService"></property>
     </bean>
-    <bean name="/showAddDetail" class="com.smit.web.control.action.MultiFileUploadAction">
+    <bean name="/showAddDetail" class="com.smit.web.control.action.MultiFileUploadAction" scope="prototype">
     	<property name="logService" ref="logService"></property>
     	<property name="service" ref="productControlService"></property>
     </bean>
-     <bean name="/queryBase" class="com.smit.web.control.action.MultiFileUploadAction">
+     <bean name="/queryBase" class="com.smit.web.control.action.MultiFileUploadAction" scope="prototype">
     	<property name="logService" ref="logService"></property>
     	<property name="service" ref="productControlService"></property>
     </bean>
-    <bean name="/queryDetail" class="com.smit.web.control.action.MultiFileUploadAction">
+    <bean name="/queryDetail" class="com.smit.web.control.action.MultiFileUploadAction" scope="prototype">
     	<property name="logService" ref="logService"></property>
     	<property name="service" ref="productControlService"></property>
     </bean>
-    <bean name="/logUpload" class="com.smit.web.control.action.MultiFileUploadAction">
+    <bean name="/logUpload" class="com.smit.web.control.action.MultiFileUploadAction" scope="prototype">
     	<property name="logService" ref="logService"></property>
     	<property name="service" ref="productControlService"></property>
     </bean>
-    <bean name="/detailLog" class="com.smit.web.control.action.MultiFileUploadAction">
+    <bean name="/detailLog" class="com.smit.web.control.action.MultiFileUploadAction" scope="prototype">
     	<property name="logService" ref="logService"></property>
     	<property name="service" ref="productControlService"></property>
     </bean>
@@ -264,51 +264,51 @@
     <bean name="productControlService" class="com.smit.service.ProductControlServiceImpl">
     	<property name="productDao" ref="productDao"></property>
     </bean>
-    <bean name="/showOrder" class="com.smit.web.control.action.OrderAction">
+    <bean name="/showOrder" class="com.smit.web.control.action.OrderAction" scope="prototype">
     	<property name="productService" ref="productControlService"></property>
     </bean>
-    <bean name="/order" class="com.smit.web.control.action.OrderAction">
+    <bean name="/order" class="com.smit.web.control.action.OrderAction" scope="prototype">
     	<property name="productService" ref="productControlService"></property>
     </bean>
-    <bean name="/queryOrder" class="com.smit.web.control.action.OrderAction">
+    <bean name="/queryOrder" class="com.smit.web.control.action.OrderAction" scope="prototype">
     	<property name="productService" ref="productControlService"></property>
     </bean>
-    <bean name="/showAuth" class="com.smit.web.FrameworkAction">
+    <bean name="/showAuth" class="com.smit.web.FrameworkAction" scope="prototype">
     	<property name="sysInfoService" ref="sysInfoService"></property>
     </bean>
-    <bean name="/testOption" class="com.smit.web.control.action.TestOptionAction">
+    <bean name="/testOption" class="com.smit.web.control.action.TestOptionAction" scope="prototype">
     	<property name="service" ref="productControlService"></property>
     </bean>
-    <bean name="/showOption" class="com.smit.web.control.action.TestOptionAction">
+    <bean name="/showOption" class="com.smit.web.control.action.TestOptionAction" scope="prototype">
     	<property name="service" ref="productControlService"></property>
     </bean>
-    <bean name="/showAddOption" class="com.smit.web.control.action.TestOptionAction">
+    <bean name="/showAddOption" class="com.smit.web.control.action.TestOptionAction" scope="prototype">
     	<property name="service" ref="productControlService"></property>
     </bean>
-    <bean name="/showDelOption" class="com.smit.web.control.action.TestOptionAction">
+    <bean name="/showDelOption" class="com.smit.web.control.action.TestOptionAction" scope="prototype">
     	<property name="service" ref="productControlService"></property>
     </bean>
-     <bean name="/queryOption" class="com.smit.web.control.action.TestOptionAction">
+     <bean name="/queryOption" class="com.smit.web.control.action.TestOptionAction" scope="prototype">
     	<property name="service" ref="productControlService"></property>
     </bean>
-    <bean name="/loginAuth" class="com.smit.web.control.action.AuthAction">
+    <bean name="/loginAuth" class="com.smit.web.control.action.AuthAction" scope="prototype">
     	<property name="productService" ref="productControlService"></property>
     </bean>
-    <bean name="/reqAuth" class="com.smit.web.control.action.AuthAction">
+    <bean name="/reqAuth" class="com.smit.web.control.action.AuthAction" scope="prototype">
     	<property name="productService" ref="productControlService"></property>
     </bean>
-    <bean name="/active" class="com.smit.web.control.action.AuthAction">
+    <bean name="/active" class="com.smit.web.control.action.AuthAction" scope="prototype">
     	<property name="productService" ref="productControlService"></property>
     </bean>
-    <bean name="/product" class="com.smit.web.control.action.ProductAction">
+    <bean name="/product" class="com.smit.web.control.action.ProductAction" scope="prototype">
     	<property name="productService" ref="productControlService"></property>
     </bean>
-     <bean name="/confirm" class="com.smit.web.control.action.ProductAction">
+     <bean name="/confirm" class="com.smit.web.control.action.ProductAction" scope="prototype">
     	<property name="productService" ref="productControlService"></property>
     </bean>
 <!-- &&&& end of luocheng================================================================== -->
 	
-
+	
 	
 	
 	<bean id="videoDao" class="com.smit.dao.VideoDaoImpl">
@@ -330,12 +330,21 @@
 	<bean id="collectVideoTask" class="com.smit.service.collection.CollectVideoTask" >
 		<property name="videoService" ref="videoService"></property>		
 	</bean>
+	<bean id="newsDao" class="com.smit.dao.NewsDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="newsService" class="com.smit.service.NewsServiceImpl">
+		<property name="newsDao" ref="newsDao"></property>
+	</bean>
+	<bean id="collectNewsTask" class="com.smit.service.collection.CollectNewsTask">
+		<property name="newsService" ref="newsService"></property>
+	</bean>
 	<!-- push action add by luocheng 2011/06/02 -->
-	<bean name="/push" class="com.smit.web.push.action.PushAction">
+	<bean name="/push" class="com.smit.web.push.action.PushAction" scope="prototype">
 		<property name="service" ref="pushService"></property>
 		<property name="pushManageService" ref="pushManageService"></property>
 	</bean>
-	<bean name="/showMain" class="com.smit.web.push.action.PushAction">
+	<bean name="/showMain" class="com.smit.web.push.action.PushAction" scope="prototype">
 		<property name="service" ref="pushService"></property>
 	</bean>
 	<bean name="pushDao" class="com.smit.dao.PushContentImpl">
@@ -348,28 +357,78 @@
 	<bean id="collection" 
  	class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean"> 
 		<property name="targetObject" ref="collectVideoTask" />
-		<property name="targetMethod" value="youku" /> 
+		<property name="targetMethod" value="youku">
+		</property>
+		
+	</bean>
+	<bean id="newscollection" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject" ref="collectNewsTask"/>
+		<property name="targetMethod" value="sina"/>
 	</bean>
 	<bean id="cronTrigger"
 		class="org.springframework.scheduling.quartz.CronTriggerBean">
  
 		<property name="jobDetail" ref="collection" />
-		<property name="cronExpression" value="0 0 1/5 * * ?" />
- 
-	</bean>
+		 <property name="cronExpression" value="0 0 1/1 * * ?" />
+		 <!-- <property name="cronExpression" value="0 0/5 * * * ?" />-->
+ 	</bean>
+ 	<bean id="cronTriggerNews"
+ 	   class="org.springframework.scheduling.quartz.CronTriggerBean">
+ 	   <property name="jobDetail" ref="newscollection"></property>
+ 	   <property name="cronExpression" value= 
+ 	   "0 0/30 * * * ?"></property>
+ 	   </bean>
 	<bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
 		<property name="jobDetails">
 		   <list>
 		      <ref bean="collection" />
+		      <ref bean="newscollection"/>
 		   </list>
 		</property> 
 		<property name="triggers">
 		    <list>
 			<ref bean="cronTrigger" />
+			<ref bean="cronTriggerNews"/>
 		    </list>
 		</property>
    </bean>  
-   
+   <!-- 新闻 -->
+   <bean name="/news" class="com.smit.web.webService.NewsAction" scope="prototype">
+   		<property name="newsService" ref="newsService"></property>
+   </bean>
+   <!-- user analysis -->
+   <bean id="userAnalysisDao" class="com.smit.dao.UserAnalysisImpl">
+   		<property name="sessionFactory" ref="sessionFactory"></property>
+   </bean>
+   <bean id="userAnalysisService" class="com.smit.service.UserAnalysisServiceImpl">
+   		<property name="usDao" ref="userAnalysisDao"></property>
+   </bean>
+   <bean name="/analysis" class="com.smit.web.analysis.UserAnalysisAction" scope="prototype">
+		<property name="usService" ref="userAnalysisService"></property>
+	</bean>
+	<!-- =========pubsubhubbub ==============-->
+	<bean id="subDao" class="com.smit.dao.SubscriberDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="subService" class="com.smit.service.SubscriberServiceImpl">
+		<property name="subDao" ref="subDao"></property>
+	</bean>
+	<bean id="rssatomDao" class="com.smit.dao.RssAtomDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="rssatomService" class="com.smit.service.RssAtomServiceImpl">
+		<property name="rmDao" ref="rssatomDao"></property>
+	</bean>
+	<bean name="/publish" class="com.smit.web.pubsubhubbub.PubsubHubbubAction" scope="prototype">
+		<property name="subService" ref="subService"></property>
+		<property name="rmServcie" ref="rssatomService"></property>
+	</bean>
+	<bean name="/subscribe" class="com.smit.web.pubsubhubbub.PubsubHubbubAction" scope="prototype">
+		<property name="subService" ref="subService"></property>
+	</bean>
+	<bean name="/subcallback" class="com.smit.test.sub.TestSubCallBackAction" scope="prototype"></bean>
+	<bean name="/live" class="com.smit.web.webService.LiveAction"></bean>
+	<bean name="/channel" class="com.smit.web.webService.LiveAction"></bean>
    <bean id="transactionManager"  
         class="org.springframework.orm.hibernate3.HibernateTransactionManager">  
         <property name="sessionFactory">  
@@ -389,7 +448,7 @@
 	<!-- logger -->
 	<bean id="smitLog" class="com.smit.util.SmitLog"></bean>
 	<bean id="purviewControl" class="com.smit.purview.PurviewControl"></bean>
-
+	
 	<!-- AOP -->
 	<aop:config proxy-target-class="true">
 		<aop:aspect id="logaop" ref="smitLog">

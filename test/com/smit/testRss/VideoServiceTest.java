@@ -165,14 +165,14 @@ public class VideoServiceTest extends TestCase {
 	 */
 	public void testImportYoukuVideo(){
 		CollectVideoTask ct = (CollectVideoTask)beanFactory.getBean("collectVideoTask");
-		ct.youku();
+//		ct.youku();
 	}
 	/**
 	 * 导入土豆的RSS视频
 	 */
 	public void testImportTudouVideo(){
 		CollectVideoTask ct = (CollectVideoTask)beanFactory.getBean("collectVideoTask");
-		ct.tudou();
+		//ct.tudou();
 	}
 	
 	

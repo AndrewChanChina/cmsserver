@@ -192,11 +192,11 @@ public class ProductControlServiceTest extends TestCase{
 		List<UserAccountResource> list = ps.listAllResource("test888");
 			
 		System.out.println(list.size());
-		for(UserAccountResource u:list){
-			System.out.println(u.isPresence());
-			
-		}
-		//ps.updateUserPresence("test888@smit/adsmack", false);
+//		for(UserAccountResource u:list){
+//			System.out.println(u.isPresence());
+//			
+//		}
+		ps.updateUserPresence("test888@smit/smack", true);
 	}
 	
 	

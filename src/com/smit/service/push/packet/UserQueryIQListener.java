@@ -64,11 +64,11 @@ public class UserQueryIQListener implements PacketListener {
 			// TODO 目前是全部删除设备，这样造成删掉了登录时接收到的设备在线信息。
 			// 解决的办法有：1、把设备的在线信息发过来；2、不要全部删除，只更新 
 			// 2011-5-18 9:46:40 ANDREW
-//			if(i > 0){
-//				getService().updateUserAccountAllRes(list);
-//			}else if(userAccount != null && userAccount.isEmpty()==false){
-//				getService().delete(userAccount);
-//			}
+			if(i > 0){
+				getService().updateUserAccountAllRes(list);
+			}else if(userAccount != null && userAccount.isEmpty()==false){
+				getService().delete(userAccount);
+			}
 
 			}			
 //			if(i > 0){

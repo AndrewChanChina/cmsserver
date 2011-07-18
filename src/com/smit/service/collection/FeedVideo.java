@@ -13,6 +13,8 @@ public class FeedVideo {
     String comments;
     String pubDate;
     String enclosure_url;
+    // add img
+    String img;
 	public String getTitle() {
 		return title;
 	}
@@ -80,11 +82,17 @@ public class FeedVideo {
 		this.enclosure_url = enclosure_url;
 	}
 	
+	public String getImg() {
+		return img;
+	}
+	public void setImg(String img) {
+		this.img = img;
+	}
 	public String toString(){
 		String s = "title:" + title + "description:" + description + "link:" + link
 		+ "author:" + author + "guid:" + guid + "duration:" + itunes_duration
 		+ "keywords:" + itunes_keywords + "size:" + size
-		+ "comments:" + comments + "pubDate:" + pubDate + "url:" + enclosure_url;
+		+ "comments:" + comments + "pubDate:" + pubDate + "url:" + enclosure_url +"img:" + img;
 		return s;
 	}
     
