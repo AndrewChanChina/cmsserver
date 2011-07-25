@@ -3,8 +3,8 @@ $(document).ready(function(){
 		var linkurl = $("#pb-link-url-input").val();
 		var flag = false;
 		var ids = document.getElementsByName("deviceIds");
-		if(linkurl!= null && linkurl.length>50){
-			alert("链接地址长度不能超过50!");
+		if(linkurl!= null && linkurl.length>100){
+			alert("链接地址长度不能超过100!");
 			return;
 		}
 		for(var i=0;i<ids.length;i++){

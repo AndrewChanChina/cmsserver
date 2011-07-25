@@ -90,7 +90,9 @@ public class PushAction extends DispatchAction{
 			HttpServletRequest request, HttpServletResponse response){
 		String type = request.getParameter("type");
 		List<UserAccountResource> list = pushManageService.listAllResource(
-				(String)request.getSession().getAttribute(Constants.CURUSERNAME));
+				(String)request.getSession().getAttribute(Constants.CURUSERNAME)
+				+"@"+
+				(String)request.getSession().getAttribute(Constants.SERVER_NAME));
 			request.setAttribute("list", list);
 		System.out.println(list.size());
 		for(UserAccountResource u:list){

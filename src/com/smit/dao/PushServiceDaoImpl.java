@@ -95,9 +95,9 @@ public class PushServiceDaoImpl extends HibernateDaoSupport implements IPushServ
 
 	@Override
 	public void updateUserPresence(String user, String resource, boolean presence) {
-		List<UserAccountResource> list = getHibernateTemplate()
-		.find("SELECT u FROM com.smit.vo.UserAccountResource u WHERE userAccount = '" +
-				user + "' AND resource ='" + resource + "' AND presence = " + !presence + "");
+		String sql = "SELECT u FROM com.smit.vo.UserAccountResource u WHERE userAccount = '" +
+		user + "' AND resource ='" + resource + "'";
+		List<UserAccountResource> list = getHibernateTemplate().find(sql);
 		for(UserAccountResource u : list){
 			u.setPresence(presence);
 			getHibernateTemplate().update(u);

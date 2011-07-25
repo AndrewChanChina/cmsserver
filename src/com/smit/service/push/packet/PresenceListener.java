@@ -38,5 +38,6 @@ private IPushManageService pushManageService = null;
 		else if (presence.getType() == Presence.Type.unavailable) {
 			getService().updateUserPresence(from, false);
 		}
+		System.out.println("presence listener:"+from+presence.getType());
 	}
 }

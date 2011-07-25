@@ -94,9 +94,8 @@ public class PushManageServiceImpl implements IPushManageService {
 
 	@Override
 	public void updateUserPresence(String fromUser, boolean presence) {
-		int n = fromUser.lastIndexOf("@");
+		int n = fromUser.lastIndexOf("/");
 		String user = fromUser.substring(0,n);
-		n = fromUser.lastIndexOf("/");
 		String resource = fromUser.substring(n+1);
 		pushServiceDao.updateUserPresence(user, resource, presence);
 	}

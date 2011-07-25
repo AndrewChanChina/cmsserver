@@ -21,5 +21,6 @@ public interface IPushManageService {
 	public void updateUserPresence(String fromUser, boolean presence);
 	public void delete(UserAccountResource us);
 	public void delete(String userAccount);
+	// username with resource id
 	public List<UserAccountResource> listAllResource(String userName);
 }

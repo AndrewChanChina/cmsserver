@@ -77,8 +77,8 @@ public class UserAction extends MappingDispatchAction {
 			    loginForm.getUserName(), loginForm.getPasswd())){		
 				// login smack success
 				session.setAttribute(Constants.LOGIN_SUC, Constants.SUCCESS);
-				session.setAttribute(Constants.CURUSERNAME,
-						loginForm.getUserName());
+				session.setAttribute(Constants.CURUSERNAME,loginForm.getUserName());
+				session.setAttribute(Constants.SERVER_NAME,pushDataService.getServerName());
 				session.setAttribute(Constants.PUSH_CONNECTION, pushDataService);
 				application.setAttribute(Constants.PUSH_CONNECTION, pushDataService);
 				

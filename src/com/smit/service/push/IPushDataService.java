@@ -45,4 +45,5 @@ public interface IPushDataService {
 	public XMPPConnection getConnection();
 	public boolean sendQueryResourceId(String userName);
 	public boolean sendPushServiceInf(String serviceName,String account);
+	public String getServerName();
 }

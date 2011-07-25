@@ -208,7 +208,7 @@ public class PushDataServiceImpl implements IPushDataService {
 	}
 	private void getInitInf(){
 		//获取用户的所有的resource id
-		sendQueryResourceId(user);
+		sendQueryResourceId(user+"@"+connection.getServiceName());
 		//sendPushServiceInf("web","test2");
 	}
 	@Override
@@ -225,7 +225,9 @@ public class PushDataServiceImpl implements IPushDataService {
 	public void setPushManageService(IPushManageService pushManageService) {
 		this.pushManageService = pushManageService;
 	}
-	
+	public String getServerName(){
+		return connection.getServiceName();
+	}
 	
 }
 
