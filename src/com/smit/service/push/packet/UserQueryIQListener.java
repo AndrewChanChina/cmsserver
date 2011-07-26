@@ -54,8 +54,12 @@ public class UserQueryIQListener implements PacketListener {
 				us.setDeviceName(deviceNames.get(i));
 				if("true".equalsIgnoreCase(presences.get(i))){
 					us.setPresence(true);
+					System.out.print(userAccount + " presence");
+					us.setFlag("online");
 				}else{
 					us.setPresence(false);
+					System.out.print(userAccount + " unpresence");
+					us.setFlag("offline");
 				}
 				i++;
 				list.add(us);
