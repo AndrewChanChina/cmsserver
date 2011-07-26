@@ -100,6 +100,11 @@ public class PushServiceDaoImpl extends HibernateDaoSupport implements IPushServ
 		List<UserAccountResource> list = getHibernateTemplate().find(sql);
 		for(UserAccountResource u : list){
 			u.setPresence(presence);
+			if(presence){
+				u.setFlag("online");
+			}else{
+				u.setFlag("offline");
+			}
 			getHibernateTemplate().update(u);
 		}
 	}

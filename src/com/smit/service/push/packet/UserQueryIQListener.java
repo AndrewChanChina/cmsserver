@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.jivesoftware.smack.PacketListener;
+import org.jivesoftware.smack.XMPPConnection;
 import org.jivesoftware.smack.packet.Packet;
+import org.jivesoftware.smack.packet.Presence;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -14,10 +16,13 @@ import com.smit.vo.UserAccountResource;
 public class UserQueryIQListener implements PacketListener {
 
 	private IPushManageService pushManageService = null;
-	
+	private XMPPConnection connection;
 	
 	public void setPushManageService(IPushManageService pushManageService) {
 		this.pushManageService = pushManageService;
+	}
+	public void setXmppConnection(XMPPConnection connection){
+		this.connection = connection;
 	}
 	private IPushManageService getService(){
 		if(pushManageService == null){
@@ -52,15 +57,18 @@ public class UserQueryIQListener implements PacketListener {
 				us.setResource(res);
 				us.setDeviceId(deviceIds.get(i));
 				us.setDeviceName(deviceNames.get(i));
-				if("true".equalsIgnoreCase(presences.get(i))){
+				Presence presence = connection.getRoster().getPresenceResource(
+						userAccount+"/"+res);
+				if (presence.getType() == Presence.Type.available){
 					us.setPresence(true);
 					System.out.print(userAccount + " presence");
 					us.setFlag("online");
-				}else{
+				} 
+				else if (presence.getType() == Presence.Type.unavailable) {
 					us.setPresence(false);
 					System.out.print(userAccount + " unpresence");
 					us.setFlag("offline");
-				}
+				}				
 				i++;
 				list.add(us);
 

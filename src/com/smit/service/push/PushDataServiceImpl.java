@@ -186,6 +186,7 @@ public class PushDataServiceImpl implements IPushDataService {
 				 UserQueryIQ.class); 
 		 UserQueryIQListener uqlistener = new UserQueryIQListener();
 		 uqlistener.setPushManageService(pushManageService);
+		 uqlistener.setXmppConnection(connection);
         connection.addPacketListener(uqlistener, packetFilter);
         
         connection.addPacketListener(new PushServiceInfIQListener(),
