@@ -24,14 +24,14 @@ public class PushServiceImpl implements PushService{
 		return false;
 	}
 	
-	public List<PushContent> getContent(int start,int num){
-		return pushDao.queryContent(start,num);
+	public List<PushContent> getContent(int start,int num,String username){
+		return pushDao.queryContent(start,num,username);
 	}
 
 	@Override
-	public List<PushContent> getContent() {
+	public List<PushContent> getContent(String username) {
 		
-		return pushDao.queryContent();
+		return pushDao.queryContent(username);
 	}
 
 	@Override

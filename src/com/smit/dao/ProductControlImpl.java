@@ -225,5 +225,11 @@ public class ProductControlImpl extends HibernateDaoSupport implements ProductCo
 		return this.getHibernateTemplate().find(hql);
 	}
 
+	@Override
+	public List<Device> findFailCode(String order_code, int auth_status) {
+		String hql = "from Device d where d.order_code='"+order_code+"' and d.auth_status="+auth_status;
+		return this.getHibernateTemplate().find(hql);
+	}
+
 		
 }

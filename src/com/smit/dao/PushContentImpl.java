@@ -21,8 +21,8 @@ public class PushContentImpl extends HibernateDaoSupport implements PushContentD
 	}
 
 	@Override
-	public List<PushContent> queryContent(int start,int num) {
-		String hql = "from PushContent p order by p.create_time desc";
+	public List<PushContent> queryContent(int start,int num,String username) {
+		String hql = "from PushContent p where p.username='"+username+"' order by p.create_time desc";
 		Query query = this.getHibernateTemplate().getSessionFactory().openSession().createQuery(hql);
 		query.setFirstResult(start);
 		query.setMaxResults(num);
@@ -36,8 +36,8 @@ public class PushContentImpl extends HibernateDaoSupport implements PushContentD
 		return null;
 	}
 	@Override
-	public List<PushContent> queryContent() {
-		String hql = "from PushContent p order by p.create_time desc";
+	public List<PushContent> queryContent(String username) {
+		String hql = "from PushContent p where username='"+username+"' order by p.create_time desc";
 //		Query query = this.getHibernateTemplate().getSessionFactory().openSession().createQuery(hql);
 //		
 		List<PushContent> list = this.getHibernateTemplate().find(hql);

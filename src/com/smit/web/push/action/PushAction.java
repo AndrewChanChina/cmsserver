@@ -61,8 +61,9 @@ public class PushAction extends DispatchAction{
 	
 	public  ActionForward showMain(ActionMapping mapping,ActionForm form,
 			HttpServletRequest request, HttpServletResponse response){
-		
-		List<PushContent> list = service.getContent();
+		String username = (String) request.getSession().getAttribute(Constants.CURUSERNAME);
+		System.out.println(username);
+		List<PushContent> list = service.getContent(username);
 		int count = list.size();
 		if(count>10){
 			list = list.subList(0, 10);
@@ -70,6 +71,7 @@ public class PushAction extends DispatchAction{
 		setPhotos(list);
 		System.out.println(list.size());
 		int total = setTotal(count);
+		
 		request.getSession().setAttribute("count", count);
 		request.setAttribute("total", total);
 		request.setAttribute("list", list);
@@ -104,6 +106,7 @@ public class PushAction extends DispatchAction{
 			HttpServletRequest request, HttpServletResponse response) throws Exception{
 		String title = request.getParameter("title");
 		String content = request.getParameter("content");
+		String username = (String) request.getSession().getAttribute(Constants.CURUSERNAME);
 		System.out.println(title);
 		System.out.println(content);
 		PushContent pc = new PushContent();
@@ -111,6 +114,7 @@ public class PushAction extends DispatchAction{
 		pc.setContent(content);
 		pc.setDes(content);
 		pc.setContent_type("TEXT");
+		pc.setUsername(username);
 		SimpleDateFormat formater = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		pc.setCreate_time(formater.format(new Date()));
 		service.insertContent(pc);
@@ -120,7 +124,7 @@ public class PushAction extends DispatchAction{
 		int countStr  = (Integer) request.getSession().getAttribute("count");
 		count = countStr+1;
 		int total = setTotal(count);
-		List<PushContent> list = getContentList(0,10);
+		List<PushContent> list = getContentList(0,10,username);
 		
 		request.getSession().setAttribute("count", count);
 		request.setAttribute("total", total);
@@ -129,8 +133,8 @@ public class PushAction extends DispatchAction{
 		return  new ActionForward("/main.do");
 	}
 
-	private List<PushContent> getContentList(int start, int num) {
-		List<PushContent> list = service.getContent(start,num);
+	private List<PushContent> getContentList(int start, int num,String username) {
+		List<PushContent> list = service.getContent(start,num,username);
 		setPhotos(list);
 		return list;
 	}
@@ -187,10 +191,12 @@ public class PushAction extends DispatchAction{
 			HttpServletRequest request, HttpServletResponse response) throws Exception{
 			String title = request.getParameter("title");
 			String url = request.getParameter("url");
+			String username = (String) request.getSession().getAttribute(Constants.CURUSERNAME);
 			PushContent pc = new PushContent();
 			pc.setTitle(title);
 			pc.setUrl(url);
 			pc.setContent_type("URL");
+			pc.setUsername(username);
 			SimpleDateFormat formater = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 			pc.setCreate_time(formater.format(new Date()));
 			service.insertContent(pc);
@@ -200,7 +206,7 @@ public class PushAction extends DispatchAction{
 			int countStr  = (Integer) request.getSession().getAttribute("count");
 			count = countStr+1;
 			int total = setTotal(count);
-			List<PushContent> list = getContentList(0,10);
+			List<PushContent> list = getContentList(0,10,username);
 			request.getSession().setAttribute("count", count);
 			request.setAttribute("total", total);
 			request.setAttribute("list", list);
@@ -213,7 +219,7 @@ public class PushAction extends DispatchAction{
 		String desc = request.getParameter("desc");
 		String photoStr = request.getParameter("photos");
 		String[] paths = photoStr.split(";");
-		
+		String username = (String) request.getSession().getAttribute(Constants.CURUSERNAME);
 		String path = "";
 		for(String s : paths){
 			String[] p = s.replace("\\", "#").split("#");
@@ -231,6 +237,7 @@ public class PushAction extends DispatchAction{
 		System.out.println(loadurl);
 		pc.setUrl(loadurl);
 		pc.setContent_type("PICTURE");
+		pc.setUsername(username);
 		SimpleDateFormat formater = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		pc.setCreate_time(formater.format(new Date()));
 		service.insertContent(pc);
@@ -241,7 +248,7 @@ public class PushAction extends DispatchAction{
 		count = countStr+1;
 		int total = setTotal(count);
 		System.out.println("upload photos is:"+photoStr);
-		List<PushContent> list = getContentList(0,10);
+		List<PushContent> list = getContentList(0,10,username);
 		request.getSession().setAttribute("count", count);
 		request.setAttribute("total", total);
 		request.setAttribute("list", list);
@@ -255,12 +262,14 @@ public class PushAction extends DispatchAction{
 			HttpServletRequest request, HttpServletResponse response) throws Exception{
 		String url = request.getParameter("url");
 		String des = request.getParameter("des");
+		String username = (String) request.getSession().getAttribute(Constants.CURUSERNAME);
 		System.out.println("music url is:"+ url);
 		System.out.println(des);
 		PushContent pc = new PushContent();
 		pc.setUrl(url);
 		pc.setDes(des);
 		pc.setContent_type("AUDIO");
+		pc.setUsername(username);
 		SimpleDateFormat formater = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		pc.setCreate_time(formater.format(new Date()));
 		service.insertContent(pc);
@@ -270,7 +279,7 @@ public class PushAction extends DispatchAction{
 		int countStr  = (Integer) request.getSession().getAttribute("count");
 		count = countStr+1;
 		int total = setTotal(count);
-		List<PushContent> list = getContentList(0,10);
+		List<PushContent> list = getContentList(0,10,username);
 		request.getSession().setAttribute("count", count);
 		request.setAttribute("total", total);
 		request.setAttribute("list", list);
@@ -282,12 +291,14 @@ public class PushAction extends DispatchAction{
 			HttpServletRequest request, HttpServletResponse response) throws Exception{
 		String url = request.getParameter("url");
 		String des = request.getParameter("des");
+		String username = (String) request.getSession().getAttribute(Constants.CURUSERNAME);
 		System.out.println("music url is:"+ url);
 		System.out.println(des);
 		PushContent pc = new PushContent();
 		pc.setUrl(url);
 		pc.setDes(des);
 		pc.setContent_type("VIDEO");
+		pc.setUsername(username);
 		SimpleDateFormat formater = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		pc.setCreate_time(formater.format(new Date()));
 		service.insertContent(pc);
@@ -298,7 +309,7 @@ public class PushAction extends DispatchAction{
 		count = countStr+1;
 		int total = setTotal(count);
 		
-		List<PushContent> list = getContentList(0,10);
+		List<PushContent> list = getContentList(0,10,username);
 		request.getSession().setAttribute("count", count);
 		request.setAttribute("total", total);
 		request.setAttribute("list", list);
@@ -321,7 +332,8 @@ public class PushAction extends DispatchAction{
 			HttpServletRequest request, HttpServletResponse response){
 		String type = request.getParameter("type");
 		String currrentpage = request.getParameter("currentpage");
-		List<PushContent> p = service.getContent();
+		String username = (String) request.getSession().getAttribute(Constants.CURUSERNAME);
+		List<PushContent> p = service.getContent(username);
 		int currentPage = Integer.parseInt(currrentpage);
 		int start = 0;
 		int count = 0;
@@ -349,7 +361,7 @@ public class PushAction extends DispatchAction{
 			}
 		}
 		
-		list = service.getContent(start, 10);
+		list = service.getContent(start, 10,username);
 		setPhotos(list);
 		request.getSession().setAttribute("count", p.size());
 		request.setAttribute("total", count);
@@ -361,13 +373,14 @@ public class PushAction extends DispatchAction{
 	public  ActionForward delete(ActionMapping mapping,ActionForm form,
 			HttpServletRequest request, HttpServletResponse response) throws Exception{
 		String idStr = request.getParameter("id");
+		String username = (String) request.getSession().getAttribute(Constants.CURUSERNAME);
 		int id = 0;
 		if(!"".equals(idStr)){
 			id = Integer.parseInt(idStr);
 		}
 		PushContent content = service.getById(id);
 		service.deleteContent(content);
-		List<PushContent> list = service.getContent(0, 10);
+		List<PushContent> list = service.getContent(0, 10,username);
 		setPhotos(list);
 		int num = (Integer) request.getSession().getAttribute("count");
 		int count = num-1;
