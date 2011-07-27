@@ -13,6 +13,9 @@
 		<property name="manufacturer_code"></property>
 		<property name="production_code"></property>
 		<property name="sn"></property>
+		<property name="mac"></property>
+		<property name="mac_num"></property>
+		<property name="machine_id"></property>
 		<property name="inf_code"></property>
 		
 		<set name="devices" cascade="save-update" lazy="true">

@@ -86,7 +86,9 @@
 		subscribe.do,
 		subcallback.do,
 		live.do,
-		channel.do
+		channel.do,
+		winceAuth.do,
+		winceConfirm.do
 		</param-value>		
 	</init-param>  	
   </filter>

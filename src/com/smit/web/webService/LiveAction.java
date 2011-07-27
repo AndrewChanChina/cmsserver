@@ -29,8 +29,11 @@ public class LiveAction extends MappingDispatchAction{
 				String channel = "";
 				//经测试。post不会有乱码，但是get会有乱码
 				if(request.getMethod().equalsIgnoreCase("get")){
+					 System.out.println("run get !");
 					 channelType = new String(request.getParameter("type").getBytes("iso-8859-1"),"utf-8");
 					 channel = new String(request.getParameter("channel").getBytes("iso-8859-1"),"utf-8");
+//					 channelType = request.getParameter("type");
+//					 channel = request.getParameter("channel");
 				}else if(request.getMethod().equalsIgnoreCase("post")){
 					channelType = request.getParameter("type");
 					channel = request.getParameter("channel");
@@ -46,6 +49,7 @@ public class LiveAction extends MappingDispatchAction{
 				response.getWriter().println(sb.toString());
 			}catch (Exception e){
 				e.printStackTrace();
+				response.getWriter().println("bad params request!param type and channel are required!");
 			}
 			return null;
 	}

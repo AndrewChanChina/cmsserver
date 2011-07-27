@@ -107,6 +107,10 @@ public class OrderAction extends MappingDispatchAction{
 		order.setManufacturer_code(orderForm.getManufacturer_code());
 		order.setProduction_code(orderForm.getProduction_code());
 		order.setSn(orderForm.getSn());
+		order.setMac(orderForm.getMac());
+		order.setMachine_id(orderForm.getMachine_id());
+		order.setMac(orderForm.getMac());
+		order.setMac_num(Integer.parseInt(orderForm.getNum()));
 		order.setInf_code(orderForm.getInf_code());
 		String[] options = orderForm.getSelOption().split(";");
 		

@@ -26,6 +26,12 @@ public class Device implements Serializable{
 	private String auth_code;//授权码
 	private String machineID;//用户提交原始信息
 	private String active_status;
+	
+	//增加本机器的序列号和mac地址
+	private String sn;
+	private String mac;
+	//增加字段表示授权成功或失败
+	private int auth_status; //0：失败；1：成功
 	public int getId() {
 		return id;
 	}
@@ -114,6 +120,24 @@ public class Device implements Serializable{
 	}
 	public void setBaseLogs(Set<BaseLog> baseLogs) {
 		this.baseLogs = baseLogs;
+	}
+	public String getSn() {
+		return sn;
+	}
+	public void setSn(String sn) {
+		this.sn = sn;
+	}
+	public String getMac() {
+		return mac;
+	}
+	public void setMac(String mac) {
+		this.mac = mac;
+	}
+	public int getAuth_status() {
+		return auth_status;
+	}
+	public void setAuth_status(int auth_status) {
+		this.auth_status = auth_status;
 	}
 	
 	

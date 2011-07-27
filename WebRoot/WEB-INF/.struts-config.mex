@@ -70,6 +70,8 @@
   <StrutsActivity path="/publish.do" location="2150,3550" dimension="358,84" />
   <StrutsActivity path="/subscribe.do" location="2750,3550" dimension="358,84" />
   <StrutsActivity path="/subcallback.do" location="3350,3550" dimension="358,84" />
+  <StrutsActivity path="/live.do" location="950,3650" dimension="358,84" />
+  <StrutsActivity path="/channel.do" location="1550,3650" dimension="358,84" />
   <StrutsActivity path="/uploadfile.do" location="2150,1450" dimension="280,84" />
   <StrutsActivity path="/upload.do" location="50,1650" dimension="358,84" />
   <StrutsActivity path="/jcaptcha.do" location="3350,2150" dimension="412,84" />
@@ -163,8 +165,8 @@
   <StrutsActivity path="/WEB-INF/sys/procontrol/base.jsp" location="1850,2850" dimension="232,48" />
   <StrutsActivity path="/WEB-INF/sys/fileupload.jsp" location="1250,2350" dimension="202,48" />
   <StrutsActivity path="/WEB-INF/sys/procontrol/" location="2450,2250" dimension="184,48" />
-  <StrutsActivity path="/live.do" location="950,3650" dimension="358,84" />
-  <StrutsActivity path="/channel.do" />
+  <StrutsActivity path="/winceAuth.do" location="50,3750" dimension="358,84" />
+  <StrutsActivity path="/winceConfirm.do" />
   <StrutsTransition id="/deletegroup.do,userright_grouplist,/grouplist.do,1" routingType="0">
     <AutomaticBendpoints>
       <AbsolutePoint location="1608,492" />

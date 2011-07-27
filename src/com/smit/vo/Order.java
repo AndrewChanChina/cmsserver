@@ -15,12 +15,15 @@ public class Order implements Serializable{
 	private String order_code;
 	private String start_time;
 	private String end_time;
-	private String device_type;			//设备类型
-	private String manufacturer_code;//生产商代号
-	private String production_code;//产品型号
-	private String sn;             //序列号
-	private String inf_code;
-	
+	private String device_type;			//设备类型(1)
+	private String manufacturer_code;//生产商代号(3)
+	private String production_code;//产品型号(4)
+	private String sn;             //产品序列号(8)
+	private String mac;            //mac地址(12),一个范围值，这里是起始值。
+	private String inf_code;     //其他信息
+	private String machine_id;   //机器号
+	//增加一个生产批次的数量
+	private int mac_num;
 	private Set<Device> devices = new HashSet<Device>();
 	public int getId() {
 		return id;
@@ -93,6 +96,24 @@ public class Order implements Serializable{
 	}
 	public void setDevices(Set<Device> devices) {
 		this.devices = devices;
+	}
+	public String getMac() {
+		return mac;
+	}
+	public void setMac(String mac) {
+		this.mac = mac;
+	}
+	public String getMachine_id() {
+		return machine_id;
+	}
+	public void setMachine_id(String machine_id) {
+		this.machine_id = machine_id;
+	}
+	public int getMac_num() {
+		return mac_num;
+	}
+	public void setMac_num(int mac_num) {
+		this.mac_num = mac_num;
 	}
 	
 }

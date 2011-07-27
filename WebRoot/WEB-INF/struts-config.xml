@@ -398,7 +398,10 @@
  		parameter="queryProduct"></action>
  		<action path="/confirm" type="org.springframework.web.struts.DelegatingActionProxy"
  		parameter="confirm"></action>
- 		
+ 		<action path="/winceAuth" type="org.springframework.web.struts.DelegatingActionProxy"
+ 		parameter="getAuthCode"></action>
+ 		<action path="/winceConfirm" type="org.springframework.web.struts.DelegatingActionProxy"
+ 		parameter="confirmAuthCode"></action>
  		<!-- 用户行为分析 -->
  		<action path="/analysis" type="org.springframework.web.struts.DelegatingActionProxy"
  		parameter="op"></action>

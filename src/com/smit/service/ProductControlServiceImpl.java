@@ -184,6 +184,16 @@ public class ProductControlServiceImpl implements ProductControlService{
 		}
 		return false;
 	}
+
+	@Override
+	public List<Device> findByMidCode(String machineID, String order_code) {
+		return productDao.findByMchIdCode(machineID, order_code);
+	}
+
+	@Override
+	public List<Object[]> findMaxSn(String order_code) {
+		return productDao.findMaxSn(order_code);
+	}
 	
 
 }

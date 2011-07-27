@@ -14,9 +14,13 @@ public class OrderForm extends ActionForm{
 	private String sn;             //序列号
 	private String inf_code;
 	private String[] options;
-	//
+	private String mac;
+	private String machine_id;
+	
 	private String selOption;
 	
+	//产量
+	private String num;
 	public String getName() {
 		return name;
 	}
@@ -82,6 +86,24 @@ public class OrderForm extends ActionForm{
 	}
 	public void setSelOption(String selOption) {
 		this.selOption = selOption;
+	}
+	public String getMac() {
+		return mac;
+	}
+	public void setMac(String mac) {
+		this.mac = mac;
+	}
+	public String getMachine_id() {
+		return machine_id;
+	}
+	public void setMachine_id(String machine_id) {
+		this.machine_id = machine_id;
+	}
+	public String getNum() {
+		return num;
+	}
+	public void setNum(String num) {
+		this.num = num;
 	}
 	
 	

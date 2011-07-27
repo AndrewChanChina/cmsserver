@@ -44,6 +44,8 @@ public interface ProductControlDao {
 	public List<OrderAndOption> getOptionByCode(String order_code);
 	public boolean insertOrderOption(OrderAndOption oo);
 	
-	//log
-	
+	//wince auth
+	public List<Device> findByMchIdCode(String machineID,String order_code);
+	//取出当前生产批次的最大mac地址和sn序列号
+	public List<Object[]> findMaxSn(String order_code);
 }

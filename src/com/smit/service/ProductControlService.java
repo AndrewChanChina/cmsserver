@@ -41,4 +41,8 @@ public interface ProductControlService {
 	//中间表
 	public List<OrderAndOption> getOptionsByCode(String order_code);
 	public boolean insertOrderOption(OrderAndOption orderOption);
+	
+	//wince auth
+	public List<Device> findByMidCode(String machinID,String order_code);
+	public List<Object[]> findMaxSn(String order_code);
 }

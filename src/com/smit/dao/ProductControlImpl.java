@@ -213,5 +213,17 @@ public class ProductControlImpl extends HibernateDaoSupport implements ProductCo
 		return true;
 	}
 
+	@Override
+	public List<Device> findByMchIdCode(String machineCode, String order_code) {
+		String hql = "from Device d where d.order_code='"+order_code+"'"+" and d.machineID='"+machineCode+"'";
+		return this.getHibernateTemplate().find(hql);
+	}
+
+	@Override
+	public List<Object[]> findMaxSn(String order_code) {
+		String hql = "select order_code,max(sn),max(mac) from Device d where d.order_code='"+order_code+"' group by order_code";
+		return this.getHibernateTemplate().find(hql);
+	}
+
 		
 }

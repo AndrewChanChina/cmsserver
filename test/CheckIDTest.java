@@ -1,7 +1,9 @@
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import org.apache.commons.lang3.RandomStringUtils;
 
@@ -13,7 +15,13 @@ public class CheckIDTest {
 	 */
 	public static void main(String[] args) {
 		Date date = new Date();
-		SimpleDateFormat format = new SimpleDateFormat("yyyyMMddHHmmss");
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+		try {
+			System.out.println(format.format(format.parse("2011-07-22")));
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		//long time = System.currentTimeMillis();
 		//String time = format.format(date);
 		//System.out.println(time);

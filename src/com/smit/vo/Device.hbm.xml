@@ -12,8 +12,11 @@
 		<property name="password"></property>
 		<property name="create_time"></property>
 		<property name="auth_code"></property>
+		<property name="sn"></property>
+		<property name="mac"></property>
 		<property name="machineID" column="machine_id"></property>
 		<property name="active_status"></property>
+		<property name="auth_status"></property>
 		<set name="products" cascade="save-update,delete" lazy="true">
 			<key column="did"></key>
 			<one-to-many class="com.smit.vo.CertifiedProduct"/>

@@ -199,5 +199,12 @@ public class ProductControlServiceTest extends TestCase{
 		ps.updateUserPresence("test888@smit/smack", true);
 	}
 	
-	
+	public void testWince(){
+		BeanFactory beanFactory = new ClassPathXmlApplicationContext("applicationContext.xml");
+		ProductControlService ps = (ProductControlService) beanFactory.getBean("productControlService");
+		
+		List<Object[]> list = ps.findMaxSn("20110726152805");
+		System.out.println(list.size());
+		System.out.println(list.get(0)[0]);
+	}
 }

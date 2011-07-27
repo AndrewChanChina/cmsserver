@@ -59,7 +59,8 @@
 <tr><td class="pn-flabel pn-flabel-h">名称</td><td class="pn-fcontent"><html:text property="name" value=""></html:text></td><td class="pn-flabel pn-flabel-h">设备类型</td><td class="pn-fcontent"><html:text property="device_type" value=""></html:text></td>
 <tr><td class="pn-flabel pn-flabel-h">开始时间</td><td class="pn-fcontent"><html:text property="start_time" value=""></html:text></td><td class="pn-flabel pn-flabel-h">结束时间</td><td class="pn-fcontent"><html:text property="end_time" value=""></html:text><label style="color: red">&nbsp&nbsp*注意：开始和结束时间格式必须类似：2011/05/08</label></td></tr>
 <tr><td class="pn-flabel pn-flabel-h">生产商代号</td><td class="pn-fcontent"><html:text property="manufacturer_code" value=""></html:text></td><td class="pn-flabel pn-flabel-h">产品型号</td><td class="pn-fcontent"><html:text property="production_code" value=""></html:text></td></tr>
-<tr><td class="pn-flabel pn-flabel-h">序列号</td><td class="pn-fcontent"><html:text property="sn" value=""></html:text></td><td class="pn-flabel pn-flabel-h">其他</td><td class="pn-fcontent"><html:text property="inf_code" value=""></html:text></td></tr>
+<tr><td class="pn-flabel pn-flabel-h">序列号</td><td class="pn-fcontent"><html:text property="sn" value=""></html:text></td><td class="pn-flabel pn-flabel-h">MAC地址</td><td class="pn-fcontent"><html:text property="mac" value=""></html:text></td></tr>
+<tr><td class="pn-flabel pn-flabel-h">产量</td><td class="pn-fcontent"><html:text property="num" value=""></html:text></td><td class="pn-flabel pn-flabel-h">其他</td><td class="pn-fcontent"><html:text property="inf_code" value=""></html:text></td></tr>
 <tr><td class="pn-flabel pn-flabel-h">测试选项</td><td class="pn-fcontent">
 	<input type="text" name="selOption" value=""  id="op" class="required" style="width: 200px"/></td><td>
 	<select name="option" multiple="multiple" onclick="add();" id="sel" > 
