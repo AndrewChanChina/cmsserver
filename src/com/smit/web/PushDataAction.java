@@ -136,10 +136,13 @@ public class PushDataAction extends DispatchAction {
 					for(String s : pushIds){
 						pushIdList.add(s);
 					}
-					pd.sendPushDataFromDev(pf.getServiceName(), pushIdList,
+					/*pd.sendPushDataFromDev(pf.getServiceName(), pushIdList,
 							bDelay, pf.getCollapseKey(), 
 							pf.getTitle(), pf.getTicket(), 
-							pf.getUri(), pf.getMessage());
+							pf.getUri(), pf.getMessage());*/
+					pd.sendPushDataFromDevToAll(pf.getServiceName(),
+							bDelay, pf.getCollapseKey(), pf.getTitle(), 
+							pf.getTicket(), pf.getUri(), pf.getMessage());
 					
 				}
 				
