@@ -12,6 +12,7 @@
 		<property name="path"></property>
 		<property name="create_time"></property>
 		<property name="content_type"></property>
+		<property name="username"></property>
 	</class>
 </hibernate-mapping>
 

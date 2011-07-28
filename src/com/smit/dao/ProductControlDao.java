@@ -48,4 +48,6 @@ public interface ProductControlDao {
 	public List<Device> findByMchIdCode(String machineID,String order_code);
 	//取出当前生产批次的最大mac地址和sn序列号
 	public List<Object[]> findMaxSn(String order_code);
+	//取出当前生产批次中授权失败的授权码
+	public List<Device> findFailCode(String order_code,int auth_status);
 }

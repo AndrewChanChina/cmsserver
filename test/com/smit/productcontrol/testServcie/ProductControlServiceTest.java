@@ -179,7 +179,7 @@ public class ProductControlServiceTest extends TestCase{
 		BeanFactory beanFactory = new ClassPathXmlApplicationContext("applicationContext.xml");
 		PushService ps = (PushService) beanFactory.getBean("pushService");
 		
-		List<PushContent> contents = ps.getContent();
+		List<PushContent> contents = ps.getContent("2342");
 		for(PushContent pc : contents){
 			System.out.println(pc.getCreate_time());
 		}

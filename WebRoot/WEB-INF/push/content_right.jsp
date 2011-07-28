@@ -27,6 +27,9 @@
 	<div id="tag-holder" style="display: block;overflow: auto;">
 		<div id="post-tag">
 			<div id="tag-input-holder">
+				<logic:empty name="list">
+					没有发现此设备，请确保你的设备已经登录！
+				</logic:empty>
 				<logic:notEmpty name="list">
 					<logic:iterate id="resource" name="list">
 						<input type="checkbox" name="deviceIds" value="${resource.resource}"/>

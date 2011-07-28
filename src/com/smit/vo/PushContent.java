@@ -13,6 +13,9 @@ public class PushContent {
 	private String path;
 	private String create_time;
 	private String content_type;
+	
+	//增加字段，每个用户只显示自己推送的内容
+	private String username;
 	//文章置顶
 	private String status;
 	private List<String> photos = new ArrayList<String>();
@@ -76,6 +79,12 @@ public class PushContent {
 	}
 	public void setPhotos(List<String> photos) {
 		this.photos = photos;
+	}
+	public String getUsername() {
+		return username;
+	}
+	public void setUsername(String username) {
+		this.username = username;
 	}
 	
 	

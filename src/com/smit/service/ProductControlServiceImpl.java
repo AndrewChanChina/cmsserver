@@ -194,6 +194,11 @@ public class ProductControlServiceImpl implements ProductControlService{
 	public List<Object[]> findMaxSn(String order_code) {
 		return productDao.findMaxSn(order_code);
 	}
+
+	@Override
+	public List<Device> getFailCode(String order_code, int auth_status) {
+		return productDao.findFailCode(order_code, auth_status);
+	}
 	
 
 }
