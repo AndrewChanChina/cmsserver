@@ -2,11 +2,13 @@ package com.smit.dao;
 
 import java.util.List;
 
+import com.smit.util.SmitPage;
 import com.smit.vo.CertifiedProduct;
 import com.smit.vo.Device;
 import com.smit.vo.Order;
 import com.smit.vo.OrderAndOption;
 import com.smit.vo.TestOption;
+import com.smit.web.control.action.Page;
 
 public interface ProductControlDao {
 
@@ -50,4 +52,9 @@ public interface ProductControlDao {
 	public List<Object[]> findMaxSn(String order_code);
 	//取出当前生产批次中授权失败的授权码
 	public List<Device> findFailCode(String order_code,int auth_status);
+	
+	//根据生产代号，生产商，产品型号，查询激活的设备
+	public List<Device> findDevice(String orderCode,String productCode,String manuCode);
+	//分页查询，只取指定的几条
+	public List<Device> findPageDevice(String orderCode,String productCode,String manuCode,int begin,int num);
 }

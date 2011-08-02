@@ -1,15 +1,23 @@
 package com.smit.service.collection;
 
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import org.apache.commons.lang3.RandomStringUtils;
+
 import com.smit.service.NewsService;
+import com.smit.service.push.IPushDataService;
+import com.smit.util.ApplicationCache;
+import com.smit.util.Constants;
 import com.smit.vo.News;
 
 public class CollectNewsTask {
 
+	private IPushDataService pushService;
 	private NewsService newsService;
 	private List<News> news;
 	public void sina() throws Exception{
@@ -597,8 +605,22 @@ public class CollectNewsTask {
 		url = "http://movie.video.sina.com.cn/rss/NEW.xml";
 		getSinaNews(url, 462);
 		
+		//send msg to openfire
+		ApplicationCache app = ApplicationCache.getInstance();
+		String server = (String) app.getAttribute(Constants.SERVER_NAME);
+		IPushDataService pushDataService = (IPushDataService) app.getAttribute(Constants.PUSH_CONNECTION);
+		//不存在就是session过期，需要重新登录sever用户
+		if(null==pushDataService){
+			if(pushService.login(Constants.PUSH_HOST, Constants.PUSH_SERVERNAME, Constants.PUSH_SERVERPASSWORD)){
+				app.setAttribute(Constants.PUSH_CONNECTION, pushService);
+				pushDataService = pushService;
+			}
+		}
+		pushDataService.sendPushDataFromDevToAll("I59ma75nmV67rWdD275jC0SQ2bJDBW5W", false, RandomStringUtils.randomNumeric(5), "update", "资讯有更新了", "http://"+getHostAddr()+":8080/pring/latestNews.do", "something update!");
 	}
-
+	public String getHostAddr() throws UnknownHostException{
+		return InetAddress.getLocalHost().getHostAddress();
+	}
 	private void getSinaNews(String url, int partId) throws Exception {
 		try{
 			FeedParser fp = new FeedParser(url);
@@ -638,6 +660,14 @@ public class CollectNewsTask {
 
 	public void setNewsService(NewsService newsService) {
 		this.newsService = newsService;
+	}
+
+	public IPushDataService getPushService() {
+		return pushService;
+	}
+
+	public void setPushService(IPushDataService pushService) {
+		this.pushService = pushService;
 	}
 	
 	

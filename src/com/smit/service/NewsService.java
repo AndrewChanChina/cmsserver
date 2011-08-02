@@ -11,5 +11,5 @@ public interface NewsService {
 	public List<News> getNews();
 	public void insert(List<News> list);
 	public List<News> findByPartId(SmitPage page,int id);
-	
+	public List<Object[]> getLatestNews();
 }

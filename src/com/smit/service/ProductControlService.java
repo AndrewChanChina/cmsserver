@@ -2,11 +2,13 @@ package com.smit.service;
 
 import java.util.List;
 
+import com.smit.util.SmitPage;
 import com.smit.vo.CertifiedProduct;
 import com.smit.vo.Device;
 import com.smit.vo.Order;
 import com.smit.vo.OrderAndOption;
 import com.smit.vo.TestOption;
+import com.smit.web.control.action.Page;
 
 public interface ProductControlService {
 	//testOption
@@ -46,4 +48,6 @@ public interface ProductControlService {
 	public List<Device> findByMidCode(String machinID,String order_code);
 	public List<Object[]> findMaxSn(String order_code);
 	public List<Device> getFailCode(String order_code,int auth_status);
+	public List<Device> queryDevice(String orderCode,String productCode,String manuCode);
+	public List<Device> queryPageDevice(String orderCode,String productCode,String manuCode,int begin,int num);
 }

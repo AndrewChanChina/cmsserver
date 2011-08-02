@@ -12,6 +12,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.smit.service.ProductControlService;
 import com.smit.service.PushService;
+import com.smit.service.collection.VideoService;
 import com.smit.service.push.IPushManageService;
 import com.smit.service.push.PushManageServiceImpl;
 import com.smit.util.Constants;
@@ -206,5 +207,16 @@ public class ProductControlServiceTest extends TestCase{
 		List<Object[]> list = ps.findMaxSn("20110726152805");
 		System.out.println(list.size());
 		System.out.println(list.get(0)[0]);
+	}
+	
+	public void testVideo(){
+		BeanFactory beanFactory = new ClassPathXmlApplicationContext("applicationContext.xml");
+		VideoService vs = (VideoService) beanFactory.getBean("videoService");
+		
+		List<Object[]> objs = vs.getLatestVideos();
+		System.out.println(objs.size());
+		for(Object[] o: objs){
+			System.out.println(o[0]);
+		}
 	}
 }

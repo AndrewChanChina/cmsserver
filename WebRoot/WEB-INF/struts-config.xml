@@ -367,6 +367,7 @@
  			<forward name="active" path="/WEB-INF/productControl/active.jsp"></forward>
  			<forward name="product" path="/WEB-INF/productControl/product.jsp"></forward>
  			<forward name="confirm" path="/WEB-INF/productControl/confirm.jsp"></forward>
+ 			<forward name="device" path="/WEB-INF/productControl/device_query.jsp"></forward>
  		</action>
  		<action path="/testOption" type="org.springframework.web.struts.DelegatingActionProxy" 
  		parameter="addOption"></action>
@@ -393,7 +394,14 @@
  		<action path="/active" type="org.springframework.web.struts.DelegatingActionProxy"
  		parameter="active">
  		</action>
- 		
+ 		<action path="/queryDevice" type="org.springframework.web.struts.DelegatingActionProxy"
+ 		parameter="queryDevice">
+ 			<forward name="queryDevice" path="/WEB-INF/productControl/device_query.jsp"></forward>
+ 		</action>
+ 		<action path="/pageDevice" type="org.springframework.web.struts.DelegatingActionProxy"
+ 		parameter="getPageDevice">
+ 			<forward name="querypageDevice" path="/WEB-INF/productControl/device_query.jsp"></forward>
+ 		</action>
  		<action path="/product" type="org.springframework.web.struts.DelegatingActionProxy"
  		parameter="queryProduct"></action>
  		<action path="/confirm" type="org.springframework.web.struts.DelegatingActionProxy"
@@ -428,8 +436,10 @@
 			<forward name="list" path="/WEB-INF/sys/upload_list.jsp"></forward>
 		</action>
 
-
-		
+		<action path="/latestNews" type="org.springframework.web.struts.DelegatingActionProxy"
+		parameter="getLatestNews"></action>
+		<action path="/latestVideos" type="org.springframework.web.struts.DelegatingActionProxy"
+		parameter="sendLatestVideos"></action>
         
 		<!-- 验证码生成控制器 -->
 		<action path="/jcaptcha" 

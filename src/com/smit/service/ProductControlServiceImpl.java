@@ -3,11 +3,13 @@ package com.smit.service;
 import java.util.List;
 
 import com.smit.dao.ProductControlDao;
+import com.smit.util.SmitPage;
 import com.smit.vo.CertifiedProduct;
 import com.smit.vo.Device;
 import com.smit.vo.Order;
 import com.smit.vo.OrderAndOption;
 import com.smit.vo.TestOption;
+import com.smit.web.control.action.Page;
 
 public class ProductControlServiceImpl implements ProductControlService{
 
@@ -198,6 +200,18 @@ public class ProductControlServiceImpl implements ProductControlService{
 	@Override
 	public List<Device> getFailCode(String order_code, int auth_status) {
 		return productDao.findFailCode(order_code, auth_status);
+	}
+
+	@Override
+	public List<Device> queryDevice(String orderCode, String productCode,
+			String manuCode) {
+		return productDao.findDevice(orderCode, productCode, manuCode);
+	}
+
+	@Override
+	public List<Device> queryPageDevice(String orderCode, String productCode,
+			String manuCode, int begin, int num) {
+		return productDao.findPageDevice(orderCode, productCode, manuCode, begin, num);
 	}
 	
 

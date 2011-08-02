@@ -1,6 +1,8 @@
 package com.smit.service.collection;
 
 import java.lang.reflect.InvocationTargetException;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -8,15 +10,19 @@ import java.util.List;
 import javax.management.RuntimeErrorException;
 
 import org.apache.commons.beanutils.BeanUtils;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import com.smit.dao.VideoDao;
+import com.smit.service.push.IPushDataService;
+import com.smit.util.ApplicationCache;
+import com.smit.util.Constants;
 import com.smit.vo.Content;
 import com.smit.vo.Video;
 
 
 public class CollectVideoTask {
-	
+	private IPushDataService pushService;
 	VideoService videoService;
 	private List<Video> videos;
 	public void youku() throws Exception{		
@@ -128,9 +134,24 @@ public class CollectVideoTask {
 		
 		//run tudou
 		tudou();
+		
+		//send msg to openfire
+		ApplicationCache app = ApplicationCache.getInstance();
+		String server = (String) app.getAttribute(Constants.SERVER_NAME);
+		IPushDataService pushDataService = (IPushDataService) app.getAttribute(Constants.PUSH_CONNECTION);
+		//不存在就是session过期，需要重新登录sever用户
+		if(null==pushDataService){
+			if(pushService.login(Constants.PUSH_HOST, Constants.PUSH_SERVERNAME, Constants.PUSH_SERVERPASSWORD)){
+				app.setAttribute(Constants.PUSH_CONNECTION, pushService);
+				pushDataService = pushService;
+			}
+		}
+		pushDataService.sendPushDataFromDevToAll("T3aXoTF0oz8nIbqCBdEq34a00O67rblh", false, RandomStringUtils.randomNumeric(4), "update", "视频有更新了", "http://"+getHostAddr()+":8080/pring/latestVideos.do", "something update!");
 	}	
 	
-	
+	public String getHostAddr() throws UnknownHostException{
+		return InetAddress.getLocalHost().getHostAddress();
+	}
 	
 	public void tudou() throws Exception{
 		//TODO 因为土豆的描述字段没有使用CDATA，所有暂时无法解析
@@ -329,6 +350,13 @@ public class CollectVideoTask {
 	public void setVideoService(VideoService videoService) {
 		this.videoService = videoService;
 	}
+	
+	public IPushDataService getPushService() {
+		return pushService;
+	}
 
+	public void setPushService(IPushDataService pushService) {
+		this.pushService = pushService;
+	}
 
 }

@@ -23,6 +23,7 @@ import com.octo.captcha.service.CaptchaServiceException;
 import com.smit.service.IGroupManagerService;
 import com.smit.service.IUserService;
 import com.smit.service.push.IPushDataService;
+import com.smit.util.ApplicationCache;
 import com.smit.util.Constants;
 import com.smit.util.SmitPage;
 import com.smit.util.WebUtil;
@@ -82,6 +83,10 @@ public class UserAction extends MappingDispatchAction {
 				session.setAttribute(Constants.PUSH_CONNECTION, pushDataService);
 				application.setAttribute(Constants.PUSH_CONNECTION, pushDataService);
 				
+				//modify by luocheng 2011-07-28
+				ApplicationCache appCache = ApplicationCache.getInstance();
+				appCache.setAttribute(Constants.SERVER_NAME, pushDataService.getServerName());
+				appCache.setAttribute(Constants.PUSH_CONNECTION, pushDataService);
 				session.setAttribute(Constants.LEVEL, Constants.LEVEL_USER);
 				User u = userService.findUserByName(loginForm.getUserName());
 				if (u != null) {					
@@ -407,6 +412,11 @@ public class UserAction extends MappingDispatchAction {
 					// login smack success
 					application.setAttribute(Constants.LOGIN_SUC, Constants.SUCCESS);				
 					application.setAttribute(Constants.PUSH_CONNECTION, pushDataService);
+					
+					ApplicationCache appCache = ApplicationCache.getInstance();
+					appCache.setAttribute(Constants.SERVER_NAME, pushDataService.getServerName());
+					appCache.setAttribute(Constants.PUSH_CONNECTION, pushDataService);
+					
 			}
 		}
 	}

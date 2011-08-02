@@ -2,18 +2,23 @@ package com.smit.dao;
 
 import java.util.List;
 
+import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Expression;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 import com.smit.util.DaoException;
+import com.smit.util.SmitPage;
 import com.smit.vo.CertifiedProduct;
 import com.smit.vo.Device;
 import com.smit.vo.Order;
 import com.smit.vo.OrderAndOption;
 import com.smit.vo.TestOption;
+import com.smit.web.control.action.Page;
 
 public class ProductControlImpl extends HibernateDaoSupport implements ProductControlDao{
 
@@ -229,6 +234,40 @@ public class ProductControlImpl extends HibernateDaoSupport implements ProductCo
 	public List<Device> findFailCode(String order_code, int auth_status) {
 		String hql = "from Device d where d.order_code='"+order_code+"' and d.auth_status="+auth_status;
 		return this.getHibernateTemplate().find(hql);
+	}
+
+	@Override
+	public List<Device> findDevice(String orderCode, String productCode,
+			String manuCode) {
+		Session session = this.getHibernateTemplate().getSessionFactory().openSession();
+		Criteria criteria = session.createCriteria(Device.class);
+		if(orderCode!= null){
+			criteria.add(Restrictions.eq("order_code", orderCode));
+		}
+		if(productCode!=null){
+			criteria.add(Restrictions.eq("machineId", productCode));
+		}
+		criteria.add(Restrictions.eq("auth_status", 0));
+		List<Device> list = criteria.list();
+		return list;
+	}
+
+	@Override
+	public List<Device> findPageDevice(String orderCode, String productCode,
+			String manuCode, int begin, int num) {
+		Session session = this.getHibernateTemplate().getSessionFactory().openSession();
+		Criteria criteria = session.createCriteria(Device.class);
+		if(orderCode!= null){
+			criteria.add(Restrictions.eq("order_code", orderCode));
+		}
+		if(productCode!=null){
+			criteria.add(Restrictions.eq("machineId", productCode));
+		}
+		criteria.add(Restrictions.eq("auth_status", 0));
+		criteria.setFirstResult(begin);
+		criteria.setMaxResults(num);
+		List<Device> list = criteria.list();
+		return list;
 	}
 
 		

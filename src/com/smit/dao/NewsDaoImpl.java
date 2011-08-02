@@ -46,4 +46,14 @@ public class NewsDaoImpl extends HibernateDaoSupport implements NewsDao{
 		return list;
 	}
 
+	@Override
+	public List<Object[]> getLatestNews() {
+		String hql = "select n.title,n.description,n.link,n.author,n.comments,n.category,n.pubDate from news n inner join (select n1.part_id,max(n1.id)id from news n1 group by part_id)t on n.id=t.id order by create_time desc";
+		Session session = this.getHibernateTemplate().getSessionFactory().openSession();
+		Query query = session.createSQLQuery(hql);
+		query.setFirstResult(0);
+		query.setMaxResults(20);
+		return query.list();
+	}
+
 }

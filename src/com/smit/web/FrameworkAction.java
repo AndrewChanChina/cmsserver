@@ -134,6 +134,10 @@ public class FrameworkAction extends MappingDispatchAction {
 			return mapping.findForward("product");
 		}else if(type.equals("confirm")){
 			return mapping.findForward("confirm");
+		}else if(type.equals("device")){
+			Page page = new Page();
+			request.setAttribute("page", page);
+			return mapping.findForward("device");
 		}
 		return null;
 	}

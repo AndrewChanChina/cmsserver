@@ -10,4 +10,5 @@ public interface NewsDao {
 	public void insert(News news);
 	public List<News> getNews();
 	public List<News> findByPartId(SmitPage page,int id);
+	public List<Object[]> getLatestNews();
 }

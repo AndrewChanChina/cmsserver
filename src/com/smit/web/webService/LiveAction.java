@@ -108,8 +108,8 @@ public class LiveAction extends MappingDispatchAction{
 		sb.append("<channels>");
 		for(String s:list){
 			if(s.endsWith(".txt")){
-				String name = s.replace(".txt", "").replace("节目单", "");
-				name = name.trim().replaceAll("\\（\\d{4}\\-\\d{4}\\）","");
+				String name = s.replace(".txt", "");
+				//name = name.trim().replaceAll("\\（\\d{4}\\-\\d{4}\\）","");
 				sb.append("<channel>"+name+"</channel>");
 			}
 		}

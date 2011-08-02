@@ -7,9 +7,13 @@
 <hibernate-configuration>
 
 <session-factory>
-
+<!--  
 	<property name="dialect">
 		org.hibernate.dialect.MySQLDialect
+	</property>
+	-->
+	<property name="dialect">
+		com.smit.util.CustomDialect
 	</property>
 	<property name="connection.url">
 		jdbc:mysql://localhost:3306/smit
@@ -30,7 +34,10 @@
 	<property name="format_sql">true</property>
 	<property name="c3p0.idle_test_period">100</property>
 	<property name="c3p0.acquire_increment">1</property>
-	<property name="c3p0.timeout">10</property>
+	<property name="c3p0.timeout">1800</property>
+	<property name="c3p0.min_size">5</property> 
+	<property name="c3p0.max_size">30</property> 
+	<property name="c3p0.max_statements">50</property>
 	<mapping resource="com/smit/vo/User.hbm.xml" />
 	<mapping resource="com/smit/vo/Group.hbm.xml" />
 	<mapping resource="com/smit/vo/Purview.hbm.xml" />

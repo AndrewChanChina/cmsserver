@@ -84,6 +84,11 @@ public class VideoServiceImpl implements VideoService {
 	public List<Video> getVideos() {
 		return videoDao.getVideos();
 	}
-	
 
+	@Override
+	public List<Object[]> getLatestVideos() {
+		return videoDao.getLatestVideos();
+	}
+	
+	
 }

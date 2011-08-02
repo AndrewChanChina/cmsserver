@@ -11,6 +11,7 @@ import com.smit.service.ColumnService;
 import com.smit.service.collection.CollectVideoTask;
 import com.smit.service.collection.VideoService;
 import com.smit.service.webService.ColumnImport;
+import com.smit.service.webService.Videos;
 import com.smit.service.webService.XmlWrap;
 import com.smit.util.SmitPage;
 import com.smit.vo.Part;
@@ -176,6 +177,10 @@ public class VideoServiceTest extends TestCase {
 	}
 	
 	
-	
+	public void testLatestVideos(){
+		List<Object[]> videos = vs.getLatestVideos();
+		System.out.println(videos.size());
+		System.out.println(videos.get(0)[5]);
+	}
 	 
 }

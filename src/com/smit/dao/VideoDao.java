@@ -16,5 +16,6 @@ public interface VideoDao {
 	public List<Video> listAll(SmitPage page);
 	
 	public List<Video> getVideos();
+	public List<Object[]> getLatestVideos();
 }
 

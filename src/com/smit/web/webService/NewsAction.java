@@ -73,6 +73,35 @@ public class NewsAction extends MappingDispatchAction{
 			pw.println(sb.toString());
 		
 	}
+	
+	//只发送各种类别的新闻的最新一条，且一次最多发送20条。
+	public ActionForward getLatestNews(ActionMapping mapping,ActionForm form,
+			HttpServletRequest request,HttpServletResponse response) throws Exception{
+		try{
+			response.setContentType("text/xml");
+			response.setCharacterEncoding("utf-8");
+			List<Object[]> news = newsService.getLatestNews();
+			PrintWriter pw = response.getWriter();
+			StringBuffer sb = new StringBuffer();
+			sb.append("<xml>");
+			sb.append("<items>");
+			for(Object[] n : news){
+				sb.append("<item>");
+				sb.append("<title>"+n[0]+"</title>");
+				sb.append("<description>"+"<![CDATA["+n[1]+"]]></description>");
+				sb.append("<link>"+n[2]+"</link>");
+				sb.append("<comments>"+"<![CDATA["+n[4]+"]]></comments>");
+				sb.append("<pubDate>"+n[6]+"</pubDate>");
+				sb.append("</item>");
+			}
+			sb.append("</items>");
+			sb.append("</xml>");
+			pw.println(sb.toString());
+		}catch (Exception e){
+			e.printStackTrace();
+		}
+		return null;
+	}
 	public NewsService getNewsService() {
 		return newsService;
 	}

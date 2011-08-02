@@ -12,12 +12,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang3.RandomStringUtils;
+import org.apache.http.HttpResponse;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.actions.MappingDispatchAction;
 
 import com.smit.service.ProductControlService;
+import com.smit.util.SmitPage;
 import com.smit.util.StringUtils;
 import com.smit.util.TripleDESHelper;
 import com.smit.vo.CertifiedProduct;
@@ -189,6 +191,61 @@ public class AuthAction extends MappingDispatchAction{
 		}
 		
 		return null;
+	}
+	
+	public ActionForward queryDevice(ActionMapping mapping,ActionForm form,
+			HttpServletRequest request,HttpServletResponse response) throws Exception{
+		String orderCode = request.getParameter("orderCode");
+		String productCode = request.getParameter("productCode");
+		String manuCode = request.getParameter("manuCode");
+		Page page = new Page();
+		List<Device> list = productService.queryDevice(orderCode, productCode, manuCode);
+		int count = list.size();
+		if(count>page.size){
+			list = list.subList(0, 10);
+		}
+		page.setCurrentPage(1);
+		page.setTotalRecord(count);
+		Device device = new Device();
+		device.setOrder_code(orderCode);
+		device.setMachineID(productCode);
+		request.setAttribute("list", list);
+		request.getSession().setAttribute("page", page);
+		request.getSession().setAttribute("device", device);
+		return mapping.findForward("queryDevice");
+	}
+	public ActionForward getPageDevice(ActionMapping mapping,ActionForm form,
+			HttpServletRequest request,HttpServletResponse response) throws Exception{
+		String orderCode = request.getParameter("orderCode");
+		String productCode = request.getParameter("productCode");
+		String manuCode = request.getParameter("manuCode");
+		Page page = (Page) request.getSession().getAttribute("page");
+		String curStr = request.getParameter("currentPage");
+		String type = request.getParameter("type");
+		int currentPage = Integer.parseInt(curStr);
+		int start = 0;
+		if("pre".equals(type)){
+			if(currentPage>1){
+				//currentPage = currentPage-1;
+				page.setCurrentPage(currentPage-1);
+			}
+			int begin = (currentPage-2)*10;
+			start = begin>=0 ? begin : 0;
+		}else if("next".equals(type)){
+			if(currentPage<page.getCount()){
+				start = currentPage*(10);
+				//currentPage = currentPage+1;
+				page.setCurrentPage(currentPage+1);
+			}else{
+				//currentPage = page.getCount();
+				page.setCurrentPage(page.getCount());
+				start = (currentPage-1)*(10);
+			}
+		}
+		List<Device> list = productService.queryPageDevice(orderCode, productCode, manuCode, start, page.size);
+		request.setAttribute("list", list);
+		request.getSession().setAttribute("page", page);
+		return mapping.findForward("querypageDevice");
 	}
 	
 }

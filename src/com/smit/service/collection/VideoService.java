@@ -21,4 +21,5 @@ public interface VideoService {
 	public void save(List<Video> listVideo);
 
 	public List<Video> getVideos();
+	public List<Object[]> getLatestVideos();
 }

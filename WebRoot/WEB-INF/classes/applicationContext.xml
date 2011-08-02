@@ -312,6 +312,12 @@
     <bean name="/winceConfirm" class="com.smit.web.control.action.WinCEAuthAction" scope="prototype">
     	<property name="service" ref="productControlService"></property>
     </bean>
+    <bean name="/queryDevice" class="com.smit.web.control.action.AuthAction" scope="prototype">
+    	<property name="productService" ref="productControlService"></property>
+    </bean>
+     <bean name="/pageDevice" class="com.smit.web.control.action.AuthAction" scope="prototype">
+    	<property name="productService" ref="productControlService"></property>
+    </bean>
 <!-- &&&& end of luocheng================================================================== -->
 	
 	
@@ -328,13 +334,16 @@
 		<property name="videoService" ref="videoService"></property>
 		<property name="columnService" ref="columnService"></property>
 	</bean>
-	
+	<bean name="/latestVideos" class="com.smit.web.webService.VideoAction" scope="prototype">
+		<property name="videoService" ref="videoService"></property>
+	</bean>
 	<bean name="/getVideoColumn" class="com.smit.web.webService.VideoAction"	scope="prototype">
 		<property name="columnService" ref="columnService"></property>
 	</bean>
 	
 	<bean id="collectVideoTask" class="com.smit.service.collection.CollectVideoTask" >
-		<property name="videoService" ref="videoService"></property>		
+		<property name="videoService" ref="videoService"></property>
+		<property name="pushService" ref="pushDataService"></property>		
 	</bean>
 	<bean id="newsDao" class="com.smit.dao.NewsDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory"></property>
@@ -344,6 +353,7 @@
 	</bean>
 	<bean id="collectNewsTask" class="com.smit.service.collection.CollectNewsTask">
 		<property name="newsService" ref="newsService"></property>
+		<property name="pushService" ref="pushDataService"></property>	
 	</bean>
 	<!-- push action add by luocheng 2011/06/02 -->
 	<bean name="/push" class="com.smit.web.push.action.PushAction" scope="prototype">
@@ -371,35 +381,49 @@
 		<property name="targetObject" ref="collectNewsTask"/>
 		<property name="targetMethod" value="sina"/>
 	</bean>
+	<bean id="collectLive" class="com.smit.service.collection.CollectLiveTask"></bean>
+	<bean id="livecollection" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject" ref="collectLive"></property>
+		<property name="targetMethod" value="download"></property>
+	</bean>
 	<bean id="cronTrigger"
 		class="org.springframework.scheduling.quartz.CronTriggerBean">
  
 		<property name="jobDetail" ref="collection" />
-		 <property name="cronExpression" value="0 0 1/1 * * ?" />
-		 <!-- <property name="cronExpression" value="0 0/5 * * * ?" />-->
+		 <!--<property name="cronExpression" value="0 0 1/1 * * ?" />-->
+		  <property name="cronExpression" value="0 0/5 * * * ?" />
  	</bean>
  	<bean id="cronTriggerNews"
  	   class="org.springframework.scheduling.quartz.CronTriggerBean">
  	   <property name="jobDetail" ref="newscollection"></property>
- 	   <property name="cronExpression" value= 
- 	   "0 0/30 * * * ?"></property>
+ 	   <property name="cronExpression" value="0 0/5 * * * ?"></property>
+ 	   </bean>
+ 	   <bean id="cronTriggerLive"
+ 	   class="org.springframework.scheduling.quartz.CronTriggerBean">
+ 	   <property name="jobDetail" ref="livecollection"></property>
+ 	   <property name="cronExpression" value="0 0/30 * * * ?"></property>
  	   </bean>
 	<bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
 		<property name="jobDetails">
 		   <list>
 		      <ref bean="collection" />
 		      <ref bean="newscollection"/>
+		      <ref bean="livecollection"/>
 		   </list>
 		</property> 
 		<property name="triggers">
 		    <list>
 			<ref bean="cronTrigger" />
 			<ref bean="cronTriggerNews"/>
+			<ref bean="cronTriggerLive"/>
 		    </list>
 		</property>
    </bean>  
    <!-- 新闻 -->
    <bean name="/news" class="com.smit.web.webService.NewsAction" scope="prototype">
+   		<property name="newsService" ref="newsService"></property>
+   </bean>
+   <bean name="/latestNews" class="com.smit.web.webService.NewsAction" scope="prototype">
    		<property name="newsService" ref="newsService"></property>
    </bean>
    <!-- user analysis -->

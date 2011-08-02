@@ -85,6 +85,7 @@ $(function(){
  		<li><a href="showAuth.do?class=active" target="rightFrame">激活</a></li>
  		<li><a href="showAuth.do?class=product" target="rightFrame">正品查询</a></li>
  		<li><a href="showAuth.do?class=confirm" target="rightFrame">确认启用</a></li>
+ 		<li><a href="showAuth.do?class=device" target="rightFrame">查询设备</a></li>
  <%
  	}else if(opCode.equalsIgnoreCase("content")){
 %>

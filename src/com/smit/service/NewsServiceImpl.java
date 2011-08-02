@@ -41,5 +41,10 @@ public class NewsServiceImpl implements NewsService{
 		return newsDao.findByPartId(page,id);
 	}
 
-	//public List<>
+	@Override
+	public List<Object[]> getLatestNews() {
+		return newsDao.getLatestNews();
+	}
+
+	
 }

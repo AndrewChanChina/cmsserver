@@ -3,9 +3,11 @@ package com.smit.dao;
 import java.sql.SQLException;
 import java.util.List;
 
+import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.orm.hibernate3.HibernateCallback;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
@@ -91,6 +93,16 @@ public class VideoDaoImpl extends HibernateDaoSupport implements VideoDao {
 	@Override
 	public List<Video> getVideos() {
 		return this.getHibernateTemplate().find("from Video v");
+	}
+
+	@Override
+	public List<Object[]> getLatestVideos() {
+		String hql = " select v.title,v.img,v.link,v.description,v.flag1 from video v inner join (select v1.part_id,max(v1.id)id from video v1 group by part_id)t on v.id=t.id order by createtime desc";
+		Session session = this.getHibernateTemplate().getSessionFactory().openSession();
+		Query query = session.createSQLQuery(hql);
+		query.setFirstResult(0);
+		query.setMaxResults(20);
+		return query.list();
 	}
 
 	
