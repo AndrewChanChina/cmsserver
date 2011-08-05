@@ -197,6 +197,7 @@ public class AuthAction extends MappingDispatchAction{
 			HttpServletRequest request,HttpServletResponse response) throws Exception{
 		String orderCode = request.getParameter("orderCode");
 		String productCode = request.getParameter("productCode");
+		System.out.println(orderCode+";"+productCode);
 		String manuCode = request.getParameter("manuCode");
 		Page page = new Page();
 		List<Device> list = productService.queryDevice(orderCode, productCode, manuCode);
@@ -216,8 +217,10 @@ public class AuthAction extends MappingDispatchAction{
 	}
 	public ActionForward getPageDevice(ActionMapping mapping,ActionForm form,
 			HttpServletRequest request,HttpServletResponse response) throws Exception{
-		String orderCode = request.getParameter("orderCode");
-		String productCode = request.getParameter("productCode");
+		Device device = (Device) request.getSession().getAttribute("device");
+		String orderCode = device.getOrder_code();
+		String productCode = device.getMachineID();
+		System.out.println(orderCode);
 		String manuCode = request.getParameter("manuCode");
 		Page page = (Page) request.getSession().getAttribute("page");
 		String curStr = request.getParameter("currentPage");
@@ -243,6 +246,7 @@ public class AuthAction extends MappingDispatchAction{
 			}
 		}
 		List<Device> list = productService.queryPageDevice(orderCode, productCode, manuCode, start, page.size);
+		System.out.println("list size is:"+list);
 		request.setAttribute("list", list);
 		request.getSession().setAttribute("page", page);
 		return mapping.findForward("querypageDevice");

@@ -31,8 +31,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<div class="clear"></div>
 	</div>
 	<form action="queryDevice.do" method="post" style="padding-top:5px;" id="orderForm">
-生产代号: <input type="text" name="order_code" value="" style="width:100px"/>
-产品型号: <input type="text" name="production_code" value="" style="width:100px" maxlength="255"/>
+生产代号: <input type="text" name="orderCode" value="" style="width:100px"/>
+产品型号: <input type="text" name="productCode" value="" style="width:100px" maxlength="255"/>
 <!-- 
 生产商代号: <input type="text" name="production_code" value="" style="width:100px" maxlength="255"/> -->
 			<input type="submit" value="查询"/><input type="button" value="添加" onclick="add();"/><input type="button" value="修改"/><input type="button" value="删除"/>

@@ -241,11 +241,11 @@ public class ProductControlImpl extends HibernateDaoSupport implements ProductCo
 			String manuCode) {
 		Session session = this.getHibernateTemplate().getSessionFactory().openSession();
 		Criteria criteria = session.createCriteria(Device.class);
-		if(orderCode!= null){
-			criteria.add(Restrictions.eq("order_code", orderCode));
+		if(!"".equals(orderCode)&&orderCode!= null){
+			criteria.add(Restrictions.eq("order_code", orderCode.trim()));
 		}
-		if(productCode!=null){
-			criteria.add(Restrictions.eq("machineId", productCode));
+		if(!"".equals(productCode)&&productCode!=null){
+			criteria.add(Restrictions.eq("machineID", productCode.trim()));
 		}
 		criteria.add(Restrictions.eq("auth_status", 0));
 		List<Device> list = criteria.list();
@@ -257,11 +257,11 @@ public class ProductControlImpl extends HibernateDaoSupport implements ProductCo
 			String manuCode, int begin, int num) {
 		Session session = this.getHibernateTemplate().getSessionFactory().openSession();
 		Criteria criteria = session.createCriteria(Device.class);
-		if(orderCode!= null){
+		if(!"".equals(orderCode)&&orderCode!= null){
 			criteria.add(Restrictions.eq("order_code", orderCode));
 		}
-		if(productCode!=null){
-			criteria.add(Restrictions.eq("machineId", productCode));
+		if(!"".equals(productCode)&&productCode!=null){
+			criteria.add(Restrictions.eq("machineID", productCode));
 		}
 		criteria.add(Restrictions.eq("auth_status", 0));
 		criteria.setFirstResult(begin);
