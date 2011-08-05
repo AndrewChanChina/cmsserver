@@ -46,4 +46,7 @@ public interface IPushDataService {
 	public boolean sendQueryResourceId(String userName);
 	public boolean sendPushServiceInf(String serviceName,String account);
 	public String getServerName();
+	
+	//add by luocheng 2011-08-03
+	public boolean sendNoteFromCms(String url);
 }

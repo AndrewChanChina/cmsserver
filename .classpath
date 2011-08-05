@@ -68,5 +68,6 @@
 	<classpathentry kind="lib" path="lib/httpclient-4.1.1.jar"/>
 	<classpathentry kind="lib" path="lib/httpcore-4.1.1.jar"/>
 	<classpathentry kind="lib" path="lib/ant.jar"/>
+	<classpathentry kind="lib" path="lib/c3p0-0.9.1.2.jar"/>
 	<classpathentry kind="output" path="WebRoot/WEB-INF/classes"/>
 </classpath>

@@ -45,6 +45,9 @@ import org.dom4j.io.SAXReader;
 
 import com.smit.service.RssAtomService;
 import com.smit.service.SubscriberService;
+import com.smit.service.push.IPushDataService;
+import com.smit.util.ApplicationCache;
+import com.smit.util.Constants;
 import com.smit.vo.AtomRecord;
 import com.smit.vo.RssRecord;
 import com.smit.vo.Subscriber;
@@ -53,6 +56,7 @@ public class PubsubHubbubAction extends MappingDispatchAction{
 	
 	private SubscriberService subService;
 	private RssAtomService rmServcie;
+	private IPushDataService pushService;
 	//handle publish request
 	public ActionForward publish(ActionMapping mapping,ActionForm form,
 			HttpServletRequest request,HttpServletResponse response) throws Exception{
@@ -61,6 +65,9 @@ public class PubsubHubbubAction extends MappingDispatchAction{
 		if(!"".equals(hubMode)&& !"".equals(huburl)){
 			response.setStatus(HttpServletResponse.SC_NO_CONTENT);
 			response.getWriter().println();
+			//modify by luocheng 2011-08-03;
+			//send notification to openfire
+			sendNoteToOpenfire(huburl);
 			//to get feed 
 			//send http get request to url which has update ,get content and send to subscriber
 			try{
@@ -72,9 +79,9 @@ public class PubsubHubbubAction extends MappingDispatchAction{
 				SAXReader saxReader = new SAXReader();
 				Document doc = saxReader.read(in);
 				//parse xml end send content to sub
-//				Map<String, String> nameSpaceMap = new HashMap<String, String>();
-//			    nameSpaceMap.put("atom", "http://www.w3.org/2005/Atom");   
-//			    saxReader.getDocumentFactory().setXPathNamespaceURIs(nameSpaceMap); 
+				Map<String, String> nameSpaceMap = new HashMap<String, String>();
+			    nameSpaceMap.put("atom", "http://www.w3.org/2005/Atom");   
+			    saxReader.getDocumentFactory().setXPathNamespaceURIs(nameSpaceMap); 
 				String url = getFeedUrl(doc);
 				System.out.println(url);
 				parseXML(doc, url);
@@ -88,6 +95,17 @@ public class PubsubHubbubAction extends MappingDispatchAction{
 			response.getWriter().println("hub param isn't correct");
 		}
 		return null;
+	}
+
+	private void sendNoteToOpenfire(String huburl) {
+		ApplicationCache app = ApplicationCache.getInstance();
+		IPushDataService ps = (IPushDataService) app.getAttribute(Constants.PUSH_CONNECTION);
+		if(ps==null){
+			if(pushService.login(Constants.PUSH_HOST, Constants.PUSH_SERVERNAME, Constants.PUSH_SERVERPASSWORD)){
+				ps = pushService;
+			}
+		}
+		ps.sendNoteFromCms(huburl);
 	}
 
 	private String getFeedUrl(Document doc) {
@@ -317,7 +335,14 @@ public class PubsubHubbubAction extends MappingDispatchAction{
 			return "UTF-8";
 		}
 		
-		
-		
 	}
+
+	public IPushDataService getPushService() {
+		return pushService;
+	}
+
+	public void setPushService(IPushDataService pushService) {
+		this.pushService = pushService;
+	}
+	
 }

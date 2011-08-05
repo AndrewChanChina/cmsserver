@@ -10,11 +10,13 @@ import org.jivesoftware.smack.filter.MessageTypeFilter;
 import org.jivesoftware.smack.filter.NotFilter;
 import org.jivesoftware.smack.filter.PacketFilter;
 import org.jivesoftware.smack.filter.PacketTypeFilter;
+import org.jivesoftware.smack.packet.IQ;
 import org.jivesoftware.smack.packet.Message;
 import org.jivesoftware.smack.packet.Packet;
 import org.jivesoftware.smack.packet.Presence;
 import org.jivesoftware.smack.provider.ProviderManager;
 
+import com.smit.service.push.packet.FeedUpdateIQ;
 import com.smit.service.push.packet.PresenceListener;
 import com.smit.service.push.packet.PushServerIQ;
 import com.smit.service.push.packet.PushServiceInfIQ;
@@ -217,6 +219,15 @@ public class PushDataServiceImpl implements IPushDataService {
 		PushServiceInfIQ iq = new PushServiceInfIQ();
 		iq.setUserAccount(account);
 		iq.setPushServiceName(serviceName);
+		this.sendPacket(iq);
+		return true;
+	}
+	
+	@Override
+	public boolean sendNoteFromCms(String url) {
+		FeedUpdateIQ iq = new FeedUpdateIQ();
+		iq.setType(IQ.Type.SET);
+		iq.setFeed(url);
 		this.sendPacket(iq);
 		return true;
 	}

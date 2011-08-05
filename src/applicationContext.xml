@@ -390,18 +390,18 @@
 		class="org.springframework.scheduling.quartz.CronTriggerBean">
  
 		<property name="jobDetail" ref="collection" />
-		 <!--<property name="cronExpression" value="0 0 1/1 * * ?" />-->
-		  <property name="cronExpression" value="0 0/5 * * * ?" />
+		 <property name="cronExpression" value="0 0 1/1 * * ?" />
+		  <!--  <property name="cronExpression" value="0 0/5 * * * ?" />-->
  	</bean>
  	<bean id="cronTriggerNews"
  	   class="org.springframework.scheduling.quartz.CronTriggerBean">
  	   <property name="jobDetail" ref="newscollection"></property>
- 	   <property name="cronExpression" value="0 0/5 * * * ?"></property>
+ 	  <property name="cronExpression" value="0 0 1/1 * * ?" />
  	   </bean>
  	   <bean id="cronTriggerLive"
  	   class="org.springframework.scheduling.quartz.CronTriggerBean">
  	   <property name="jobDetail" ref="livecollection"></property>
- 	   <property name="cronExpression" value="0 0/30 * * * ?"></property>
+ 	  <property name="cronExpression" value="0 0 1/1 * * ?" />
  	   </bean>
 	<bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
 		<property name="jobDetails">
@@ -452,6 +452,7 @@
 	<bean name="/publish" class="com.smit.web.pubsubhubbub.PubsubHubbubAction" scope="prototype">
 		<property name="subService" ref="subService"></property>
 		<property name="rmServcie" ref="rssatomService"></property>
+		<property name="pushService" ref="pushDataService"></property>
 	</bean>
 	<bean name="/subscribe" class="com.smit.web.pubsubhubbub.PubsubHubbubAction" scope="prototype">
 		<property name="subService" ref="subService"></property>

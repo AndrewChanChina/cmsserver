@@ -32,12 +32,19 @@
 	<property name="hbm2ddl.auto">update</property>
 	<property name="connection.autocommit">true</property>
 	<property name="format_sql">true</property>
-	<property name="c3p0.idle_test_period">100</property>
-	<property name="c3p0.acquire_increment">1</property>
-	<property name="c3p0.timeout">1800</property>
-	<property name="c3p0.min_size">5</property> 
-	<property name="c3p0.max_size">30</property> 
-	<property name="c3p0.max_statements">50</property>
+	<property name="hibernate.connection.provider_class">org.hibernate.connection.C3P0ConnectionProvider</property>
+	<!-- 最大连接数 -->
+	<property name="hibernate.c3p0.max_size">100</property>
+	<property name="hibernate.c3p0.min_size">5</property>
+	<!-- 获得连接的超时时间 -->
+	<property name="hibernate.c3p0.timeout">120</property>
+	<!-- 最大的preparedstatement数 -->
+	<property name="hibernate.c3p0.max_statements">5</property> 
+	<!-- 每隔120秒检查空闲连接 -->
+	<property name="hibernate.c3p0.idle_test_period">120</property> 
+	<!-- 连接池连接用完，一次获得的新连接数 -->
+	<property name="hibernate.c3p0.acquire_increment">2</property>
+	<property name="hib"></property>
 	<mapping resource="com/smit/vo/User.hbm.xml" />
 	<mapping resource="com/smit/vo/Group.hbm.xml" />
 	<mapping resource="com/smit/vo/Purview.hbm.xml" />
