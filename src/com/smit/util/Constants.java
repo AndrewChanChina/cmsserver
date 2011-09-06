@@ -26,7 +26,11 @@ public class Constants {
 	// for push service
 	public final static String PUSH_GROUPNAME = "user";
 	
+<<<<<<< HEAD
 	public final static String PUSH_HOST = "192.168.0.198";//"192.168.0.181";
+=======
+	public final static String PUSH_HOST = "localhost";//"192.168.0.181";
+>>>>>>> 429f4014f658046c2a0c021c3aa4cb2530444768
 	public final static String PUSH_CONNECTION	= "pushConnection";
 	public final static String PUSH_SERVERNAME = "server";
 	public final static String PUSH_SERVERPASSWORD = "123456";

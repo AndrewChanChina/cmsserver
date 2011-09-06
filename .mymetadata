@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-module
   type="WEB"
-  name="CMSSever"
+  name="CMSServer"
   id="myeclipse.1301378711984"
-  context-root="/pring"
+  context-root="/pushcmsserver"
   j2ee-spec="6.0"
   archive="CMSSever.war">
   <attributes>

@@ -4,7 +4,7 @@
         <wb-resource deploy-path="/" source-path="/WebRoot"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/test"/>
-        <property name="context-root" value="/pring"/>
         <property name="java-output-path" value="/pring/WebRoot/WEB-INF/classes"/>
+        <property name="context-root" value="/pushcmsserver"/>
     </wb-module>
 </project-modules>
