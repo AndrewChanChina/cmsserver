@@ -7,7 +7,7 @@
   j2ee-spec="6.0"
   archive="CMSSever.war">
   <attributes>
-    <attribute name="webrootdir" value="WebRoot" />
+    <attribute name="webrootdir" value="/WebRoot" />
   </attributes>
 </project-module>
 

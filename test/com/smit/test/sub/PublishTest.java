@@ -18,8 +18,9 @@ public class PublishTest {
 		//postMethod.addParameter(HubConstraint.HUB_URL_PARAM,"http://www.cnblogs.com/honeyxing/rss");
 		//postMethod.addParameter(HubConstraint.HUB_URL_PARAM,"http://www.cnblogs.com/yyq-quan/rss");
 		//postMethod.addParameter(HubConstraint.HUB_URL_PARAM,"http://www.jiucool.com/feed/atom/");
-		postMethod.addParameter(HubConstraint.HUB_URL_PARAM,"http://rss.sina.com.cn/news/allnews/sports.xml");
+		//postMethod.addParameter(HubConstraint.HUB_URL_PARAM,"http://rss.sina.com.cn/news/allnews/sports.xml");
 		//www.cnblogs.com/honeyxing/rss
+		postMethod.addParameter(HubConstraint.HUB_URL_PARAM,"http://rss.sina.com.cn/news/china/focus15.xml");
 		client.executeMethod(postMethod);
 		//System.out.println(postMethod.getStatusCode());
 	}

@@ -469,6 +469,52 @@
 		parameter="op" name="photoForm"></action>
 		<action path="/showMain" type="org.springframework.web.struts.DelegatingActionProxy"
 		parameter="showMain"></action>
+		<!-- ==================pubsub site action ==========================-->
+		<action path="/publisher" type="org.springframework.web.struts.DelegatingActionProxy" parameter="publisher">
+			<forward name="publisher" path="/WEB-INF/pubsub/publisher.jsp"></forward>
+		</action>
+		<action path="/subscriber" type="org.springframework.web.struts.DelegatingActionProxy" parameter="subscriber">
+			<forward name="subscriber" path="/WEB-INF/pubsub/subscriber.jsp"></forward>
+		</action>
+		<action path="/doc" type="org.springframework.web.struts.DelegatingActionProxy" parameter="doc">
+			<forward name="doc" path="/WEB-INF/pubsub/doc.jsp"></forward>
+		</action>
+		<action path="/about" type="org.springframework.web.struts.DelegatingActionProxy" parameter="about">
+			<forward name="about" path="/WEB-INF/pubsub/about.jsp"></forward>
+		</action>
+		<action path="/pubsub_login" type="org.springframework.web.struts.DelegatingActionProxy" parameter="login">
+			<forward name="publisher_login" path="/WEB-INF/pubsub/publisher_login.jsp"></forward>
+			<forward name="subscriber_login" path="/WEB-INF/pubsub/subscriber_login.jsp"></forward>
+			<forward name="login" path="/WEB-INF/pubsub/login.jsp"></forward>
+			<forward name="hub_setting" path="/WEB-INF/pubsub/hub_setting.jsp"></forward>
+		</action>
+		<action path="/pubsub_regist" type="org.springframework.web.struts.DelegatingActionProxy" parameter="regist">
+			<forward name="reg_fail" path="/WEB-INF/pubsub/reg_fail.jsp"></forward>
+			<forward name="reg_success" path="/WEB-INF/pubsub/reg_success.jsp"></forward>
+		</action>
+		<action path="/pubsub_active" type="org.springframework.web.struts.DelegatingActionProxy" parameter="active">
+			<forward name="login" path="/WEB-INF/pubsub/login.jsp"></forward>
+		</action>
+		<action path="/show_sub" type="org.springframework.web.struts.DelegatingActionProxy" parameter="show_sub">
+			<forward name="show_sub" path="/WEB-INF/pubsub/subscribe.jsp"></forward>
+		</action>
+		<action path="/show_pub" type="org.springframework.web.struts.DelegatingActionProxy" parameter="show_pub">
+			<forward name="show_pub" path="/WEB-INF/pubsub/hub_setting.jsp"></forward>
+			<forward name="show_pub_error" path="/WEB-INF/pubsub/hub_setting_error.jsp"></forward>
+			<forward name="publisher_login" path="/WEB-INF/pubsub/publisher_login.jsp"></forward>
+		</action>
+		<action path="/pubsub_logout" type="org.springframework.web.struts.DelegatingActionProxy" parameter="logout">
+			<forward name="main" path="/main.jsp"></forward>
+		</action>
+		<action path="/dashboard" type="org.springframework.web.struts.DelegatingActionProxy" parameter="dashboard">
+			<forward name="dashboard" path="/WEB-INF/pubsub/subscriber_login.jsp"></forward>
+		</action>
+		<action path="/pubsub_account" type="org.springframework.web.struts.DelegatingActionProxy" parameter="account">
+			<forward name="account" path="/WEB-INF/pubsub/account.jsp"></forward>
+		</action>
+		<action path="/update_publisher" type="org.springframework.web.struts.DelegatingActionProxy" parameter="updatePublish">
+			<forward name="edit_hub" path="/WEB-INF/pubsub/hub_setting.jsp"></forward>
+		</action>
 	</action-mappings>
 	<!-- 配置上传文件大小
 	<controller maxFileSize="8M">

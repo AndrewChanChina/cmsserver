@@ -97,7 +97,7 @@ public class CollectVideoTask {
 		
 		//汽车
 		url = "http://www.youku.com/index/rss_category_videos/cateid/104";
-		getYoukuVideo(url,19);
+		getYoukuVideo(url,119);
 		
 		//旅游
 		url = "http://www.youku.com/index/rss_category_videos/cateid/88";

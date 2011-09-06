@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+	<class name="com.smit.vo.Publisher" table="publisher">
+		<id name="id">
+			<generator class="native"></generator>
+		</id>
+		<property name="username"></property>
+		<property name="feed_url"></property>
+		<property name="domain"></property>
+		<property name="service_name"></property>
+		<property name="service_url"></property>
+		<property name="service_logo"></property>
+		<property name="bg_color"></property>
+		<property name="font_color"></property>
+		<property name="create_time"></property>
+		
+	</class>
+</hibernate-mapping>
+

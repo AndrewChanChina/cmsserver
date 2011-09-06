@@ -72,6 +72,8 @@
 	<mapping resource="com/smit/vo/Subscriber.hbm.xml"/>
 	<mapping resource="com/smit/vo/RssRecord.hbm.xml"/>
 	<mapping resource="com/smit/vo/AtomRecord.hbm.xml"/>
+	<mapping resource="com/smit/vo/PubSubUser.hbm.xml"/>
+	<mapping resource="com/smit/vo/Publisher.hbm.xml"/>
 </session-factory>
 
 </hibernate-configuration>

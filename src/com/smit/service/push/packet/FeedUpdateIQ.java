@@ -24,6 +24,7 @@ public class FeedUpdateIQ extends IQ{
 		return feed;
 	}
 	public void setFeed(String feed) {
+		
 		this.feed = feed;
 	}
 

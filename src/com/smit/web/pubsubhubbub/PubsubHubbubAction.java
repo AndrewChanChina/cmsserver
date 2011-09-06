@@ -84,6 +84,9 @@ public class PubsubHubbubAction extends MappingDispatchAction{
 			    saxReader.getDocumentFactory().setXPathNamespaceURIs(nameSpaceMap); 
 				String url = getFeedUrl(doc);
 				System.out.println(url);
+				if("".equals(url)||null== url){
+					url = huburl;
+				}
 				parseXML(doc, url);
 				System.out.println("ok,execute success!");
 			}catch (Exception e){
@@ -110,14 +113,19 @@ public class PubsubHubbubAction extends MappingDispatchAction{
 
 	private String getFeedUrl(Document doc) {
 		String expression;
-		expression = "//link[@rel='self']";
-		List linklist = doc.selectNodes(expression);
-		if(linklist.size()==0){
-			expression = "//atom:link[@rel='self']";
-			linklist = doc.selectNodes(expression);
+		String url = "";
+		try{
+			expression = "//link[@rel='self']";
+			List linklist = doc.selectNodes(expression);
+			if(linklist.size()==0){
+				expression = "//atom:link[@rel='self']";
+				linklist = doc.selectNodes(expression);
+			}
+			Element  linkele = (Element) linklist.get(0);
+			url = linkele.attributeValue("href");
+		}catch (Exception e){
+			
 		}
-		Element  linkele = (Element) linklist.get(0);
-		String url = linkele.attributeValue("href");
 		return url;
 	}
 
@@ -259,6 +267,7 @@ public class PubsubHubbubAction extends MappingDispatchAction{
 					//save subscriber
 					System.out.println("hello came here !");
 					addSub(hubtopic, hubcallback);
+					response.getWriter().println("200");
 				}
 			}
 		}else if("async".equals(hubverify)){

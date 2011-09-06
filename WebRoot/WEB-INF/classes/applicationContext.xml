@@ -460,6 +460,37 @@
 	<bean name="/subcallback" class="com.smit.test.sub.TestSubCallBackAction" scope="prototype"></bean>
 	<bean name="/live" class="com.smit.web.webService.LiveAction"></bean>
 	<bean name="/channel" class="com.smit.web.webService.LiveAction"></bean>
+	<!-- pubsub site -->
+	<bean id="pubsubDao" class="com.smit.dao.PubSubDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="pubsubService" class="com.smit.service.PubSubServiceImpl">
+		<property name="dao" ref="pubsubDao"></property>
+	</bean>
+	<bean name="/publisher" class="com.smit.web.pubsubhubbub.PubSubProcessAction" scope="prototype"></bean>
+	<bean name="/subscriber" class="com.smit.web.pubsubhubbub.PubSubProcessAction" scope="prototype"></bean>
+	<bean name="/doc" class="com.smit.web.pubsubhubbub.PubSubProcessAction" scope="prototype"></bean>
+	<bean name="/about" class="com.smit.web.pubsubhubbub.PubSubProcessAction" scope="prototype"></bean>
+	
+	<bean name="/pubsub_login" class="com.smit.web.pubsubhubbub.PubSubProcessAction" scope="prototype">
+		<property name="service" ref="pubsubService"></property>
+	</bean>
+	<bean name="/pubsub_regist" class="com.smit.web.pubsubhubbub.PubSubProcessAction" scope="prototype">
+		<property name="service" ref="pubsubService"></property>
+	</bean>
+	<bean name="/pubsub_active" class="com.smit.web.pubsubhubbub.PubSubProcessAction" scope="prototype">
+		<property name="service" ref="pubsubService"></property>
+	</bean>
+	<bean name="/show_sub" class="com.smit.web.pubsubhubbub.PubSubProcessAction" scope="prototype"></bean>
+	<bean name="/show_pub" class="com.smit.web.pubsubhubbub.PubSubProcessAction" scope="prototype">
+		<property name="service" ref="pubsubService"></property>
+	</bean>
+	<bean name="/pubsub_logout" class="com.smit.web.pubsubhubbub.PubSubProcessAction" scope="prototype"></bean>
+	<bean name="/dashboard" class="com.smit.web.pubsubhubbub.PubSubProcessAction" scope="prototype"></bean>
+	<bean name="/pubsub_account" class="com.smit.web.pubsubhubbub.PubSubProcessAction" scope="prototype"></bean>
+	<bean name="/update_publisher" class="com.smit.web.pubsubhubbub.PubSubProcessAction" scope="prototype">
+		<property name="service" ref="pubsubService"></property>
+	</bean>
 	<!-- 事物代理类 -->
    <bean id="transactionManager"  
         class="org.springframework.orm.hibernate3.HibernateTransactionManager">  

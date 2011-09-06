@@ -92,7 +92,21 @@
 		queryDevice.do,
 		pageDevice.do,
 		latestNews.do,
-		latestVideos.do
+		latestVideos.do,
+		publisher.do,
+		subscriber.do,
+		doc.do,
+		about.do,
+		pubsub_login.do,
+		pubsub_regist.do,
+		pubsub_active.do,
+		subscribe.do,
+		show_sub.do,
+		show_pub.do,
+		pubsub_logout.do,
+		dashboard.do,
+		update_publisher.do,
+		pubsub_account.do
 		</param-value>		
 	</init-param>  	
   </filter>
@@ -102,7 +116,23 @@
   	<url-pattern>*.do</url-pattern>
   </filter-mapping>
 
-  
+  <filter>
+  		<filter-name>sessionFilter</filter-name>
+  		<filter-class>com.smit.web.SessionFilter</filter-class>
+  		<init-param>
+  			<param-name>allow_url</param-name>
+  			<param-value>
+  			subscribe.do,
+			show_sub.do,
+			show_pub.do,
+			dashboard.do
+		</param-value>
+  		</init-param>
+  </filter>
+  <filter-mapping>
+  		<filter-name>sessionFilter</filter-name>
+  		<url-pattern>*.do</url-pattern>
+  </filter-mapping>
   <error-page> 
   	<error-code>404</error-code> 
   	<location>/errorpage/404.jsp</location> 
