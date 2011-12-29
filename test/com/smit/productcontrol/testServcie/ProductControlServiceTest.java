@@ -19,6 +19,7 @@ import com.smit.util.Constants;
 import com.smit.vo.CertifiedProduct;
 import com.smit.vo.Device;
 import com.smit.vo.Order;
+import com.smit.vo.OrderAndOption;
 import com.smit.vo.PushContent;
 import com.smit.vo.TestOption;
 import com.smit.vo.UserAccountResource;
@@ -218,5 +219,30 @@ public class ProductControlServiceTest extends TestCase{
 		for(Object[] o: objs){
 			System.out.println(o[0]);
 		}
+	}
+	
+	public void testGetDevice(){
+		BeanFactory beanFactory = new ClassPathXmlApplicationContext("applicationContext.xml");
+		ProductControlService ps = (ProductControlService) beanFactory.getBean("productControlService");
+		
+		List<Device> list = ps.getDevice("110913154028917834561a2b3c4d2345");
+		//Device device = list.get(0);
+		//System.out.println(device.getCheck_id());
+	}
+	
+	public void testQuery(){
+		BeanFactory beanFactory = new ClassPathXmlApplicationContext("applicationContext.xml");
+		ProductControlService ps = (ProductControlService) beanFactory.getBean("productControlService");
+		
+		List<OrderAndOption> list = ps.getOptionsByCode("NV98520111018141359");
+		System.out.println(list.size());
+	}
+	public void testQueryDevice(){
+		BeanFactory beanFactory = new ClassPathXmlApplicationContext("applicationContext.xml");
+		ProductControlService ps = (ProductControlService) beanFactory.getBean("productControlService");
+		
+		List<Device> list = ps.queryDevice("0000000");
+		System.out.println(list.size());
+		System.out.println(list.get(0).getAuth_code());
 	}
 }

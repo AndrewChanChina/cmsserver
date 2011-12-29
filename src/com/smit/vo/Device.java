@@ -31,7 +31,10 @@ public class Device implements Serializable{
 	private String sn;
 	private String mac;
 	//增加字段表示授权成功或失败
-	private int auth_status; //0：失败；1：成功
+	private int auth_status; //0：成功；1：失败
+	
+	//增加字段标示唯一性
+	private String emmcID;
 	public int getId() {
 		return id;
 	}
@@ -138,6 +141,12 @@ public class Device implements Serializable{
 	}
 	public void setAuth_status(int auth_status) {
 		this.auth_status = auth_status;
+	}
+	public String getEmmcID() {
+		return emmcID;
+	}
+	public void setEmmcID(String emmcID) {
+		this.emmcID = emmcID;
 	}
 	
 	

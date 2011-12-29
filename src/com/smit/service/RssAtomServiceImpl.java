@@ -9,22 +9,18 @@ import com.smit.vo.RssRecord;
 public class RssAtomServiceImpl implements RssAtomService {
 
 	private RssAtomDao rmDao;
-	@Override
 	public void addRssRecord(RssRecord record) {
 		rmDao.addRssRecord(record);
 	}
 
-	@Override
 	public void addAtomRecord(AtomRecord record) {
 		rmDao.addAtomRecord(record);
 	}
 
-	@Override
 	public List<RssRecord> findRsssByFeed(String feed_url) {
 		return rmDao.findRssByFeed(feed_url);
 	}
 
-	@Override
 	public List<AtomRecord> findAtomByFeed(String feed_url) {
 		return rmDao.findAtomByFeed(feed_url);
 	}

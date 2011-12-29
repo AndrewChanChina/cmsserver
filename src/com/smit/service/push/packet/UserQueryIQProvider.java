@@ -7,7 +7,6 @@ import org.xmlpull.v1.XmlPullParser;
 
 public class UserQueryIQProvider implements IQProvider {
 
-	@Override
 	public IQ parseIQ(XmlPullParser parser) throws Exception {
 		UserQueryIQ userQueryIQ = new UserQueryIQ();
 		

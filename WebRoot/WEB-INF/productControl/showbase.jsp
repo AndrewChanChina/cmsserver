@@ -12,7 +12,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <head>
   
     <title>My JSP 'base.jsp' starting page</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 	
 	<link href="./css/admin.css" rel="stylesheet" type="text/css"/>
 <link href="./css/theme.css" rel="stylesheet" type="text/css"/>

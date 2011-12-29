@@ -28,18 +28,15 @@ public class PushServiceImpl implements PushService{
 		return pushDao.queryContent(start,num,username);
 	}
 
-	@Override
 	public List<PushContent> getContent(String username) {
 		
 		return pushDao.queryContent(username);
 	}
 
-	@Override
 	public void deleteContent(PushContent content) {
 		pushDao.deleteContent(content);
 	}
 
-	@Override
 	public PushContent getById(int id) {
 		PushContent pc = pushDao.getById(id);
 		return pc;

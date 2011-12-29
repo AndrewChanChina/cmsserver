@@ -19,17 +19,19 @@
 <title>请求授权</title>
 </head>
 <body>
+<div>
 <div class="rhead">
 		<div class="rpos">当前位置: 授权 - 请求授权</div>
 		<div class="clear"></div>
 </div>
+<div>
 <form action="reqAuth.do" method="post">
-<table>
-<tr><td>version:</td><td><input type="text"/></td></tr>
-<tr><td>machineID:</td><td><input type="text" name="machineID"/></td></tr>
-<tr><td>checkID:</td><td><input type="text" name="checkID"/></td></tr>
+<div style="margin: 0px auto;text-align: center;margin-top: 40px;">
+<table style="margin: 0px auto;">
+<tr><td><span style="font-size: 20px">machineID:</span></td><td><input type="text" name="machineID" style="width: 230px"/></td></tr>
+<tr><td><span style="font-size: 20px">checkID:</span></td><td><input type="text" name="checkID" style="width: 230px"/></td></tr>
 <tr><td><input type="submit" value="提交"/></td><td><input type="reset" value="取消"/></td></tr>
-</table>
-</form>
+</table></div>
+</form></div></div>
 </body>
 </html>

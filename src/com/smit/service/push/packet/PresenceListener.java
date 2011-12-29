@@ -27,7 +27,6 @@ private IPushManageService pushManageService = null;
 				
 	}
 	
-	@Override
 	public void processPacket(Packet packet) {
 		 
 		Presence presence = (Presence)packet;

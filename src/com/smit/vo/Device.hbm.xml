@@ -17,6 +17,7 @@
 		<property name="machineID" column="machine_id"></property>
 		<property name="active_status"></property>
 		<property name="auth_status"></property>
+		<property name="emmcID"></property>
 		<set name="products" cascade="save-update,delete" lazy="true">
 			<key column="did"></key>
 			<one-to-many class="com.smit.vo.CertifiedProduct"/>
@@ -29,7 +30,7 @@
 			<key column="device_id"></key>
 			<one-to-many class="com.smit.vo.BaseLog"/>
 		</set>
-		<many-to-one name="order" column="oid" class="com.smit.vo.Order"></many-to-one>
+		<many-to-one name="order" column="oid" class="com.smit.vo.Order" lazy="false"></many-to-one>
 	</class>
 </hibernate-mapping>
 

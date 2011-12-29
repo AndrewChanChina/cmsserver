@@ -5,6 +5,7 @@ import java.util.List;
 import com.smit.util.SmitPage;
 import com.smit.vo.CertifiedProduct;
 import com.smit.vo.Device;
+import com.smit.vo.Menu;
 import com.smit.vo.Order;
 import com.smit.vo.OrderAndOption;
 import com.smit.vo.TestOption;
@@ -25,7 +26,7 @@ public interface ProductControlService {
 	public boolean deleteDevice(Device device);
 	public Device findById(int id);
 	public List<Device> getDevice(String checkID);
-	
+	public List<Device> queryDevice(String emmc);
 	//order
 	public boolean insertOrder(Order order);
 	public boolean updateOrder(Order order);
@@ -50,4 +51,7 @@ public interface ProductControlService {
 	public List<Device> getFailCode(String order_code,int auth_status);
 	public List<Device> queryDevice(String orderCode,String productCode,String manuCode);
 	public List<Device> queryPageDevice(String orderCode,String productCode,String manuCode,int begin,int num);
+	
+	//add query menu
+	public List<Menu> findByType(int type);
 }

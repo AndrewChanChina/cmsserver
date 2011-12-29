@@ -1,4 +1,4 @@
-<%@ page language="java" pageEncoding="UTF-8"%>
+<%@ page language="java" pageEncoding="utf-8"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
 
 <%@ taglib uri= "/WEB-INF/struts-html.tld" prefix="tiles" %>
@@ -18,7 +18,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <html:html lang="true">
   <head>
     <base href="<%=basePath%>">
-  	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 	
 	<link href="./css/admin.css" rel="stylesheet" type="text/css"/>
 	<link href="./css/theme.css" rel="stylesheet" type="text/css"/>

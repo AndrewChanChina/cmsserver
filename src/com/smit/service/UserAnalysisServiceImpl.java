@@ -18,12 +18,10 @@ public class UserAnalysisServiceImpl implements UserAnalysisService{
 		this.usDao = usDao;
 	}
 
-	@Override
 	public void insert(UserAnalysis us) {
 		usDao.insert(us);
 	}
 
-	@Override
 	public List<UserAnalysis> getAnalysis() {
 		return usDao.getAnalysis();
 	}

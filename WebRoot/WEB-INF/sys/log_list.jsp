@@ -1,5 +1,5 @@
-<%@page import="org.hibernate.impl.SessionFactoryImpl"%>
-<%@ page language="java"  pageEncoding="UTF-8"%>
+<%@ page import="org.hibernate.impl.SessionFactoryImpl"%>
+<%@ page language="java"  pageEncoding="utf-8"%>
 <%@ page contentType= "text/html;charset=UTF-8" language= "java"%>
 <%@ page import="java.util.*"%>
 <%@ page import="com.smit.dao.*"%>

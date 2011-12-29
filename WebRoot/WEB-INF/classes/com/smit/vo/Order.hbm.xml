@@ -16,7 +16,9 @@
 		<property name="mac"></property>
 		<property name="mac_num"></property>
 		<property name="machine_id"></property>
-		<property name="inf_code"></property>
+		<property name="active_num"></property>
+		<property name="active_time"></property>
+		<property name="expire_time"></property>
 		
 		<set name="devices" cascade="save-update" lazy="true">
 			<key column="oid"></key>

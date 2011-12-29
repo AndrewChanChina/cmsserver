@@ -12,7 +12,7 @@ public class StringUtils {
 		if(machineID.length()<len){
 			int length = machineID.length();
 			for(int i =0;i<len-length;i++){
-				machineID = machineID+'0';
+				machineID = machineID+"0";
 			}
 		}else if(machineID.length()>=len){
 			machineID = machineID.substring(machineID.length()-len);

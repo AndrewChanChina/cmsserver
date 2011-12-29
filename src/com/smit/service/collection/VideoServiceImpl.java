@@ -13,32 +13,26 @@ public class VideoServiceImpl implements VideoService {
 
 	VideoDao videoDao;
 	
-	@Override
 	public void save(Video video) {
 		videoDao.save(video);
 	}
 
-	@Override
 	public void update(Video video) {
 		videoDao.update(video);
 	}
 
-	@Override
 	public void delete(Video video) {
 		videoDao.delete(video);
 	}
 
-	@Override
 	public List<Video> findByPartId(SmitPage page, Integer partId) {
 		return videoDao.findByPartId(page, partId);
 	}
 
-	@Override
 	public Video getById(Integer id) {
 		return videoDao.getById(id);		
 	}
 
-	@Override
 	public List<Video> listAll(SmitPage page) {
 		return videoDao.listAll(page);
 	}
@@ -51,7 +45,6 @@ public class VideoServiceImpl implements VideoService {
 		this.videoDao = videoDao;
 	}
 
-	@Override
 	public void save(List<Video> listVideo) {
 		for(Video v : listVideo){
 			save(v);
@@ -59,7 +52,6 @@ public class VideoServiceImpl implements VideoService {
 		
 	}
 
-	@Override
 	public List<IToXML> findByPartIdXMl(SmitPage page, Integer partId) {
 		List<Video> list = findByPartId(page,partId);
 		List<IToXML> listXml = new ArrayList<IToXML>();
@@ -80,12 +72,10 @@ public class VideoServiceImpl implements VideoService {
 		return listXml;
 	}
 
-	@Override
 	public List<Video> getVideos() {
 		return videoDao.getVideos();
 	}
 
-	@Override
 	public List<Object[]> getLatestVideos() {
 		return videoDao.getLatestVideos();
 	}

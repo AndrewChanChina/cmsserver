@@ -1,7 +1,7 @@
-﻿<%@page import="org.hibernate.impl.SessionFactoryImpl"%>
-<%@ page language="java"  pageEncoding="UTF-8"%>
-<%@ page contentType= "text/html;charset=UTF-8" language= "java"%>
+﻿<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+
 <%@ page import="java.util.*"%>
+<%@ page import="org.hibernate.impl.SessionFactoryImpl"%>
 <%@ page import="com.smit.dao.*"%>
 <%@ page import="com.smit.vo.*"%>
 <%@ page import="com.smit.vo.Part"%>
@@ -16,7 +16,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<title></title>
 		<link href="./css/admin.css" rel="stylesheet" type="text/css" />
 		<link href="./css/theme.css" rel="stylesheet" type="text/css" />
@@ -273,7 +273,7 @@ function ajax_changeParentID(topParent_value, targetSelectID)
 		<div class="body-box">
 			<div class="rhead">
 				<div class="rpos">
-					当前位置: 栏目管理 - 添加
+					当前位置：栏目管理 - 添加
 				</div>
 				<form class="ropt">
 					<!--<input type="submit" value="返回列表" />-->

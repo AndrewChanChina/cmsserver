@@ -1,6 +1,6 @@
-﻿<%@page import="org.hibernate.impl.SessionFactoryImpl"%>
-<%@ page language="java"  pageEncoding="UTF-8"%>
-<%@ page contentType= "text/html;charset=UTF-8" language= "java"%>
+<%@ page import="org.hibernate.impl.SessionFactoryImpl"%>
+<%@ page language="java"  pageEncoding="utf-8"%>
+<%@ page contentType= "text/html;charset=utf-8" language= "java"%>
 <%@ page import="java.util.*"%>
 <%@ page import="com.smit.dao.*"%>
 <%@ page import="com.smit.vo.*"%>
@@ -17,7 +17,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 <title>jeecms-left</title>
 <link href="./css/admin.css" rel="stylesheet" type="text/css"/>
 <link href="./css/theme.css" rel="stylesheet" type="text/css"/>

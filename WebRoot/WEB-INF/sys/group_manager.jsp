@@ -1,5 +1,5 @@
-<%@ page language="java" pageEncoding="UTF-8"%>
-<%@ page contentType="text/html;charset=UTF-8" language="java"%>
+<%@ page language="java" pageEncoding="utf-8"%>
+<%@ page contentType="text/html;charset=utf-8" language="java"%>
 <%@ page import="com.smit.web.form.GroupForm"%>
 <%@ page import="java.util.*"%>
 <%@ page import="com.smit.vo.Purview"%>
@@ -20,7 +20,7 @@
 <html:html lang="true">
 <head>
 	<base href="<%=basePath%>">
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
 	<meta http-equiv="expires" content="0">

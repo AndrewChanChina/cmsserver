@@ -36,6 +36,7 @@ public class SysInfoDaoImpl extends HibernateDaoSupport implements SysInfoDao{
 		info.setId(null);
 		info.setInfo_key(key);
 		info.setInfo_value(value);
+		System.out.println("insert into database:"+key+";"+value);
 		info.setInfo_state("Y");//enable this sysinfo
 		Serializable ser = this.getHibernateTemplate().save(info);
 		if(ser == null)

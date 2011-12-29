@@ -1,0 +1,198 @@
+#mainbox {
+			width: 100%;
+			height: 100%;
+			display: block;
+		}
+		#left {
+			position: absolute;
+			height: 100%;
+			width:128px;
+			top:0px;
+			left:0;
+			z-index: 100;
+		}
+		#right {
+			position: absolute;
+			left: 128px;
+			right: 0;
+			top: 0;
+			bottom: 0;
+			height: 100%;
+			background: url(../images/im/flower_bg.jpg) no-repeat;
+			background-size: 100% 100%;
+			background-attachment: fixed;
+		}
+		#top {
+			position: absolute;
+			top: 30%;
+			left: 120px;
+		}
+		#menus {
+			margin: 0;
+			padding: 0;
+			width: 100%;
+			height: 100%;
+			display: block;
+			background: url(../images/im/flower_left.png) no-repeat;
+			background-size: 125px 100%;
+			background-attachment: fixed;
+		}
+		#menu {
+			margin: 0;
+			padding: 0;
+			width: 120px;
+			list-style-type: none;
+			font: 14px Arial;
+			display: block;
+		}
+		#menu li {
+			float: left;
+			padding: 0;
+			margin: 0;
+			width: 120px;
+		}
+		li {
+			display: list-item;
+		}
+		#menu li dt {
+			margin: 0;
+			padding: 0px;
+			text-align: center;
+			border-top: 1px solid #434343;
+			height: 40px;
+			line-height: 40px;
+		}
+		#menu li dt.one {
+			background: url(../images/banner.png) repeat-x;
+			margin-top: 2px;
+			border-radius: 3px;
+			border: 1px solid #314764;	
+			
+		}
+		#menu li dl {
+			width: 120px;
+			margin: 0;
+			padding: 0;
+			display: block;
+		}
+		#right iframe {
+			width: 100%;
+			height: 100%;
+		}
+		iframe {
+			border: 2px inset;
+		}
+		#internet_box {
+			padding: 0;
+			margin: 0;
+			list-style-type: none;
+			display: block;
+		}
+		#internet_box li {
+			float: left;
+			width: 127px;
+			height: 85px;
+			padding: 2px;
+			line-height: 40px;
+			background: #00516F;
+			border: 1px solid #314764;
+			list-style: none;
+			margin: 10px 0 0 10px;
+			text-align: center;
+			border-radius: 5px;
+			box-shadow: 5px 5px 8px black;
+			display: list-item; 
+		}
+		#menu li a,#menu li a:visited {
+			display: block;
+			color: white;
+			text-decoration: none;
+			text-align: center;
+		}
+		#business_box li span{
+		    background: black;
+		    color: white;
+		    display: block;
+		    height: 18px;
+		    line-height: 20px;
+		    margin-top: 10px;
+		    overflow: hidden;
+		    white-space: nowrap;
+		    padding: 0 5px;
+		    position: relative;
+		    text-align: center;
+		    border-radius: 8px
+		}
+		#business_box {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
+        #business_box li{
+        	width: 87px;
+        	height: 105px;
+        	float: left;
+        	text-align: center;
+        	margin: 10px 0 5px 10px;
+        }
+        #about1_main {
+        	width: 740px;
+        	margin: 0 auto;
+        	height: 430px;
+        	background: url(../images/im/about1_backgroud.jpg) no-repeat;
+        	background-size: 100% 100%;
+        	background-attachment: fixed;
+        }
+        #about1_bm {
+        	float: left;
+        	width: 240px;
+        	height: 355px;
+        }
+        #about1_nav {
+        	float: right;
+        	height: 30px;
+        }
+        #about1_nav ul {
+        	list-style: none;
+        	margin: 0;
+        	padding: 0;
+        }
+        #about1_nav ul li {
+        	background: url(../images/im/nav1.png) no-repeat;
+        	width: 75px;
+        	height: 30px;
+        	line-height: 30px;
+        	float: left;
+        	font-size: 14px;
+        	text-align: center;
+        }
+        #about1_nav ul li a {
+        	color: #448CCB;
+        	text-decoration: none;
+        }
+        #about1_kj {
+        	float: right;
+        	width: 182px;
+        	height: 330px;
+        	margin: 5px 0 0 0;
+        }
+        #tu_left {
+        	width: auto;
+        	height: auto;
+        	border-left: 1px solid E2E2E2;
+        }
+        #tu_left li{
+        	float: left;
+        	width: 160px;
+        	height: 90px;
+        	list-style: none;
+        	margin: 5px 0 0px 10px;
+        	text-align: center;
+        }
+        #about1_jj {
+        	float: right;
+        	width: 270px;
+        	height: 320px;
+        	margin: 5px 0 0 0;
+        	padding: 5px 10px;
+        }

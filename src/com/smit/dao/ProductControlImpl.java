@@ -15,6 +15,7 @@ import com.smit.util.DaoException;
 import com.smit.util.SmitPage;
 import com.smit.vo.CertifiedProduct;
 import com.smit.vo.Device;
+import com.smit.vo.Menu;
 import com.smit.vo.Order;
 import com.smit.vo.OrderAndOption;
 import com.smit.vo.TestOption;
@@ -29,25 +30,21 @@ public class ProductControlImpl extends HibernateDaoSupport implements ProductCo
 	}
 
 	//method of testOption =====================================
-	@Override
 	public boolean insertOption(TestOption option) {
 		this.getHibernateTemplate().save(option);
 		return true;
 	}
 
-	@Override
 	public boolean updateOption(TestOption option) {
 		this.getHibernateTemplate().saveOrUpdate(option);
 		return true;
 	}
 
-	@Override
 	public boolean deleteOption(TestOption option) {
 		this.getHibernateTemplate().delete(option);
 		return true;
 	}
 
-	@Override
 	public TestOption loadOption(int id) {
 		TestOption testOption = null;
 		try{
@@ -60,7 +57,6 @@ public class ProductControlImpl extends HibernateDaoSupport implements ProductCo
 	}
 
 	
-	@Override
 	public List<TestOption> getOptionsList() {
 		String hql = "from TestOption to";
 		List<TestOption> list = this.getHibernateTemplate().find(hql);
@@ -68,7 +64,6 @@ public class ProductControlImpl extends HibernateDaoSupport implements ProductCo
 	}
 
 	
-	@Override
 	public TestOption getOption(String name) {
 		String hql = "from TestOption t where t.name='"+name+"'";
 		List<TestOption> list = this.getHibernateTemplate().find(hql);
@@ -79,25 +74,22 @@ public class ProductControlImpl extends HibernateDaoSupport implements ProductCo
 	}
 
 	//method of device =================================
-	@Override
 	public boolean addDevice(Device device) {
 		this.getHibernateTemplate().save(device);
 		return true;
 	}
 
-	@Override
 	public boolean updateDevice(Device device) {
 		this.getHibernateTemplate().saveOrUpdate(device);
+		//String hql = "update Device d set";
 		return true;
 	}
 
-	@Override
 	public boolean deleteDevice(Device device) {
 		this.getHibernateTemplate().delete(device);
 		return true;
 	}
 
-	@Override
 	public Device findById(int id) {
 		Device device = null;
 		try{
@@ -109,20 +101,17 @@ public class ProductControlImpl extends HibernateDaoSupport implements ProductCo
 	}
 
 	//method of order =========================================
-	@Override
 	public boolean insertOrder(Order order) {
 		this.getHibernateTemplate().merge(order);
 		//this.getHibernateTemplate().save(order);
 		return true;
 	}
 
-	@Override
 	public boolean updateOrder(Order order) {
 		this.getHibernateTemplate().saveOrUpdate(order);
 		return true;
 	}
 
-	@Override
 	public Order loadOrder(int id) {
 		//String hql = "from Order where Order.id="+id;
 		Order order = null;
@@ -135,14 +124,12 @@ public class ProductControlImpl extends HibernateDaoSupport implements ProductCo
 		return order;
 	}
 
-	@Override
 	public List<Order> loadOrder(String order_code) {
 		String hql = "from Order o where o.order_code='"+order_code+"'";
 		List<Order> list = this.getHibernateTemplate().find(hql);
 		return list;
 	}
 
-	@Override
 	public List<Order> loadOrder(String order_code,String production_code) {
 		StringBuffer sb = new StringBuffer();
 		sb.append("from Order o ");
@@ -162,38 +149,32 @@ public class ProductControlImpl extends HibernateDaoSupport implements ProductCo
 	}
 
 	
-	@Override
 	public List<Order> loadOrder() {
 		String hql = "from Order";
 		return this.getHibernateTemplate().find(hql);
 	}
 
-	@Override
 	public List<Device> getDevice(String checkID) {
 		String hql = "from Device d where d.check_id='"+checkID+"'";
 		return this.getHibernateTemplate().find(hql);
 	}
 
 	//method of product =============================================
-	@Override
 	public boolean insertProduct(CertifiedProduct product) {
 		this.getHibernateTemplate().save(product);
 		return true;
 	}
 
-	@Override
 	public boolean updateProduct(CertifiedProduct product) {
 		this.getHibernateTemplate().saveOrUpdate(product);
 		return true;
 	}
 
-	@Override
 	public boolean deleteProduct(CertifiedProduct product) {
 		this.getHibernateTemplate().delete(product);
 		return true;
 	}
 
-	@Override
 	public List<CertifiedProduct> getProductList(Device device) {
 		
 		String hql = "from CertifiedProduct cp";
@@ -205,38 +186,32 @@ public class ProductControlImpl extends HibernateDaoSupport implements ProductCo
 	}
 
 	//中间表
-	@Override
 	public List<OrderAndOption> getOptionByCode(String order_code) {
 		String hql = "from OrderAndOption oo where oo.order_code='"+order_code+"'";
 		List<OrderAndOption> list = this.getHibernateTemplate().find(hql);
 		return list;
 	}
 
-	@Override
 	public boolean insertOrderOption(OrderAndOption oo) {
 		this.getHibernateTemplate().save(oo);
 		return true;
 	}
 
-	@Override
 	public List<Device> findByMchIdCode(String machineCode, String order_code) {
 		String hql = "from Device d where d.order_code='"+order_code+"'"+" and d.machineID='"+machineCode+"'";
 		return this.getHibernateTemplate().find(hql);
 	}
 
-	@Override
 	public List<Object[]> findMaxSn(String order_code) {
 		String hql = "select order_code,max(sn),max(mac) from Device d where d.order_code='"+order_code+"' group by order_code";
 		return this.getHibernateTemplate().find(hql);
 	}
 
-	@Override
 	public List<Device> findFailCode(String order_code, int auth_status) {
 		String hql = "from Device d where d.order_code='"+order_code+"' and d.auth_status="+auth_status;
 		return this.getHibernateTemplate().find(hql);
 	}
 
-	@Override
 	public List<Device> findDevice(String orderCode, String productCode,
 			String manuCode) {
 		Session session = this.getHibernateTemplate().getSessionFactory().openSession();
@@ -252,7 +227,6 @@ public class ProductControlImpl extends HibernateDaoSupport implements ProductCo
 		return list;
 	}
 
-	@Override
 	public List<Device> findPageDevice(String orderCode, String productCode,
 			String manuCode, int begin, int num) {
 		Session session = this.getHibernateTemplate().getSessionFactory().openSession();
@@ -268,6 +242,23 @@ public class ProductControlImpl extends HibernateDaoSupport implements ProductCo
 		criteria.setMaxResults(num);
 		List<Device> list = criteria.list();
 		return list;
+	}
+
+	public void updateDeviceAuth(Device device) {
+		String hql = "update Device d set d.auth_code="+device.getAuth_code()
+		+",d.auth_status="+device.getAuth_status()
+		+",d.create_time="+device.getCreate_time()+" where d.id="+device.getId();
+		//this.getHibernateTemplate().e
+	}
+
+	public List<Device> queryDevice(String emmcID) {
+		String hql = "from Device d where (d.emmcID='"+emmcID+"' or d.machineID like '"+emmcID+"%') and d.auth_status=0";
+		return this.getHibernateTemplate().find(hql);
+	}
+
+	public List<Menu> findByType(int type) {
+		String hql = "from Menu m where m.menu_type="+type;
+		return this.getHibernateTemplate().find(hql);
 	}
 
 		

@@ -15,7 +15,6 @@ import com.smit.vo.User;
 
 public class PurviewDaoImpl extends HibernateDaoSupport implements IPurviewDao {
 
-	@Override
 	public Purview findByName(String name) {
 		String hql = "from com.smit.vo.Purview s where s.purviewName='" + name + "'";		
 		List list = this.getHibernateTemplate().find(hql);
@@ -26,27 +25,22 @@ public class PurviewDaoImpl extends HibernateDaoSupport implements IPurviewDao {
 		return (Purview)list.get(0);
 	}
 
-	@Override
 	public void save(Purview purview) {
 		this.getHibernateTemplate().save(purview);
 	}
 
-	@Override
 	public void update(Purview purview) {
 		this.getHibernateTemplate().update(purview);
 	}
 
-	@Override
 	public void delete(Purview purview) {
 		this.getHibernateTemplate().delete(purview);
 	}
 
-	@Override
 	public Purview getPurview(Integer id) {
 		return this.getHibernateTemplate().get(Purview.class, id);
 	}
 
-	@Override
 	public List listAll(final SmitPage page) {
 		if(page == null)
 			return listAll();

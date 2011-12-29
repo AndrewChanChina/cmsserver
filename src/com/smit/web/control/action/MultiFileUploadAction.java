@@ -85,7 +85,7 @@ public class MultiFileUploadAction extends MappingDispatchAction{
 				request.setAttribute("deviceID", deviceID);
 			}
 		}catch (Exception e){
-			
+			e.printStackTrace();
 		}
 		return mapping.findForward("queryDetail");
 	}
@@ -105,7 +105,7 @@ public class MultiFileUploadAction extends MappingDispatchAction{
 			}
 		}
 		request.setAttribute("logs", logs);
-		request.setAttribute("deviceID", device.getId());
+		request.setAttribute("deviceID", device!=null?device.getId():"");
 		request.setAttribute("page", page);
 	}
 
@@ -246,6 +246,7 @@ public class MultiFileUploadAction extends MappingDispatchAction{
 	public ActionForward detailLog(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
+		System.out.println("===== Begin to upload detail log!=======");
 		DetailLogForm df = (DetailLogForm) form;
 		String checkID = request.getParameter("checkID");
 		try{
@@ -273,6 +274,7 @@ public class MultiFileUploadAction extends MappingDispatchAction{
 			}
 			parseXML(xml,checkID);
 			createRespXML(response,"200");
+			System.out.println("======== Upload detail log success! =======");
 		}catch (Exception e){
 			e.printStackTrace();
 			createRespXML(response,"103");
@@ -282,10 +284,12 @@ public class MultiFileUploadAction extends MappingDispatchAction{
 
 	private void parseXML(String xml,String checkID) throws DocumentException {
 		System.out.println(xml.toString());
+		System.out.println("========Begin to parse xml upload!========");
 		Document doc = DocumentHelper.parseText(xml.trim());
 		Element root = doc.getRootElement();
+		DetailLog log = null;
 		for(Iterator i =root.elementIterator();i.hasNext();){
-			DetailLog log = new DetailLog();
+			log = new DetailLog();
 			Element dv = (Element) i.next();
 			String name = dv.elementText("name");
 			TestOption option = service.getOption(name);
@@ -301,6 +305,7 @@ public class MultiFileUploadAction extends MappingDispatchAction{
 			log.setCreate_time(format.format(new Date()));
 			logService.insertDetailLog(log);
 		}
+		System.out.println("===== Success insert detail log!");
 	}
 
 	private void createRespXML(HttpServletResponse response,String result) throws IOException {
@@ -311,6 +316,7 @@ public class MultiFileUploadAction extends MappingDispatchAction{
 		sb.append("<global>");
 		sb.append("<statusCode>"+result+"</statusCode>");
 		sb.append("</global>");
+		System.out.println(sb.toString());
 		pw.println(sb.toString());
 	}
 	

@@ -15,7 +15,6 @@ import com.smit.vo.Group;
 
 public class GroupDaoImpl extends HibernateDaoSupport implements IGroupDao {
 
-	@Override
 	public Group findGroupByName(String groupName) {
 		String hql = "from com.smit.vo.Group s where s.groupName='" + groupName + "'";		
 		List list = this.getHibernateTemplate().find(hql);
@@ -32,30 +31,25 @@ public class GroupDaoImpl extends HibernateDaoSupport implements IGroupDao {
 		return list;
 	}
 
-	@Override
 	public void save(Group group) {
 		this.getHibernateTemplate().save(group);
 		
 	}
 
-	@Override
 	public void update(Group group) {
 		this.getHibernateTemplate().update(group);
 		
 	}
 
-	@Override
 	public void delete(Group group) {
 		this.getHibernateTemplate().delete(group);
 		
 	}
 
-	@Override
 	public Group getGroup(Integer id) {
 		return this.getHibernateTemplate().get(Group.class, id);
 	}
 
-	@Override
 	public List listAllGroups(final SmitPage page) {
 		
 		if(page == null)

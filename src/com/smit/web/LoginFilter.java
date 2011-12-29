@@ -26,15 +26,13 @@ public class LoginFilter implements Filter {
 
 	private ArrayList<String> urlList;
 	
-	@Override
 	public void destroy() {
 
 	}
 
-	@Override
 	public void doFilter(ServletRequest arg0, ServletResponse arg1,
 			FilterChain arg2) throws IOException, ServletException {
-
+		System.out.println("reecived msg !");
 		HttpServletRequest request = (HttpServletRequest) arg0;
 		HttpServletResponse response = (HttpServletResponse) arg1;
 		
@@ -65,7 +63,6 @@ public class LoginFilter implements Filter {
 
 	}
 
-	@Override
 	public void init(FilterConfig arg0) throws ServletException {
 		String urls = arg0.getInitParameter("avoid-urls");
         StringTokenizer token = new StringTokenizer(urls, ",");

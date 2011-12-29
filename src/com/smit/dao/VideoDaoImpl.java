@@ -17,23 +17,19 @@ import com.smit.vo.Video;
 
 public class VideoDaoImpl extends HibernateDaoSupport implements VideoDao {
 
-	@Override
 	public void save(Video video) {
 		video.setCreatetime( new java.sql.Timestamp(new java.util.Date().getTime()) );
 		this.getHibernateTemplate().save(video);		
 	}
 
-	@Override
 	public void update(Video video) {
 		this.getHibernateTemplate().update(video);		
 	}
 
-	@Override
 	public void delete(Video video) {
 		this.getHibernateTemplate().delete(video);		
 	}	
 
-	@Override
 	public List<Video> listAll(final SmitPage page) {
 		if( page == null)
 			return listAll();
@@ -57,7 +53,6 @@ public class VideoDaoImpl extends HibernateDaoSupport implements VideoDao {
 		return list;
 	}
 
-	@Override
 	public List<Video> findByPartId(final SmitPage page, final Integer partId) {
 		if( page == null)
 			return listAll();
@@ -81,7 +76,6 @@ public class VideoDaoImpl extends HibernateDaoSupport implements VideoDao {
 		return list;
 	}
 
-	@Override
 	public Video getById(Integer id) {
 		return this.getHibernateTemplate().get(Video.class,	id);
 	}
@@ -90,12 +84,10 @@ public class VideoDaoImpl extends HibernateDaoSupport implements VideoDao {
 		return this.getHibernateTemplate().find("SELECT g FROM com.smit.vo.Video g");
 	}
 
-	@Override
 	public List<Video> getVideos() {
 		return this.getHibernateTemplate().find("from Video v");
 	}
 
-	@Override
 	public List<Object[]> getLatestVideos() {
 		String hql = " select v.title,v.img,v.link,v.description,v.flag1 from video v inner join (select v1.part_id,max(v1.id)id from video v1 group by part_id)t on v.id=t.id order by createtime desc";
 		Session session = this.getHibernateTemplate().getSessionFactory().openSession();

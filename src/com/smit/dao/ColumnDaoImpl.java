@@ -282,7 +282,6 @@ public class ColumnDaoImpl extends HibernateDaoSupport implements ColumnDao
 	}
 
 
-	@Override
 	public Part findByName(String name) {
 		String hql = "from com.smit.vo.Part s where s.typename='" + name + "'";		
 		List list = this.getHibernateTemplate().find(hql);
@@ -293,7 +292,6 @@ public class ColumnDaoImpl extends HibernateDaoSupport implements ColumnDao
 		return (Part)list.get(0);
 	}
 	
-	@Override
 	public List<Part> queryNextChildren(Integer partId){
 		String hql = "from com.smit.vo.Part s where s.partId = '" + partId + "'";
 		List<Part> list = this.getHibernateTemplate().find(hql);
@@ -308,7 +306,6 @@ public class ColumnDaoImpl extends HibernateDaoSupport implements ColumnDao
 
 
 
-	@Override
 	public void savePart(Part part) {
 		this.getHibernateTemplate().save(part);
 	}

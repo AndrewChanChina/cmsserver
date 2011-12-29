@@ -1,6 +1,5 @@
-﻿<%@page import="org.hibernate.impl.SessionFactoryImpl"%>
-
-<%@ page contentType= "text/html;charset=UTF-8" language= "java"%>
+﻿<%@ page language="java" pageEncoding="utf-8"%>
+<%@ page import="org.hibernate.impl.SessionFactoryImpl"%>
 <%@ page import="java.util.*"%>
 <%@ page import="com.smit.dao.*"%>
 <%@ page import="com.smit.vo.*"%>
@@ -15,9 +14,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 %>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-
+<html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 <title>jeecms-left</title>
 <link href="./css/admin.css" rel="stylesheet" type="text/css"/>
 <link href="./css/theme.css" rel="stylesheet" type="text/css"/>
@@ -46,8 +45,6 @@ $(function(){
 </script>
 </head>
 <body class="lbody">
-
-
 <div class="lttop">
 	<a href="javascript:location.href=location.href">刷新</a>&nbsp;
 	<!-- <a href="#" target="rightFrame">模型管理</a> -->

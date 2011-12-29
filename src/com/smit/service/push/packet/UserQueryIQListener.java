@@ -34,7 +34,6 @@ public class UserQueryIQListener implements PacketListener {
 		return pushManageService;
 				
 	}
-	@Override	
 	public void processPacket(Packet packet) {
 		System.out.print("packet.toXML()=" + packet.toXML());
 		

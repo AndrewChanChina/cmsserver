@@ -7,6 +7,7 @@ import java.io.InputStreamReader;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.http.client.methods.HttpPost;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
@@ -43,7 +44,8 @@ public class TestSubCallBackAction extends MappingDispatchAction {
 			System.out.println("recived verify is"+verify);
 			response.getWriter().println(verify);
 		}
-		
+		//HttpPost post = new HttpPost("");
+		//post.get
 		return null;
 		
 	}

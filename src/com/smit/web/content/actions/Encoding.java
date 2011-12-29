@@ -11,13 +11,11 @@ import javax.servlet.ServletResponse;
 
 public class Encoding implements Filter{
 
-	@Override
 	public void destroy() {
 		// TODO Auto-generated method stub
 		
 	}
 
-	@Override
 	public void doFilter(ServletRequest arg0, ServletResponse arg1,
 			FilterChain arg2) throws IOException, ServletException {
 		arg0.setCharacterEncoding("utf-8");
@@ -26,7 +24,6 @@ public class Encoding implements Filter{
 
 	}
 
-	@Override
 	public void init(FilterConfig arg0) throws ServletException {
 		// TODO Auto-generated method stub
 		

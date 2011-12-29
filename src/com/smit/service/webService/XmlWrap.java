@@ -12,7 +12,6 @@ public class XmlWrap implements IToXML{
 	public void setItems(List<IToXML> items) {
 		this.items = items;
 	}
-	@Override
 	public String toXml() throws Exception{
 		StringBuilder sb = new StringBuilder();
 		sb.append("<xml>");

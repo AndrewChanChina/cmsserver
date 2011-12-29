@@ -9,17 +9,14 @@ public class SubscriberServiceImpl implements SubscriberService {
 
 	private SubscriberDao subDao;
 	
-	@Override
 	public void addSubscriber(Subscriber sub) {
 		subDao.addSubscriber(sub);
 	}
 
-	@Override
 	public List<Subscriber> findByCallUrl(String url) {
 		return subDao.findByCallUrl(url);
 	}
 
-	@Override
 	public void delSubscriber(Subscriber sub) {
 		subDao.deleteSubscriber(sub);
 	}
@@ -32,7 +29,6 @@ public class SubscriberServiceImpl implements SubscriberService {
 		this.subDao = subDao;
 	}
 
-	@Override
 	public List<Subscriber> findByTopicCall(String feed, String callback) {
 		return subDao.findByTopicCallback(feed, callback);
 	}

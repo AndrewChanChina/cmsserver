@@ -1,4 +1,4 @@
-<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%@ page language="java" import="java.util.*" pageEncoding="gb2312"%>
 <%@ taglib uri="/WEB-INF/struts-html.tld" prefix="html"%>
 <%@ taglib uri="/WEB-INF/struts-logic.tld" prefix="logic"%>
 <%@ taglib uri="/WEB-INF/struts-bean.tld" prefix="bean"%>
@@ -48,10 +48,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     			</div>
     		</div>
     		<ul id="navigation">
-    			<!--  <li><a href="/publish">å‘å¸ƒè€…</a><li>
-    			<li><a href="/subscribe">è®¢é˜…è€…</a></li>-->
-    			<li><a href="doc.do">è¯´æ˜</a></li>
-    			<li><a href="about.do">å…³äº</a></li>
+    			<!--  <li><a href="/publish">·¢²¼Õß</a><li>
+    			<li><a href="/subscribe">¶©ÔÄÕß</a></li>-->
+    			<li><a href="doc.do">ËµÃ÷</a></li>
+    			<li><a href="about.do">¹ØÓÚ</a></li>
     		</ul>
     		<div class="clear"></div>
     		<div id="main_bg">

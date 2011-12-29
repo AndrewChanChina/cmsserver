@@ -10,7 +10,6 @@ import com.smit.vo.Publisher;
 public class PubSubDaoImpl extends HibernateDaoSupport implements PubSubDao{
 
 	
-	@Override
 	public void addUser(PubSubUser user) {
 		this.getHibernateTemplate().save(user);
 	}
@@ -19,24 +18,19 @@ public class PubSubDaoImpl extends HibernateDaoSupport implements PubSubDao{
 		return this.getHibernateTemplate().find(hql);
 	}
 
-	@Override
 	public List<PubSubUser> getByEmail(String email) {
 		String hql = "from PubSubuser p where p.email='"+email+"'";
 		return this.getHibernateTemplate().find(hql);
 	}
-	@Override
 	public void updateUser(PubSubUser user) {
 		this.getHibernateTemplate().saveOrUpdate(user);
 	}
-	@Override
 	public void addPublisher(Publisher p) {
 		this.getHibernateTemplate().save(p);
 	}
-	@Override
 	public void updatePublisher(Publisher p) {
 		this.getHibernateTemplate().saveOrUpdate(p);
 	}
-	@Override
 	public List<Publisher> findByName(String username) {
 		String hql = "from Publisher p where p.username='"+username+"'";
 		return this.getHibernateTemplate().find(hql);

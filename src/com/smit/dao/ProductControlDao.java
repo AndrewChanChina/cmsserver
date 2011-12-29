@@ -5,6 +5,7 @@ import java.util.List;
 import com.smit.util.SmitPage;
 import com.smit.vo.CertifiedProduct;
 import com.smit.vo.Device;
+import com.smit.vo.Menu;
 import com.smit.vo.Order;
 import com.smit.vo.OrderAndOption;
 import com.smit.vo.TestOption;
@@ -26,7 +27,7 @@ public interface ProductControlDao {
 	public boolean deleteDevice(Device device);
 	public Device findById(int id);
 	public List<Device> getDevice(String checkID);
-	
+	public List<Device> queryDevice(String emmcID);
 	//order
 	public boolean insertOrder(Order order);
 	public boolean updateOrder(Order order);
@@ -57,4 +58,9 @@ public interface ProductControlDao {
 	public List<Device> findDevice(String orderCode,String productCode,String manuCode);
 	//分页查询，只取指定的几条
 	public List<Device> findPageDevice(String orderCode,String productCode,String manuCode,int begin,int num);
+	
+	public void updateDeviceAuth(Device device);
+	
+	//add query menu
+	public List<Menu> findByType(int  type);
 }

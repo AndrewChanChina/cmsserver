@@ -15,7 +15,6 @@ import com.smit.vo.Media;
 
 public class MediaDaoImpl extends HibernateDaoSupport implements MediaDao {
   
-	@Override
 	public void save(Media media) {
 		try {
 			this.getHibernateTemplate().save(media);
@@ -25,7 +24,6 @@ public class MediaDaoImpl extends HibernateDaoSupport implements MediaDao {
 
 	}
 
-	@Override
 	public void update(Media media) {
 		try {
 			this.getHibernateTemplate().update(media);
@@ -35,7 +33,6 @@ public class MediaDaoImpl extends HibernateDaoSupport implements MediaDao {
 
 	}
 
-	@Override
 	public void delete(Media media) {
 		try {
 			this.getHibernateTemplate().delete(media);
@@ -45,7 +42,6 @@ public class MediaDaoImpl extends HibernateDaoSupport implements MediaDao {
 
 	}
 
-	@Override
 	public Page getPage(final int currentPage,final int pageSize) {
 		System.out.println(currentPage);
 		System.out.println(pageSize);
@@ -57,7 +53,6 @@ public class MediaDaoImpl extends HibernateDaoSupport implements MediaDao {
 			
 			List medias = this.getHibernateTemplate().execute(new HibernateCallback(){
 	
-				@Override
 				public Object doInHibernate(Session session)
 						throws HibernateException, SQLException {
 					
@@ -84,7 +79,6 @@ public class MediaDaoImpl extends HibernateDaoSupport implements MediaDao {
 		return page;
 	}
 
-	@Override
 	public Media getById(Integer id) {
 		Media media = null;
 		try {

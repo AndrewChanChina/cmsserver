@@ -1,4 +1,4 @@
-<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%@ page language="java" import="java.util.*" pageEncoding="gb2312"%>
 <%@ taglib uri="/WEB-INF/struts-html.tld" prefix="html"%>
 <%@ taglib uri="/WEB-INF/struts-logic.tld" prefix="logic"%>
 <%@ taglib uri="/WEB-INF/struts-bean.tld" prefix="bean"%>
@@ -72,11 +72,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     		</div>
     		<ul id="navigation">
     		 	<logic:notPresent name="username">
-    		 	<li><a href="publisher.do">å‘å¸ƒè€…</a><li>
-    			<li><a href="subscriber.do">è®¢é˜…è€…</a></li>
+    		 	<li><a href="publisher.do">·¢²¼Õß</a><li>
+    			<li><a href="subscriber.do">¶©ÔÄÕß</a></li>
     		 	</logic:notPresent>
-    			<li><a href="doc.do">è¯´æ˜</a></li>
-    			<li><a href="about.do">å…³äº</a></li>
+    			<li><a href="doc.do">ËµÃ÷</a></li>
+    			<li><a href="about.do">¹ØÓÚ</a></li>
     		</ul>
     		<div class="clear"></div>
     		<div id="main_bg">
@@ -136,7 +136,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     		</div>
     	</div>
     	<div id="log" style="display: none;"></div>
-    	<span id="copyright">Â© 2009-2011 Smit - Realtime feeds and PubSubHubbub provider.</span>
+    	<span id="copyright">@2009-2011 Smit - Realtime feeds and PubSubHubbub provider.</span>
     </div>
   </body>
 </html>

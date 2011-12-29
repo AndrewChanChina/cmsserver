@@ -24,6 +24,16 @@ public class Test {
 			}
 		}
 		System.out.println(l2);
+		
+	//	String sss = "467";
+	//	System.out.println(String.format("%08s", sss));
+		
+		String s ="dgdfgdfhdfh";
+		for(int i=0;i<s.length();i++){
+			char c1 = s.charAt(i);
+		}
+		System.out.println(s.replaceAll("d", ""));
 	}
 
+	
 }

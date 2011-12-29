@@ -25,10 +25,12 @@
 		<div class="clear"></div>
 </div>
 <form action="active.do" method="post">
-<table>
-<tr><td>version</td><td><input type="text""/></td><td>checkID</td><td><input type="text" name="checkID"/></td><td>machineID</td><td><input type="text""/></td></tr>
+<div style="margin: 0 auto;margin-top: 50px">
+<table style="margin: 0 auto;">
+<tr><td><span style="font-size: 20px;">checkID:</span></td><td><input type="text" name="checkID" style="width: 230px"/></td></tr>
+<tr><td><span style="font-size: 20px">machineID:</span></td><td><input type="text" style="width: 230px"/></td></tr>
 <tr><td><input type="submit" value="提交"/></td><td><input type="reset" value="取消"/></td></tr>
-</table>
+</table></div>
 </form>
 </body>
 </html>

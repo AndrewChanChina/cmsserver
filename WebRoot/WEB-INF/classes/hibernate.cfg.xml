@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version='1.0' encoding='utf-8'?>
 <!DOCTYPE hibernate-configuration PUBLIC
           "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
           "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
@@ -15,20 +15,20 @@
 	<property name="dialect">
 		com.smit.util.CustomDialect
 	</property>
+	
 	<property name="connection.url">
 		jdbc:mysql://localhost:3306/smit
 	</property>
 
 	<property name="connection.username">root</property>
 
-
+<!-- p2t5m3f5 -->
 	<property name="connection.password">123456</property>
 
 	<property name="connection.driver_class">com.mysql.jdbc.Driver</property>
 	<property name="myeclipse.connection.profile">sss</property>
 
-
-	<property name="show_sql">true</property>
+	<property name="show_sql">false</property>
 	<property name="hbm2ddl.auto">update</property>
 	<property name="connection.autocommit">true</property>
 	<property name="format_sql">true</property>
@@ -44,7 +44,7 @@
 	<property name="hibernate.c3p0.idle_test_period">120</property> 
 	<!-- 连接池连接用完，一次获得的新连接数 -->
 	<property name="hibernate.c3p0.acquire_increment">2</property>
-	<property name="hib"></property>
+	
 	<mapping resource="com/smit/vo/User.hbm.xml" />
 	<mapping resource="com/smit/vo/Group.hbm.xml" />
 	<mapping resource="com/smit/vo/Purview.hbm.xml" />
@@ -74,6 +74,7 @@
 	<mapping resource="com/smit/vo/AtomRecord.hbm.xml"/>
 	<mapping resource="com/smit/vo/PubSubUser.hbm.xml"/>
 	<mapping resource="com/smit/vo/Publisher.hbm.xml"/>
+	<mapping resource="com/smit/vo/Menu.hbm.xml"/>
 </session-factory>
 
 </hibernate-configuration>

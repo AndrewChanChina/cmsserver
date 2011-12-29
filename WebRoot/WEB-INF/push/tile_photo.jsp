@@ -1,4 +1,4 @@
-<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%@ page language="java" import="java.util.*" pageEncoding="gb2312"%>
 <%@ taglib uri="http://struts.apache.org/tags-tiles" prefix="tiles" %>
 <html>
   <head>

@@ -22,8 +22,14 @@ public class Order implements Serializable{
 	private String mac;            //mac地址(12),一个范围值，这里是起始值。
 	private String inf_code;     //其他信息
 	private String machine_id;   //机器号
+	
 	//增加一个生产批次的数量
 	private int mac_num;
+	
+	// add 3 attributes
+	private String active_num;
+	private String active_time;
+	private String expire_time;
 	private Set<Device> devices = new HashSet<Device>();
 	public int getId() {
 		return id;
@@ -114,6 +120,24 @@ public class Order implements Serializable{
 	}
 	public void setMac_num(int mac_num) {
 		this.mac_num = mac_num;
+	}
+	public String getActive_num() {
+		return active_num;
+	}
+	public void setActive_num(String active_num) {
+		this.active_num = active_num;
+	}
+	public String getActive_time() {
+		return active_time;
+	}
+	public void setActive_time(String active_time) {
+		this.active_time = active_time;
+	}
+	public String getExpire_time() {
+		return expire_time;
+	}
+	public void setExpire_time(String expire_time) {
+		this.expire_time = expire_time;
 	}
 	
 }

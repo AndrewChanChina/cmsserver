@@ -402,6 +402,8 @@
  		parameter="getPageDevice">
  			<forward name="querypageDevice" path="/WEB-INF/productControl/device_query.jsp"></forward>
  		</action>
+ 		<action path="/customerAuth" type="org.springframework.web.struts.DelegatingActionProxy"
+ 		parameter="customerAuth"></action>
  		<action path="/product" type="org.springframework.web.struts.DelegatingActionProxy"
  		parameter="queryProduct"></action>
  		<action path="/confirm" type="org.springframework.web.struts.DelegatingActionProxy"
@@ -515,6 +517,9 @@
 		<action path="/update_publisher" type="org.springframework.web.struts.DelegatingActionProxy" parameter="updatePublish">
 			<forward name="edit_hub" path="/WEB-INF/pubsub/hub_setting.jsp"></forward>
 		</action>
+		<action path="/test" type="org.springframework.web.struts.DelegatingActionProxy"
+ 		parameter="test"></action>
+ 		<action path="/testCharts" type="org.springframework.web.struts.DelegatingActionProxy" parameter="testCharts"></action>
 	</action-mappings>
 	<!-- 配置上传文件大小
 	<controller maxFileSize="8M">

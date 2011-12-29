@@ -1,4 +1,4 @@
-<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%@ page language="java" import="java.util.*" pageEncoding="utf-8" isELIgnored="false"%>
 <div id="pb-main">
 <h2 id="main-title">分享音乐</h2>
 <div id="post-area">

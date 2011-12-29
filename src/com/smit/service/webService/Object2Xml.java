@@ -13,7 +13,6 @@ public class Object2Xml implements IToXML {
 		this.toXMLs = toXMLs;
 	}
 
-	@Override
 	public String toXml() throws Exception {
 		StringBuilder sb = new StringBuilder();
 		sb.append("<xml>");

@@ -19,7 +19,6 @@ public class PushManageServiceImpl implements IPushManageService {
 	 * you just need to set service name and user id in PushService object
 	 * others will be create by this function
 	 */
-	@Override
 	public void save(PushService ps) {
 
 		ps.setCreatetime(new Timestamp(new Date().getTime()));
@@ -27,22 +26,18 @@ public class PushManageServiceImpl implements IPushManageService {
 		pushServiceDao.save(ps);
 	}
 
-	@Override
 	public void update(PushService ps) {
 		pushServiceDao.update(ps);
 	}
 
-	@Override
 	public void delete(PushService ps) {
 		pushServiceDao.delete(ps);
 	}
 
-	@Override
 	public PushService getById(Integer id) {
 		return pushServiceDao.getById(id);
 	}
 
-	@Override
 	public List listAll(SmitPage page) {		
 		return pushServiceDao.listAll(page);
 	}
@@ -59,22 +54,18 @@ public class PushManageServiceImpl implements IPushManageService {
 		return WebUtil.randomString(32);
 	}
 
-	@Override
 	public void saveOrUpdate(UserAccountResource us) {
 		this.pushServiceDao.saveOrUpdate(us);		
 	}
 
-	@Override
 	public void delete(UserAccountResource us) {
 		this.pushServiceDao.delete(us);
 	}
 	
-	@Override
 	public void delete(String userAccount){
 		this.pushServiceDao.deleteByAccount(userAccount);
 	}
 
-	@Override
 	public List<UserAccountResource> listAllResource(String userName) {
 		return this.pushServiceDao.listAllResource(userName);
 	}
@@ -82,7 +73,6 @@ public class PushManageServiceImpl implements IPushManageService {
 	/**
 	 * 相当于做数据的同步，先删除相关的数据，然后插入相关的数据
 	 */
-	@Override
 	public void updateUserAccountAllRes(List<UserAccountResource> list) {
 		UserAccountResource ua = list.get(0);
 		if(ua != null)
@@ -92,7 +82,6 @@ public class PushManageServiceImpl implements IPushManageService {
 		}		
 	}
 
-	@Override
 	public void updateUserPresence(String fromUser, boolean presence) {
 		int n = fromUser.lastIndexOf("/");
 		String user = fromUser.substring(0,n);

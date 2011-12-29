@@ -19,14 +19,19 @@
 <title>Insert title here</title>
 </head>
 <body>
+<div>
 <div class="rhead">
 	<div class="rpos">当前位置: 登录鉴权 </div>
 	<div class="clear"></div>
 </div>
+<div>
  <form method="post" action="loginAuth.do">
- <table>
- 	<tr><td>machineID:<input type="text" name="machineID" ><td><td>orderCode:<input type="text" name="order_code"></td></tr>
- </table>
+ <div style="margin-left: auto;margin-right: auto;margin-top:29px;text-align: center;">
+ <span style="font-size: 20px;">machineID:</span><input type="text" name="machineID" style="width: 220px;vertical-align: middle;"><br>
+ <span style="font-size: 20px;">orderCode:</span><input type="text" name="order_code" style="width: 220px;vertical-align: middle;"><br>
+ <span style="font-size: 20px;">&nbsp&nbsp&nbspemmcID:</span><input type="text" name="emmcID" style="width: 220px;vertical-align: middle;"><br>
+ 
  <input type="submit" value="提交"><input type="reset" value="取消">
- </form></body>
+ </div>
+ </form></div></div></body>
 </html>

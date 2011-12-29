@@ -16,13 +16,11 @@ import javax.servlet.http.HttpServletResponse;
 public class SessionFilter implements Filter {
 
 	private ArrayList<String> urls;
-	@Override
 	public void destroy() {
 		// TODO Auto-generated method stub
 		
 	}
 
-	@Override
 	public void doFilter(ServletRequest arg0, ServletResponse arg1,
 			FilterChain arg2) throws IOException, ServletException {
 		HttpServletRequest request = (HttpServletRequest) arg0;
@@ -42,7 +40,6 @@ public class SessionFilter implements Filter {
 		arg2.doFilter(request, response);
 	}
 
-	@Override
 	public void init(FilterConfig arg0) throws ServletException {
 		String url = arg0.getInitParameter("allow_url");
         StringTokenizer token = new StringTokenizer(url, ",");

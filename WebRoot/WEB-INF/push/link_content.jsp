@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8" import="java.util.*"%>
+    pageEncoding="utf-8" import="java.util.*" isELIgnored="false"%>
 <div id="pb-main">
 <h2 id="main-title">分享链接</h2>
 <div id="post-area">

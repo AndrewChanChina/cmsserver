@@ -82,7 +82,6 @@ public class ColumnServiceImpl implements ColumnService {
 		return columnDao.queryByColumnId(id);
 	}
 
-	@Override
 	public Part findByName(String name) {
 		return columnDao.findByName(name);
 	}
@@ -90,13 +89,11 @@ public class ColumnServiceImpl implements ColumnService {
 	/**
 	 *  convert object information into xml object
 	 */
-	@Override
 	public XmlWrap queryNextChildren(Integer partId ) {
 		List<Part> list = columnDao.queryNextChildren(partId);
 		return toXmlWrap(list);
 	}
 
-	@Override
 	public XmlWrap queryRootChildren() throws Exception {
 		List<Part> list = columnDao.queryTopColumns();
 		return toXmlWrap(list);
@@ -120,7 +117,6 @@ public class ColumnServiceImpl implements ColumnService {
 		return xmlWrap;		
 	}
 
-	@Override
 	public void savePart(Part part) {
 		columnDao.savePart(part);
 	}

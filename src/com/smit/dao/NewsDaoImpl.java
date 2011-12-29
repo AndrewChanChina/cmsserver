@@ -15,19 +15,16 @@ import com.smit.vo.News;
 public class NewsDaoImpl extends HibernateDaoSupport implements NewsDao{
 
 	
-	@Override
 	public void insert(News news) {
 		
 		this.getHibernateTemplate().save(news);
 	}
 
-	@Override
 	public List<News> getNews() {
 		
 		return this.getHibernateTemplate().find("from News n");
 	}
 
-	@Override
 	public List<News> findByPartId(final SmitPage page,final int partId) {
 		List count = getHibernateTemplate().find("SELECT count(*) FROM com.smit.vo.News n where n.partId=" + partId);
 		page.setTotalCount(Integer.parseInt(count.get(0).toString() ));
@@ -46,7 +43,6 @@ public class NewsDaoImpl extends HibernateDaoSupport implements NewsDao{
 		return list;
 	}
 
-	@Override
 	public List<Object[]> getLatestNews() {
 		String hql = "select n.title,n.description,n.link,n.author,n.comments,n.category,n.pubDate from news n inner join (select n1.part_id,max(n1.id)id from news n1 group by part_id)t on n.id=t.id order by create_time desc";
 		Session session = this.getHibernateTemplate().getSessionFactory().openSession();

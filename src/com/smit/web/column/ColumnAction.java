@@ -119,7 +119,7 @@ public class ColumnAction extends MappingDispatchAction {
 	{
 		String topId = request.getParameter("topId");
 		PrintWriter w = response.getWriter();
-		response.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("utf-8");
 		Part root = columnService.queryRootColumn();
 		Integer param = Integer.valueOf(topId);
 		if(root.getId().equals(param))

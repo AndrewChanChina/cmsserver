@@ -7,7 +7,6 @@ import org.xmlpull.v1.XmlPullParser;
 
 public class PushServiceInfIQProvider implements IQProvider {
 
-	@Override
 	public IQ parseIQ(XmlPullParser parser) throws Exception {
 
 		PushServiceInfIQ pushServiceInfIQ = new PushServiceInfIQ();

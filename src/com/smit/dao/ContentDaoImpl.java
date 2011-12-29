@@ -15,7 +15,6 @@ import com.smit.vo.Media;
 
 public class ContentDaoImpl extends HibernateDaoSupport implements ContentDao {
   
-	@Override
 	public void save(Content content) {
 		try {
 			this.getHibernateTemplate().save(content);
@@ -25,7 +24,6 @@ public class ContentDaoImpl extends HibernateDaoSupport implements ContentDao {
 		}
 
 	}
-	@Override
 	public void saveorupdate(Content content) {
 		try {
 			this.getHibernateTemplate().saveOrUpdate(content);
@@ -36,7 +34,6 @@ public class ContentDaoImpl extends HibernateDaoSupport implements ContentDao {
 
 	}
 
-	@Override
 	public void update(Content content) {
 		try {
 			this.getHibernateTemplate().update(content);
@@ -46,7 +43,6 @@ public class ContentDaoImpl extends HibernateDaoSupport implements ContentDao {
 
 	}
 
-	@Override
 	public void delete(Content content) {
 		try {
 			this.getHibernateTemplate().delete(content);
@@ -56,7 +52,6 @@ public class ContentDaoImpl extends HibernateDaoSupport implements ContentDao {
 
 	}
 
-	@Override
 	public Page getPage(final int currentPage,final int pageSize,int pid) {
 		Page page = new Page();
 		String sql_count = "select count(*) from com.smit.vo.Content";
@@ -72,7 +67,6 @@ public class ContentDaoImpl extends HibernateDaoSupport implements ContentDao {
 			
 			List contents = this.getHibernateTemplate().execute(new HibernateCallback(){
 	
-				@Override
 				public Object doInHibernate(Session session)
 						throws HibernateException, SQLException {
 					
@@ -96,7 +90,6 @@ public class ContentDaoImpl extends HibernateDaoSupport implements ContentDao {
 	}
 	
 	
-	@Override
 	public Page getPage(final int currentPage,final int pageSize) {
 		Page page = new Page();
 		
@@ -106,7 +99,6 @@ public class ContentDaoImpl extends HibernateDaoSupport implements ContentDao {
 			Integer recordCount = Integer.parseInt(String.valueOf(list.get(0)));
 			List contents = this.getHibernateTemplate().execute(new HibernateCallback(){
 	
-				@Override
 				public Object doInHibernate(Session session)
 						throws HibernateException, SQLException {
 					
@@ -128,7 +120,6 @@ public class ContentDaoImpl extends HibernateDaoSupport implements ContentDao {
 		return page;
 	}
 
-	@Override
 	public Content getById(Integer id) {
 		Content content = null;
 		try {

@@ -51,9 +51,10 @@ public class OrderAction extends MappingDispatchAction{
 	public ActionForward addOrder(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response) throws IOException{
 		try{
+			System.out.println("==== Begin to add order! =====");
 			SimpleDateFormat format = new SimpleDateFormat("yyyyMMddHHmmss");
-			String order_code = format.format(new Date());
 			OrderForm orderForm = (OrderForm) form;
+			String order_code = orderForm.getManufacturer_code()+format.format(new Date());
 			insertOrder(orderForm,order_code);
 			
 			response.setContentType("text/xml;charset=utf-8");
@@ -63,6 +64,7 @@ public class OrderAction extends MappingDispatchAction{
 			sb.append("<order_code>"+order_code+"</order_code>");
 			sb.append("</global>");
 			response.getWriter().println(sb.toString());	
+			System.out.println("===== Add order success! =======");
 		}catch (Exception e){
 			
 		}
@@ -109,13 +111,14 @@ public class OrderAction extends MappingDispatchAction{
 		order.setSn(orderForm.getSn());
 		order.setMac(orderForm.getMac());
 		order.setMachine_id(orderForm.getMachine_id());
-		order.setMac(orderForm.getMac());
+		order.setMac(orderForm.getMac().toUpperCase());
 		order.setMac_num(Integer.parseInt(orderForm.getNum()));
-		order.setInf_code(orderForm.getInf_code());
+		order.setActive_num(orderForm.getActive_num());
+		order.setActive_time(orderForm.getActive_time().replaceAll("/", ""));
+		order.setExpire_time(orderForm.getExpire_time().replaceAll("/", ""));
 		String[] options = orderForm.getSelOption().split(";");
 		
 		for(int i=0;i<options.length;i++){
-			System.out.println("id is :^^^^^^^^^^^^"+options[i]);
 			TestOption op =	productService.getOption(options[i]);
 			OrderAndOption orderOption = new OrderAndOption();
 			orderOption.setOrder_code(order_code);

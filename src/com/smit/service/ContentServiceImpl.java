@@ -15,7 +15,6 @@ public class ContentServiceImpl implements ContentService {
 		this.contentDao = contentDao;
 	}
 
-	@Override
 	public void save(Content content) {
 		try {
 			contentDao.save(content);
@@ -27,7 +26,6 @@ public class ContentServiceImpl implements ContentService {
 		
 	}
 
-	@Override
 	public void delete(int id) {
 		try {
 			Content content = findById(id);
@@ -41,7 +39,6 @@ public class ContentServiceImpl implements ContentService {
 	
 	}
 
-	@Override
 	public void update(Content content) {
 		try {
 		
@@ -53,7 +50,6 @@ public class ContentServiceImpl implements ContentService {
 	
 	}
 
-	@Override
 	public Page findAll(int currentPage, int pageSize,int pid) {
 		Page page = null;
 		try {
@@ -66,7 +62,6 @@ public class ContentServiceImpl implements ContentService {
 	}
 	
 	
-	@Override
 	public Page findAll(int currentPage, int pageSize) {
 		Page page = null;
 		try {
@@ -78,7 +73,6 @@ public class ContentServiceImpl implements ContentService {
 		return page;
 	}
 
-	@Override
 	public Content findById(int id) {
 		Content content = null;
 		try {
@@ -91,7 +85,6 @@ public class ContentServiceImpl implements ContentService {
 		return content;
 	}
 
-	@Override
 	public void saveorupdate(Content content) {
 		try {
 			contentDao.saveorupdate(content);

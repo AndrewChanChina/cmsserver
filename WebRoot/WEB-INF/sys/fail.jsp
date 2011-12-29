@@ -1,4 +1,4 @@
-<%@ page language="java" pageEncoding="GB18030"%>
+<%@ page language="java" pageEncoding="utf-8" isELIgnored="false"%>
 
 <%@ taglib uri= "/WEB-INF/struts-html.tld" prefix="tiles" %>
 <%@ taglib uri= "/WEB-INF/struts-html.tld" prefix="html"%>

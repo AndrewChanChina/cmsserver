@@ -61,6 +61,7 @@ public class TestOptionAction extends MappingDispatchAction{
 	
 	public ActionForward queryOption(ActionMapping mapping,ActionForm form,
 			HttpServletRequest request,HttpServletResponse response) throws IOException{
+		System.out.println("======== Begin to query test option! ========");
 		String order_code = request.getParameter("order_code");
 		try{
 			createXMLResult(response, order_code);
@@ -76,12 +77,11 @@ public class TestOptionAction extends MappingDispatchAction{
 		PrintWriter pw = response.getWriter();
 		StringBuffer sb = new StringBuffer();
 		sb.append("<global>");
-		
+		System.out.println(order_code);
 		List<OrderAndOption> list = service.getOptionsByCode(order_code);
 		if(list.size()>0){
 			//订单号唯一，根据订单号只能找到一个订单；
 			for(OrderAndOption oo : list){
-				System.out.println("********=====>");
 				sb.append("<item>"+oo.getOption_name()+"</item>");
 			}
 		}else{
@@ -89,6 +89,7 @@ public class TestOptionAction extends MappingDispatchAction{
 		}
 		sb.append("</global>");
 		pw.println(sb.toString());
+		System.out.println("===== Query test option success! ======");
 	}
 	
 	public ActionForward addOption(ActionMapping mapping ,ActionForm form,
@@ -113,9 +114,10 @@ public class TestOptionAction extends MappingDispatchAction{
 		}
 		if(set.size() == ids.length){
 			Date date = new Date();
+			TestOption option = null;
 			for(int i=0;i<names.length;i++){
 				if(!("".equals(names[i]))){
-					TestOption option = new TestOption();
+					option = new TestOption();
 					option.setName(names[i]);
 					option.setTest_id(ids[i]);
 					option.setCreate_time(format.format(date));

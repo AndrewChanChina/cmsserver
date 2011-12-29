@@ -28,7 +28,6 @@ public class PubSubServiceImpl implements IPubSubService {
     private Map<String,LeafNode> topicMap = null;
     private XMPPConnection connection = null;
     
-	@Override
 	public void setConnection(XMPPConnection con) {
 		if(this.connection == null)
     	{
@@ -39,7 +38,6 @@ public class PubSubServiceImpl implements IPubSubService {
     	}
 	}
 
-	@Override
 	public List<String> getTopics() {
 		ArrayList<String> list = new ArrayList<String>();
 		for(String s:topicMap.keySet()){
@@ -48,7 +46,6 @@ public class PubSubServiceImpl implements IPubSubService {
 		return list;
 	}
 
-	@Override
 	public boolean createTopic(String topicName) {
 		LeafNode leafNode = null;
 		PubSubManager manager = new PubSubManager(connection,"pubsub.smitnn");
@@ -91,7 +88,6 @@ public class PubSubServiceImpl implements IPubSubService {
 		return true;
 	}
 
-	@Override
 	public boolean deleteTopic(String topic) {
 		PubSubManager manager = new PubSubManager(connection,"pubsub.smitnn");
 		try{
@@ -104,7 +100,6 @@ public class PubSubServiceImpl implements IPubSubService {
 		return true;
 	}
 
-	@Override
 	public void sendTopic(String topic, String message) {
 LeafNode leafNode = (LeafNode)topicMap.get(topic);
     	

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
 	xmlns:aop="http://www.springframework.org/schema/aop"
@@ -60,7 +60,7 @@
 	<bean name="/register_admin" class="com.smit.web.UserAction" scope="prototype">
 		<property name="userService" ref="userService"></property>
 	</bean>
-	
+	<bean name="/test" class="com.smit.test.TestHttpAction" scope="prototype"></bean>
 	<!-- 开发者登陆 -->
 	<bean name="/loginDev" class="com.smit.web.UserAction" scope="prototype">
 		<property name="pushDataService" ref="pushDataService"></property>
@@ -318,6 +318,9 @@
      <bean name="/pageDevice" class="com.smit.web.control.action.AuthAction" scope="prototype">
     	<property name="productService" ref="productControlService"></property>
     </bean>
+    <bean name="/customerAuth" class="com.smit.web.control.action.AuthAction" scope="prototype">
+    	<property name="productService" ref="productControlService"></property>
+    </bean>
 <!-- &&&& end of luocheng================================================================== -->
 	
 	
@@ -390,8 +393,8 @@
 		class="org.springframework.scheduling.quartz.CronTriggerBean">
  
 		<property name="jobDetail" ref="collection" />
-		 <property name="cronExpression" value="0 0 1/1 * * ?" />
-		  <!--  <property name="cronExpression" value="0 0/5 * * * ?" />-->
+		   <property name="cronExpression" value="0 0 1/1 * * ?" />
+		 <!-- <property name="cronExpression" value="0 0/5 * * * ?" />-->
  	</bean>
  	<bean id="cronTriggerNews"
  	   class="org.springframework.scheduling.quartz.CronTriggerBean">
@@ -406,15 +409,15 @@
 	<bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
 		<property name="jobDetails">
 		   <list>
-		      <ref bean="collection" />
-		      <ref bean="newscollection"/>
+		     <!--  <ref bean="collection" />
+		      <ref bean="newscollection"/> -->
 		      <ref bean="livecollection"/>
 		   </list>
 		</property> 
 		<property name="triggers">
 		    <list>
-			<ref bean="cronTrigger" />
-			<ref bean="cronTriggerNews"/>
+			<!--  <ref bean="cronTrigger" />
+			<ref bean="cronTriggerNews"/>-->
 			<ref bean="cronTriggerLive"/>
 		    </list>
 		</property>
@@ -491,6 +494,7 @@
 	<bean name="/update_publisher" class="com.smit.web.pubsubhubbub.PubSubProcessAction" scope="prototype">
 		<property name="service" ref="pubsubService"></property>
 	</bean>
+	<bean name="/testCharts" class="com.smit.test.TestCharts"></bean>
 	<!-- 事物代理类 -->
    <bean id="transactionManager"  
         class="org.springframework.orm.hibernate3.HibernateTransactionManager">  

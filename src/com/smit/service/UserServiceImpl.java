@@ -19,7 +19,6 @@ public class UserServiceImpl implements IUserService {
 		this.userDao = userDao;
 	}
 	
-	@Override
 	public boolean login(String userName, String passwd) {
 		
 		if(userDao.isAdmin(userName, passwd)){
@@ -30,7 +29,6 @@ public class UserServiceImpl implements IUserService {
 	/**
 	 * register normal user
 	 */
-	@Override
 	public void register(String userName,String password,String email,String telphone)
 	{		
 		User user = new User();
@@ -44,7 +42,6 @@ public class UserServiceImpl implements IUserService {
 	/**
 	 * register developer to developer group
 	 */
-	@Override
 	public void regDeveloper(String userName,String password,String email,String telphone){
 		User user = new User();
 		user.setUserName(userName);		
@@ -61,27 +58,21 @@ public class UserServiceImpl implements IUserService {
 		
 		userDao.register(user,Constants.PUSH_GROUPNAME);
 	}
-	@Override
 	public User findUserByName(String userName) {
 		return userDao.findGroupByName(userName);
 	}
-	@Override
 	public void save(User user) {
 		userDao.save(user);		
 	}
-	@Override
 	public void update(User user) {
 		userDao.update(user);		
 	}
-	@Override
 	public void delete(User user) {
 		userDao.delete(user);		
 	}
-	@Override
 	public User getUser(Integer id) {
 		return userDao.getUser(id);
 	}
-	@Override
 	public List listAllUsers(SmitPage page) {
 		return userDao.listAllUsers(page);
 	}

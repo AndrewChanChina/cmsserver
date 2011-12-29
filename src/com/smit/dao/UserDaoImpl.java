@@ -17,7 +17,6 @@ import com.smit.vo.User;
 
 public class UserDaoImpl extends HibernateDaoSupport implements IUserDao {
 
-	@Override
 	public boolean isAdmin(String userName, String password) {
 		String hql = "from com.smit.vo.User s where userName='" + userName + "' and passwd='" + password + "'";
 		List list = this.getHibernateTemplate().find(hql);
@@ -32,7 +31,6 @@ public class UserDaoImpl extends HibernateDaoSupport implements IUserDao {
 	 *   save a user to 'groupName' group.
 	 *   So please make sure that is a 'groupName' in smit_group
 	 */
-	@Override
 	public void register(User user,String groupName){
 		
 		String hql = "from com.smit.vo.Group s where s.groupName='"+groupName+"'";
@@ -52,7 +50,6 @@ public class UserDaoImpl extends HibernateDaoSupport implements IUserDao {
 	}
 	
 	
-	@Override
 	public User findGroupByName(String userName) {
 		String hql = "from com.smit.vo.User s where s.userName='" + userName + "'";		
 		List list = this.getHibernateTemplate().find(hql);
@@ -62,24 +59,19 @@ public class UserDaoImpl extends HibernateDaoSupport implements IUserDao {
 		}
 		return (User)list.get(0);
 	}
-	@Override
 	public void save(User user) {		
 		this.getHibernateTemplate().save(user);
 	}
-	@Override 
 	public void update(User user) {		
 		this.getHibernateTemplate().update(user);		
 	}
-	@Override
 	public void delete(User user) {
 		this.getHibernateTemplate().delete(user);
 	}
-	@Override
 	public User getUser(Integer id) {
 		return this.getHibernateTemplate().get(User.class, id);
 	}
 	
-	@Override
 	public List listAllUsers(final SmitPage page) {
 		if(page == null)
 			return listAllUsers();

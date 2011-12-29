@@ -18,19 +18,16 @@ public class LogDaoImpl extends HibernateDaoSupport implements LogDao{
 		this.sessionFactory = sessionFactory;
 	}
 
-	@Override
 	public boolean insertBaseLog(BaseLog baseLog) {
 		this.getHibernateTemplate().merge(baseLog);
 		return true;
 	}
 
-	@Override
 	public boolean insertDetailLog(DetailLog detailLog) {
 		this.getHibernateTemplate().merge(detailLog);
 		return true;
 	}
 
-	@Override
 	public List<BaseLog> getBaseLog(int id, int begin, int num) {
 		String hql = "from BaseLog b where b.device.id='"+id+"'";
 		Query query = this.getHibernateTemplate().getSessionFactory().openSession().createQuery(hql);
@@ -40,7 +37,6 @@ public class LogDaoImpl extends HibernateDaoSupport implements LogDao{
 		return list;
 	}
 
-	@Override
 	public List<DetailLog> getDetailLog(int id, int begin, int num) {
 		String hql = "from DetailLog d where d.device.id='"+id+"'";
 		Query query = this.getHibernateTemplate().getSessionFactory().openSession().createQuery(hql);

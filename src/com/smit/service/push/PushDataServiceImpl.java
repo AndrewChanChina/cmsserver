@@ -34,7 +34,6 @@ public class PushDataServiceImpl implements IPushDataService {
 	private IPushManageService pushManageService = null;
 	private String user;
 
-	@Override
 	public boolean login(String host,String user,String password){
 		this.user = user;
 		ConnectionConfiguration config = new ConnectionConfiguration(host,5222, resource);
@@ -53,14 +52,12 @@ public class PushDataServiceImpl implements IPushDataService {
 	    }
 	    return true;	
 	}
-	@Override
 	public boolean logout(){
 		if(connection == null)
 			return false;
 		connection.disconnect();
 		return true;
 	}
-	@Override
 	public boolean isConnected(){
 		if(connection == null)
 			return false;
@@ -81,7 +78,6 @@ public class PushDataServiceImpl implements IPushDataService {
 	/*
 	 * send data to push server
 	 */
-	@Override
 	public boolean sendPushDataFromDevToAll(
 			String pushServiceName,
 			boolean bDelay,
@@ -98,7 +94,6 @@ public class PushDataServiceImpl implements IPushDataService {
 	/*
 	 * if pushIdList == null,it will send the data to all
 	 */
-	@Override
 	public boolean sendPushDataFromDev(
 			String pushServiceName,
 			List<String> pushIdList,
@@ -126,7 +121,6 @@ public class PushDataServiceImpl implements IPushDataService {
 		return this.sendPacket(iq);
 	}
 	
-	@Override
 	public boolean sendPushDataFromUser(
 			List<String> userList,
 			boolean bDelay,
@@ -154,11 +148,9 @@ public class PushDataServiceImpl implements IPushDataService {
 		return this.sendPacket(iq);
 	}
 	
-	@Override
 	public XMPPConnection getConnection(){
 		return this.connection;
 	}
-	@Override
 	public boolean sendQueryResourceId(String userName) {
 //		UserQueryIQ iq1 = new UserQueryIQ();
 //		iq1.setUserAccount(userName);
@@ -214,7 +206,6 @@ public class PushDataServiceImpl implements IPushDataService {
 		sendQueryResourceId(user+"@"+connection.getServiceName());
 		//sendPushServiceInf("web","test2");
 	}
-	@Override
 	public boolean sendPushServiceInf(String serviceName, String account) {
 		PushServiceInfIQ iq = new PushServiceInfIQ();
 		iq.setUserAccount(account);
@@ -223,7 +214,6 @@ public class PushDataServiceImpl implements IPushDataService {
 		return true;
 	}
 	
-	@Override
 	public boolean sendNoteFromCms(String url) {
 		FeedUpdateIQ iq = new FeedUpdateIQ();
 		iq.setType(IQ.Type.SET);

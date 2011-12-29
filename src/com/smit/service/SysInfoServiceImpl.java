@@ -15,7 +15,6 @@ public class SysInfoServiceImpl implements SysInfoService{
 		this.sysInfoDao = sysInfoDao;
 	}
 	
-	@Override
 	public boolean addSysInfo(final String key, final String value)
 	{
 		if(sysInfoDao.addSysInfo(key, value))
@@ -25,7 +24,6 @@ public class SysInfoServiceImpl implements SysInfoService{
 		return false;
 	}
 
-	@Override
 	public boolean deleteSysInfo(String id) {
 		// TODO Auto-generated method stub
 		if(sysInfoDao.deleteSysInfo(id))

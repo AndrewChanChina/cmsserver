@@ -12,7 +12,7 @@ public class OrderForm extends ActionForm{
 	private String manufacturer_code;//生产商代号
 	private String production_code;//产品型号
 	private String sn;             //序列号
-	private String inf_code;
+	//private String inf_code;
 	private String[] options;
 	private String mac;
 	private String machine_id;
@@ -21,6 +21,11 @@ public class OrderForm extends ActionForm{
 	
 	//产量
 	private String num;
+	
+	//add 3 attributes
+	private String active_num;
+	private String active_time;
+	private String expire_time;
 	public String getName() {
 		return name;
 	}
@@ -69,12 +74,7 @@ public class OrderForm extends ActionForm{
 	public void setSn(String sn) {
 		this.sn = sn;
 	}
-	public String getInf_code() {
-		return inf_code;
-	}
-	public void setInf_code(String inf_code) {
-		this.inf_code = inf_code;
-	}
+	
 	public String[] getOptions() {
 		return options;
 	}
@@ -104,6 +104,24 @@ public class OrderForm extends ActionForm{
 	}
 	public void setNum(String num) {
 		this.num = num;
+	}
+	public String getActive_num() {
+		return active_num;
+	}
+	public void setActive_num(String active_num) {
+		this.active_num = active_num;
+	}
+	public String getActive_time() {
+		return active_time;
+	}
+	public void setActive_time(String active_time) {
+		this.active_time = active_time;
+	}
+	public String getExpire_time() {
+		return expire_time;
+	}
+	public void setExpire_time(String expire_time) {
+		this.expire_time = expire_time;
 	}
 	
 	

@@ -13,7 +13,6 @@ public class MediaServiceImpl implements MediaService {
 		this.mediaDao = mediaDao;
 	}
 
-	@Override
 	public void save(Media media) {
 		try {
 			mediaDao.save(media);
@@ -25,7 +24,6 @@ public class MediaServiceImpl implements MediaService {
 		
 	}
 
-	@Override
 	public void delete(int id) {
 		try {
 			Media media = findById(id);
@@ -39,7 +37,6 @@ public class MediaServiceImpl implements MediaService {
 	
 	}
 
-	@Override
 	public void update(int id) {
 		try {
 			Media media = findById(id);
@@ -51,7 +48,6 @@ public class MediaServiceImpl implements MediaService {
 	
 	}
 
-	@Override
 	public Page findAll(int currentPage, int pageSize) {
 		Page page = null;
 		try {
@@ -63,7 +59,6 @@ public class MediaServiceImpl implements MediaService {
 		return page;
 	}
 
-	@Override
 	public Media findById(int id) {
 		Media media = null;
 		try {
