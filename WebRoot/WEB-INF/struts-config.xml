@@ -44,6 +44,8 @@
 		<form-bean name="orderForm" type="com.smit.web.control.form.OrderForm"></form-bean>
 		
 		<form-bean name="photoForm" type="com.smit.web.push.action.PhotoForm"></form-bean>
+		
+		<form-bean name="clockForm" type="com.smit.web.clock.ClockForm"></form-bean>
 	</form-beans>
 
 	<global-forwards>
@@ -60,7 +62,42 @@
 	</global-forwards>
 
 	<action-mappings>
-
+		<action path="/clock"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			parameter="home">
+			<forward name="home" path="/WEB-INF/clock/home.jsp" />
+			<forward name="success" path="/WEB-INF/clock/suc.jsp" />
+			<forward name="status" path="/WEB-INF/clock/status.jsp" />
+		</action>
+		<action path="/clock"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			parameter="home">
+			<forward name="home" path="/WEB-INF/clock/home.jsp" />
+			<forward name="success" path="/WEB-INF/clock/suc.jsp" />
+			<forward name="status" path="/WEB-INF/clock/status.jsp" />
+		</action>
+		<action path="/clock_del"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			parameter="delete">
+			<forward name="home" path="/WEB-INF/clock/home.jsp" />
+			<forward name="success" path="/WEB-INF/clock/suc.jsp" />
+			<forward name="status" path="/WEB-INF/clock/status.jsp" />
+		</action>
+		<action path="/clock_add"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			parameter="add" name="clockForm">
+			<forward name="home" path="/WEB-INF/clock/home.jsp" />
+			<forward name="success" path="/WEB-INF/clock/suc.jsp" />
+			<forward name="status" path="/WEB-INF/clock/status.jsp" />
+		</action>
+		<action path="/clock_update"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			parameter="update" name="clockForm">
+			<forward name="home" path="/WEB-INF/clock/home.jsp" />
+			<forward name="success" path="/WEB-INF/clock/suc.jsp" />
+			<forward name="status" path="/WEB-INF/clock/status.jsp" />
+		</action>
+		
 		<!-- 个人 相关的 -->
 		<action path="/home"
 			type="org.springframework.web.struts.DelegatingActionProxy"

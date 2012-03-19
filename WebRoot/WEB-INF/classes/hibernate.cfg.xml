@@ -7,44 +7,46 @@
 <hibernate-configuration>
 
 <session-factory>
-<!--  
-	<property name="dialect">
+	<!--  
+		<property name="dialect">
 		org.hibernate.dialect.MySQLDialect
-	</property>
+		</property>
 	-->
-	<property name="dialect">
-		com.smit.util.CustomDialect
-	</property>
-	
+	<property name="dialect">com.smit.util.CustomDialect</property>
+
 	<property name="connection.url">
 		jdbc:mysql://localhost:3306/smit
 	</property>
 
 	<property name="connection.username">root</property>
 
-<!-- p2t5m3f5 -->
+	<!-- p2t5m3f5 -->
 	<property name="connection.password">123456</property>
 
-	<property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+	<property name="connection.driver_class">
+		com.mysql.jdbc.Driver
+	</property>
 	<property name="myeclipse.connection.profile">sss</property>
 
 	<property name="show_sql">false</property>
 	<property name="hbm2ddl.auto">update</property>
 	<property name="connection.autocommit">true</property>
 	<property name="format_sql">true</property>
-	<property name="hibernate.connection.provider_class">org.hibernate.connection.C3P0ConnectionProvider</property>
+	<property name="hibernate.connection.provider_class">
+		org.hibernate.connection.C3P0ConnectionProvider
+	</property>
 	<!-- 最大连接数 -->
 	<property name="hibernate.c3p0.max_size">100</property>
 	<property name="hibernate.c3p0.min_size">5</property>
 	<!-- 获得连接的超时时间 -->
 	<property name="hibernate.c3p0.timeout">120</property>
 	<!-- 最大的preparedstatement数 -->
-	<property name="hibernate.c3p0.max_statements">5</property> 
+	<property name="hibernate.c3p0.max_statements">5</property>
 	<!-- 每隔120秒检查空闲连接 -->
-	<property name="hibernate.c3p0.idle_test_period">120</property> 
+	<property name="hibernate.c3p0.idle_test_period">120</property>
 	<!-- 连接池连接用完，一次获得的新连接数 -->
 	<property name="hibernate.c3p0.acquire_increment">2</property>
-	
+
 	<mapping resource="com/smit/vo/User.hbm.xml" />
 	<mapping resource="com/smit/vo/Group.hbm.xml" />
 	<mapping resource="com/smit/vo/Purview.hbm.xml" />
@@ -54,27 +56,28 @@
 	<mapping resource="com/smit/vo/Media.hbm.xml" />
 	<mapping resource="com/smit/vo/MediaType.hbm.xml" />
 
-	<mapping resource="com/smit/vo/BaseLog.hbm.xml"/>
-	<mapping resource="com/smit/vo/DetailLog.hbm.xml"/>
-	<mapping resource="com/smit/vo/Device.hbm.xml"/>
-	<mapping resource="com/smit/vo/Order.hbm.xml"/>
-	<mapping resource="com/smit/vo/TestOption.hbm.xml"/>
-	<mapping resource="com/smit/vo/CertifiedProduct.hbm.xml"/>
-	<mapping resource="com/smit/vo/OrderAndOption.hbm.xml"/>
-	
+	<mapping resource="com/smit/vo/BaseLog.hbm.xml" />
+	<mapping resource="com/smit/vo/DetailLog.hbm.xml" />
+	<mapping resource="com/smit/vo/Device.hbm.xml" />
+	<mapping resource="com/smit/vo/Order.hbm.xml" />
+	<mapping resource="com/smit/vo/TestOption.hbm.xml" />
+	<mapping resource="com/smit/vo/CertifiedProduct.hbm.xml" />
+	<mapping resource="com/smit/vo/OrderAndOption.hbm.xml" />
+
 	<mapping resource="com/smit/vo/PushService.hbm.xml" />
 	<mapping resource="com/smit/vo/Video.hbm.xml" />
 	<mapping resource="com/smit/vo/UserAccountResource.hbm.xml" />
-	
-	<mapping resource="com/smit/vo/PushContent.hbm.xml"/>
-	<mapping resource="com/smit/vo/News.hbm.xml"/>
-	<mapping resource="com/smit/vo/UserAnalysis.hbm.xml"/>
-	<mapping resource="com/smit/vo/Subscriber.hbm.xml"/>
-	<mapping resource="com/smit/vo/RssRecord.hbm.xml"/>
-	<mapping resource="com/smit/vo/AtomRecord.hbm.xml"/>
-	<mapping resource="com/smit/vo/PubSubUser.hbm.xml"/>
-	<mapping resource="com/smit/vo/Publisher.hbm.xml"/>
-	<mapping resource="com/smit/vo/Menu.hbm.xml"/>
+
+	<mapping resource="com/smit/vo/PushContent.hbm.xml" />
+	<mapping resource="com/smit/vo/News.hbm.xml" />
+	<mapping resource="com/smit/vo/UserAnalysis.hbm.xml" />
+	<mapping resource="com/smit/vo/Subscriber.hbm.xml" />
+	<mapping resource="com/smit/vo/RssRecord.hbm.xml" />
+	<mapping resource="com/smit/vo/AtomRecord.hbm.xml" />
+	<mapping resource="com/smit/vo/PubSubUser.hbm.xml" />
+	<mapping resource="com/smit/vo/Publisher.hbm.xml" />
+	<mapping resource="com/smit/vo/Menu.hbm.xml" />
+	<mapping resource="com/smit/vo/alarmclock/Clock.hbm.xml" />
 </session-factory>
 
 </hibernate-configuration>

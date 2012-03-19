@@ -7,6 +7,8 @@ public class Constants {
 	
 	// data storage in session with this key
 	public final static String LOGIN_SUC = "loginSuc";
+	// status
+	public final static String FAIL = "fail";
 	public final static String SUCCESS = "success";
 	
 	public final static String CURUSERNAME = "current_user_name"; 	// String

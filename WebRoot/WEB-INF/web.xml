@@ -109,7 +109,11 @@
 		pubsub_account.do,
 		test.do,
 		testCharts.do,
-		customerAuth.do
+		customerAuth.do,
+		clock.do,
+		clock_del.do,
+		clock_add.do,
+		clock_update.do
 		</param-value>		
 	</init-param>  	
   </filter>
