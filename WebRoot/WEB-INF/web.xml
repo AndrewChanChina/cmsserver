@@ -113,7 +113,8 @@
 		clock.do,
 		clock_del.do,
 		clock_add.do,
-		clock_update.do
+		clock_update.do,
+		hotel.do
 		</param-value>		
 	</init-param>  	
   </filter>

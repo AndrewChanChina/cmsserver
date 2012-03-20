@@ -31,7 +31,9 @@
 		<property name="clockService" ref="clockService"></property>
 	</bean>
 	
-	
+	<!-- 关于酒店的webservice -->
+	<bean name="/hotel" class="com.smit.web.webService.hotel.HotelAction">
+	</bean>
 	
 	<!-- 内容业务组件 -->
 	<bean name="/content" class="com.smit.web.content.actions.ContentAction">
