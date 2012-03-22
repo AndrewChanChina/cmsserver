@@ -6,17 +6,20 @@
 			<generator class="native"></generator>
 		</id>
 		<property name="name"></property>
+		<property name="id_local"></property>
 		<property name="hour"></property>
 		<property name="minutes"></property>
 		<property name="dayofweek"></property>
 		<property name="alarmtime"></property>
 		<property name="enable"></property>
 		<property name="vibrate"></property>
-		<property name="message"></property>
+		<property name="label"></property>
+		<property name="silent"></property>
 		<property name="alert"></property>
 		<property name="music"></property>
 		<property name="status"></property>
-		<property name="userid"></property>
+		<property name="operation"></property>
+		<property name="roomnum"></property>
 		
 	</class>
 </hibernate-mapping>

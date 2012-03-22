@@ -114,7 +114,10 @@
 		clock_del.do,
 		clock_add.do,
 		clock_update.do,
-		hotel.do
+		hotel.do,
+		clock_webservice.do,
+		clock_postStatus.do,
+		clock_getStatus.do
 		</param-value>		
 	</init-param>  	
   </filter>

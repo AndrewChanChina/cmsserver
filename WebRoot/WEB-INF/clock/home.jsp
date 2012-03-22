@@ -23,11 +23,28 @@
 	<link href="./css/jquery.validate.css" rel="stylesheet" type="text/css" />
 	<link href="./css/jquery.treeview.css" rel="stylesheet" type="text/css" />
 	<link href="./css/jquery.ui.css" rel="stylesheet" type="text/css" />	
+	<script type="text/javascript" src="../js/jquery.js"></script>
 	<!-- 表单的逻辑 -->
 	<script type="text/javascript">
+	$(document).ready(function(){
+		
+			$("#list").css("background-color","red");
+			$("#add").click(function(){
+				//$("#list").hide();
+				
+				
+			});
+		});
 		function getTableForm() {
 		return document.getElementById('tableForm');
-	}
+		
+		}
+		function optAdd(){
+			if (!confirm("您确定删除吗？")) {
+				return;
+			}
+			$("#result").load("clock_add.do?");
+		}
 	function optDelete() {
 		if (Pn.checkedCount('ids') <= 0) {
 			alert("请选择您要操作的数据");
@@ -44,13 +61,14 @@
    </head>  
    
    <body>
-   <div>添加闹钟<br>
+   <div id="add">添加闹钟<br>
+   <div id="result"></div>
    <form id=addForm
 		 action="clock_add.do"
 		 method=post>
 		 <div>名称：</div>
 		 <INPUT id="ii" name="hour">
-		 <INPUT id="dd" type="submit" value="登录(L)">
+		 <INPUT id="dd" type="submit" value="登录(L)" onclick="optAdd()">
    </form>
    </div><br>
    <div id="list">

@@ -63,9 +63,9 @@
 
 	<action-mappings>
 	<!-- 叫醒服务器 -->
-		<action path="/clock"
+		<action path="/clock_webservice"
 			type="org.springframework.web.struts.DelegatingActionProxy"
-			parameter="home">
+			parameter="webservice">
 			<forward name="home" path="/WEB-INF/clock/home.jsp" />
 			<forward name="success" path="/WEB-INF/clock/suc.jsp" />
 			<forward name="status" path="/WEB-INF/clock/status.jsp" />
@@ -98,6 +98,15 @@
 			<forward name="success" path="/WEB-INF/clock/suc.jsp" />
 			<forward name="status" path="/WEB-INF/clock/status.jsp" />
 		</action>
+		<action path="/clock_postStatus"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			parameter="postStatus">			
+		</action>
+		<action path="/clock_getStatus"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			parameter="getStatus">			
+		</action>
+		
 		<!-- 关于酒店的webservice -->
 		<action path="/hotel"
 			type="org.springframework.web.struts.DelegatingActionProxy"

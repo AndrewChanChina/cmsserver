@@ -1,5 +1,7 @@
 package com.smit.web.webService.hotel;
 
+import java.io.IOException;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -11,14 +13,22 @@ import org.apache.struts.actions.DispatchAction;
 public class HotelAction extends DispatchAction {
 	
 	public ActionForward hotelinfo(ActionMapping mapping, ActionForm form,
-			HttpServletRequest request, HttpServletResponse response){
+			HttpServletRequest request, HttpServletResponse response) throws IOException{
 		String roomNum = (String)request.getParameter("roomNum");
-		return mapping.findForward("hotelinfo");
+		String data = (String)request.getParameter("data");
+		System.out.println(roomNum);
+		System.out.println(data);
+		response.getWriter().println("lkdlldladf");
+		return null;
+		//return mapping.findForward("hotelinfo");
 	}
 	
 	public ActionForward roominfo(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response){
 		String roomNum = (String)request.getParameter("roomNum");
+		String data = (String)request.getParameter("data");
+		System.out.println(roomNum);
+		System.out.println(data);
 		return mapping.findForward("roominfo");
 	}
 

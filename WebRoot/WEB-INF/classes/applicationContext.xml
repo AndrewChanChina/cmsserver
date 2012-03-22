@@ -18,6 +18,9 @@
 	<bean id="clockService" class="com.smit.service.clock.ClockServiceImpl">
 		<property name="clockDao" ref="clockDao"></property>
 	</bean>
+	<bean name="/clock_webservice" class="com.smit.web.clock.ClockAction">
+		<property name="clockService" ref="clockService"></property>
+	</bean>
 	<bean name="/clock" class="com.smit.web.clock.ClockAction">
 		<property name="clockService" ref="clockService"></property>
 	</bean>
@@ -30,6 +33,13 @@
 	<bean name="/clock_update" class="com.smit.web.clock.ClockAction">
 		<property name="clockService" ref="clockService"></property>
 	</bean>
+	<bean name="/clock_postStatus" class="com.smit.web.clock.ClockAction">
+		<property name="clockService" ref="clockService"></property>
+	</bean>
+	<bean name="/clock_getStatus" class="com.smit.web.clock.ClockAction">
+		<property name="clockService" ref="clockService"></property>
+	</bean>
+	
 	
 	<!-- 关于酒店的webservice -->
 	<bean name="/hotel" class="com.smit.web.webService.hotel.HotelAction">

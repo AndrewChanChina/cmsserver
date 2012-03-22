@@ -18,4 +18,5 @@ public interface ClockService {
 	public List<Clock> getAllItems();
 	public List<Object[]> getLatestItems();
 
+	public Clock getByIdLocal(Integer localId);
 }

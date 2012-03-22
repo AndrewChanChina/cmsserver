@@ -49,4 +49,7 @@ public class ClockServiceImpl implements ClockService {
 		return clockDao.getLatestItems();
 	}
 
+	public Clock getByIdLocal(Integer localId){
+		return clockDao.getByIdLocal(localId);
+	}
 }

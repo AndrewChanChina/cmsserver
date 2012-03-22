@@ -42,5 +42,7 @@ public class Constants {
 	public final static String PUSH_TYPE_NOTIFICATION = "nofity";
 	public final static String PUSH_TYPE_ALERT = "alert";
 	
+	public final static String PUSH_CLOCK_KEY = "T3aXoTF0oz8nIbqCBdEq34a00O67raaa";
+	
 	
 }

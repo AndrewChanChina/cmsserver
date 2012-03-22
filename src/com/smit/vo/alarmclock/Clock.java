@@ -2,23 +2,29 @@ package com.smit.vo.alarmclock;
 
 import java.io.Serializable;
 
+import com.smit.web.clock.Alarm.DaysOfWeek;
+
 public class Clock implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	
 	private int id;
 	private String name;
+	
+	private Integer id_local;
 	private Integer hour;
 	private Integer minutes;
 	private Integer dayofweek;
 	private String alarmtime;
 	private Integer enable;
 	private Integer vibrate;
-	private String message;
+	private String  label;
+	public  Integer silent;
 	private String alert;
-	private String music;
+	private String music;	  
+	private String operation;
 	private String status;
-	private int userid;
+	private String roomnum;
 	
 	public int getId() {
 		return id;
@@ -31,6 +37,12 @@ public class Clock implements Serializable{
 	}
 	public void setName(String name) {
 		this.name = name;
+	}
+	public Integer getId_local() {
+		return id_local;
+	}
+	public void setId_local(Integer id_local) {
+		this.id_local = id_local;
 	}
 	public Integer getHour() {
 		return hour;
@@ -68,11 +80,17 @@ public class Clock implements Serializable{
 	public void setVibrate(Integer vibrate) {
 		this.vibrate = vibrate;
 	}
-	public String getMessage() {
-		return message;
+	public String getLabel() {
+		return label;
 	}
-	public void setMessage(String message) {
-		this.message = message;
+	public void setLabel(String label) {
+		this.label = label;
+	}
+	public Integer getSilent() {
+		return silent;
+	}
+	public void setSilent(Integer silent) {
+		this.silent = silent;
 	}
 	public String getAlert() {
 		return alert;
@@ -86,19 +104,26 @@ public class Clock implements Serializable{
 	public void setMusic(String music) {
 		this.music = music;
 	}
+	public String getOperation() {
+		return operation;
+	}
+	public void setOperation(String operation) {
+		this.operation = operation;
+	}
 	public String getStatus() {
 		return status;
 	}
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	public Integer getUserid() {
-		return userid;
+	public String getRoomnum() {
+		return roomnum;
 	}
-	public void setUserid(Integer userid) {
-		this.userid = userid;
+	public void setRoomnum(String roomnum) {
+		this.roomnum = roomnum;
 	}
-	
-	
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}  
 }
 

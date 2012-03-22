@@ -1,0 +1,45 @@
+#route_content{
+	padding: 8px;
+	line-height: 38px;;
+	font-size:24px;
+}
+.time{
+	font-size:60px;
+}
+.roomNum{
+	font-size:38px;
+}
+#route_content{
+	padding-top:20px;
+	padding-bottom:20px;
+}
+#route_content p{
+	margin-top:10px;
+	margin-bottom:10px;
+}
+#route_content h3{
+	font-size: 32px;
+	margin-top: 30px;
+	margin-bottom: 20px;
+	clear: left;
+	font-weight:normal;
+}
+#route_content .route_content_place{
+	float: left;
+	width: 160px;
+	height: 150px;
+	font-size:20px;
+	text-align: center;
+	overflow:hidden;
+	text-overflow:ellipsis;
+	white-space:nowrap;
+	word-break:keep-all;
+	margin-left:auto;
+	margin-right:auto;
+}
+#route_content .route_content_place{font-size:20px;}
+#route_content .route_content_place img{border:thin solid #999;height:100px;width:100px;margin-bottom: 4px;}
+a{color:inherit;text-decoration:none;}
+strong{font-weight:normal;}
+b{font-weight:normal;}
+#text p{text-indent:40px;}
