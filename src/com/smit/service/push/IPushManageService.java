@@ -22,5 +22,6 @@ public interface IPushManageService {
 	public void delete(UserAccountResource us);
 	public void delete(String userAccount);
 	// username with resource id
+	// if userName == null return all 
 	public List<UserAccountResource> listAllResource(String userName);
 }

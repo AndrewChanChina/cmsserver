@@ -1,0 +1,48 @@
+#floatBoxBg {
+	display: none;
+	width: 100%;
+	height: 100%;
+	background: #000;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+.floatBox {
+	border: #0C7FDA 5px solid;
+	width: 300px;
+	position: absolute;
+	top: 50px;
+	left: 40%;
+	z-index: 1000;
+}
+
+.floatBox .title {
+	height: 23px;
+	padding: 7px 10px 0;
+	color: #fff;
+	background-attachment: scroll;
+	background-image: url(../images/dialog_bg.gif);
+	background-repeat: repeat-x;
+	background-position: 0px 0px;
+}
+
+.floatBox .title h4 {
+	float: left;
+	padding: 0;
+	margin: 0;
+	font-size: 14px;
+	line-height: 16px;
+}
+
+.floatBox .title span {
+	float: right;
+	cursor: pointer;
+	vertical-align: middle;
+	margin-bottom: 2px;
+}
+
+.floatBox .content {
+	padding: 20px 15px;
+	background: #fff;
+}

@@ -69,9 +69,20 @@ public class PushServiceDaoImpl extends HibernateDaoSupport implements IPushServ
 	}
 
 	public List<UserAccountResource> listAllResource(String userName) {
-		return (List<UserAccountResource>)this.getHibernateTemplate()
-		.find("SELECT u FROM com.smit.vo.UserAccountResource u WHERE userAccount='"
-				+userName + "'");
+		
+		String strSql;
+		if(userName == null){			
+			//return this.getHibernateTemplate().find("FROM com.smit.vo.UserAccountResource");
+			strSql = "SELECT u FROM com.smit.vo.UserAccountResource u WHERE userAccount='"
+				+userName + "'";
+			
+		}else{
+			
+			strSql = "SELECT u FROM com.smit.vo.UserAccountResource u WHERE userAccount='"
+				+userName + "'";
+			
+		}
+		return (List<UserAccountResource>)this.getHibernateTemplate().find(strSql);
 	}
 
 	public void deleteByAccount(String account) {
@@ -80,8 +91,6 @@ public class PushServiceDaoImpl extends HibernateDaoSupport implements IPushServ
 		if(list.size() > 0){
 			getHibernateTemplate().deleteAll(list);
 		}
-		
-			
 	}
 
 	public void updateUserPresence(String user, String resource, boolean presence) {

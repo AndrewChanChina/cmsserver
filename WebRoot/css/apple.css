@@ -10,13 +10,96 @@ body {
 }
 /***************************************************************************
 common setting*/
-a{color:black;text-decoration:none;}
-a{color:inherit;text-decoration:none;}
+a{text-decoration:underline;}
+a{color:inherit;text-decoration:underline;}
 strong{font-weight:normal;}
 b{font-weight:normal;}
 #content #text p{text-indent:36px;}
 #route_content .route_content_place{font-size:24px;}
 #route_content .route_content_place img{border:thin solid #999;height:100px;width:100px;margin-bottom: 4px;}
+
+.hide_class{
+	display:none;
+}
+tr th{
+	background-color:DimGray;
+}
+tr td{
+    text-align:center;//水平居中
+    line-height: 25px;//行高  
+    vertical-align:middle；//垂直居中
+    	border-style:dashed;
+}
+
+.dotline{
+	border-width:1px;
+	border-style:dashed;
+}
+#show_clock_list{
+	margin-top:10px;
+}
+
+#add_clock_form{
+	//background-color:DarkGrey;
+}
+#head_bg{background-color:rgb(20,68,101);}
+
+.container{margin: 0 auto;width: 850px;}
+
+#header{text-align:left;font-size:38px;padding:20px 0;}
+					
+
+/*#side_left{
+	float: left;width: 150px;
+	border-style:dashed;
+	border-width:1px;
+	}*/
+
+#main{
+	margin-left: 0px;
+	width=700px;
+	border-style:dashed;
+	border-width:1px;
+}
+#sel_rings_cancel{
+	margin-left: 10px;	
+}
+.item .clock_room_num,
+.item .clock_name,
+.item .clock_time,
+.item .clock_dayofweek,
+.item .clock_enable,
+.item .clock_ring,
+.item .clock_vebase,
+#sel_rings_ok,
+#sel_rings_cancel
+{
+	display:inline-block;
+}
+.item .clock_room_num
+{
+	font-size:40px;
+}
+.item .clock_time{
+	font-size:48px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /***************************************************************************
 my theme*/
 .toolbar{

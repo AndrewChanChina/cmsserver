@@ -1,3 +1,11 @@
+#header{
+	color:white;
+}
+.clock_time{
+	font-size:40px;
+}
+	
+
 #route_content{
 	padding: 8px;
 	line-height: 38px;;

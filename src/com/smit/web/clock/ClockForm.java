@@ -1,12 +1,31 @@
 package com.smit.web.clock;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.struts.action.ActionForm;
+import org.apache.struts.action.ActionMapping;
 
 public class ClockForm extends ActionForm {
 	
 	private Integer id;
+	
 	private String name;
 	private Integer hour;
+	private Integer minutes;
+	private Integer week_sun;
+	private Integer week_mon;
+	private Integer week_tus;
+	private Integer week_wed;
+	private Integer week_thurs;
+	private Integer week_fri;
+	private Integer week_satur;
+	private String music;           // 默认的，还是服务器的
+	private String server_music;
+	private Integer vibrate;
+	private Integer enable;
+	private String status;
+	private String roomnum;
+	
 
 	public String getName() {
 		return name;
@@ -31,4 +50,178 @@ public class ClockForm extends ActionForm {
 	public void setId(Integer id) {
 		this.id = id;
 	}
+
+	public Integer getMinutes() {
+		return minutes;
+	}
+
+	public void setMinutes(Integer minutes) {
+		this.minutes = minutes;
+	}
+
+	public Integer getWeek_sun() {
+		return week_sun;
+	}
+
+	public void setWeek_sun(Integer week_sun) {
+		this.week_sun = week_sun;
+	}
+
+	public Integer getWeek_mon() {
+		return week_mon;
+	}
+
+	public void setWeek_mon(Integer week_mon) {
+		this.week_mon = week_mon;
+	}
+
+	public Integer getWeek_tus() {
+		return week_tus;
+	}
+
+	public void setWeek_tus(Integer week_tus) {
+		this.week_tus = week_tus;
+	}
+
+	public Integer getWeek_wed() {
+		return week_wed;
+	}
+
+	public void setWeek_wed(Integer week_wed) {
+		this.week_wed = week_wed;
+	}
+
+	public Integer getWeek_thurs() {
+		return week_thurs;
+	}
+
+	public void setWeek_thurs(Integer week_thurs) {
+		this.week_thurs = week_thurs;
+	}
+
+	public Integer getWeek_fri() {
+		return week_fri;
+	}
+
+	public void setWeek_fri(Integer week_fri) {
+		this.week_fri = week_fri;
+	}
+
+	public Integer getWeek_satur() {
+		return week_satur;
+	}
+
+	public void setWeek_satur(Integer week_satur) {
+		this.week_satur = week_satur;
+	}
+
+	public Integer getDayofWeek(){
+		Alarm.DaysOfWeek dw = new Alarm.DaysOfWeek(0);
+		if(week_mon != null){
+			dw.set(0, true);
+		}
+		if(week_tus != null){
+			dw.set(1, true);
+		}
+		if(week_wed != null){
+			dw.set(2, true);
+		}
+		if(week_thurs != null){
+			dw.set(3, true);
+		}
+		if(week_fri != null){
+			dw.set(4, true);
+		}
+		if(week_satur != null){
+			dw.set(5, true);
+		}
+		if(week_sun != null){
+			dw.set(6, true);
+		}
+		return dw.getCoded();
+	}
+	
+	public String getMusic() {
+		return music;
+	}
+
+	public void setMusic(String music) {
+		this.music = music;
+	}
+
+	public String getServer_music() {
+		return server_music;
+	}
+
+	public void setServer_music(String server_music) {
+		this.server_music = server_music;
+	}
+
+	public Integer getVibrate() {
+		if(vibrate == null){
+			return 0;
+		}else{
+			return 1;
+		}	
+	}
+
+	public void setVibrate(Integer vibrate) {
+		this.vibrate = vibrate;
+	}
+
+	public Integer getEnable() {
+		if(enable == null){
+			return 0;
+		}else{
+			return 1;
+		}		
+	}
+
+	public void setEnable(Integer enable) {
+		this.enable = enable;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public String getRoomnum() {
+		return roomnum;
+	}
+
+	public void setRoomnum(String roomnum) {
+		this.roomnum = roomnum;
+	}
+
+	@Override
+	public void reset(ActionMapping mapping, HttpServletRequest request) {
+		// TODO Auto-generated method stub
+		super.reset(mapping, request);
+		id  = null;
+		
+		name = null;
+		hour = null;
+		minutes = null;
+		week_sun = null;
+		week_mon = null;
+		week_tus = null;
+		week_wed = null;
+		week_thurs = null;
+		week_fri = null;
+		week_satur = null;
+		music = null;
+		server_music = null;
+		vibrate = null;
+		enable = null;
+		status = null;
+		roomnum = null;
+	}
+	
+	
+	
+	
 }

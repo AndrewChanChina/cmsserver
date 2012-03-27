@@ -1,28 +1,40 @@
 package com.smit.web.clock;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.actions.MappingDispatchAction;
 
 import com.smit.service.clock.ClockService;
+import com.smit.service.push.IPushDataService;
+import com.smit.service.push.IPushManageService;
 import com.smit.util.Constants;
 import com.smit.util.ParamsString;
+import com.smit.vo.PushContent;
 import com.smit.vo.alarmclock.Clock;
+import com.smit.vo.alarmclock.Rings;
 
 public class ClockAction extends MappingDispatchAction {
 	
 	private ClockService clockService;
+	private IPushManageService pushManageService;
 
 	public void setClockService(ClockService clockService) {
 		this.clockService = clockService;
-	}	
+	}
+
+	public void setPushManageService(IPushManageService pushManageService) {
+		this.pushManageService = pushManageService;
+	}
 
 	@Override
 	protected ActionForward unspecified(ActionMapping mapping, ActionForm form,
@@ -59,7 +71,14 @@ public class ClockAction extends MappingDispatchAction {
 			HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		List<Clock> clockList = clockService.getAllItems();
+		for(Clock c : clockList){
+			c.getWeekofDayBooleanArray();
+		}
+		//pushManageService.delete("aa");
+		//List<UserAccountResource> roomList = pushManageService.listAllResource("aa");
+		
 		request.setAttribute("clockList", clockList);
+		//request.setAttribute("roomList", roomList);
 		return mapping.findForward("home");
 	}
 	
@@ -89,6 +108,17 @@ public class ClockAction extends MappingDispatchAction {
 		Clock c = new Clock();
 		c.setName(clockForm.getName());
 		c.setHour(clockForm.getHour());
+		c.setMinutes(clockForm.getMinutes());
+		c.setRoomnum(clockForm.getRoomnum());
+		c.setDayofweek(clockForm.getDayofWeek());
+		c.setEnable(clockForm.getEnable());
+		c.setVibrate(clockForm.getVibrate());
+		if(!clockForm.getMusic().equals("default")){
+			Rings rings = clockService.getByIdRings(Integer.valueOf(clockForm.getServer_music()));
+			c.setMusic(rings.getLocalUrl());
+		}		
+		
+		boolean barray[] = c.getWeekofDayBooleanArray();
 		String status = Constants.SUCCESS;
 		
 		try{
@@ -98,7 +128,7 @@ public class ClockAction extends MappingDispatchAction {
 			e.printStackTrace();
 			status = Constants.FAIL;
 		}
-		// send to client
+		// TODO send to client
 		
 		
 		// write to application
@@ -107,6 +137,17 @@ public class ClockAction extends MappingDispatchAction {
 		application.setAttribute(uuid, status);
 		response.getOutputStream().print(uuid + "=" + status);
 		return null;
+	}
+	public void pushData(HttpServletRequest request,PushContent pc) throws Exception{
+		HttpSession session = request.getSession();
+		String[] deviceIds = request.getParameterValues("deviceIds");
+		IPushDataService ps = (IPushDataService)session.getAttribute(Constants.PUSH_CONNECTION);
+		List<String> userList = new ArrayList<String>();
+		for(String s:deviceIds){
+			userList.add(session.getAttribute(Constants.CURUSERNAME)
+					+ "@smit/"+ s);
+		}
+		ps.sendPushDataFromUser(userList, false, RandomStringUtils.randomNumeric(4), pc.getTitle(), "", pc.getUrl(), pc.getDes(), pc.getContent_type());
 	}
 	public ActionForward update(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
@@ -117,6 +158,7 @@ public class ClockAction extends MappingDispatchAction {
 		c.setId(clockForm.getId());
 		c.setName(clockForm.getName());
 		c.setHour(clockForm.getHour());
+		
 		
 		try{
 			clockService.update(c);

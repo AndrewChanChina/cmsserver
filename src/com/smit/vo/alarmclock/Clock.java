@@ -2,6 +2,7 @@ package com.smit.vo.alarmclock;
 
 import java.io.Serializable;
 
+import com.smit.web.clock.Alarm;
 import com.smit.web.clock.Alarm.DaysOfWeek;
 
 public class Clock implements Serializable{
@@ -25,6 +26,10 @@ public class Clock implements Serializable{
 	private String operation;
 	private String status;
 	private String roomnum;
+	
+	private String dayofWeekString;
+	
+	private boolean[] dayofWeekArray;
 	
 	public int getId() {
 		return id;
@@ -60,7 +65,7 @@ public class Clock implements Serializable{
 		return dayofweek;
 	}
 	public void setDayofweek(Integer dayofweek) {
-		this.dayofweek = dayofweek;
+		this.dayofweek = dayofweek;		
 	}
 	public String getAlarmtime() {
 		return alarmtime;
@@ -124,6 +129,27 @@ public class Clock implements Serializable{
 	}
 	public static long getSerialversionuid() {
 		return serialVersionUID;
+	}
+	public String getDayofWeekString() {
+		return dayofWeekString;
+	}
+	public void setDayofWeekString(String dayofWeekString) {
+		this.dayofWeekString = dayofWeekString;
 	}  
+	
+	public boolean[] getWeekofDayBooleanArray(){
+		if(dayofweek == null){
+			dayofweek = 0;
+		}
+		Alarm.DaysOfWeek dw = new Alarm.DaysOfWeek(dayofweek);
+		dayofWeekArray = dw.getBooleanArray();
+		return dayofWeekArray;
+	}
+	public boolean[] getDayofWeekArray() {
+		return dayofWeekArray;
+	}
+	public void setDayofWeekArray(boolean[] dayofWeekArray) {
+		this.dayofWeekArray = dayofWeekArray;
+	}
 }
 

@@ -26,6 +26,7 @@ $(document).ready(function(){
 
 	
 	$("#up-photo").bind("change",function(){
+		// write hidden 
 		var p = $("#photo-names");
 		p.val(p.val()+$("#up-photo").val()+";");
 		$.ajaxFileUpload({

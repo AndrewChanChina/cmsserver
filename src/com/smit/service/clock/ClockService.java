@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.smit.util.SmitPage;
 import com.smit.vo.alarmclock.Clock;
+import com.smit.vo.alarmclock.Rings;
 
 public interface ClockService {
 	
@@ -19,4 +20,12 @@ public interface ClockService {
 	public List<Object[]> getLatestItems();
 
 	public Clock getByIdLocal(Integer localId);
+	
+	public void save(Rings rings);
+	public void update(Rings rings);
+	public void delete(Rings rings);
+	public Rings getByIdRings(Integer id);
+	public List<Rings> findByPartIdRings(SmitPage page, Integer partId);
+	
+	
 }

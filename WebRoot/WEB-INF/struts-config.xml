@@ -46,6 +46,7 @@
 		<form-bean name="photoForm" type="com.smit.web.push.action.PhotoForm"></form-bean>
 		
 		<form-bean name="clockForm" type="com.smit.web.clock.ClockForm"></form-bean>
+		<form-bean name="uploadFileForm" type="com.smit.web.form.UploadFileForm"></form-bean>
 	</form-beans>
 
 	<global-forwards>
@@ -62,6 +63,28 @@
 	</global-forwards>
 
 	<action-mappings>
+	<!-- 上传铃声录音文件 -->
+	<action path="/ring"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			parameter="home">
+			<forward name="home" path="/WEB-INF/clock/music.jsp" />
+			<forward name="success" path="/WEB-INF/clock/suc.jsp" />
+			<forward name="list" path="/WEB-INF/clock/list_rings.jsp" />
+	</action>
+	<action path="/ring_add"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			parameter="add">
+	</action>
+	<action path="/ring_delete"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			parameter="delete">
+	</action>
+	<action path="/uploadMusicFile"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			parameter="uploadMusicFile"
+			name="uploadFileForm">
+	</action>
+	
 	<!-- 叫醒服务器 -->
 		<action path="/clock_webservice"
 			type="org.springframework.web.struts.DelegatingActionProxy"
@@ -73,7 +96,7 @@
 		<action path="/clock"
 			type="org.springframework.web.struts.DelegatingActionProxy"
 			parameter="home">
-			<forward name="home" path="/WEB-INF/clock/home.jsp" />
+			<forward name="home" path="/WEB-INF/clock/index.jsp" />
 			<forward name="success" path="/WEB-INF/clock/suc.jsp" />
 			<forward name="status" path="/WEB-INF/clock/status.jsp" />
 		</action>

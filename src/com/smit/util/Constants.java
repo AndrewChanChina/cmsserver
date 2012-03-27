@@ -44,5 +44,8 @@ public class Constants {
 	
 	public final static String PUSH_CLOCK_KEY = "T3aXoTF0oz8nIbqCBdEq34a00O67raaa";
 	
+	public final static String RINGS_PATH_TEMP = "rings_temp";
+	public final static String RINGS_PATH = "rings";
+	
 	
 }

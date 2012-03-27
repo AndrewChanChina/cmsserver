@@ -11,18 +11,37 @@
     					http://www.springframework.org/schema/tx 
     					http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
 
+	<!-- 铃声管理 -->
+	<bean name="/ring" class="com.smit.web.clock.MusicAction">
+		<property name="clockService" ref="clockService"></property>
+	</bean>
+	<bean name="/ring_add" class="com.smit.web.clock.MusicAction">
+		<property name="clockService" ref="clockService"></property>
+	</bean>
+	<bean name="/ring_delete" class="com.smit.web.clock.MusicAction">
+		<property name="clockService" ref="clockService"></property>
+	</bean>
+	<bean name="/uploadMusicFile" class="com.smit.web.clock.MusicAction">
+		<property name="clockService" ref="clockService"></property>
+	</bean>
+	<bean id="ringsDao" class="com.smit.dao.clock.RingsDaoImpl">	
+		<property name="sessionFactory" ref="sessionFactory"></property>	
+	</bean>
+	
 	<!-- 叫醒服务器 -->
 	<bean id="clockDao" class="com.smit.dao.clock.ClockDaoImpl">	
 		<property name="sessionFactory" ref="sessionFactory"></property>	
 	</bean>
 	<bean id="clockService" class="com.smit.service.clock.ClockServiceImpl">
 		<property name="clockDao" ref="clockDao"></property>
+		<property name="ringsDao" ref="ringsDao"></property>
 	</bean>
 	<bean name="/clock_webservice" class="com.smit.web.clock.ClockAction">
 		<property name="clockService" ref="clockService"></property>
 	</bean>
 	<bean name="/clock" class="com.smit.web.clock.ClockAction">
 		<property name="clockService" ref="clockService"></property>
+		<property name="pushManageService" ref="pushManageService"></property>
 	</bean>
 	<bean name="/clock_del" class="com.smit.web.clock.ClockAction">
 		<property name="clockService" ref="clockService"></property>
@@ -103,6 +122,8 @@
 	<bean name="/logoutDev" class="com.smit.web.UserAction" scope="prototype">
 	</bean>
 	
+	<!-- ****************************************************************** -->
+	<!-- 推送相关服务，底层数据库和接口部分 -->
 	<bean id="pushServiceDao" class="com.smit.dao.PushServiceDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
@@ -392,6 +413,8 @@
 		<property name="newsService" ref="newsService"></property>
 		<property name="pushService" ref="pushDataService"></property>	
 	</bean>
+	
+	<!-- ************************************************************* -->
 	<!-- push action add by luocheng 2011/06/02 -->
 	<bean name="/push" class="com.smit.web.push.action.PushAction" scope="prototype">
 		<property name="service" ref="pushService"></property>
