@@ -11,6 +11,21 @@
     					http://www.springframework.org/schema/tx 
     					http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
 
+	<!-- 上传apk的信息 -->
+	<bean name="/apk" class="com.smit.web.apk.ApkAction">
+		<property name="apkInfoService" ref="apkInfoService"></property>
+	</bean>
+	<bean name="/apk_webservice" class="com.smit.web.apk.ApkAction">
+		<property name="apkInfoService" ref="apkInfoService"></property>
+	</bean>
+	
+	<bean id="apkInfoDao" class="com.smit.web.apk.ApkInfoDaoImpl">	
+		<property name="sessionFactory" ref="sessionFactory"></property>	
+	</bean>
+	<bean id="apkInfoService" class="com.smit.web.apk.ApkInfoServiceImpl">
+		<property name="apkInfoDao" ref="apkInfoDao"></property>
+	</bean>
+
 	<!-- 铃声管理 -->
 	<bean name="/ring" class="com.smit.web.clock.MusicAction">
 		<property name="clockService" ref="clockService"></property>

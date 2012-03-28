@@ -1,0 +1,32 @@
+
+.btn,
+.item
+{
+display:inline-block;
+}
+#not_install
+{
+	margin-left:0px;
+}
+#cur_room_num
+{
+	font-size:40px;
+}
+#btn_uninstall,
+#btn_install,
+#btn_sel_all,
+#btn_unsel_all
+{
+float: right;
+margin-right:10px;
+}
+
+.item
+{
+	width=10px;
+}
+
+.hide_class
+{
+	display:none;
+}

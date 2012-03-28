@@ -79,6 +79,7 @@
 	<mapping resource="com/smit/vo/Menu.hbm.xml" />
 	<mapping resource="com/smit/vo/alarmclock/Clock.hbm.xml" />
 	<mapping resource="com/smit/vo/alarmclock/Rings.hbm.xml" />
+	<mapping resource="com/smit/vo/apk/ApkInfo.hbm.xml" />
 </session-factory>
 
 </hibernate-configuration>

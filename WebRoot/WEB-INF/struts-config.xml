@@ -63,6 +63,19 @@
 	</global-forwards>
 
 	<action-mappings>
+	
+	<!-- 上传apk的信息 -->
+	<action path="/apk"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			parameter="home">
+			<forward name="home" path="/WEB-INF/apk/index.jsp" />
+	</action>
+	<action path="/apk_webservice"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			parameter="webservice">
+			<forward name="home" path="/WEB-INF/apk/index.jsp" />
+	</action>
+	
 	<!-- 上传铃声录音文件 -->
 	<action path="/ring"
 			type="org.springframework.web.struts.DelegatingActionProxy"
