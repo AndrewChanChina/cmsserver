@@ -162,11 +162,6 @@ public class MusicAction extends MappingDispatchAction {
 			}
 		}
 		// response.setContentType("text");
-		File f = new File(file
-						+ File.separator + uploadFile.getFileName());
-		if(f.exists()){
-			System.out.print("lkd;akd;a");
-		}
 		response.getWriter().print(uploadFile.getFileName());
 		return null;
 	}

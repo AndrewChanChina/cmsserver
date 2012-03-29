@@ -29,7 +29,7 @@ public class PushServiceManage extends DispatchAction {
 			pageIndex = 1;
 		SmitPage pager = new SmitPage(WebUtil.getIntByRequestParament(
 				request, SmitPage.pageNumberParameterName, pageIndex));	
-		int pageSize = 2; 		
+		int pageSize = 20; 		
 		pager.setPageSize(pageSize);	
 		pager.setUrl("pushservicemanage.do?opt=list&");
 		

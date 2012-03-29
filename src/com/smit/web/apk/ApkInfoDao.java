@@ -18,6 +18,8 @@ public interface ApkInfoDao {
 	public List<ApkInfo> getAllItems();
 	public List<Object[]> getLatestItems();
 	public ApkInfo findByPackageName(String packageName);
+	
+	public List<ApkInfo> findByNamedParam(SmitPage page, String[] names, String[] values);
 
 
 }

@@ -56,6 +56,7 @@ public class PushDataServiceImpl implements IPushDataService {
 		if(connection == null)
 			return false;
 		connection.disconnect();
+		connection = null;
 		return true;
 	}
 	public boolean isConnected(){

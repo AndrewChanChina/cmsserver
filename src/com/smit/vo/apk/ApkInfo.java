@@ -24,6 +24,8 @@ public class ApkInfo implements Serializable{
 	private String packageName;
 	private String operation;
 	private String apkUrl;
+	private String type;
+	
 	public int getId() {
 		return id;
 	}
@@ -72,6 +74,14 @@ public class ApkInfo implements Serializable{
 	public void setApkUrl(String apkUrl) {
 		this.apkUrl = apkUrl;
 	}
+	public String getType() {
+		return type;
+	}
+	public void setType(String type) {
+		this.type = type;
+	}
+	
+	
 	
 	
 }

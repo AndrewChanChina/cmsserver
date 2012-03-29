@@ -114,8 +114,8 @@ body {
 														</td>
 													</tr>
 
-													<tr>
-														<td height="40" align="right">
+													<tr style ="display:none;">
+														<td height="40" align="right" >
 															<strong>验证码：</strong>
 														</td>
 														<td>
@@ -127,9 +127,9 @@ body {
 														
 														</td>
 													</tr>
-													<tr>
+													<tr style ="display:none;">
 														<td align="center" colspan="2">
-												         <img name ="jcaptcha" id ="jcaptcha" onclick ="refresh_jcaptcha(this)" src ="jcaptcha.do" alt ="click to refresh" style ="cursor:pointer;"/> 
+												         <img name ="jcaptcha" id ="jcaptcha" onclick ="refresh_jcaptcha(this)" src ="jcaptcha.do" alt ="click to refresh" style ="cursor:pointer;display:none;"/> 
 												    	</td>
 												    	
 													</tr>

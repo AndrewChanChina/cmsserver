@@ -3,6 +3,7 @@ package com.smit.web.apk;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,7 +12,6 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
 import org.w3c.dom.Document;
-import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
@@ -79,14 +79,17 @@ public class ApkInfoXmlParse {
 		}
 		InputStream inputStream = null;
 		try {
+		
+			inputStream = new ByteArrayInputStream(data.getBytes("UTF-8")); 
 			
-			inputStream = new ByteArrayInputStream(data.getBytes()); 
-			
-		} catch (IllegalStateException e) {
-			//e.printStackTrace();
+		} catch(UnsupportedEncodingException e){
+			e.printStackTrace();
+			return false;
+		}catch (IllegalStateException e) {
+			e.printStackTrace();
 			return false;
 		} catch (NullPointerException e) {
-			//e.printStackTrace();
+			e.printStackTrace();
 			return false;
 		}
 
@@ -94,10 +97,10 @@ public class ApkInfoXmlParse {
 		try {
 			mDoc = db.parse(inputStream);
 		} catch (SAXException e) {
-			//e.printStackTrace();
+			e.printStackTrace();
 			return false;
 		} catch (IOException e) {
-			//e.printStackTrace();
+			e.printStackTrace();
 			return false;
 		}
 		mDoc.getDocumentElement().normalize();

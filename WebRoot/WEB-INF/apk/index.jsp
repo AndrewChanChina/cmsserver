@@ -18,7 +18,7 @@
         <script type="text/javascript" src="./js/jquery.js"></script>
         <script type="text/javascript" src="./js/dialog.js"></script>
         <script type="text/javascript" src="./js/apk/apk_index.js"></script>		
-        
+        <script type="text/javascript" src="./js/ajaxfileupload.js"></script>
     </head>
     <body>
     <div id="head_bg">
@@ -27,7 +27,7 @@
     	</div>
   	</div>
     <div class='container'>    	
-    	<div id='side_left'>
+    	<div id='side_left' class='hide_class'>
     		<div>菜单</div>
     		<div>
     			<ul>
@@ -42,6 +42,43 @@
     			<div>
     				<h3 id='showaddclock'>Apk上传</h3>    								
     			</div>
+    			<form action='apk_add.do' method='post' id="add_apk_form"
+							onsubmit="return check_add_apk_form()">
+    			<table>
+    			<tr>
+    			<td class="col_1">应用名称</th></td>
+    			<td><input name="appName"></td>
+    			</tr>
+    			<tr>
+    			<td class="col_1">包名</td>
+    			<td><input name="packageName"></td>
+    			</tr>
+    			<tr>
+    			<td class="col_1">上传apk</td>
+    			<td>
+    			<input type='file' name='file' id='up_apk'/>
+    			<input type="hidden" name='apk_file' id='apk_name'/>
+    			<div id='apk-pick-tip'></div>
+    			</td>
+    			</tr>
+    			<tr>
+    			<td class="col_1">上传ICON</td>
+    			<td>
+    			<input type="file" name="file" id="up-icon" />
+    			<input type="hidden" name='icon_file'/>
+    			<div id='icon-pick-tip'></div>
+    			</td>
+    			</tr>
+    			<tr>
+    			<td><br><br></td>
+    			<td><input type="submit"></td>
+    			</tr>
+    			</table>
+    			</form>
+    			
+    			
+    			
+    			
     		</div>
     		<div class='dotline'></div>
     		<div id="show_clock_list">
@@ -52,27 +89,47 @@
     				<br><br>
     		
     		<div>当前房间：<div id="cur_room_num">201</div></div>
-    		<input type="radio" name="install" value="had_install" checked><div id="had_install" class="btn">已经安装</div>
-    		<input type="radio" name="install" value="not_install"><div id="not_install" class="btn">未安装</div>
-    		<br>
     		
     		    		
-    		<div id='btn_uninstall' class="btn">卸载选择中Apk</div>
-    		<div id='btn_install' class="btn hide_class">安装选择中Apk</div>
-    		<div id='btn_unsel_all' class='btn'>取消全选<input type='checkbox' name="all_unsel"></input></div>
-    		<div id='btn_sel_all' class='btn'>全选<input type='checkbox' name="all_sel"></input></div>
-    		<br>
-    		<div id="show_area">
-    			<c:forEach items="${apkList}" var="apkInfo">
-    				<div class='item' >
-    					<img alt="" src="./images/apk/apk_default.png">
-    					<div class='name'>${apkInfo.appName}</div>
-    					<div class="hide_class"></div>
-    					<input type="checkbox" name="sel" value="${apkInfo.id}">
-    				</div>
-				</c:forEach>
-    		</div>
-    			
+    		
+    		<form action='apk_pushData.do' method='post' id="install_apk_form"
+							onsubmit="return check_install_sel()">
+							
+				<input type="radio" name="install" value="had_install"
+	    		<c:if test="${type != 'uninstall'}">checked</c:if>    		
+	    		><div id="had_install" class="btn">已经安装</div>
+	    		
+	    		<input type="radio" name="install" value="not_install"
+	    		<c:if test="${type == 'uninstall'}">checked</c:if>
+	    		><div id="not_install" class="btn">未安装</div>
+	    		<br>
+    		    		
+	    		<c:if test="${type != 'uninstall'}">
+	    		<div id='btn_uninstall' class="btn">卸载选择中Apk</div>
+				</c:if>
+	    		<c:if test="${type == 'uninstall'}">
+	    		<div id='btn_install' class="btn">安装选择中Apk</div>
+	    		</c:if>
+	    		
+				
+	    		<div id='btn_unsel_all' class='btn'>全不选<input type='checkbox' name="all_unsel"></input></div>
+	    		<div id='btn_sel_all' class='btn'>全选<input type='checkbox' name="all_sel"></input></div>
+	    		<br>
+	    		<div id="show_area">
+	    			<c:forEach items="${apkList}" var="apkInfo">
+	    				<div class='item' >
+	    					<img alt="" src="./images/apk/apk_default.png">
+	    					<div class='name'>${apkInfo.appName}</div>
+	    					<div class="hide_class"></div>
+	    					<input type="checkbox" name="ids" value="${apkInfo.id}">
+	    				</div>
+					</c:forEach>
+	    		</div>
+	    		<input type="hidden" name="roomnum" value="${roomnum}">
+	    		<input type="hidden" name="roomnum" value="${roomnum}">
+	    		
+	    		<input type="submit">
+    		</form>	
     </div>   	
     </div>
      </div>

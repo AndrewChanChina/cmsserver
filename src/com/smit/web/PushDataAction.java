@@ -14,6 +14,7 @@ import org.apache.struts.actions.DispatchAction;
 
 import com.smit.service.push.IPushDataService;
 import com.smit.service.push.IPushManageService;
+import com.smit.util.ApplicationCache;
 import com.smit.util.Constants;
 import com.smit.vo.UserAccountResource;
 import com.smit.web.form.PushDataForm;
@@ -119,9 +120,10 @@ public class PushDataAction extends DispatchAction {
 		PushDataForm pf = (PushDataForm)form;
 		
 		try{
-			IPushDataService pd = (IPushDataService)session.
-				getServletContext().getAttribute(Constants.PUSH_CONNECTION);
-			if(pd != null){
+			
+			ApplicationCache appCache = ApplicationCache.getInstance();
+			IPushDataService pd = (IPushDataService)appCache.getAttribute(Constants.PUSH_CONNECTION);
+			if(pd != null && pd.isConnected()){
 				boolean bDelay = false;
 				if( "yes".equalsIgnoreCase(pf.getIsDelay()) )
 					bDelay = true;
@@ -136,16 +138,18 @@ public class PushDataAction extends DispatchAction {
 					for(String s : pushIds){
 						pushIdList.add(s);
 					}
-					/*pd.sendPushDataFromDev(pf.getServiceName(), pushIdList,
+					pd.sendPushDataFromDev(pf.getServiceName(), pushIdList,
 							bDelay, pf.getCollapseKey(), 
 							pf.getTitle(), pf.getTicket(), 
-							pf.getUri(), pf.getMessage());*/
-					pd.sendPushDataFromDevToAll(pf.getServiceName(),
+							pf.getUri(), pf.getMessage());
+							/*pd.sendPushDataFromDevToAll(pf.getServiceName(),
 							bDelay, pf.getCollapseKey(), pf.getTitle(), 
-							pf.getTicket(), pf.getUri(), pf.getMessage());
+							pf.getTicket(), pf.getUri(), pf.getMessage());*/
 					
 				}
 				
+			}else{
+				return mapping.findForward("fail");
 			}
 		}catch(Exception e){
 			e.printStackTrace();

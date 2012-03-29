@@ -12,6 +12,7 @@
 		<property name="packageName"></property>
 		<property name="operation"></property>
 		<property name="apkUrl"></property>
+		<property name="type"></property>
 		
 	</class>
 </hibernate-mapping>

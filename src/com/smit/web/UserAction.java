@@ -63,8 +63,7 @@ public class UserAction extends MappingDispatchAction {
 		}
 		// 先登录开发者的账号
 		loginServer(session);
-		ServletContext application = session.getServletContext();
-		IPushDataService ps = (IPushDataService)application.getAttribute(Constants.PUSH_CONNECTION);
+		IPushDataService ps = (IPushDataService)session.getAttribute(Constants.PUSH_CONNECTION);		
 		if(ps != null){
 			pushDataService = ps;			
 		}
@@ -81,12 +80,12 @@ public class UserAction extends MappingDispatchAction {
 				session.setAttribute(Constants.CURUSERNAME,loginForm.getUserName());
 				session.setAttribute(Constants.SERVER_NAME,pushDataService.getServerName());
 				session.setAttribute(Constants.PUSH_CONNECTION, pushDataService);
-				application.setAttribute(Constants.PUSH_CONNECTION, pushDataService);
+				//application.setAttribute(Constants.PUSH_CONNECTION, pushDataService);
 				
 				//modify by luocheng 2011-07-28
-				ApplicationCache appCache = ApplicationCache.getInstance();
+				/*ApplicationCache appCache = ApplicationCache.getInstance();
 				appCache.setAttribute(Constants.SERVER_NAME, pushDataService.getServerName());
-				appCache.setAttribute(Constants.PUSH_CONNECTION, pushDataService);
+				appCache.setAttribute(Constants.PUSH_CONNECTION, pushDataService);*/
 				session.setAttribute(Constants.LEVEL, Constants.LEVEL_USER);
 				User u = userService.findUserByName(loginForm.getUserName());
 				if (u != null) {					
@@ -124,9 +123,10 @@ public class UserAction extends MappingDispatchAction {
 		pushDataService = (IPushDataService) session
 				.getAttribute(Constants.PUSH_CONNECTION);
 
-		if(pushDataService != null)
+		if(pushDataService != null){
 			pushDataService.getConnection().disconnect();
-
+		}
+		loginServer(request.getSession());
 		response.sendRedirect("login_jsp.do");
 		return null;
 	}	
@@ -400,13 +400,14 @@ public class UserAction extends MappingDispatchAction {
 		errors.add("jcaptcha_error_msg", new ActionMessage(
 				"error.jcaptcha.error.inputInvalid"));
 		this.addErrors(request, errors);
-		return false;
+		//return false;
+		return true;// 正确
 	}
 	
 	private void loginServer(HttpSession session){
 		ServletContext application = session.getServletContext();
 		IPushDataService ps = (IPushDataService)application.getAttribute(Constants.PUSH_CONNECTION);
-		if(ps == null){
+		if(ps == null || ps.isConnected()==false){
 			if(pushDataService.login(Constants.PUSH_HOST,			 
 				    Constants.PUSH_SERVERNAME, Constants.PUSH_SERVERPASSWORD)){		
 					// login smack success

@@ -35,7 +35,6 @@ public class ApkInfoDaoImpl extends HibernateDaoSupport implements ApkInfoDao {
 		return this.getHibernateTemplate().get(ApkInfo.class, id);
 	}
 
-
 	public List<ApkInfo> listAll(final SmitPage page) {
 		if (page == null)
 			return listAll();
@@ -64,6 +63,12 @@ public class ApkInfoDaoImpl extends HibernateDaoSupport implements ApkInfoDao {
 				"SELECT g FROM com.smit.vo.apk.ApkInfo g");
 	}
 
+	private List listAll(final String[] names, final String[] values) {
+		return this.getHibernateTemplate().findByNamedParam(
+				"SELECT g FROM com.smit.vo.apk.ApkInfo g", names, values);
+
+	}
+
 	public List<ApkInfo> getAllItems() {
 		return this.getHibernateTemplate().find("from ApkInfo v");
 	}
@@ -75,11 +80,46 @@ public class ApkInfoDaoImpl extends HibernateDaoSupport implements ApkInfoDao {
 
 	public ApkInfo findByPackageName(String packageName) {
 		List<ApkInfo> list = getHibernateTemplate().find(
-		"SELECT g FROM com.smit.vo.apk.ApkInfo g WHERE packageName='" + packageName + "'");
-		if(list != null && list.size() == 1){
+				"SELECT g FROM com.smit.vo.apk.ApkInfo g WHERE packageName='"
+						+ packageName + "'");
+		if (list != null && list.size() == 1) {
 			return list.get(0);
 		}
 		return null;
+	}
+
+	public List<ApkInfo> findByNamedParam(final SmitPage page,
+			final String[] names, final String[] values) {
+		if (page == null)
+			return listAll(names,values);
+
+		List count = getHibernateTemplate().find(
+				"SELECT count(*) FROM com.smit.vo.apk.ApkInfo");
+		page.setTotalCount(Integer.parseInt(count.get(0).toString()));
+
+		List list = getHibernateTemplate().executeFind(new HibernateCallback() {
+			public Object doInHibernate(Session s) throws HibernateException,
+					SQLException {
+				StringBuffer hql = new StringBuffer(
+						"select g FROM com.smit.vo.apk.ApkInfo g");
+				for (int i = 0; i < names.length; i++) {
+					if (i == 0) {
+						hql.append(" WHERE ");
+					} else {
+						hql.append(" AND ");
+					}
+					hql.append(names[i]).append("=\'").append(values[i])
+							.append("\'");
+				}
+				Query query = s.createQuery(hql.toString());
+				int firstRow = page.getPageSize() * (page.getPageIndex() - 1);
+				query.setFirstResult(firstRow);
+				query.setMaxResults(page.getPageSize());
+				List list = query.list();
+				return list;
+			}
+		});
+		return list;
 	}
 
 }

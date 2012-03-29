@@ -140,7 +140,7 @@ public class CollectVideoTask {
 		String server = (String) app.getAttribute(Constants.SERVER_NAME);
 		IPushDataService pushDataService = (IPushDataService) app.getAttribute(Constants.PUSH_CONNECTION);
 		//不存在就是session过期，需要重新登录sever用户
-		if(null==pushDataService){
+		if(null==pushDataService || pushDataService.isConnected()==false){
 			if(pushService.login(Constants.PUSH_HOST, Constants.PUSH_SERVERNAME, Constants.PUSH_SERVERPASSWORD)){
 				app.setAttribute(Constants.PUSH_CONNECTION, pushService);
 				pushDataService = pushService;

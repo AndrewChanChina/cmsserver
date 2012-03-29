@@ -8,10 +8,11 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import com.smit.service.IGroupManagerService;
 import com.smit.service.IPurviewService;
 import com.smit.service.IUserService;
-import com.smit.testAction.VideoActionTest;
+import com.smit.service.push.IPushManageService;
 import com.smit.util.Constants;
 import com.smit.vo.Group;
 import com.smit.vo.Purview;
+import com.smit.vo.PushService;
 import com.smit.vo.User;
 
 public class DatabaseImport extends TestCase {
@@ -57,6 +58,24 @@ public class DatabaseImport extends TestCase {
 		user2.setEmail("chenyz@smit.com.cn");		
 		user2.setGroup(g);		
 		us.save(user2);
+		
+		
+		
+		IPushManageService pms = (IPushManageService)beanFactory.getBean("pushManageService");
+		
+		PushService pushservice = new PushService();
+		pushservice.setServiceName("push alarm clock");
+		pushservice.setUserId(user2.getId());
+		pms.save(pushservice);
+		pushservice.setServiceId("GVTO6mcPcNGm3556786E8KL48M9L87rr");
+		pms.update(pushservice);
+		
+		PushService pushservice2 = new PushService();
+		pushservice2.setServiceName("push apk install");
+		pushservice2.setUserId(user2.getId());
+		pms.save(pushservice2);
+		pushservice2.setServiceId("tmticb0yfyRl4O71gXTxpbiTC92DvWFf");
+		pms.update(pushservice2);
 	}
 	/**
 	 * 导入 push 用户的分组信息
@@ -83,5 +102,4 @@ public class DatabaseImport extends TestCase {
 	public static void main(String[] args) {
 	    junit.textui.TestRunner.run(DatabaseImport.class);
 	}
-
 }

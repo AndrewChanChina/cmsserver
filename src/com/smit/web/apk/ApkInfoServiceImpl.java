@@ -49,4 +49,9 @@ public class ApkInfoServiceImpl implements ApkInfoService {
 		return apkInfoDao.findByPackageName(packageName);
 	}
 	
+	public List<ApkInfo> findByNamedParam(final SmitPage page, final String[] names,
+			final String[] values){
+		return apkInfoDao.findByNamedParam(page, names, values);
+	}
+	
 }

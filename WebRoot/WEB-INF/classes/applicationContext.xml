@@ -15,7 +15,19 @@
 	<bean name="/apk" class="com.smit.web.apk.ApkAction">
 		<property name="apkInfoService" ref="apkInfoService"></property>
 	</bean>
+	<bean name="/apk_add" class="com.smit.web.apk.ApkAction">
+		<property name="apkInfoService" ref="apkInfoService"></property>
+	</bean>
+	<bean name="/apk_pushData" class="com.smit.web.apk.ApkAction">
+		<property name="apkInfoService" ref="apkInfoService"></property>
+	</bean>
+	<bean name="/apk_delete" class="com.smit.web.apk.ApkAction">
+		<property name="apkInfoService" ref="apkInfoService"></property>
+	</bean>
 	<bean name="/apk_webservice" class="com.smit.web.apk.ApkAction">
+		<property name="apkInfoService" ref="apkInfoService"></property>
+	</bean>
+	<bean name="/apk_upload" class="com.smit.web.apk.ApkAction">
 		<property name="apkInfoService" ref="apkInfoService"></property>
 	</bean>
 	
@@ -79,39 +91,7 @@
 	<bean name="/hotel" class="com.smit.web.webService.hotel.HotelAction">
 	</bean>
 	
-	<!-- 内容业务组件 -->
-	<bean name="/content" class="com.smit.web.content.actions.ContentAction">
-		<property name="contentService" ref="contentService"></property>
-		<property name="columnService" ref="columnService" />
-		<property name="userService" ref="userService" />
-	</bean>
-
-	<bean id="contentDao" class="com.smit.dao.ContentDaoImpl">
-		<property name="sessionFactory" ref="sessionFactory"></property>
-	</bean>
-
-	<bean id="contentService" class="com.smit.service.ContentServiceImpl">
-		<property name="contentDao" ref="contentDao"></property>
-	</bean>
-
-	<!-- 上传业务组件 -->
-	<bean name="/upload" class="com.smit.web.UploadAction">
-		<property name="mediaService" ref="mediaService"></property>
-	</bean>
-	<bean id="mediaDao" class="com.smit.dao.MediaDaoImpl">
-		<property name="sessionFactory" ref="sessionFactory"></property>
-	</bean>
-	<bean id="mediaService" class="com.smit.service.MediaServiceImpl">
-		<property name="mediaDao" ref="mediaDao"></property>
-	</bean>
 	
-	<!-- user dao & service -->
-	<bean id="userDao" class="com.smit.dao.UserDaoImpl">
-		<property name="sessionFactory" ref="sessionFactory"></property>
-	</bean>
-	<bean id="userService" class="com.smit.service.UserServiceImpl">
-		<property name="userDao" ref="userDao"></property>
-	</bean>
 	<!-- 个人用户登陆 -->
 	<bean name="/login" class="com.smit.web.UserAction" scope="prototype">
 		<property name="pushDataService" ref="pushDataService"></property>
@@ -158,8 +138,59 @@
 	<bean name="/pushservicemanage" class="com.smit.web.PushServiceManage"
 		scope="prototype">
 		<property name="pushManage" ref="pushManageService"></property>
+	</bean>	
+
+	<!-- diandian style push action add by luocheng 2011/06/02 -->
+	<bean name="/push" class="com.smit.web.push.action.PushAction" scope="prototype">
+		<property name="service" ref="pushService"></property>
+		<property name="pushManageService" ref="pushManageService"></property>
+	</bean>
+	<bean name="/showMain" class="com.smit.web.push.action.PushAction" scope="prototype">
+		<property name="service" ref="pushService"></property>
+	</bean>
+	<bean name="pushDao" class="com.smit.dao.PushContentImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean name="pushService" class="com.smit.service.PushServiceImpl">
+		<property name="pushDao" ref="pushDao"></property>
 	</bean>
 
+
+
+<!-- 内容业务组件 -->
+	<bean name="/content" class="com.smit.web.content.actions.ContentAction">
+		<property name="contentService" ref="contentService"></property>
+		<property name="columnService" ref="columnService" />
+		<property name="userService" ref="userService" />
+	</bean>
+
+	<bean id="contentDao" class="com.smit.dao.ContentDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+
+	<bean id="contentService" class="com.smit.service.ContentServiceImpl">
+		<property name="contentDao" ref="contentDao"></property>
+	</bean>
+	
+
+	<!-- 上传业务组件 -->
+	<bean name="/upload" class="com.smit.web.UploadAction">
+		<property name="mediaService" ref="mediaService"></property>
+	</bean>
+	<bean id="mediaDao" class="com.smit.dao.MediaDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="mediaService" class="com.smit.service.MediaServiceImpl">
+		<property name="mediaDao" ref="mediaDao"></property>
+	</bean>
+	
+	<!-- user dao & service -->
+	<bean id="userDao" class="com.smit.dao.UserDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="userService" class="com.smit.service.UserServiceImpl">
+		<property name="userDao" ref="userDao"></property>
+	</bean>
 	<!-- user manager action -->
 	<bean name="/listuser" class="com.smit.web.UserAction" scope="prototype">
 		<property name="userService" ref="userService"></property>
@@ -293,7 +324,7 @@
 	<!-- ================================================================== -->
 
 	
-    <!-- &&&add by luocheng 2011-04-26 ==================================== -->
+    <!-- &&&add by luocheng 2011-04-26 生产管理==================================== -->
    <bean name="/showBaseLog" class="com.smit.web.FrameworkAction" scope="prototype">
    		<property name="sysInfoService" ref="sysInfoService"></property>
    </bean>
@@ -391,11 +422,11 @@
     <bean name="/customerAuth" class="com.smit.web.control.action.AuthAction" scope="prototype">
     	<property name="productService" ref="productControlService"></property>
     </bean>
-<!-- &&&& end of luocheng================================================================== -->
+    <!-- &&&& end of luocheng  生产管理============================================== -->
 	
+
 	
-	
-	
+	<!-- =====================视频采集相关 ============================= -->
 	<bean id="videoDao" class="com.smit.dao.VideoDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
@@ -428,24 +459,10 @@
 		<property name="newsService" ref="newsService"></property>
 		<property name="pushService" ref="pushDataService"></property>	
 	</bean>
+	<!-- END =====================视频采集相关 ============================= -->
 	
-	<!-- ************************************************************* -->
-	<!-- push action add by luocheng 2011/06/02 -->
-	<bean name="/push" class="com.smit.web.push.action.PushAction" scope="prototype">
-		<property name="service" ref="pushService"></property>
-		<property name="pushManageService" ref="pushManageService"></property>
-	</bean>
-	<bean name="/showMain" class="com.smit.web.push.action.PushAction" scope="prototype">
-		<property name="service" ref="pushService"></property>
-	</bean>
-	<bean name="pushDao" class="com.smit.dao.PushContentImpl">
-		<property name="sessionFactory" ref="sessionFactory"></property>
-	</bean>
-	<bean name="pushService" class="com.smit.service.PushServiceImpl">
-		<property name="pushDao" ref="pushDao"></property>
-	</bean>
-	<!-- collect information in special time -->
-	<bean id="collection" 
+	<!--============= collect information in special time ================= -->
+	<!-- bean id="collection" 
  	class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean"> 
 		<property name="targetObject" ref="collectVideoTask" />
 		<property name="targetMethod" value="youku">
@@ -466,7 +483,7 @@
  
 		<property name="jobDetail" ref="collection" />
 		   <property name="cronExpression" value="0 0 1/1 * * ?" />
-		 <!-- <property name="cronExpression" value="0 0/5 * * * ?" />-->
+		<property name="cronExpression" value="0 0/5 * * * ?" />
  	</bean>
  	<bean id="cronTriggerNews"
  	   class="org.springframework.scheduling.quartz.CronTriggerBean">
@@ -481,20 +498,22 @@
 	<bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
 		<property name="jobDetails">
 		   <list>
-		     <!--  <ref bean="collection" />
-		      <ref bean="newscollection"/> -->
+		     //<ref bean="collection" />
+		      //<ref bean="newscollection"/>
 		      <ref bean="livecollection"/>
 		   </list>
 		</property> 
 		<property name="triggers">
 		    <list>
-			<!--  <ref bean="cronTrigger" />
-			<ref bean="cronTriggerNews"/>-->
+			//<ref bean="cronTrigger" />
+			//<ref bean="cronTriggerNews"/>
 			<ref bean="cronTriggerLive"/>
 		    </list>
 		</property>
-   </bean>  
-   <!-- 新闻 -->
+   </bean-->  
+  	<!-- END ============= collect information in special time ================= -->
+  
+   <!-- BEGIN =========新闻 ==============-->
    <bean name="/news" class="com.smit.web.webService.NewsAction" scope="prototype">
    		<property name="newsService" ref="newsService"></property>
    </bean>
@@ -511,7 +530,8 @@
    <bean name="/analysis" class="com.smit.web.analysis.UserAnalysisAction" scope="prototype">
 		<property name="usService" ref="userAnalysisService"></property>
 	</bean>
-	<!-- =========pubsubhubbub ==============-->
+	
+	<!-- BEGIN =========pubsubhubbub ==============-->
 	<bean id="subDao" class="com.smit.dao.SubscriberDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
@@ -567,6 +587,8 @@
 		<property name="service" ref="pubsubService"></property>
 	</bean>
 	<bean name="/testCharts" class="com.smit.test.TestCharts"></bean>
+	<!-- END =========pubsubhubbub ==============-->
+	
 	<!-- 事物代理类 -->
    <bean id="transactionManager"  
         class="org.springframework.orm.hibernate3.HibernateTransactionManager">  

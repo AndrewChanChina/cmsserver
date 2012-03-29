@@ -1,4 +1,4 @@
-<%@ page language="java" import="java.util.*" pageEncoding="GB18030"%>
+<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <%@ taglib uri="/WEB-INF/struts-html.tld" prefix="html"%>
 <%@ taglib uri="/WEB-INF/struts-logic.tld" prefix="logic"%>
 <%@ taglib uri="/WEB-INF/struts-bean.tld" prefix="bean"%>
@@ -28,14 +28,14 @@
 				<td>
 				</td>
 				<td>
-				<p>ÕâÊÇ¿ª·¢Õß²âÊÔ·¢ËÍÒ³Ãæ</p>
-				<a href="logoutDev.do">µÇ³ö</a><br>
-				<a href="home_developer.do">·µ»Ø</a>
+				<p>è¿™æ˜¯å¼€å‘è€…æµ‹è¯•å‘é€é¡µé¢</p>
+				<a href="logoutDev.do">ç™»å‡º</a><br>
+				<a href="home_developer.do">è¿”å›ž</a>
 				</td>
 				</tr>	
 				<tr>
 					<td width="12%" class="pn-flabel pn-flabel-h">
-						·þÎñÃû³Æ:
+						æœåŠ¡åç§°:
 					</td>
 					<td colspan="1" width="38%" class="pn-fcontent">
 						<select name="serviceName">
@@ -46,13 +46,13 @@
 							</c:forEach>						
 						</select>
 						<logic:empty name="pushServiceList">
-						ÄãµÄ·þÎñÁÐ±íÊÇ¿ÕµÄ£¬ÇëÌí¼Ó£¡
+						ä½ çš„æœåŠ¡åˆ—è¡¨æ˜¯ç©ºçš„ï¼Œè¯·æ·»åŠ ï¼
 						</logic:empty>						
 					</td>
 				</tr>
 				<tr>
 					<td width="12%" class="pn-flabel pn-flabel-h">
-						ÊäÈëÓÃ»§µÄpush id:£¨ÒÔ·ÖºÅ¸ô¿ª£©
+						è¾“å…¥ç”¨æˆ·çš„push id:ï¼ˆä»¥åˆ†å·éš”å¼€ï¼‰
 					</td>
 					<td colspan="1" width="38%" class="pn-fcontent">
 						<input type="text" name="pushIds">
@@ -60,7 +60,7 @@
 				</tr>
 				<tr>
 					<td width="12%" class="pn-flabel pn-flabel-h">
-						ÏûÏ¢Î¨Ò»±êÊ¾:
+						æ¶ˆæ¯å”¯ä¸€æ ‡ç¤º:
 					</td>
 					<td colspan="1" width="38%" class="pn-fcontent">
 						<input type="text" name="collapseKey">
@@ -68,16 +68,16 @@
 				</tr>	
 				<tr>
 					<td width="12%" class="pn-flabel pn-flabel-h">
-						ÊÇ·ñÐèÒªÖ§³ÖÀëÏßÐÅÏ¢:
+						æ˜¯å¦éœ€è¦æ”¯æŒç¦»çº¿ä¿¡æ¯:
 					</td>
 					<td colspan="1" width="38%" class="pn-fcontent">
-						<input type="radio" name="isDelay" value="yes" checked>ÊÇ &nbsp
-						<input type="radio" name="isDelay" value="no">·ñ &nbsp
+						<input type="radio" name="isDelay" value="yes" checked>æ˜¯ &nbsp
+						<input type="radio" name="isDelay" value="no">å¦ &nbsp
 					</td>
 				</tr>
 				<tr>
 					<td width="12%" class="pn-flabel pn-flabel-h">
-						±êÌâ:
+						æ ‡é¢˜:
 					</td>
 					<td colspan="1" width="38%" class="pn-fcontent">
 						<input type="text" name="title">
@@ -85,7 +85,7 @@
 				</tr>	
 				<tr>
 					<td width="12%" class="pn-flabel pn-flabel-h">
-						´«µ¥±êÌâ:
+						ä¼ å•æ ‡é¢˜:
 					</td>
 					<td colspan="1" width="38%" class="pn-fcontent">
 						<input type="text" name="ticket">
@@ -93,7 +93,7 @@
 				</tr>
 				<tr>
 					<td width="12%" class="pn-flabel pn-flabel-h">
-						³¬Á´½Ó:
+						è¶…é“¾æŽ¥:
 					</td>
 					<td colspan="1" width="38%" class="pn-fcontent">
 						<input type="text" name="uri">
@@ -101,7 +101,7 @@
 				</tr>	
 				<tr>
 					<td width="12%" class="pn-flabel pn-flabel-h">
-						ÏûÏ¢ÄÚÈÝ:
+						æ¶ˆæ¯å†…å®¹:
 					</td>
 					<td colspan="1" width="38%" class="pn-fcontent">
 						<textarea cols ="30" rows = "5" name="message"></textarea>
@@ -110,9 +110,9 @@
 				<tr>
 					<td>&nbsp;
 					<td colspan="4" class="pn-fbutton">
-						<input type="submit" value="Ìá½»" />
+						<input type="submit" value="æäº¤" />
 						&nbsp;
-						<input type="reset" value="ÖØÖÃ" />
+						<input type="reset" value="é‡ç½®" />
 					</td>
 				</tr>
 				

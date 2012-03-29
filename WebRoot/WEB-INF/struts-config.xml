@@ -70,11 +70,29 @@
 			parameter="home">
 			<forward name="home" path="/WEB-INF/apk/index.jsp" />
 	</action>
+	<action path="/apk_add"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			parameter="add">
+	</action>
+	<action path="/apk_pushData"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			parameter="pushData">
+	</action>
+	<action path="/apk_delete"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			parameter="delete">
+	</action>
 	<action path="/apk_webservice"
 			type="org.springframework.web.struts.DelegatingActionProxy"
 			parameter="webservice">
 			<forward name="home" path="/WEB-INF/apk/index.jsp" />
 	</action>
+	<action path="/apk_upload"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			parameter="uploadApkFile" name="uploadFileForm">
+			<forward name="home" path="/WEB-INF/apk/index.jsp" />
+	</action>
+	
 	
 	<!-- 上传铃声录音文件 -->
 	<action path="/ring"

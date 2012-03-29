@@ -19,6 +19,9 @@ public interface ApkInfoService {
 	
 	public ApkInfo findByPackageName(String packageName);
 	
+	public List<ApkInfo> findByNamedParam(final SmitPage page, final String[] names,
+			final String[] values);
+	
 	
 	
 }

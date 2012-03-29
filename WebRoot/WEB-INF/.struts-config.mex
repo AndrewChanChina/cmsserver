@@ -232,7 +232,11 @@
   <StrutsActivity path="/WEB-INF/clock/index.html" location="2150,4050" dimension="190,48" />
   <StrutsActivity path="/apk.do" location="4250,3250" dimension="358,84" />
   <StrutsActivity path="/WEB-INF/apk/index.jsp" location="4250,3450" dimension="172,48" />
-  <StrutsActivity path="/apk_webservice.do" />
+  <StrutsActivity path="/apk_webservice.do" location="4250,3950" dimension="358,84" />
+  <StrutsActivity path="/apk_upload.do" location="2150,4150" dimension="358,84" />
+  <StrutsActivity path="/apk_add.do" location="2750,4150" dimension="358,84" />
+  <StrutsActivity path="/apk_delete.do" location="3350,4150" dimension="358,84" />
+  <StrutsActivity path="/apk_pushData.do" />
   <StrutsTransition id="/enableSysInfo.do,reload,/WEB-INF/sys/sysinfo.jsp,1" routingType="0">
     <AutomaticBendpoints>
       <AbsolutePoint location="2208,901" />
@@ -316,8 +320,8 @@
   <StrutsTransition id="/clock_del.do,success,/WEB-INF/clock/suc.jsp,1" routingType="0">
     <AutomaticBendpoints>
       <AbsolutePoint location="2450,4005" />
-      <AbsolutePoint location="466,4005" />
-      <AbsolutePoint location="466,3998" />
+      <AbsolutePoint location="496,4005" />
+      <AbsolutePoint location="496,3998" />
     </AutomaticBendpoints>
   </StrutsTransition>
   <StrutsTransition id="/doc.do,doc,/WEB-INF/pubsub/doc.jsp,1" routingType="0">
@@ -331,12 +335,12 @@
   </StrutsTransition>
   <StrutsTransition id="/clock.do,success,/WEB-INF/clock/suc.jsp,1" routingType="0">
     <AutomaticBendpoints>
-      <AbsolutePoint location="4129,3834" />
-      <AbsolutePoint location="4129,4181" />
-      <AbsolutePoint location="1355,4181" />
-      <AbsolutePoint location="1355,4113" />
-      <AbsolutePoint location="436,4113" />
-      <AbsolutePoint location="436,3998" />
+      <AbsolutePoint location="4129,3750" />
+      <AbsolutePoint location="4129,3701" />
+      <AbsolutePoint location="1977,3701" />
+      <AbsolutePoint location="1977,3917" />
+      <AbsolutePoint location="401,3917" />
+      <AbsolutePoint location="401,3950" />
     </AutomaticBendpoints>
   </StrutsTransition>
   <StrutsTransition id="/loginDev.do,fail,/WEB-INF/sys/pushService/developer_login.jsp,1" routingType="0">
@@ -379,6 +383,14 @@
       <AbsolutePoint location="297,1965" />
       <AbsolutePoint location="297,2374" />
       <AbsolutePoint location="350,2374" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/apk_add.do,home,/WEB-INF/apk/index.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="2929,4150" />
+      <AbsolutePoint location="2929,3933" />
+      <AbsolutePoint location="4366,3933" />
+      <AbsolutePoint location="4366,3498" />
     </AutomaticBendpoints>
   </StrutsTransition>
   <StrutsTransition id="/pushservicemanage.do,managePage,/WEB-INF/sys/pushService/pushservice_manage.jsp,1" routingType="0">
@@ -785,8 +797,8 @@
     <AutomaticBendpoints>
       <AbsolutePoint location="3229,4034" />
       <AbsolutePoint location="3229,4241" />
-      <AbsolutePoint location="414,4241" />
-      <AbsolutePoint location="414,3998" />
+      <AbsolutePoint location="466,4241" />
+      <AbsolutePoint location="466,3998" />
     </AutomaticBendpoints>
   </StrutsTransition>
   <StrutsTransition id="test;6,null,/WEB-INF/sys/user_main.jsp,1" routingType="0">
@@ -1138,8 +1150,8 @@
   </StrutsTransition>
   <StrutsTransition id="/apk_webservice.do,home,/WEB-INF/apk/index.jsp,1" routingType="0">
     <AutomaticBendpoints>
-      <AbsolutePoint location="0,0" />
-      <AbsolutePoint location="4336,3474" />
+      <AbsolutePoint location="4388,3950" />
+      <AbsolutePoint location="4388,3498" />
     </AutomaticBendpoints>
   </StrutsTransition>
   <StrutsTransition id="/about.do,about,/WEB-INF/pubsub/about.jsp,1" routingType="0">
@@ -1345,6 +1357,16 @@
       <AbsolutePoint location="4713,3641" />
       <AbsolutePoint location="436,3641" />
       <AbsolutePoint location="436,3950" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/apk_upload.do,home,/WEB-INF/apk/index.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="2325,4150" />
+      <AbsolutePoint location="2325,4113" />
+      <AbsolutePoint location="4189,4113" />
+      <AbsolutePoint location="4189,3910" />
+      <AbsolutePoint location="4336,3910" />
+      <AbsolutePoint location="4336,3498" />
     </AutomaticBendpoints>
   </StrutsTransition>
   <StrutsTransition id="/showAuth.do,device,/WEB-INF/productControl/device_query.jsp,1" routingType="0">

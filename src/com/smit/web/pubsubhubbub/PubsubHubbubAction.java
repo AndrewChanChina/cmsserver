@@ -103,7 +103,7 @@ public class PubsubHubbubAction extends MappingDispatchAction{
 	private void sendNoteToOpenfire(String huburl) {
 		ApplicationCache app = ApplicationCache.getInstance();
 		IPushDataService ps = (IPushDataService) app.getAttribute(Constants.PUSH_CONNECTION);
-		if(ps==null){
+		if(ps==null || ps.isConnected()==false){
 			if(pushService.login(Constants.PUSH_HOST, Constants.PUSH_SERVERNAME, Constants.PUSH_SERVERPASSWORD)){
 				ps = pushService;
 			}

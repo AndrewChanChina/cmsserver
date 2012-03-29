@@ -1,5 +1,7 @@
 package com.smit.util;
 
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
@@ -72,6 +74,18 @@ public class WebUtil {
 			return true;
 		}
 		return false;
+	}
+	
+	public static String getServerAppIPwithPath(HttpServletRequest request){
+		String loadurl = null;
+		try {
+			loadurl = "http://"+InetAddress.getLocalHost().getHostAddress()+
+			":"+request.getServerPort()+request.getContextPath();
+		} catch (UnknownHostException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return loadurl;
 	}
 
 }
