@@ -98,5 +98,5 @@ A:hover {
 	BACKGROUND: url(../../dev/img/login_shadow.gif) repeat-x center center; FLOAT: left; WIDTH: 501px; HEIGHT: 110px
 }
 #Version {
-	FONT-SIZE: 11px; BACKGROUND: url(../../dev/img/webmaster.png)  left bottom; FLOAT: right; MARGIN: 85px 20px 0px 0px; WIDTH: 150px; COLOR: #41697e; HEIGHT: 150px
+	FONT-SIZE: 11px; BACKGROUND: url(../../dev/img/login_logo.png) no-repeat left bottom; FLOAT: right; MARGIN: 85px 20px 0px 0px; WIDTH: 130px; COLOR: #41697e; HEIGHT: 40px
 }

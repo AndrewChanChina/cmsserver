@@ -22,18 +22,17 @@
     <body>
     <div id="head_bg">
      	<div class='container'>
-    		<div id='header'>酒店叫醒系统</div>
+    		<div id='header'>智能酒店管理系统</div>
     	</div>
   	</div>
     <div class='container'>    	
-    	<div id='side_left'>
-    		<div>菜单</div>
+    	<div id='side_left' class='hide_class0'>    		
     		<div>
-    			<ul>
-						<li>Coffee</li>
-						<li>Milk</li>
-					</ul>
+    			<div class="menu_item"><a href="hotel.do">首页</a></div>
+    			<div class="menu_item"><a href="clock.do">叫醒服务</a></div>
+    			<div class="menu_item"><a href="apk.do">应用管理</a></div>
     		</div>
+    		<br>
     	</div>
     	<div id='main'>
     		
@@ -45,7 +44,7 @@
     					<div>房间号：
     					<select id="select_room" name='roomnum'>
 							<c:forEach items="${roomList}" var="room">
-					        	<option value="${room.id}">${room.deviceName}</option>
+					        	<option value="${room.id}">${room.roomNum}</option>
 					        </c:forEach>    						
     					</select>
     					<div>闹钟时间：

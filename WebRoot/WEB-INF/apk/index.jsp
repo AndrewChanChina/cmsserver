@@ -21,20 +21,20 @@
         <script type="text/javascript" src="./js/ajaxfileupload.js"></script>
     </head>
     <body>
-    <div id="head_bg">
+	<div id="head_bg">
      	<div class='container'>
-    		<div id='header'>Apk远程控制系统</div>
+    		<div id='header'>智能酒店管理系统</div>
     	</div>
   	</div>
     <div class='container'>    	
-    	<div id='side_left' class='hide_class'>
-    		<div>菜单</div>
+    	<div id='side_left' class='hide_class0'>    		
     		<div>
-    			<ul>
-						<li>Coffee</li>
-						<li>Milk</li>
-				</ul>
+    			<div class="menu_item"><a href="hotel.do">首页</a></div>
+    			<div class="menu_item"><a href="clock.do">叫醒服务</a></div>
+    			<div class="menu_item"><a href="apk.do">应用管理</a></div>
     		</div>
+    		
+    		<br>
     	</div>
     	<div id='main'>
     		

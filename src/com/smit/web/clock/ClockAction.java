@@ -14,26 +14,28 @@ import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.actions.MappingDispatchAction;
 
+import com.smit.dao.PushService2UserDao;
 import com.smit.service.clock.ClockService;
 import com.smit.service.push.IPushDataService;
 import com.smit.service.push.IPushManageService;
 import com.smit.util.Constants;
 import com.smit.util.ParamsString;
 import com.smit.vo.PushContent;
+import com.smit.vo.PushService2User;
 import com.smit.vo.alarmclock.Clock;
 import com.smit.vo.alarmclock.Rings;
 
 public class ClockAction extends MappingDispatchAction {
 	
 	private ClockService clockService;
-	private IPushManageService pushManageService;
+	private PushService2UserDao pushService2UserDao;
 
 	public void setClockService(ClockService clockService) {
 		this.clockService = clockService;
 	}
 
-	public void setPushManageService(IPushManageService pushManageService) {
-		this.pushManageService = pushManageService;
+	public void setPushService2UserDao(PushService2UserDao pushService2UserDao) {
+		this.pushService2UserDao = pushService2UserDao;
 	}
 
 	@Override
@@ -74,11 +76,10 @@ public class ClockAction extends MappingDispatchAction {
 		for(Clock c : clockList){
 			c.getWeekofDayBooleanArray();
 		}
-		//pushManageService.delete("aa");
-		//List<UserAccountResource> roomList = pushManageService.listAllResource("aa");
+		List<PushService2User> roomList = pushService2UserDao.listRoomNum();
 		
 		request.setAttribute("clockList", clockList);
-		//request.setAttribute("roomList", roomList);
+		request.setAttribute("roomList", roomList);
 		return mapping.findForward("home");
 	}
 	

@@ -1,0 +1,50 @@
+
+.menu_item
+{
+display:inline-block;
+}
+#not_install
+{
+	margin-left:0px;
+}
+#cur_room_num
+{
+	font-size:40px;
+}
+#btn_uninstall,
+#btn_install,
+#btn_sel_all,
+#btn_unsel_all
+{
+float: right;
+margin-right:10px;
+}
+
+.item
+{
+	width=10px;
+}
+
+.hide_class
+{
+	display:none;
+}
+
+#add_apk_form tr th{
+	background-color:DimGray;
+}
+#add_apk_form tr td{
+    text-align:left;//水平居中
+    line-height: 25px;//行高  
+    vertical-align:left；//垂直居中
+    	border-style:dashed;
+    	margin-left:10px;
+}
+#add_apk_form tr td.col_1{
+    text-align:right;//水平居中
+    line-height: 25px;//行高  
+    vertical-align:right；//垂直居中
+    	border-style:dashed;
+    	padding-right:10px;
+    	background-color:DimGray;
+}

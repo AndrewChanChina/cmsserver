@@ -14,7 +14,7 @@ import com.smit.vo.Purview;
 import com.smit.vo.PushService;
 import com.smit.vo.UserAccountResource;
 
-public class PushServiceDaoImpl extends HibernateDaoSupport implements IPushServiceDao {
+public class PushServiceDaoImpl extends HibernateDaoSupport implements PushServiceDao {
 
 	public void save(PushService ps) {
 		this.getHibernateTemplate().save(ps);

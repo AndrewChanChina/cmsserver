@@ -167,6 +167,7 @@
 			parameter="opt">
 			<forward name="hotelinfo" path="/WEB-INF/smarthome/hotelinfo.jsp" />
 			<forward name="roominfo" path="/WEB-INF/smarthome/roominfo.jsp" />
+			<forward name="home" path="/WEB-INF/smarthome/home.jsp" />
 		</action>
 		
 		<!-- 个人 相关的 -->

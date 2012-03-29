@@ -23,12 +23,14 @@ import org.apache.struts.action.ActionMapping;
 import org.apache.struts.actions.MappingDispatchAction;
 import org.apache.struts.upload.FormFile;
 
+import com.smit.dao.PushService2UserDao;
 import com.smit.service.push.IPushDataService;
 import com.smit.util.Constants;
 import com.smit.util.ParamsString;
 import com.smit.util.SmitPage;
 import com.smit.util.WebUtil;
 import com.smit.vo.PushContent;
+import com.smit.vo.PushService2User;
 import com.smit.vo.apk.ApkInfo;
 import com.smit.web.form.UploadFileForm;
 
@@ -37,18 +39,19 @@ public class ApkAction extends MappingDispatchAction {
 	public static final String TYPE_UPLOAD = "upload";
 	public static final String TYPE_DEVICE = "device";
 	public static final String TYPE_SYSTEM = "system";
-	
+
 	// get all apk
 	public static final String OP_LIST = "list_apk";
-	public static final String OP_SET = "set";		// 读message的格式进行操作
-	
+	public static final String OP_SET = "set"; // 读message的格式进行操作
+
 	public static final String XML_OP_INSTALL = "install";
 	public static final String XML_OP_UNINSTALL = "uninstall";
 	public static final String XML_OP_LIST = "list";
-	
+
 	public static final String PUSH_SERVICE_ID = "tmticb0yfyRl4O71gXTxpbiTC92DvWFf";
 
 	private ApkInfoService apkInfoService;
+	private PushService2UserDao pushService2UserDao;
 
 	public void setApkInfoService(ApkInfoService apkInfoService) {
 		this.apkInfoService = apkInfoService;
@@ -92,9 +95,9 @@ public class ApkAction extends MappingDispatchAction {
 		String type = request.getParameter("type");
 		List<ApkInfo> apkList;
 		SmitPage page = new SmitPage(0);
-		
+
 		if (type != null && type.equals("uninstall")) {
-			
+
 			apkList = apkInfoService.findByNamedParam(page,
 					new String[] { "type" }, new String[] { TYPE_UPLOAD });
 		} else {
@@ -105,7 +108,7 @@ public class ApkAction extends MappingDispatchAction {
 		request.setAttribute("roomnum", "201");
 		request.setAttribute("type", type);
 		request.setAttribute("apkList", apkList);
-		
+
 		return mapping.findForward("home");
 	}
 
@@ -125,7 +128,7 @@ public class ApkAction extends MappingDispatchAction {
 
 		String temp_path = request.getSession().getServletContext()
 				.getRealPath(Constants.RINGS_PATH_TEMP);
-		
+
 		String real_path = request.getSession().getServletContext()
 				.getRealPath(Constants.APK_PATH)
 				+ File.separator + fakePath;
@@ -180,47 +183,62 @@ public class ApkAction extends MappingDispatchAction {
 	public ActionForward pushData(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
-		
+
 		String[] apkIds = request.getParameterValues("ids");
-		String type = request.getParameter("install");//  not_install
+		String type = request.getParameter("install");// not_install
 		String roomNum = request.getParameter("roomnum");
 		boolean bInstall = !"not_install".equals(type);
-		
-		
+
 		List<String> pushIdList = new ArrayList<String>();
-		
-		pushIdList.add("2012321159156669");
-		pushIdList.add("20123211441538316");
-		
+
+		List<PushService2User> listPush2User = pushService2UserDao.listAll(null, new String[]{"serviceId","roomNum"}, 
+				new String[]{PUSH_SERVICE_ID,roomNum});
+		if(listPush2User == null){
+			response.getOutputStream().print(Constants.FAIL);
+			return null;
+		}
+		for(PushService2User ps : listPush2User ){
+			pushIdList.add(ps.getPushId());
+		}
+
 		HttpSession session = request.getSession();
-		IPushDataService ps = (IPushDataService) session.getAttribute(Constants.PUSH_CONNECTION);
-		
+		IPushDataService ps = (IPushDataService) session
+				.getAttribute(Constants.PUSH_CONNECTION);
+		if(ps == null || !ps.isConnected()){
+			response.getOutputStream().print(Constants.FAIL);
+			return null;
+		}
+
 		String op = request.getParameter("op");
-		if(op == OP_LIST){
-			ps.sendPushDataFromDev(PUSH_SERVICE_ID, pushIdList, true, WebUtil.randomString(10),
-					"push apk", "push apk ticket", OP_LIST, "quickly");
-			
-		}else{
+		if (op == OP_LIST) {
+			ps.sendPushDataFromDev(PUSH_SERVICE_ID, pushIdList, true,
+					WebUtil.randomString(10), "push apk", "push apk ticket",
+					OP_LIST, "quickly");
+
+		} else {
 			List<ApkInfo> listApk = new ArrayList<ApkInfo>();
-			for(int i=0; i<apkIds.length; i++){
-				ApkInfo apk = apkInfoService.getById(Integer.valueOf(apkIds[i]));
-				if(apk != null){
-					if(bInstall){
+			for (int i = 0; i < apkIds.length; i++) {
+				ApkInfo apk = apkInfoService
+						.getById(Integer.valueOf(apkIds[i]));
+				if (apk != null) {
+					if (bInstall) {
 						apk.setOperation(XML_OP_INSTALL);
-					}else{
+					} else {
 						apk.setOperation(XML_OP_UNINSTALL);
 					}
 					listApk.add(apk);
-				}				
+				}
 			}
 			String message = ApkInfoXmlParse.allApkInfoToXmlItems(listApk);
-			
-			ps.sendPushDataFromDev("apk_install", pushIdList, true, WebUtil.randomString(10),
-					"push apk", "push apk ticket", OP_SET, message);			
+
+			ps.sendPushDataFromDev("apk_install", pushIdList, true,
+					WebUtil.randomString(10), "push apk", "push apk ticket",
+					OP_SET, message);
 		}
 		response.getOutputStream().print(Constants.SUCCESS);
 		return null;
 	}
+
 	public void pushData(HttpServletRequest request, PushContent pc)
 			throws Exception {
 		HttpSession session = request.getSession();
@@ -246,15 +264,20 @@ public class ApkAction extends MappingDispatchAction {
 		System.out.println("clock webservice " + roomNum);
 		System.out.println("clock webservice " + data);
 
+		if ("list".equals(type)) {
+			List<ApkInfo> delApkList = apkInfoService.findByNamedParam(null, new String[] {"roomnum"},
+					new String[] { roomNum });
+			for(ApkInfo a : delApkList){
+				apkInfoService.delete(a);
+			}
+		}
+		
 		ApkInfoXmlParse axp = new ApkInfoXmlParse(data);
 		List<ApkInfo> la = axp.parse();
 		if (la == null) {
 			response.getOutputStream().print(Constants.FAIL);
 			return null;
-		}
-		if("list".equals(type)){
-			//apkInfoService.
-		}
+		}		
 		// TODO jia shang fangjian
 		for (ApkInfo a : la) {
 			if (XML_OP_INSTALL.equals(a.getOperation())) {
@@ -279,7 +302,7 @@ public class ApkAction extends MappingDispatchAction {
 				if (apk != null) {
 					apkInfoService.delete(apk);
 				}
-			} else if(XML_OP_LIST.equals(a.getOperation())) {
+			} else if (XML_OP_LIST.equals(a.getOperation())) {
 
 			}
 		}
@@ -327,5 +350,11 @@ public class ApkAction extends MappingDispatchAction {
 		response.getWriter().print(uploadFile.getFileName());
 		return null;
 	}
+
+	public void setPushService2UserDao(PushService2UserDao pushService2UserDao) {
+		this.pushService2UserDao = pushService2UserDao;
+	}
+	
+	
 
 }

@@ -41,11 +41,14 @@ public class UserAction extends MappingDispatchAction {
 
 	/**
 	 * 个人用户的主页
+	 * 这是主页跳转，根据不同的情况继续开发
 	 */
 	public ActionForward home(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		// set some data
+		// 跳转到酒店主页
+		response.sendRedirect("hotel.do?opt=home");
 		return mapping.findForward("success");
 	}
 	/**
@@ -57,8 +60,8 @@ public class UserAction extends MappingDispatchAction {
 		HttpSession session = request.getSession();
 		String loginSuc = (String) session.getAttribute(Constants.LOGIN_SUC);
 		if (loginSuc != null) {
-			//response.sendRedirect("home.do");
-			response.sendRedirect("pushdata.do?opt=input");
+			response.sendRedirect("home.do");
+			//response.sendRedirect("pushdata.do?opt=input");
 			return null;
 		}
 		// 先登录开发者的账号
@@ -95,9 +98,9 @@ public class UserAction extends MappingDispatchAction {
 					User u2 = userService.findUserByName(loginForm.getUserName());
 					session.setAttribute(Constants.CUR_USER_ID, u2.getId());
 				}
-				//response.sendRedirect("home.do");
+				response.sendRedirect("home.do");
 				//response.sendRedirect("pushdata.do?opt=input");
-				response.sendRedirect("push.do?op=showMain");
+				//response.sendRedirect("push.do?op=showMain");
 				return null;
 			} else {
 				throw new Exception("dd");

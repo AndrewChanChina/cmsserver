@@ -64,8 +64,17 @@ public class ApkInfoDaoImpl extends HibernateDaoSupport implements ApkInfoDao {
 	}
 
 	private List listAll(final String[] names, final String[] values) {
-		return this.getHibernateTemplate().findByNamedParam(
-				"SELECT g FROM com.smit.vo.apk.ApkInfo g", names, values);
+		StringBuffer hql = new StringBuffer("SELECT g FROM com.smit.vo.apk.ApkInfo g");
+		for (int i = 0; i < names.length; i++) {
+			if (i == 0) {
+				hql.append(" WHERE ");
+			} else {
+				hql.append(" AND ");
+			}
+			hql.append(names[i]).append("=\'").append(values[i])
+					.append("\'");
+		}
+		return this.getHibernateTemplate().find(hql.toString());
 
 	}
 

@@ -18,6 +18,11 @@ b{font-weight:normal;}
 #route_content .route_content_place{font-size:24px;}
 #route_content .route_content_place img{border:thin solid #999;height:100px;width:100px;margin-bottom: 4px;}
 
+.menu_item
+{
+display:inline-block;
+}
+
 .hide_class{
 	display:none;
 }

@@ -80,6 +80,7 @@
 	<mapping resource="com/smit/vo/alarmclock/Clock.hbm.xml" />
 	<mapping resource="com/smit/vo/alarmclock/Rings.hbm.xml" />
 	<mapping resource="com/smit/vo/apk/ApkInfo.hbm.xml" />
+	<mapping resource="com/smit/vo/PushService2User.hbm.xml" />
 </session-factory>
 
 </hibernate-configuration>

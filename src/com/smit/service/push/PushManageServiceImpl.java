@@ -5,7 +5,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
-import com.smit.dao.IPushServiceDao;
+import com.smit.dao.PushServiceDao;
 import com.smit.util.SmitPage;
 import com.smit.util.WebUtil;
 import com.smit.vo.PushService;
@@ -13,7 +13,7 @@ import com.smit.vo.UserAccountResource;
 
 public class PushManageServiceImpl implements IPushManageService {
 
-	IPushServiceDao pushServiceDao;
+	PushServiceDao pushServiceDao;
 	
 	/**
 	 * you just need to set service name and user id in PushService object
@@ -42,11 +42,11 @@ public class PushManageServiceImpl implements IPushManageService {
 		return pushServiceDao.listAll(page);
 	}
 
-	public IPushServiceDao getPushServiceDao() {
+	public PushServiceDao getPushServiceDao() {
 		return pushServiceDao;
 	}
 
-	public void setPushServiceDao(IPushServiceDao pushServiceDao) {
+	public void setPushServiceDao(PushServiceDao pushServiceDao) {
 		this.pushServiceDao = pushServiceDao;
 	}	
 
