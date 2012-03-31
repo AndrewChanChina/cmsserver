@@ -1,4 +1,3 @@
-
 tr td{
     text-align:left;//水平居中
     line-height: 25px;//行高  
@@ -14,5 +13,3 @@ tr td.col_1{
     	padding-right:10px;
     	background-color:DimGray;
 }
-
-

@@ -5,7 +5,7 @@ import java.io.Serializable;
 import com.smit.web.clock.Alarm;
 import com.smit.web.clock.Alarm.DaysOfWeek;
 
-public class Clock implements Serializable{
+public class Clock_Rings implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	
@@ -19,7 +19,7 @@ public class Clock implements Serializable{
 	private Integer hour;
 	private Integer minutes;
 	private Integer dayofweek;
-	private Integer alarmtime;
+	private String alarmtime;
 	private Integer enable;
 	private Integer vibrate;
 	private String  label;			// 有管理员的，admin 也要 用户自己设置的 user
@@ -37,16 +37,9 @@ public class Clock implements Serializable{
 	
 	private boolean[] dayofWeekArray;
 	
-	private Rings rings;
 	
 	
 	
-	public Rings getRings() {
-		return rings;
-	}
-	public void setRings(Rings rings) {
-		this.rings = rings;
-	}
 	public Integer getRepeatTime() {
 		return repeatTime;
 	}
@@ -101,10 +94,10 @@ public class Clock implements Serializable{
 	public void setDayofweek(Integer dayofweek) {
 		this.dayofweek = dayofweek;		
 	}
-	public Integer getAlarmtime() {
+	public String getAlarmtime() {
 		return alarmtime;
 	}
-	public void setAlarmtime(Integer alarmtime) {
+	public void setAlarmtime(String alarmtime) {
 		this.alarmtime = alarmtime;
 	}
 	public Integer getEnable() {

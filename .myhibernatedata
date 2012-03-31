@@ -1,5 +1,5 @@
 #MyEclipse Hibernate Properties
-#Tue Mar 29 15:44:58 CST 2011
+#Sat Mar 31 09:54:21 CST 2012
 sessionFactoryName=
 genBasicCompId=false
 profile=
@@ -19,7 +19,7 @@ sessionFactoryId=
 basePersistenceClass=
 genAnnotations=false
 reSettingsFile=
-configFile=/pring/src/hibernate.cfg.xml
+configFile=/CMSServer/src/hibernate.cfg.xml
 createConfigFile=false
 addLibs2Classpath=true
 baseDaoClass=

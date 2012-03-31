@@ -26,6 +26,37 @@ public class ClockForm extends ActionForm {
 	private String status;
 	private String roomnum;
 	
+	private Integer last_time;
+	private Integer repeat_time;
+	private Integer next_time;
+	
+	
+	
+	
+
+	public Integer getLast_time() {
+		return last_time;
+	}
+
+	public void setLast_time(Integer last_time) {
+		this.last_time = last_time;
+	}
+
+	public Integer getRepeat_time() {
+		return repeat_time;
+	}
+
+	public void setRepeat_time(Integer repeat_time) {
+		this.repeat_time = repeat_time;
+	}
+
+	public Integer getNext_time() {
+		return next_time;
+	}
+
+	public void setNext_time(Integer next_time) {
+		this.next_time = next_time;
+	}
 
 	public String getName() {
 		return name;

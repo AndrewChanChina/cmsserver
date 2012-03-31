@@ -8,7 +8,6 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
 
-import org.directwebremoting.json.types.JsonObject;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 

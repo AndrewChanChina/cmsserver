@@ -143,6 +143,7 @@
   <StrutsActivity path="/WEB-INF/clock/home.jsp" location="3950,2650" dimension="178,48" />
   <StrutsActivity path="/WEB-INF/clock/status.jsp" location="2150,3950" dimension="190,48" />
   <StrutsActivity path="/WEB-INF/clock/index.jsp" location="3050,950" dimension="184,48" />
+  <StrutsActivity path="/WEB-INF/smarthome/home.jsp" location="3650,1150" dimension="202,48" />
   <StrutsActivity path="/WEB-INF/smarthome/roominfo.jsp" location="950,4050" dimension="226,48" />
   <StrutsActivity path="/WEB-INF/smarthome/hotelinfo.jsp" location="1250,4050" dimension="232,48" />
   <StrutsActivity path="/WEB-INF/sys/pushService/home.jsp" location="2150,2350" dimension="238,48" />
@@ -237,7 +238,8 @@
   <StrutsActivity path="/WEB-INF/clock/status.xml" location="650,3950" dimension="190,48" />
   <StrutsActivity path="/WEB-INF/hotel/roominfo.jsp" location="650,4050" dimension="202,48" />
   <StrutsActivity path="/WEB-INF/clock/index.html" location="2150,4050" dimension="190,48" />
-  <StrutsActivity path="/WEB-INF/smarthome/home.jsp" />
+  <StrutsActivity path="/clock_find.do" />
+  <StrutsActivity path="/WEB-INF/clock/find_result.jsp" />
   <StrutsTransition id="/enableSysInfo.do,reload,/WEB-INF/sys/sysinfo.jsp,1" routingType="0">
     <AutomaticBendpoints>
       <AbsolutePoint location="2208,901" />
@@ -318,17 +320,17 @@
       <AbsolutePoint location="202,3150" />
     </AutomaticBendpoints>
   </StrutsTransition>
-  <StrutsTransition id="/hotel.do,home,/WEB-INF/smarthome/home.jsp,1" routingType="0">
-    <AutomaticBendpoints>
-      <AbsolutePoint location="229,4092" />
-      <AbsolutePoint location="0,0" />
-    </AutomaticBendpoints>
-  </StrutsTransition>
   <StrutsTransition id="/clock_del.do,success,/WEB-INF/clock/suc.jsp,1" routingType="0">
     <AutomaticBendpoints>
       <AbsolutePoint location="2450,4005" />
       <AbsolutePoint location="496,4005" />
       <AbsolutePoint location="496,3998" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/hotel.do,home,/WEB-INF/smarthome/home.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="229,4092" />
+      <AbsolutePoint location="0,0" />
     </AutomaticBendpoints>
   </StrutsTransition>
   <StrutsTransition id="/doc.do,doc,/WEB-INF/pubsub/doc.jsp,1" routingType="0">
@@ -691,6 +693,12 @@
       <AbsolutePoint location="4101,2698" />
     </AutomaticBendpoints>
   </StrutsTransition>
+  <StrutsTransition id="/clock_find.do,result,/WEB-INF/clock/find_result.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="0,0" />
+      <AbsolutePoint location="0,0" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
   <StrutsTransition id="/gonewpurview.do,continue,/WEB-INF/sys/purview_manager.jsp,1" routingType="0">
     <AutomaticBendpoints>
       <AbsolutePoint location="408,692" />
@@ -775,6 +783,14 @@
       <AbsolutePoint location="1662,2264" />
     </AutomaticBendpoints>
   </StrutsTransition>
+  <StrutsTransition id="/login.do,fail,/WEB-INF/sys/pushService/login.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="50,92" />
+      <AbsolutePoint location="-25,92" />
+      <AbsolutePoint location="-25,3174" />
+      <AbsolutePoint location="50,3174" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
   <StrutsTransition id="/clock_update.do,status,/WEB-INF/clock/status.jsp,1" routingType="0">
     <AutomaticBendpoints>
       <AbsolutePoint location="3829,3950" />
@@ -782,14 +798,6 @@
       <AbsolutePoint location="2061,3665" />
       <AbsolutePoint location="2061,3971" />
       <AbsolutePoint location="2150,3971" />
-    </AutomaticBendpoints>
-  </StrutsTransition>
-  <StrutsTransition id="/login.do,fail,/WEB-INF/sys/pushService/login.jsp,1" routingType="0">
-    <AutomaticBendpoints>
-      <AbsolutePoint location="50,92" />
-      <AbsolutePoint location="-25,92" />
-      <AbsolutePoint location="-25,3174" />
-      <AbsolutePoint location="50,3174" />
     </AutomaticBendpoints>
   </StrutsTransition>
   <StrutsTransition id="/clock_add.do,success,/WEB-INF/clock/suc.jsp,1" routingType="0">
@@ -809,6 +817,14 @@
       <AbsolutePoint location="1348,2450" />
     </AutomaticBendpoints>
   </StrutsTransition>
+  <StrutsTransition id="/showAddOption.do,showAddOption,/WEB-INF/productControl/option_test_add.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="408,2783" />
+      <AbsolutePoint location="453,2783" />
+      <AbsolutePoint location="453,3095" />
+      <AbsolutePoint location="650,3095" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
   <StrutsTransition id="/showRightFrame.do,sys_info_page,/WEB-INF/sys/sysinfo.jsp,1" routingType="0">
     <AutomaticBendpoints>
       <AbsolutePoint location="2029,1250" />
@@ -818,14 +834,6 @@
       <AbsolutePoint location="1171,1555" />
       <AbsolutePoint location="1171,2288" />
       <AbsolutePoint location="1250,2288" />
-    </AutomaticBendpoints>
-  </StrutsTransition>
-  <StrutsTransition id="/showAddOption.do,showAddOption,/WEB-INF/productControl/option_test_add.jsp,1" routingType="0">
-    <AutomaticBendpoints>
-      <AbsolutePoint location="408,2783" />
-      <AbsolutePoint location="453,2783" />
-      <AbsolutePoint location="453,3095" />
-      <AbsolutePoint location="650,3095" />
     </AutomaticBendpoints>
   </StrutsTransition>
   <StrutsTransition id="/ring.do,home,/WEB-INF/clock/music.jsp,1" routingType="0">

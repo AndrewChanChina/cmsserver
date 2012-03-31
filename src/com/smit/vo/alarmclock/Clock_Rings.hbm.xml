@@ -24,8 +24,6 @@
 		<property name="nextTime"></property>
 		<property name="repeatTime"></property>
 		
-		<many-to-one name="rings" cascade="save-update" column="ringsid" class="com.smit.vo.alarmclock.Rings" lazy="false"></many-to-one>
-		
 	</class>
 </hibernate-mapping>
 

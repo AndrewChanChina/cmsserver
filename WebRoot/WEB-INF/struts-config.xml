@@ -124,6 +124,12 @@
 			<forward name="success" path="/WEB-INF/clock/suc.jsp" />
 			<forward name="status" path="/WEB-INF/clock/status.jsp" />
 		</action>
+		<action path="/clock_find"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			parameter="find">
+			<forward name="result" path="/WEB-INF/clock/find_result.jsp" />
+		</action>
+		
 		<action path="/clock"
 			type="org.springframework.web.struts.DelegatingActionProxy"
 			parameter="home">

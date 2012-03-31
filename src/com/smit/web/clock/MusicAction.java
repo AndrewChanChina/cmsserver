@@ -73,12 +73,13 @@ public class MusicAction extends MappingDispatchAction {
 		
 		String real_path =request.getSession().getServletContext()
 								.getRealPath(Constants.RINGS_PATH) + File.separator + fakePath;
-		
+		String real_path_ex = Constants.RINGS_PATH + File.separator + fakePath;
 		File realFile = new File(real_path);
 		if(!realFile.exists()){
 			realFile.mkdirs();
 		}		
 		String realFileNameFull = real_path+File.separator+paths[0];
+		real_path_ex += File.separator+paths[0];
 		File tempFile = new File(temp_path+File.separator+paths[0]);
 		
 		if(!tempFile.exists()){			
@@ -93,7 +94,7 @@ public class MusicAction extends MappingDispatchAction {
 		
 		Rings rings = new Rings();
 		rings.setName(name);
-		rings.setLocalUrl(realFileNameFull);
+		rings.setLocalUrl(real_path_ex);
 		rings.setFileName(paths[0]);
 		
 		clockService.save(rings);

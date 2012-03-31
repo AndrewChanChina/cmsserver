@@ -84,6 +84,13 @@ public final class Alarm {
         public static final String OPERATION = "operation";
         
         public static final String MUSIC = "music";
+        
+        public static final String LAST_TIME = "last_time";
+        
+        public static final String NEXT_TIME = "next_time";
+        
+        public static final String REPEAT_TIME = "repeat_time";
+        
 
         /**
          * The default sort order for this table
@@ -132,6 +139,9 @@ public final class Alarm {
     public String     operation;
     public String     musicPath;
 
+    public String 	  lastTime;
+    public String 	  nextTime;
+    public String 	  repeatTime;
    
 
     // Creates a default alarm at the current time.

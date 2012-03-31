@@ -20,9 +20,64 @@ $(document).ready(function() {
 			});*/
 		}		
 	});
+	
+	$("#find_roomnum").click(function(){
+		var roomNum = $('input[name="find_room_num"]').val();
+		if(roomNum == null || roomNum == ""){
+			alert("房间号输入不能为空");
+			return false;
+		}
+		var url = "clock_find.do?roomNum=" + roomNum;
+		$('#list_data').load(url);
+	});
+	
+	$("#find_time").click(function(){
+		var startTime = $('input[name="find_start_time"]').val();
+		var endTime = $('input[name="find_end_time"]').val();
+		if(startTime == null || startTime == ""){
+			alert("开始时间输入不能为空");
+			return false;
+		}else if(isGoodTimeFormat(startTime) == false){
+			alert("开始时间的格式不对");
+			return false;
+		}
+			
+		if(endTime == null || endTime == ""){
+			alert("结束时间输入不能为空");
+			return false;
+		}else if(isGoodTimeFormat(endTime) == false){
+			alert("结束时间的格式不对");
+			return false;
+		}
+		
+		var startTimeArray = startTime.split(":");
+		var st = startTimeArray[0]*60 + parseInt(startTimeArray[1]);
+		
+		var endTimeArray = endTime.split(":");
+		var et = endTimeArray[0]*60 + parseInt(endTimeArray[1]);
+		if(st > et){
+			alert("开始时间比结束时间大，不能查询");
+			return false;
+		}
+		var url = "clock_find.do?startTime=" + st + "&endTime=" + et;
+		$('#list_data').load(url);
+	});
 		
 });
 	
+function isGoodTimeFormat(data){
+	var dataArray = data.split(":");
+	if(dataArray.length != 2){
+		return false;
+	}
+	if(dataArray[0] < 0 || dataArray[0] > 23){
+		return false;
+	}
+	if(dataArray[1] < 0 || dataArray[1] > 59){
+		return false;
+	}
+	return true;
+}
 function listenOKbtn(){
 	$("#sel_rings_ok").click(function(){
 		
@@ -35,7 +90,7 @@ function listenOKbtn(){
 		$('input[name="server_music"]').attr('value',ringsId);
 	});
 	$("#sel_rings_cancel").click(function(){		
-		$('input:radio:first').attr('checked','true');
+		$('input[name="music"]:first').attr('checked','true');
 		$("#floatBox .title span").click();
 	});	
 }

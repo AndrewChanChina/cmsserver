@@ -41,7 +41,7 @@ public class ApkAction extends MappingDispatchAction {
 	public static final String TYPE_SYSTEM = "system";
 
 	// get all apk
-	public static final String OP_LIST = "list_apk";
+	public static final String OP_LIST = "list";
 	public static final String OP_SET = "set"; // 读message的格式进行操作
 
 	public static final String XML_OP_INSTALL = "install";

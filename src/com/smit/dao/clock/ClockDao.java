@@ -17,7 +17,9 @@ public interface ClockDao {
 	
 	public List<Clock> getAllItems();
 	public List<Object[]> getLatestItems();
-	
+	public List<Clock> queryByName(SmitPage page,String []names, String []values);
+	public List<Clock> queryByTime(SmitPage page,Integer startTime, Integer endTime);
 	public Clock getByIdLocal(Integer localId);
+	
 
 }

@@ -19,7 +19,7 @@ public class ClockServiceTest extends TestCase {
 		ClockService cs =(ClockService)beanFactory.getBean("clockService");
 		
 		Clock clock = new Clock();
-		clock.setAlarmtime("hhh");
+		clock.setAlarmtime(123456);
 		clock.setName("kill you");
 		clock.setHour(52);
 		cs.save(clock);

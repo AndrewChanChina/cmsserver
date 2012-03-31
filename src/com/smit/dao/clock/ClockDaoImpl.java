@@ -16,10 +16,12 @@ import com.smit.vo.alarmclock.Clock;
 public class ClockDaoImpl extends HibernateDaoSupport implements ClockDao {
 
 	public void save(Clock clock) {
+		clock.setAlarmtime(60 * clock.getHour() + clock.getMinutes());
 		this.getHibernateTemplate().save(clock);
 	}
 
 	public void update(Clock clock) {
+		clock.setAlarmtime(60 * clock.getHour() + clock.getMinutes());
 		this.getHibernateTemplate().update(clock);
 	}
 
@@ -40,7 +42,7 @@ public class ClockDaoImpl extends HibernateDaoSupport implements ClockDao {
 		List<Clock> ls = getHibernateTemplate().find(
 				"select g FROM com.smit.vo.alarmclock.Clock g where id_local="
 						+ localId);
-		if(ls == null || ls.size() < 1){
+		if (ls == null || ls.size() < 1) {
 			return null;
 		}
 		return ls.get(0);
@@ -77,6 +79,91 @@ public class ClockDaoImpl extends HibernateDaoSupport implements ClockDao {
 
 	public List<Clock> getAllItems() {
 		return this.getHibernateTemplate().find("from Clock v");
+	}
+
+	private List<Clock> listAll(Integer startTime, Integer endTime) {
+		StringBuffer hql = new StringBuffer(
+				"select g FROM com.smit.vo.alarmclock.Clock g WHERE g.alarmtime BETWEEN ")
+				.append(startTime).append(" AND ").append(endTime);
+		return this.getHibernateTemplate().find(hql.toString());
+	}
+
+	public List<Clock> queryByTime(final SmitPage page, final Integer startTime,
+			final Integer endTime) {
+
+		if (page == null)
+			return listAll(startTime, endTime);
+
+		List count = getHibernateTemplate().find(
+				"SELECT count(*) FROM com.smit.vo.alarmclock.Clock");
+		page.setTotalCount(Integer.parseInt(count.get(0).toString()));
+
+		List list = getHibernateTemplate().executeFind(new HibernateCallback() {
+			public Object doInHibernate(Session s) throws HibernateException,
+					SQLException {
+				StringBuffer hql = new StringBuffer(
+				"select g FROM com.smit.vo.alarmclock.Clock g WHERE g.alarmtime BETWEEN ")
+				.append(startTime).append(" AND ").append(endTime);
+				
+				Query query = s.createQuery(hql.toString());
+				int firstRow = page.getPageSize() * (page.getPageIndex() - 1);
+				query.setFirstResult(firstRow);
+				query.setMaxResults(page.getPageSize());
+				List list = query.list();
+				return list;
+			}
+		});
+		return list;
+
+	}
+
+	public List<Clock> queryByName(final SmitPage page, final String[] names,
+			final String[] values) {
+		if (page == null)
+			return listAll(names, values);
+
+		List count = getHibernateTemplate().find(
+				"SELECT count(*) FROM com.smit.vo.alarmclock.Clock");
+		page.setTotalCount(Integer.parseInt(count.get(0).toString()));
+
+		List list = getHibernateTemplate().executeFind(new HibernateCallback() {
+			public Object doInHibernate(Session s) throws HibernateException,
+					SQLException {
+				StringBuffer hql = new StringBuffer(
+						"select g FROM com.smit.vo.alarmclock.Clock g");
+				for (int i = 0; i < names.length; i++) {
+					if (i == 0) {
+						hql.append(" WHERE ");
+					} else {
+						hql.append(" AND ");
+					}
+					hql.append(names[i]).append("=\'").append(values[i])
+							.append("\'");
+				}
+				Query query = s.createQuery(hql.toString());
+				int firstRow = page.getPageSize() * (page.getPageIndex() - 1);
+				query.setFirstResult(firstRow);
+				query.setMaxResults(page.getPageSize());
+				List list = query.list();
+				return list;
+			}
+		});
+		return list;
+	}
+
+	private List listAll(final String[] names, final String[] values) {
+		StringBuffer hql = new StringBuffer(
+				"SELECT g FROM com.smit.vo.alarmclock.Clock g");
+		for (int i = 0; i < names.length; i++) {
+			if (i == 0) {
+				hql.append(" WHERE ");
+			} else {
+				hql.append(" AND ");
+			}
+			hql.append(names[i]).append("=\'").append(values[i]).append("\'");
+		}
+		return this.getHibernateTemplate().find(hql.toString());
+
 	}
 
 	public List<Object[]> getLatestItems() {

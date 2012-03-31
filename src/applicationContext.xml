@@ -8,9 +8,9 @@
 						http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
 						http://www.springframework.org/schema/aop
     					http://www.springframework.org/schema/aop/spring-aop.xsd
-    					http://www.springframework.org/schema/tx 
+    					http://www.springframework.org/schema/tx
     					http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
-
+	<!-- http://www.springframework.org/schema/tx  -->
 	<!-- 上传apk的信息 -->
 	<bean name="/apk" class="com.smit.web.apk.ApkAction">
 		<property name="apkInfoService" ref="apkInfoService"></property>
@@ -67,18 +67,24 @@
 	<bean name="/clock_webservice" class="com.smit.web.clock.ClockAction">
 		<property name="clockService" ref="clockService"></property>
 	</bean>
+	<bean name="/clock_find" class="com.smit.web.clock.ClockAction">
+		<property name="clockService" ref="clockService"></property>
+	</bean>
 	<bean name="/clock" class="com.smit.web.clock.ClockAction">
 		<property name="clockService" ref="clockService"></property>
 		<property name="pushService2UserDao" ref="pushService2UserDao"></property>
 	</bean>
 	<bean name="/clock_del" class="com.smit.web.clock.ClockAction">
 		<property name="clockService" ref="clockService"></property>
+		<property name="pushService2UserDao" ref="pushService2UserDao"></property>
 	</bean>
 	<bean name="/clock_add" class="com.smit.web.clock.ClockAction">
 		<property name="clockService" ref="clockService"></property>
+		<property name="pushService2UserDao" ref="pushService2UserDao"></property>
 	</bean>
 	<bean name="/clock_update" class="com.smit.web.clock.ClockAction">
 		<property name="clockService" ref="clockService"></property>
+		<property name="pushService2UserDao" ref="pushService2UserDao"></property>
 	</bean>
 	<bean name="/clock_postStatus" class="com.smit.web.clock.ClockAction">
 		<property name="clockService" ref="clockService"></property>

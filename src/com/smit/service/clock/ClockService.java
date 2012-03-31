@@ -16,6 +16,8 @@ public interface ClockService {
 	public Clock getById(Integer id);
 	public List<Clock> listAll(SmitPage page);
 	
+	public List<Clock> queryByName(SmitPage page,String []names, String []values);
+	public List<Clock> queryByTime(SmitPage page,Integer startTime, Integer endTime);
 	public List<Clock> getAllItems();
 	public List<Object[]> getLatestItems();
 

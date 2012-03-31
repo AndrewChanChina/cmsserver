@@ -52,6 +52,13 @@ public class ClockServiceImpl implements ClockService {
 		return clockDao.getAllItems();
 	}
 
+	public List<Clock> queryByName(SmitPage page,String []names, String []values){
+		return clockDao.queryByName(page,names,values);
+	}
+	
+	public List<Clock> queryByTime(SmitPage page,Integer startTime, Integer endTime){
+		return clockDao.queryByTime(page, startTime, endTime);
+	}
 	public List<Object[]> getLatestItems() {
 		return clockDao.getLatestItems();
 	}
