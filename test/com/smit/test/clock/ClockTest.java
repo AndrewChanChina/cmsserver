@@ -6,9 +6,12 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.smit.vo.Video;
+import com.smit.dao.clock.GroupRoomDao;
 import com.smit.vo.alarmclock.Clock;
+import com.smit.vo.alarmclock.GroupRoom;
 
 public class ClockTest extends TestCase {
 private Session session;
@@ -40,6 +43,20 @@ private Session session;
 		Integer i = 52;
 		Clock c = (Clock)session.get(Clock.class, 1);
 		System.out.println(c.getHour());
+	}
+	
+	public void testSaveGroup() {
+		
+		ApplicationContext ctx = new ClassPathXmlApplicationContext(
+		"applicationContext.xml");
+		
+		GroupRoom art = (GroupRoom) ctx.getBean("grouproom");
+		art.setGroupName("ekkdd");
+		art.setRoomNum("kldlka");
+		
+		GroupRoomDao grd = (GroupRoomDao)ctx.getBean("groupRoomDao");
+		grd.save(art);
+		
 	}
 
 }

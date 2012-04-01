@@ -185,5 +185,35 @@ public class Clock implements Serializable{
 	public void setDayofWeekArray(boolean[] dayofWeekArray) {
 		this.dayofWeekArray = dayofWeekArray;
 	}
+	
+	@Override
+	public String toString() {		
+		return hour.toString() + minutes.toString() + roomnum;		
+	}
+	
+	public void copy(Clock c){
+		
+		name = c.name;
+		id_local = c.id_local;
+		hour = c.hour;
+		minutes= c.minutes;
+		dayofweek = c.dayofweek;
+		alarmtime = c.alarmtime;
+		enable = c.enable;
+		vibrate = c.vibrate;
+		label = c.label;
+		silent = c.silent;
+		alert = c.alert;
+		music = c.music;
+		operation = c.operation;
+		status = c.status;
+		roomnum = c.roomnum;
+		lastLong = c.lastLong;
+		nextTime = c.nextTime;
+		repeatTime = c.repeatTime;
+		rings = c.rings;
+		// TODO copy
+	}
+	
 }
 

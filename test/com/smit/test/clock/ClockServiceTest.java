@@ -22,7 +22,7 @@ public class ClockServiceTest extends TestCase {
 		clock.setAlarmtime(123456);
 		clock.setName("kill you");
 		clock.setHour(52);
-		cs.save(clock);
+		//cs.save(clock);
 	}
 	
 	public void testList() {

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+	<class name="com.smit.vo.alarmclock.GroupRoom" table="group_room">
+		<id name="id">
+			<generator class="native"></generator>
+		</id>
+		<property name="groupId"></property>
+		<property name="roomNumId"></property>
+		<property name="groupName"></property>
+		<property name="roomNum"></property>
+		<property name="status"></property>
+		<property name="description"></property>		
+		
+	</class>
+</hibernate-mapping>
+

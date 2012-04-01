@@ -91,7 +91,7 @@ public final class Alarm {
         
         public static final String REPEAT_TIME = "repeat_time";
         
-
+        public static final String COMMIT_URL = "commit_url";
         /**
          * The default sort order for this table
          */
@@ -142,7 +142,7 @@ public final class Alarm {
     public String 	  lastTime;
     public String 	  nextTime;
     public String 	  repeatTime;
-   
+    public String 	  commitUrl;
 
     // Creates a default alarm at the current time.
     public Alarm() {

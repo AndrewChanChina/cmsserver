@@ -2,7 +2,9 @@ package com.smit.web.clock;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Timer;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
@@ -18,13 +20,15 @@ import org.apache.struts.actions.MappingDispatchAction;
 import com.smit.dao.PushService2UserDao;
 import com.smit.service.clock.ClockService;
 import com.smit.service.push.IPushDataService;
-import com.smit.service.push.IPushManageService;
+import com.smit.util.ApplicationCache;
 import com.smit.util.Constants;
 import com.smit.util.ParamsString;
 import com.smit.util.WebUtil;
-import com.smit.vo.PushContent;
+import com.smit.util.timer.TimeOutTask;
 import com.smit.vo.PushService2User;
 import com.smit.vo.alarmclock.Clock;
+import com.smit.vo.alarmclock.GroupRoom;
+import com.smit.vo.alarmclock.LogList;
 import com.smit.vo.alarmclock.Rings;
 
 public class ClockAction extends MappingDispatchAction {
@@ -52,15 +56,54 @@ public class ClockAction extends MappingDispatchAction {
 
 		return mapping.findForward("success");
 	}
+	
+	private String generateCommitUrl(HttpServletRequest request,int id){
+		return String.format(WebUtil.getServerAppIPwithPath(request)
+		+ "/clock_postStatus.do?%s=%s&%s=",ParamsString.UUID,id,ParamsString.STATUS);		
+	}
 
 	// 接收客户端返回的状态
 	public ActionForward postStatus(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		String id = request.getParameter(ParamsString.UUID);
+		String idbackup = request.getParameter(ParamsString.UUID_BACKUP);
 		String status = request.getParameter(ParamsString.STATUS);
-		ServletContext application = request.getSession().getServletContext();
-		application.setAttribute(id, status);
+		
+		Clock c = clockService.getById(Integer.valueOf(id));
+		if(c == null){
+			response.getOutputStream().println("error id");
+		}
+		if(ParamsString.OP_DELETE.equals(c.getOperation())){
+			if("true".endsWith(status)){
+				c.setStatus(ParamsString.STATUS_HIDE);
+				clockService.deleteTrue(c);
+			}else{
+				c.setStatus(ParamsString.STATUS_FAIL);
+				clockService.updateStatus(c);
+			}			
+		}else if(ParamsString.OP_UPDATE.equals(c.getOperation())){
+			Clock clockBackup = clockService.getById(Integer.valueOf(idbackup));
+			if("true".endsWith(status)){
+				c.setStatus(ParamsString.STATUS_SUC);				
+				
+			}else{
+				c.copy(clockBackup);
+				clockService.updateStatus(c);  // 恢复
+				c.setStatus(ParamsString.STATUS_FAIL);
+			}	
+			clockService.deleteTrue(clockBackup);  // 删除备份
+			clockService.updateStatus(c);
+		}else{
+			if("true".endsWith(status)){
+				c.setStatus(ParamsString.STATUS_SUC);
+			}else{
+				c.setStatus(ParamsString.STATUS_FAIL);
+			}		
+			clockService.updateStatus(c);
+		}
+		
+		ApplicationCache.getInstance().setAttribute(PUSH_SERVICE_ID, true);
 		response.getOutputStream().println("ok");
 		return null;
 	}
@@ -69,11 +112,15 @@ public class ClockAction extends MappingDispatchAction {
 	public ActionForward getStatus(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
-		String id = request.getParameter(ParamsString.UUID);
-		ServletContext application = request.getSession().getServletContext();
-		String status = (String) application.getAttribute(id);
-		System.out.print(id + ":" + status);
-		response.getOutputStream().println(status);
+		Object obj = ApplicationCache.getInstance().getAttribute(PUSH_SERVICE_ID);
+		boolean status = false;
+		if(obj != null){
+			status = (Boolean)obj;
+		}		
+		if(status){
+			ApplicationCache.getInstance().setAttribute(PUSH_SERVICE_ID, false);
+		}
+		response.getOutputStream().print(status);
 		return null;
 	}
 
@@ -122,32 +169,32 @@ public class ClockAction extends MappingDispatchAction {
 			HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 
-		String[] ids = request.getParameterValues("id");
-
-		List<Clock> listClock = new ArrayList<Clock>();
-
-		for (String id : ids) {
-
-			Clock clock = clockService.getById(Integer.valueOf(id));
-			if (clock != null) {
-				clock.setOperation(AlarmXmlParse.Operation.s_del);
-				listClock.add(clock);
-			}
+		String[] ids = request.getParameterValues("id");	
+		String roomNum = request.getParameter("roomNum");
+		
+		String adminName = (String) request.getSession().getAttribute(
+				Constants.CURUSERNAME);
+		
+		String pushId = getPushId(roomNum);
+		if(pushId == null){
+			// TODO error
 		}
+				
+		clockService.delete(request, ids, pushId, adminName);
 
-		pushData(request, listClock);
+		response.sendRedirect("clock.do");
+		return null;
+	}
 
-		try {
-			for (Clock clock : listClock) {
-				clockService.delete(clock);
-			}
-			request.setAttribute("status", Constants.SUCCESS);
-		} catch (Exception e) {
-			e.printStackTrace();
-			request.setAttribute("status", Constants.FAIL);
-		}
+	
+	public ActionForward group(ActionMapping mapping, ActionForm form,
+			HttpServletRequest request, HttpServletResponse response) {
 
-		return mapping.findForward("status");
+		String[] roomNums = new String[] { "222", "333", "444" };
+		clockService.createGroup("dddd", roomNums);
+
+		List<GroupRoom> listRooms = clockService.findGroupByName("dddd");
+		return null;
 	}
 
 	// 添加的数据到数据库，然后发消息给客户端，写当前的状态
@@ -155,8 +202,18 @@ public class ClockAction extends MappingDispatchAction {
 			HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 
+		saveorupdate(request,form);
+
+		response.sendRedirect("clock.do");
+		return null;
+	}
+	
+	private void saveorupdate(HttpServletRequest request,ActionForm form){
 		ClockForm clockForm = (ClockForm) form;
 		Clock c = new Clock();
+		if(clockForm.getId() != null){
+			c.setId(clockForm.getId());
+		}
 		c.setLabel(Clock.TYPE_ADMIN);
 		c.setName(clockForm.getName());
 		c.setHour(clockForm.getHour());
@@ -169,7 +226,6 @@ public class ClockAction extends MappingDispatchAction {
 		c.setDayofweek(clockForm.getDayofWeek());
 		c.setEnable(clockForm.getEnable());
 		c.setVibrate(clockForm.getVibrate());
-		c.setOperation(AlarmXmlParse.Operation.s_add);
 
 		if (clockForm.getMusic().equals("default") == false) {
 			Rings rings = clockService.getByIdRings(Integer.valueOf(clockForm
@@ -180,128 +236,29 @@ public class ClockAction extends MappingDispatchAction {
 			c.setRings(null);
 		}
 
-		boolean barray[] = c.getWeekofDayBooleanArray();
+		c.getWeekofDayBooleanArray();
 		String status = Constants.SUCCESS;
 
-		try {
-			clockService.save(c);
-
-		} catch (Exception e) {
-			e.printStackTrace();
-			status = Constants.FAIL;
+		String pushid = getPushId(clockForm.getRoomnum());
+		if(pushid == null){
+			// TOO error
 		}
-		// TODO send to client
-		pushData(request, c, new String[] { clockForm.getRoomnum() });
-
-		// write to application
-		ServletContext application = request.getSession().getServletContext();
-		String uuid = "123456";
-		application.setAttribute(uuid, status);
-		response.getOutputStream().print(uuid + "=" + status);
-		response.sendRedirect("clock.do");
-		return null;
+		clockService.saveorUpdate(request, c, pushid);
 	}
-
-	private boolean pushData(HttpServletRequest request, Clock clock,
-			String[] roomNums) throws Exception {
-
-		HttpSession session = request.getSession();
-		IPushDataService ps = (IPushDataService) session
-				.getAttribute(Constants.PUSH_CONNECTION);
-		if (ps == null || !ps.isConnected()) {
-			return false;
-		}
-
-		List<Alarm> la = new ArrayList<Alarm>();
-		Alarm alarm = new Alarm();
-		mapClock2Alarm(request, clock, alarm);
-		la.add(alarm);
-		List<String> pushIdList = new ArrayList<String>();
-
-		// find push id
-		for (String roomNum : roomNums) {
-
-			List<PushService2User> listPush2User = pushService2UserDao.listAll(
-					null, new String[] { "serviceId", "roomNum" },
-					new String[] { PUSH_SERVICE_ID, roomNum });
-
-			if (listPush2User == null) {
-				continue;
-			}
-			for (PushService2User ps2user : listPush2User) {
-				pushIdList.add(ps2user.getPushId());
-			}
-		}
-
-		String message = AlarmXmlParse.alarmsToXmlItems(la);
-
-		// send out
-		ps.sendPushDataFromDev(PUSH_SERVICE_ID, pushIdList, false,
-				RandomStringUtils.randomNumeric(4), "clock",
-				RandomStringUtils.randomNumeric(4), OP_SET, message);
-
-		return true;
-	}
-
-	private boolean pushData(HttpServletRequest request, List<Clock> listClock)
-			throws Exception {
-
-		HttpSession session = request.getSession();
-		IPushDataService ps = (IPushDataService) session
-				.getAttribute(Constants.PUSH_CONNECTION);
-		if (ps == null || !ps.isConnected()) {
-			return false;
-		}
-
-		List<Alarm> la = new ArrayList<Alarm>();
-		for (Clock clock : listClock) {
-			Alarm alarm = new Alarm();
-			mapClock2Alarm(request, clock, alarm);
-			la.add(alarm);
-		}
-
-		List<String> pushIdList = new ArrayList<String>();
-		// find push id
-		List<PushService2User> listPush2User = pushService2UserDao.listAll(
-				null, new String[] { "serviceId", "roomNum" }, new String[] {
-						PUSH_SERVICE_ID, listClock.get(0).getRoomnum() });
-
-		if (listPush2User == null) {
-			return false;
-		}
-		for (PushService2User ps2user : listPush2User) {
-			pushIdList.add(ps2user.getPushId());
-		}
-
-		String message = AlarmXmlParse.alarmsToXmlItems(la);
-
-		// send out
-		ps.sendPushDataFromDev(PUSH_SERVICE_ID, pushIdList, false,
-				RandomStringUtils.randomNumeric(4), "clock",
-				RandomStringUtils.randomNumeric(4), OP_SET, message);
-
-		return true;
-	}
+	
 
 	public ActionForward update(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
+		String id = request.getParameter("id");
+		
+		Clock c = clockService.getById(Integer.valueOf(id));
+		c.getWeekofDayBooleanArray();
+		
+		request.setAttribute("clock", c);
+		//saveorupdate(request,form);
 
-		ClockForm clockForm = (ClockForm) form;
-		Clock c = new Clock();
-		c.setId(clockForm.getId());
-		c.setName(clockForm.getName());
-		c.setHour(clockForm.getHour());
-
-		try {
-			clockService.update(c);
-			request.setAttribute("status", Constants.SUCCESS);
-		} catch (Exception e) {
-			e.printStackTrace();
-			request.setAttribute("status", Constants.FAIL);
-		}
-
-		return mapping.findForward("status");
+		return mapping.findForward("edit_form");
 	}
 
 	public ActionForward webservice(ActionMapping mapping, ActionForm form,
@@ -329,15 +286,15 @@ public class ClockAction extends MappingDispatchAction {
 				mapAlarm2Clock(a, clock);
 				clock.setRoomnum(roomNum);
 				if (clock.getId() == 0) {
-					clockService.save(clock);
+					clockService.saveorUpdate(request, clock, null);
 				} else {
-					clockService.update(clock);
+					clockService.saveorUpdate(request, clock, null);
 				}
 				break;
 			case AlarmXmlParse.Operation.DELETE:
 				Clock clock2 = clockService.getByIdLocal(a.id);
 				if (clock2 != null) {
-					clockService.delete(clock2);
+					//clockService.delete(clock2);
 				}
 				break;
 			case AlarmXmlParse.Operation.LIST:
@@ -388,6 +345,18 @@ public class ClockAction extends MappingDispatchAction {
 		a.nextTime = String.valueOf(clock.getNextTime());
 		a.lastTime = String.valueOf(clock.getLastLong());
 		a.repeatTime = String.valueOf(clock.getRepeatTime());
+	}
+	
+	private String getPushId(String roomNum){
+		List<PushService2User> listPush2User = pushService2UserDao.listAll(
+				null, new String[] { "serviceId", "roomNum" },
+				new String[] { PUSH_SERVICE_ID, roomNum });
+
+		if (listPush2User == null || listPush2User.size() < 1) {
+			return null;
+		}
+		
+		return listPush2User.get(0).getPushId();
 	}
 
 }

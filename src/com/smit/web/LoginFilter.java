@@ -40,7 +40,7 @@ public class LoginFilter implements Filter {
 		
 		String url = request.getServletPath();
 		url = url.substring(url.lastIndexOf("/")+1);
-		System.out.println("loginFilter url = " + url);
+		//System.out.println("loginFilter url = " + url);
 		boolean allowedRequest = false;
 		
         if(urlList.contains(url)) {

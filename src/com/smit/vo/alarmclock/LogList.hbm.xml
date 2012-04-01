@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+	<class name="com.smit.vo.alarmclock.LogList" table="log_list_clock">
+		<id name="id">
+			<generator class="native"></generator>
+		</id>
+		<property name="type"></property>
+		<property name="roomNum"></property>
+		<property name="operator"></property>
+		<property name="operation"></property>
+		<property name="keyData"></property>
+		<property name="originData"></property>
+		
+		<property name="date"></property>
+		<property name="timestamp"></property>			
+	</class>
+</hibernate-mapping>
+

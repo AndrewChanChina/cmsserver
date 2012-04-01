@@ -137,6 +137,13 @@
 			<forward name="success" path="/WEB-INF/clock/suc.jsp" />
 			<forward name="status" path="/WEB-INF/clock/status.jsp" />
 		</action>
+		
+		<action path="/clock_group"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			parameter="group">
+			<forward name="list" path="/WEB-INF/clock/group_list.jsp" />
+		</action>
+		
 		<action path="/clock_del"
 			type="org.springframework.web.struts.DelegatingActionProxy"
 			parameter="delete">
@@ -154,7 +161,7 @@
 		<action path="/clock_update"
 			type="org.springframework.web.struts.DelegatingActionProxy"
 			parameter="update" name="clockForm">
-			<forward name="home" path="/WEB-INF/clock/home.jsp" />
+			<forward name="edit_form" path="/WEB-INF/clock/edit_form.jsp" />
 			<forward name="success" path="/WEB-INF/clock/suc.jsp" />
 			<forward name="status" path="/WEB-INF/clock/status.jsp" />
 		</action>

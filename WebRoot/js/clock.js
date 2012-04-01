@@ -1,5 +1,36 @@
 $(document).ready(function() {
 
+	window.setTimeout(function getstatus(){
+		$.ajax({
+			url : "clock_getStatus.do",
+			error : function() {
+				$("#floatBox .content").html("error...");
+			},
+			success : function(html) {
+				if(html == 'false'){
+					//alert("555");
+					
+					console.log("false");
+					window.setTimeout(getstatus,5000);
+				}else{
+					
+					console.log("true");
+					//window.href="clock.do";
+				
+					var notify = new Notify(); 
+					if (!notify.isSupport()) {  
+					    alert("Your browser don't support webkitNotifications!!");  
+					    return;  
+					} 
+					notify.show("", "您的操作数据有更新", "赶紧到你的页面F5吧！");
+				  
+			   }
+			}
+		});
+		
+	},
+	5000);
+
 	$("#showaddclock").click(function(){
 		$("#add_clock_form").toggle("normal");
 	});	
@@ -88,6 +119,9 @@ function listenOKbtn(){
 		}
 		$("#floatBox .title span").click();
 		$('input[name="server_music"]').attr('value',ringsId);
+		$('input[name="server_music"]').val(ringsId);
+		var name = $("tr td #" + ringsId).text();
+		$('#show_music_for_sel').text("选择了："+ name);
 	});
 	$("#sel_rings_cancel").click(function(){		
 		$('input[name="music"]:first').attr('checked','true');
@@ -102,3 +136,4 @@ function checkAdd(){
 	}
 	return true;						
 }
+

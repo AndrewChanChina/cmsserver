@@ -55,14 +55,25 @@
 	<bean id="ringsDao" class="com.smit.dao.clock.RingsDaoImpl">	
 		<property name="sessionFactory" ref="sessionFactory"></property>	
 	</bean>
+	<!-- 分组 -->
+	<bean id="groupRoomDao" class="com.smit.dao.clock.GroupRoomDaoImpl">	
+		<property name="sessionFactory" ref="sessionFactory"></property>	
+	</bean>
 	
-	<!-- 叫醒服务器 -->
+	<!-- 历史记录，任务清单 -->
+	<bean id="logListDao" class="com.smit.dao.clock.LogListDaoImpl">	
+		<property name="sessionFactory" ref="sessionFactory"></property>	
+	</bean>
+	
+	<!-- 叫醒服务器 -->	
 	<bean id="clockDao" class="com.smit.dao.clock.ClockDaoImpl">	
 		<property name="sessionFactory" ref="sessionFactory"></property>	
 	</bean>
 	<bean id="clockService" class="com.smit.service.clock.ClockServiceImpl">
 		<property name="clockDao" ref="clockDao"></property>
 		<property name="ringsDao" ref="ringsDao"></property>
+		<property name="groupRoomDao" ref="groupRoomDao" />
+		<property name="logListDao" ref="logListDao"></property>
 	</bean>
 	<bean name="/clock_webservice" class="com.smit.web.clock.ClockAction">
 		<property name="clockService" ref="clockService"></property>
@@ -72,8 +83,12 @@
 	</bean>
 	<bean name="/clock" class="com.smit.web.clock.ClockAction">
 		<property name="clockService" ref="clockService"></property>
-		<property name="pushService2UserDao" ref="pushService2UserDao"></property>
+		<property name="pushService2UserDao" ref="pushService2UserDao"></property>		
 	</bean>
+	<bean name="/clock_group" class="com.smit.web.clock.ClockAction">
+		<property name="clockService" ref="clockService"></property>
+		<property name="pushService2UserDao" ref="pushService2UserDao"></property>		
+	</bean>	
 	<bean name="/clock_del" class="com.smit.web.clock.ClockAction">
 		<property name="clockService" ref="clockService"></property>
 		<property name="pushService2UserDao" ref="pushService2UserDao"></property>

@@ -28,7 +28,7 @@ public class SessionFilter implements Filter {
 		
 		String url = request.getServletPath();
 		url = url.substring(url.lastIndexOf("/")+1);
-		System.out.println("session url is"+url);
+		//System.out.println("session url is "+url);
 		if(urls.contains(url)){
 			Object name = request.getSession().getAttribute("username");
 			System.out.println(name);

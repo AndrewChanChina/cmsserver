@@ -59,7 +59,7 @@ public class PushServerIQ extends IQ {
 		buf.append("<ticker>").append(ticker).append("</ticker>");
 		buf.append("<uri>").append(uri).append("</uri>");
 		buf.append("<message>").append("<![CDATA["+message+"]]>").append("</message>");
-		System.out.print("pushServerIQ:" + buf.toString());
+		//System.out.print("pushServerIQ:" + buf.toString());
 		return buf.toString();
 	}
 

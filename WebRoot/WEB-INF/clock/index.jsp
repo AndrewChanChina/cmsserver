@@ -17,7 +17,8 @@
         <link type="text/css" rel="stylesheet" media="screen" href="./css/clock_home.css">   
         <script type="text/javascript" src="./js/jquery.js"></script>
         <script type="text/javascript" src="./js/clock.js"></script>
-        <script type="text/javascript" src="./js/dialog.js"></script>		
+        <script type="text/javascript" src="./js/dialog.js"></script>
+        <script type="text/javascript" src="./js/notification.js"></script>		
         
     </head>
     <body>
@@ -55,7 +56,7 @@
     					<td>
     					<select id="select_room" name='roomnum'>
 							<c:forEach items="${roomList}" var="room">
-					        	<option value="${room.roomNum}">${room.roomNum}</option>
+					        	<option value="${room.roomNum}" selected>${room.roomNum}</option>
 					        </c:forEach>    						
     					</select>
     					</td>
@@ -275,6 +276,9 @@
 							音乐
 						</th>
 						<th>
+							状态
+						</th>
+						<th>
 							操作
 						</th>
 					</tr>
@@ -320,14 +324,17 @@
 								<c:if test="${clock.vibrate == 1}">震动</c:if>
 								<c:if test="${clock.vibrate == 0}">不震动</c:if>
 							</td>
-							<td>
-								
+							<td>								
+								<c:if test="${clock.rings == null}">默认</c:if>
 								<a href='${clock.rings.localUrl}'>${clock.rings.name}</a>
+							</td>
+							<td>
+								${clock.status}
 							</td>
 							<td align="center">
 								<a href="clock_update.do?id=${clock.id}&name=555">修改</a>
 								|
-								<a href="clock_del.do?id=${clock.id}">删除</a>
+								<a href="clock_del.do?id=${clock.id}&roomNum=${clock.roomnum}">删除</a>
 							</td>
 						</tr>
 					</c:forEach>	

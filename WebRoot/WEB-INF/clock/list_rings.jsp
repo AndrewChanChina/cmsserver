@@ -40,7 +40,7 @@
 		<c:forEach items="${listRings}" var="ring">
 			<tr>
 				<td>
-					${ring.name}
+					<div id='${ring.id}'>${ring.name}</div>
 				</td>
 				<td>
 					${ring.fileName}
