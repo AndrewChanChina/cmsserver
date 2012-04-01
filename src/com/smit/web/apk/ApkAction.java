@@ -109,7 +109,7 @@ public class ApkAction extends MappingDispatchAction {
 		request.setAttribute("type", type);
 		request.setAttribute("apkList", apkList);
 
-		return mapping.findForward("home");
+		return new ActionForward("/hotel_apk_home.do");
 	}
 
 	// 添加的数据到数据库，然后发消息给客户端，写当前的状态
@@ -157,8 +157,7 @@ public class ApkAction extends MappingDispatchAction {
 
 		apkInfoService.save(apkInfo);
 
-		response.getOutputStream().print(Constants.SUCCESS);
-		return null;
+		return new ActionForward("/hotel_apk_home.do");
 	}
 
 	// 请求客户端删除apk
@@ -175,9 +174,10 @@ public class ApkAction extends MappingDispatchAction {
 		} catch (Exception e) {
 			e.printStackTrace();
 			request.setAttribute("status", Constants.FAIL);
+			return mapping.findForward("status");
 		}
-
-		return mapping.findForward("status");
+		
+		return new ActionForward("/hotel_apk_home.do");
 	}
 
 	public ActionForward pushData(ActionMapping mapping, ActionForm form,

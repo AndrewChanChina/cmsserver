@@ -35,4 +35,31 @@
   		<put name="main_right" value="/WEB-INF/push/main_right.jsp"></put>
   		<put name="body" value="/WEB-INF/push/body.jsp"></put>
   </definition>
+
+  
+  <!-- 酒店系統 -->
+  <definition name="hotel" path="/WEB-INF/smarthome/home.jsp">
+  		<put name="header" value="/WEB-INF/smarthome/header.jsp"></put>
+  		<put name="footer" value="/WEB-INF/smarthome/footer.jsp"></put>
+  </definition>
+  <definition name="clock_home" path="/WEB-INF/clock/index.jsp">
+  		<put name="header" value="/WEB-INF/smarthome/header.jsp"></put>
+  		<put name="footer" value="/WEB-INF/smarthome/footer.jsp"></put>
+  </definition>
+    <definition name="clock_add_update" path="/WEB-INF/clock/addorupdate.jsp">
+  		<put name="header" value="/WEB-INF/smarthome/header.jsp"></put>
+  		<put name="footer" value="/WEB-INF/smarthome/footer.jsp"></put>
+  </definition>
+  <definition name="clock_rings" path="/WEB-INF/clock/rings.jsp">
+  		<put name="header" value="/WEB-INF/smarthome/header.jsp"></put>
+  		<put name="footer" value="/WEB-INF/smarthome/footer.jsp"></put>
+  </definition>
+  <definition name="apk_home" path="/WEB-INF/apk/index.jsp">
+  		<put name="header" value="/WEB-INF/smarthome/header.jsp"></put>
+  		<put name="footer" value="/WEB-INF/smarthome/footer.jsp"></put>
+  </definition>
+  <definition name="apk_add" path="/WEB-INF/apk/add.jsp">
+  		<put name="header" value="/WEB-INF/smarthome/header.jsp"></put>
+  		<put name="footer" value="/WEB-INF/smarthome/footer.jsp"></put>
+  </definition>
 </component-definitions>

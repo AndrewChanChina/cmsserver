@@ -5,7 +5,7 @@
 <%@ taglib uri="/WEB-INF/struts-bean.tld" prefix="bean"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="smitpage" uri="/WEB-INF/smitpagetag.tld"%>
-
+<%@ taglib uri="http://struts.apache.org/tags-tiles" prefix="tiles" %>
 
 <%
 	int[] hourArray = new int[24];
@@ -42,28 +42,9 @@
 
 	</head>
 	<body>
-		<div id="head_bg">
-			<div class='container'>
-				<div id='header'>
-					智能酒店管理系统
-				</div>
-			</div>
-		</div>
+		<tiles:insert attribute="header"></tiles:insert>
 		<div class='container'>
-			<div id='side_left' class='hide_class0'>
-				<div id='main_menu'>
-					<div class="menu_item">
-						<a href="hotel.do">首页</a>
-					</div>
-					<div class="menu_item">
-						<a href="clock.do">叫醒服务</a>
-					</div>
-					<div class="menu_item">
-						<a href="apk.do">应用管理</a>
-					</div>
-				</div>
-				<br>
-			</div>
+		
 			<div id='main'>
 				<div class='sub_menu'>
 					<div class="menu_item">
@@ -259,13 +240,6 @@
 
 
 			</div>
-			<div id="footer_bg">
-				<div class='container'>
-					<div
-						style="text-align: center; vertical-align: middle; line-height: 50px; margin-bottom: 10px;">
-						版权所有
-					</div>
-				</div>
-			</div>
+			<tiles:insert attribute="footer"></tiles:insert>
 	</body>
 </html>

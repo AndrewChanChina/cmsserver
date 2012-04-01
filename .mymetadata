@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-module
   type="WEB"
-  name="CMSServer"
+  name="cmsserver"
   id="myeclipse.1301378711984"
   context-root="/pushcmsserver"
   j2ee-spec="6.0"
-  archive="CMSSever.war">
+  archive="cmsserver.war">
   <attributes>
     <attribute name="webrootdir" value="/WebRoot" />
   </attributes>

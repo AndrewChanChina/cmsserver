@@ -29,7 +29,7 @@ public class HotelAction extends DispatchAction {
 
 	public ActionForward home(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response) throws IOException{
-		return mapping.findForward("home");
+		return new ActionForward("/hotel_home.do");
 	}
 	
 	public ActionForward hotelinfo(ActionMapping mapping, ActionForm form,

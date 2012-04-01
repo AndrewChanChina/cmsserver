@@ -53,7 +53,7 @@ public class MusicAction extends MappingDispatchAction {
 		if(opt != null && opt.equals("list")){			
 			return mapping.findForward("list");
 		}
-		return mapping.findForward("home");
+		return new ActionForward("/hotel_rings.do");
 	}
 
 	public ActionForward add(ActionMapping mapping, ActionForm form,
@@ -99,6 +99,7 @@ public class MusicAction extends MappingDispatchAction {
 		
 		clockService.save(rings);
 		response.getOutputStream().print(Constants.SUCCESS);
+		response.sendRedirect("ring.do");
 		return null;
 	}
 

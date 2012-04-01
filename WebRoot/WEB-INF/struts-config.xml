@@ -158,9 +158,9 @@
 			<forward name="success" path="/WEB-INF/clock/suc.jsp" />
 			<forward name="status" path="/WEB-INF/clock/status.jsp" />
 		</action>
-		<action path="/clock_update"
+		<action path="/clock_editForm"
 			type="org.springframework.web.struts.DelegatingActionProxy"
-			parameter="update" name="clockForm">
+			parameter="editForm" name="clockForm">
 			<forward name="edit_form" path="/WEB-INF/clock/edit_form.jsp" />
 			<forward name="success" path="/WEB-INF/clock/suc.jsp" />
 			<forward name="status" path="/WEB-INF/clock/status.jsp" />
@@ -173,6 +173,14 @@
 			type="org.springframework.web.struts.DelegatingActionProxy"
 			parameter="getStatus">			
 		</action>
+		<!-- 酒店网页 -->
+		<action path="/hotel_home" type="org.apache.struts.actions.ForwardAction" parameter="hotel"></action>
+		<action path="/hotel_clock_home" type="org.apache.struts.actions.ForwardAction" parameter="clock_home"></action>
+		<action path="/hotel_clock_saveorupdate" type="org.apache.struts.actions.ForwardAction" parameter="clock_add_update"></action>
+		<action path="/hotel_rings" type="org.apache.struts.actions.ForwardAction" parameter="clock_rings"></action>
+		
+		<action path="/hotel_apk_home" type="org.apache.struts.actions.ForwardAction" parameter="apk_home"></action>
+		<action path="/hotel_apk_add" type="org.apache.struts.actions.ForwardAction" parameter="apk_add"></action>
 		
 		<!-- 关于酒店的webservice -->
 		<action path="/hotel"

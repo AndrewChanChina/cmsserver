@@ -5,6 +5,8 @@
 <%@ taglib uri="/WEB-INF/struts-bean.tld" prefix="bean"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="smitpage" uri="/WEB-INF/smitpagetag.tld"%>
+<%@ taglib uri="http://struts.apache.org/tags-tiles" prefix="tiles" %>
+
 <!DOCTYPE html>
 <html>
 	<head>
@@ -62,13 +64,7 @@
 
 	</head>
 	<body>
-		<div id="head_bg">
-			<div class='container'>
-				<div id='header'>
-					酒店叫醒系统
-				</div>
-			</div>
-		</div>
+		<tiles:insert attribute="header"></tiles:insert>
 		<div class='container'>
 			
 			<div id='main'>
@@ -159,13 +155,6 @@
 				</div>
 			</div>
 		</div>
-		<div id="footer_bg">
-			<div class='container'>
-				<div
-					style="text-align: center; vertical-align: middle; line-height: 50px; margin-bottom: 10px;">
-					版权所有
-				</div>
-			</div>
-		</div>
+		<tiles:insert attribute="footer"></tiles:insert>
 	</body>
 </html>

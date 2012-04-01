@@ -135,7 +135,7 @@ public class ClockAction extends MappingDispatchAction {
 
 		request.setAttribute("clockList", clockList);
 		request.setAttribute("roomList", roomList);
-		return mapping.findForward("home");
+		return new ActionForward("/hotel_clock_home.do");
 	}
 
 	public ActionForward find(ActionMapping mapping, ActionForm form,
@@ -247,18 +247,19 @@ public class ClockAction extends MappingDispatchAction {
 	}
 	
 
-	public ActionForward update(ActionMapping mapping, ActionForm form,
+	public ActionForward editForm(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
+		
 		String id = request.getParameter("id");
-		
-		Clock c = clockService.getById(Integer.valueOf(id));
-		c.getWeekofDayBooleanArray();
-		
-		request.setAttribute("clock", c);
-		//saveorupdate(request,form);
+		if(id != null){
+			Clock c = clockService.getById(Integer.valueOf(id));
+			c.getWeekofDayBooleanArray();
+			
+			request.setAttribute("clock", c);
+		}	
 
-		return mapping.findForward("edit_form");
+		return new ActionForward("/hotel_clock_saveorupdate.do");
 	}
 
 	public ActionForward webservice(ActionMapping mapping, ActionForm form,
