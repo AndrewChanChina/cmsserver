@@ -95,6 +95,8 @@
 	</td>
 </tr>
 </c:forEach>	
-	</tbody>	
+</tbody>	
 </table>
-			
+<div>
+<smitpage:page pager="${pb}" />
+</div>			

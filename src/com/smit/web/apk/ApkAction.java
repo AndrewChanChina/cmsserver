@@ -94,21 +94,25 @@ public class ApkAction extends MappingDispatchAction {
 			throws Exception {
 		String type = request.getParameter("type");
 		List<ApkInfo> apkList;
-		SmitPage page = new SmitPage(0);
 
+		SmitPage pager = new SmitPage(WebUtil.getIntByRequestParament(request,
+				SmitPage.pageNumberParameterName, 1));
+		pager.setUrl("apk.do?");
+		
 		if (type != null && type.equals("uninstall")) {
 
-			apkList = apkInfoService.findByNamedParam(page,
+			apkList = apkInfoService.findByNamedParam(pager,
 					new String[] { "type" }, new String[] { TYPE_UPLOAD });
 		} else {
-			apkList = apkInfoService.findByNamedParam(page,
+			apkList = apkInfoService.findByNamedParam(pager,
 					new String[] { "type" }, new String[] { TYPE_DEVICE });
 		}
 
 		request.setAttribute("roomnum", "201");
 		request.setAttribute("type", type);
 		request.setAttribute("apkList", apkList);
-
+		request.setAttribute("pb", pager);
+		
 		return new ActionForward("/hotel_apk_home.do");
 	}
 

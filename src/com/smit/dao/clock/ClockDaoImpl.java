@@ -94,8 +94,11 @@ public class ClockDaoImpl extends HibernateDaoSupport implements ClockDao {
 		if (page == null)
 			return listAll(startTime, endTime);
 
-		List count = getHibernateTemplate().find(
-				"SELECT count(*) FROM com.smit.vo.alarmclock.Clock");
+		StringBuffer hql = new StringBuffer(
+		"SELECT count(*) FROM com.smit.vo.alarmclock.Clock g WHERE g.alarmtime BETWEEN ")
+		.append(startTime).append(" AND ").append(endTime);
+		
+		List count = getHibernateTemplate().find(hql.toString());
 		page.setTotalCount(Integer.parseInt(count.get(0).toString()));
 
 		List list = getHibernateTemplate().executeFind(new HibernateCallback() {
@@ -122,8 +125,18 @@ public class ClockDaoImpl extends HibernateDaoSupport implements ClockDao {
 		if (page == null)
 			return listAll(names, values);
 
-		List count = getHibernateTemplate().find(
-				"SELECT count(*) FROM com.smit.vo.alarmclock.Clock");
+		StringBuffer hql = new StringBuffer("SELECT count(*) FROM com.smit.vo.alarmclock.Clock g");
+		for (int i = 0; i < names.length; i++) {
+			if (i == 0) {
+				hql.append(" WHERE ");
+			} else {
+				hql.append(" AND ");
+			}
+			hql.append(names[i]).append("=\'").append(values[i]).append("\'");
+		}
+		
+		List count = getHibernateTemplate().find(hql.toString());
+		
 		page.setTotalCount(Integer.parseInt(count.get(0).toString()));
 
 		List list = getHibernateTemplate().executeFind(new HibernateCallback() {

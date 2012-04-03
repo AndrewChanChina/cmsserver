@@ -24,6 +24,7 @@ import com.smit.util.Constants;
 import com.smit.util.DaoException;
 import com.smit.util.ServiceException;
 import com.smit.util.SmitPage;
+import com.smit.util.WebUtil;
 import com.smit.vo.alarmclock.Rings;
 import com.smit.web.form.UploadFileForm;
 
@@ -47,9 +48,14 @@ public class MusicAction extends MappingDispatchAction {
 			HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		String opt = request.getParameter(Constants.OPERATOR);
-		SmitPage page = new SmitPage(0);
-		List<Rings> listRings = clockService.findByPartIdRings(page, 1);
+		
+		SmitPage pager = new SmitPage(WebUtil.getIntByRequestParament(request,
+				SmitPage.pageNumberParameterName, 1));
+		pager.setUrl("ring.do?");
+		
+		List<Rings> listRings = clockService.findByPartIdRings(pager, 1);
 		request.setAttribute("listRings", listRings);
+		request.setAttribute("pb", pager);
 		if(opt != null && opt.equals("list")){			
 			return mapping.findForward("list");
 		}

@@ -1,15 +1,20 @@
 tr td{
-    text-align:left;//Ë®Æ½¾ÓÖÐ
-    line-height: 25px;//ÐÐ¸ß  
-    vertical-align:left£»//´¹Ö±¾ÓÖÐ
+    text-align:left;//Ë®Æ½ï¿½ï¿½ï¿½ï¿½
+    line-height: 25px;//ï¿½Ð¸ï¿½  
+    vertical-align:leftï¿½ï¿½//ï¿½ï¿½Ö±ï¿½ï¿½ï¿½ï¿½
     	border-style:dashed;
     	margin-left:10px;
 }
 tr td.col_1{
-    text-align:right;//Ë®Æ½¾ÓÖÐ
-    line-height: 25px;//ÐÐ¸ß  
-    vertical-align:right£»//´¹Ö±¾ÓÖÐ
+    text-align:right;//Ë®Æ½ï¿½ï¿½ï¿½ï¿½
+    line-height: 25px;//ï¿½Ð¸ï¿½  
+    vertical-align:rightï¿½ï¿½//ï¿½ï¿½Ö±ï¿½ï¿½ï¿½ï¿½
     	border-style:dashed;
     	padding-right:10px;
     	background-color:DimGray;
+}
+
+
+#sel_rings_cancel {
+	margin-left: 10px;
 }

@@ -16,8 +16,15 @@
   <StrutsActivity path="/clock_group.do" location="4250,650" dimension="358,84" />
   <StrutsActivity path="/clock_del.do" location="2450,3950" dimension="358,84" />
   <StrutsActivity path="/clock_add.do" location="3050,3950" dimension="358,84" />
+  <StrutsActivity path="/clock_editForm.do" location="3650,3950" dimension="358,84" />
   <StrutsActivity path="/clock_postStatus.do" location="1550,4050" dimension="358,84" />
   <StrutsActivity path="/clock_getStatus.do" location="650,4150" dimension="358,84" />
+  <StrutsActivity path="/hotel_home.do" location="50,4250" dimension="280,84" />
+  <StrutsActivity path="/hotel_clock_home.do" location="1250,4250" dimension="280,84" />
+  <StrutsActivity path="/hotel_clock_saveorupdate.do" location="3950,4250" dimension="280,84" />
+  <StrutsActivity path="/hotel_rings.do" location="650,4350" dimension="280,84" />
+  <StrutsActivity path="/hotel_apk_home.do" location="1850,4350" dimension="280,84" />
+  <StrutsActivity path="/hotel_apk_add.do" location="2450,4350" dimension="280,84" />
   <StrutsActivity path="/hotel.do" location="50,4050" dimension="358,84" />
   <StrutsActivity path="/home.do" location="650,1650" dimension="358,84" />
   <StrutsActivity path="/login_jsp.do" location="2750,50" dimension="280,84" />
@@ -147,9 +154,9 @@
   <StrutsActivity path="/WEB-INF/clock/index.jsp" location="3050,950" dimension="184,48" />
   <StrutsActivity path="/WEB-INF/clock/group_list.jsp" location="3950,4150" dimension="214,48" />
   <StrutsActivity path="/WEB-INF/clock/edit_form.jsp" location="4250,4150" dimension="208,48" />
-  <StrutsActivity path="/WEB-INF/smarthome/home.jsp" location="3650,1150" dimension="202,48" />
   <StrutsActivity path="/WEB-INF/smarthome/roominfo.jsp" location="950,4050" dimension="226,48" />
   <StrutsActivity path="/WEB-INF/smarthome/hotelinfo.jsp" location="1250,4050" dimension="232,48" />
+  <StrutsActivity path="/WEB-INF/smarthome/main.jsp" location="3650,1250" dimension="202,48" />
   <StrutsActivity path="/WEB-INF/sys/pushService/home.jsp" location="2150,2350" dimension="238,48" />
   <StrutsActivity path="/WEB-INF/sys/pushService/login.jsp" location="50,3150" dimension="244,48" />
   <StrutsActivity path="/WEB-INF/sys/pushService/developer_login.jsp" location="350,3150" dimension="304,48" />
@@ -215,6 +222,7 @@
   <StrutsActivity path="/pushservicemanager.do" location="1850,2450" dimension="178,72" />
   <StrutsActivity path="/404.jsp" location="3350,3450" dimension="88,48" />
   <StrutsActivity path="/repeatForm.jsp" location="50,3550" dimension="130,48" />
+  <StrutsActivity path="/WEB-INF/smarthome/home.jsp" location="3650,1150" dimension="202,48" />
   <StrutsActivity path="/tile_text.jsp" location="3350,1250" dimension="124,48" />
   <StrutsActivity path="/WEB-INF/sys/base.jsp" location="650,2350" dimension="166,48" />
   <StrutsActivity path="/WEB-INF/sys/showdetail.jsp" location="2750,2850" dimension="202,48" />
@@ -242,13 +250,8 @@
   <StrutsActivity path="/WEB-INF/clock/status.xml" location="650,3950" dimension="190,48" />
   <StrutsActivity path="/WEB-INF/hotel/roominfo.jsp" location="650,4050" dimension="202,48" />
   <StrutsActivity path="/WEB-INF/clock/index.html" location="2150,4050" dimension="190,48" />
-  <StrutsActivity path="/hotel_home.do" location="50,4250" dimension="280,84" />
-  <StrutsActivity path="/hotel_clock_home.do" location="1250,4250" dimension="280,84" />
-  <StrutsActivity path="/hotel_clock_saveorupdate.do" location="3950,4250" dimension="280,84" />
-  <StrutsActivity path="/hotel_rings.do" location="650,4350" dimension="280,84" />
-  <StrutsActivity path="/clock_editForm.do" location="3650,3950" dimension="358,84" />
-  <StrutsActivity path="/hotel_apk_home.do" location="1850,4350" dimension="280,84" />
-  <StrutsActivity path="/hotel_apk_add.do" />
+  <StrutsActivity path="/clock_room.do" location="3050,4350" dimension="358,84" />
+  <StrutsActivity path="/WEB-INF/clock/room_list.jsp" location="3650,4350" dimension="208,48" />
   <StrutsTransition id="/enableSysInfo.do,reload,/WEB-INF/sys/sysinfo.jsp,1" routingType="0">
     <AutomaticBendpoints>
       <AbsolutePoint location="2208,913" />
@@ -342,15 +345,6 @@
       <AbsolutePoint location="901,3901" />
       <AbsolutePoint location="414,3901" />
       <AbsolutePoint location="414,3950" />
-    </AutomaticBendpoints>
-  </StrutsTransition>
-  <StrutsTransition id="/hotel.do,home,/WEB-INF/smarthome/home.jsp,1" routingType="0">
-    <AutomaticBendpoints>
-      <AbsolutePoint location="50,4092" />
-      <AbsolutePoint location="-55,4092" />
-      <AbsolutePoint location="-55,1213" />
-      <AbsolutePoint location="3751,1213" />
-      <AbsolutePoint location="3751,1198" />
     </AutomaticBendpoints>
   </StrutsTransition>
   <StrutsTransition id="/doc.do,doc,/WEB-INF/pubsub/doc.jsp,1" routingType="0">
@@ -817,15 +811,6 @@
       <AbsolutePoint location="50,3174" />
     </AutomaticBendpoints>
   </StrutsTransition>
-  <StrutsTransition id="/clock_update.do,status,/WEB-INF/clock/status.jsp,1" routingType="0">
-    <AutomaticBendpoints>
-      <AbsolutePoint location="3829,3950" />
-      <AbsolutePoint location="3829,3665" />
-      <AbsolutePoint location="2061,3665" />
-      <AbsolutePoint location="2061,3971" />
-      <AbsolutePoint location="2150,3971" />
-    </AutomaticBendpoints>
-  </StrutsTransition>
   <StrutsTransition id="/clock_add.do,success,/WEB-INF/clock/suc.jsp,1" routingType="0">
     <AutomaticBendpoints>
       <AbsolutePoint location="3229,4034" />
@@ -935,12 +920,6 @@
       <AbsolutePoint location="3941,3192" />
       <AbsolutePoint location="3941,1374" />
       <AbsolutePoint location="3864,1374" />
-    </AutomaticBendpoints>
-  </StrutsTransition>
-  <StrutsTransition id="/clock_update.do,edit_form,/WEB-INF/clock/edit_form.jsp,1" routingType="0">
-    <AutomaticBendpoints>
-      <AbsolutePoint location="3829,3992" />
-      <AbsolutePoint location="4354,4174" />
     </AutomaticBendpoints>
   </StrutsTransition>
   <StrutsTransition id="/pubsub_login.do,login,/WEB-INF/pubsub/login.jsp,1" routingType="0">
@@ -1090,6 +1069,12 @@
       <AbsolutePoint location="1039,2098" />
     </AutomaticBendpoints>
   </StrutsTransition>
+  <StrutsTransition id="/clock_room.do,list,/WEB-INF/clock/room_list.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="3408,4374" />
+      <AbsolutePoint location="3650,4374" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
   <StrutsTransition id="/showBaseLog.do,testOption,/WEB-INF/productControl/option_test.jsp,1" routingType="0">
     <AutomaticBendpoints>
       <AbsolutePoint location="1085,1450" />
@@ -1160,20 +1145,6 @@
     <AutomaticBendpoints>
       <AbsolutePoint location="4051,2434" />
       <AbsolutePoint location="4051,2550" />
-    </AutomaticBendpoints>
-  </StrutsTransition>
-  <StrutsTransition id="/clock_update.do,success,/WEB-INF/clock/suc.jsp,1" routingType="0">
-    <AutomaticBendpoints>
-      <AbsolutePoint location="3799,3950" />
-      <AbsolutePoint location="3799,3725" />
-      <AbsolutePoint location="2001,3725" />
-      <AbsolutePoint location="2001,3413" />
-      <AbsolutePoint location="1115,3413" />
-      <AbsolutePoint location="1115,3465" />
-      <AbsolutePoint location="909,3465" />
-      <AbsolutePoint location="909,3865" />
-      <AbsolutePoint location="458,3865" />
-      <AbsolutePoint location="458,3950" />
     </AutomaticBendpoints>
   </StrutsTransition>
   <StrutsTransition id="/showOrder.do,delete,/WEB-INF/productControl/delete.jsp,1" routingType="0">
@@ -1371,6 +1342,12 @@
     <AutomaticBendpoints>
       <AbsolutePoint location="4336,3334" />
       <AbsolutePoint location="4336,3450" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/hotel.do,main,/WEB-INF/smarthome/main.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="229,4092" />
+      <AbsolutePoint location="0,0" />
     </AutomaticBendpoints>
   </StrutsTransition>
   <StrutsTransition id="/clock_editForm.do,edit_form,/WEB-INF/clock/edit_form.jsp,1" routingType="0">

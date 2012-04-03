@@ -6,6 +6,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="smitpage" uri="/WEB-INF/smitpagetag.tld"%>
 <%@ taglib uri="http://struts.apache.org/tags-tiles" prefix="tiles" %>
+<%@ taglib prefix="smitpage" uri="/WEB-INF/smitpagetag.tld"%>
 
 <!DOCTYPE html>
 <html>
@@ -64,35 +65,52 @@
 
 	</head>
 	<body>
-		<tiles:insert attribute="header"></tiles:insert>
+		
 		<div class='container'>
 			
 			<div id='main'>
 
 				<div id="addclock">
 					<div>
-						<h3 id='showaddclock'>
+						<h4 id='showaddclock'>
 							添加铃声资源
-						</h3>
+						</h4>
 						<form action='ring_add.do' method='post' id="add_ring_form"
 							onsubmit="return checkAndUploadFile()">
-							<div>
-								名称：
-								<input name='name' id="f_name"></input>
-							</div>
+							<table>
+							<tbody>
+							<tr>
+							<td class="col_1">
+							名称：
+							</td>
+							<td><input name='name' id="f_name"></input>
+							</td>
+							</tr>
+							<tr>
+							<td class="col_1">
+							</td>
+							<td>
 							<div id="photo-pick-holder" class="post-section">
-								<div id="photo-flash-holder">
+								<div id="photo-flash-holder" class="inline_class">
 									<input type="file" name="file" id="up-photo" />
 									<input type="hidden" name="photos" id="photo-names">
 								</div>
+								<div id="photo-file-tip" class="inline_class">mp3、ogg、wav等音频文件</div>
 								<div id="photo-pick-tip"></div>
-								<div id="pb-photo-upload-file-status"></div>
-								<div id="photo-file-tip">
-									mp3、ogg、wav等音频文件
-								</div>
-								<div id="pb-photo-upload-total-status"></div>
 							</div>
-							<input type='submit'>
+							</td>
+							</tr>
+							<tr>
+							<td>
+							</td>
+							<td><input type='submit'>
+							</td>
+							</tr>
+							</tbody>
+							</table>
+							
+							
+							
 						</form>
 					</div>
 				</div>
@@ -151,10 +169,12 @@
 							</c:forEach>
 						</tbody>
 				    </table>
-
+					<div>
+						<smitpage:page pager="${pb}" />
+					</div>
 				</div>
 			</div>
 		</div>
-		<tiles:insert attribute="footer"></tiles:insert>
+		
 	</body>
 </html>

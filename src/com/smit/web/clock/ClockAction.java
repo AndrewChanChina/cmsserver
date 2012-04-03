@@ -23,6 +23,7 @@ import com.smit.service.push.IPushDataService;
 import com.smit.util.ApplicationCache;
 import com.smit.util.Constants;
 import com.smit.util.ParamsString;
+import com.smit.util.SmitPage;
 import com.smit.util.WebUtil;
 import com.smit.util.timer.TimeOutTask;
 import com.smit.vo.PushService2User;
@@ -127,7 +128,11 @@ public class ClockAction extends MappingDispatchAction {
 	public ActionForward home(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
-		List<Clock> clockList = clockService.getAllItems();
+		
+		SmitPage pager = new SmitPage(WebUtil.getIntByRequestParament(request,
+				SmitPage.pageNumberParameterName, 1));
+		pager.setUrl("clock.do?");
+		List<Clock> clockList = clockService.listAll(pager);
 		for (Clock c : clockList) {
 			c.getWeekofDayBooleanArray();
 		}
@@ -135,6 +140,8 @@ public class ClockAction extends MappingDispatchAction {
 
 		request.setAttribute("clockList", clockList);
 		request.setAttribute("roomList", roomList);
+		request.setAttribute("pb", pager);
+		
 		return new ActionForward("/hotel_clock_home.do");
 	}
 
@@ -142,15 +149,19 @@ public class ClockAction extends MappingDispatchAction {
 			HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 
+		SmitPage pager = new SmitPage(WebUtil.getIntByRequestParament(request,
+				SmitPage.pageNumberParameterName, 1));
+		pager.setUrl("clock_find.do?");
+		
 		String roomNum = request.getParameter("roomNum");
 		String startTime = request.getParameter("startTime");
 		String endTime = request.getParameter("endTime");
 		List<Clock> clockList = null;
 		if (roomNum != null) {
-			clockList = clockService.queryByName(null,
+			clockList = clockService.queryByName(pager,
 					new String[] { "roomnum" }, new String[] { roomNum });
 		} else if (startTime != null && endTime != null) {
-			clockList = clockService.queryByTime(null,
+			clockList = clockService.queryByTime(pager,
 					Integer.valueOf(startTime), Integer.valueOf(endTime));
 		} else {
 			response.getOutputStream().print("input parameter error");
@@ -160,7 +171,7 @@ public class ClockAction extends MappingDispatchAction {
 		for (Clock c : clockList) {
 			c.getWeekofDayBooleanArray();
 		}
-
+		request.setAttribute("pb", pager);
 		request.setAttribute("clockList", clockList);
 		return mapping.findForward("result");
 	}
@@ -185,7 +196,15 @@ public class ClockAction extends MappingDispatchAction {
 		response.sendRedirect("clock.do");
 		return null;
 	}
+	
+	public ActionForward room(ActionMapping mapping, ActionForm form,
+			HttpServletRequest request, HttpServletResponse response) {
 
+		List<PushService2User> roomList = pushService2UserDao.listRoomNum();
+
+		request.setAttribute("roomList", roomList);
+		return mapping.findForward("list");
+	}
 	
 	public ActionForward group(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response) {
@@ -194,7 +213,7 @@ public class ClockAction extends MappingDispatchAction {
 		clockService.createGroup("dddd", roomNums);
 
 		List<GroupRoom> listRooms = clockService.findGroupByName("dddd");
-		return null;
+		return mapping.findForward("list");
 	}
 
 	// 添加的数据到数据库，然后发消息给客户端，写当前的状态

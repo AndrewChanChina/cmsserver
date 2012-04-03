@@ -32,6 +32,11 @@ public class HotelAction extends DispatchAction {
 		return new ActionForward("/hotel_home.do");
 	}
 	
+	public ActionForward main(ActionMapping mapping, ActionForm form,
+			HttpServletRequest request, HttpServletResponse response) throws IOException{
+		return mapping.findForward("main");
+	}
+	
 	public ActionForward hotelinfo(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response) throws IOException{
 		String roomNum = (String)request.getParameter("roomNum");

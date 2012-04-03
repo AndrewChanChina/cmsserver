@@ -89,6 +89,10 @@
 		<property name="clockService" ref="clockService"></property>
 		<property name="pushService2UserDao" ref="pushService2UserDao"></property>		
 	</bean>	
+	<bean name="/clock_room" class="com.smit.web.clock.ClockAction">
+		<property name="clockService" ref="clockService"></property>
+		<property name="pushService2UserDao" ref="pushService2UserDao"></property>		
+	</bean>	
 	<bean name="/clock_del" class="com.smit.web.clock.ClockAction">
 		<property name="clockService" ref="clockService"></property>
 		<property name="pushService2UserDao" ref="pushService2UserDao"></property>

@@ -1,4 +1,10 @@
+
 #header{
+	color:white;
+}
+a{color:inherit;text-decoration:none;}
+
+/*#header{
 	color:white;
 }
 .clock_time{
@@ -50,4 +56,4 @@
 a{color:inherit;text-decoration:none;}
 strong{font-weight:normal;}
 b{font-weight:normal;}
-#text p{text-indent:40px;}
+#text p{text-indent:40px;}*/

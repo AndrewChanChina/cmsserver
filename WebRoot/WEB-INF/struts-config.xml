@@ -144,6 +144,12 @@
 			<forward name="list" path="/WEB-INF/clock/group_list.jsp" />
 		</action>
 		
+		<action path="/clock_room"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			parameter="room">
+			<forward name="list" path="/WEB-INF/clock/room_list.jsp" />
+		</action>
+		
 		<action path="/clock_del"
 			type="org.springframework.web.struts.DelegatingActionProxy"
 			parameter="delete">
@@ -188,7 +194,7 @@
 			parameter="opt">
 			<forward name="hotelinfo" path="/WEB-INF/smarthome/hotelinfo.jsp" />
 			<forward name="roominfo" path="/WEB-INF/smarthome/roominfo.jsp" />
-			<forward name="home" path="/WEB-INF/smarthome/home.jsp" />
+			<forward name="main" path="/WEB-INF/smarthome/main.jsp" />
 		</action>
 		
 		<!-- 个人 相关的 -->

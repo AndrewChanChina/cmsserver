@@ -37,13 +37,15 @@
     </head>
     <body>
 	
-	<tiles:insert attribute="header"></tiles:insert>
+
 	
 	 <div class='container'>    	
     	
     	<div id='main'>
-    		<div class="menu_sub" href="hotel_apk_home.do">铃声</div>
-			<div class="menu_sub" href="hotel_apk_add.do">添加资源</div>
+    		<div id='sub_menu'>    			
+    				<div class="menu_item "><a href="apk.do">管理APK</a></div>
+					<div class="menu_item menu_item_sel"><a href="hotel_apk_add.do">上传APK</a></div>    				
+    			</div>
 				
     		<div id="addclock">
     			<div>
@@ -86,6 +88,6 @@
     		</div>	
     	</div>
     </div>
-	<tiles:insert attribute="footer"></tiles:insert>
+	
 	</body>
 </html>

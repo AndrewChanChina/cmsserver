@@ -7,17 +7,19 @@
 
  <div id="head_bg">
   	<div class='container'>
- 		<div id='header'>智能酒店管理系统</div>
+ 		<div id='header'><a href="hotel.do">智能酒店管理系统</a></div>
  	</div>
 </div>
 <div class='container'>    	
  	<div id='side_left' class='hide_class0'>    		
- 		<div>
- 			<div class="menu_item"><a href="hotel.do">首页</a></div>
- 			<div class="menu_item"><a href="clock.do">叫醒服务</a></div>
- 			<div class="menu_item"><a href="apk.do">应用管理</a></div>
+ 		<div id="main_menu">
+ 			<div class="menu_item  menu_item_sel"><a href="hotel.do?opt=main" target='mainframe'>首页</a></div>
+ 			<div class="menu_item"><a href="clock_room.do" target='mainframe'>用户团体</a></div>
+ 			<div class="menu_item"><a href="clock.do" target='mainframe'>叫醒服务</a></div>
+ 			<div class="menu_item"><a href="ring.do" target='mainframe'>声音管理</a></div> 			
+ 			<div class="menu_item"><a href="apk.do"  target='mainframe'>应用管理</a></div>
  		</div>
- 		<br>
+ 		
  	</div>    	
 </div>
      

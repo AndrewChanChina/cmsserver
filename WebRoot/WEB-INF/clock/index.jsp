@@ -5,6 +5,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="smitpage" uri="/WEB-INF/smitpagetag.tld"%>
 <%@ taglib uri="http://struts.apache.org/tags-tiles" prefix="tiles" %>
+<%@ taglib prefix="smitpage" uri="/WEB-INF/smitpagetag.tld"%>
 
 <!DOCTYPE html>
 <html>
@@ -24,14 +25,13 @@
         
     </head>
     <body>
-	<tiles:insert attribute="header"></tiles:insert>
 	
     <div class='container'> 
     	<div id='main'>
-    		<div class='sub_menu'>    			
+    		<div id='sub_menu'> 
+    			<div class="menu_item menu_item_sel"><a href="clock.do">条件查询</a></div>    		   			
     			<div class="menu_item"><a href="clock_editForm.do">添加闹钟</a></div>
-    			<div class="menu_item"><a href="clock.do">条件查询</a></div>
-    			<div class="menu_item"><a href="ring.do">声音管理</a></div>
+    				
     		</div>
     		
     		<div class='dotline'></div>
@@ -148,13 +148,14 @@
 					</c:forEach>	
 				</tbody>	
 			</table>
-			</div>				
-				</tbody>				
-			</table>
+			<div>
+				<smitpage:page pager="${pb}" />
+			</div>
+			</div>	
     			
     </div>   	
     </div>
      </div>
-     <tiles:insert attribute="footer"></tiles:insert>
+   
     </body>
 </html>
