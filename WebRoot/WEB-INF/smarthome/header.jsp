@@ -8,6 +8,7 @@
  <div id="head_bg">
   	<div class='container'>
  		<div id='header'><a href="hotel.do">智能酒店管理系统</a></div>
+ 		<div id="logout"><a href="logout.do">登出</a></div>
  	</div>
 </div>
 <div class='container'>    	
@@ -18,6 +19,7 @@
  			<div class="menu_item"><a href="clock.do" target='mainframe'>叫醒服务</a></div>
  			<div class="menu_item"><a href="ring.do" target='mainframe'>声音管理</a></div> 			
  			<div class="menu_item"><a href="apk.do"  target='mainframe'>应用管理</a></div>
+ 			<div class="menu_item"><a href="operationlog.do"  target='mainframe'>日志管理</a></div>
  		</div>
  		
  	</div>    	

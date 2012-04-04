@@ -144,6 +144,17 @@
 			<forward name="list" path="/WEB-INF/clock/group_list.jsp" />
 		</action>
 		
+		<action path="/clock_group_add"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			parameter="group_add">
+		</action>
+		
+		<action path="/clock_room_add"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			parameter="room_add">
+			<forward name="add" path="/WEB-INF/clock/room_add.jsp" />
+		</action>
+		
 		<action path="/clock_room"
 			type="org.springframework.web.struts.DelegatingActionProxy"
 			parameter="room">
@@ -197,6 +208,12 @@
 			<forward name="main" path="/WEB-INF/smarthome/main.jsp" />
 		</action>
 		
+		<action path="/operationlog"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			parameter="opt">
+			<forward name="list" path="/WEB-INF/smarthome/log_list.jsp" />
+		</action>
+		
 		<!-- 个人 相关的 -->
 		<action path="/home"
 			type="org.springframework.web.struts.DelegatingActionProxy"
@@ -204,7 +221,7 @@
 			<forward name="success" path="/WEB-INF/sys/pushService/home.jsp" />
 		</action>	
 		<action path="/login_jsp" type="org.apache.struts.actions.ForwardAction"
-			parameter="/WEB-INF/sys/pushService/login.jsp" scope="request" validate="false">
+			parameter="/WEB-INF/smarthome/index.jsp" scope="request" validate="false">
 		</action>
 		<action path="/login"
 			type="org.springframework.web.struts.DelegatingActionProxy"

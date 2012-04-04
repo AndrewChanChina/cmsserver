@@ -14,4 +14,8 @@ public class GroupRoomDaoImpl extends GenericDaoImpl<GroupRoom, Long> implements
 		return find(sql);
 	}
 
+	public List<GroupRoom> listAllByGroup(){
+		String sql = "SELECT g FROM com.smit.vo.alarmclock.GroupRoom g GROUP BY groupName";
+		return find(sql);
+	}
 }

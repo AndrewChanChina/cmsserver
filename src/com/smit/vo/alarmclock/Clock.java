@@ -3,7 +3,6 @@ package com.smit.vo.alarmclock;
 import java.io.Serializable;
 
 import com.smit.web.clock.Alarm;
-import com.smit.web.clock.Alarm.DaysOfWeek;
 
 public class Clock implements Serializable{
 
@@ -187,8 +186,22 @@ public class Clock implements Serializable{
 	}
 	
 	@Override
-	public String toString() {		
-		return hour.toString() + minutes.toString() + roomnum;		
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+		sb.append("名称=").append(name);
+		sb.append("&时间=").append(hour + ":" + minutes);
+		sb.append("&重复=").append(dayofweek);
+		sb.append("&房间=").append(roomnum);
+		sb.append("&lastLong=").append(lastLong);
+		sb.append("&nextTime=").append(nextTime);
+		sb.append("&repeatTime=").append(repeatTime);
+		if(music != null){
+			sb.append("&music=").append(music);
+		}
+		if(rings != null){
+			sb.append("&rings=").append(rings.getFileName());
+		}
+		return sb.toString();		
 	}
 	
 	public void copy(Clock c){

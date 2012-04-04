@@ -109,12 +109,7 @@
 		pubsub_account.do,
 		test.do,
 		testCharts.do,
-		customerAuth.do,
-		clock.do,
-		clock_del.do,
-		clock_add.do,
-		clock_update.do,
-		hotel.do,
+		customerAuth.do,		
 		clock_webservice.do,
 		clock_postStatus.do,
 		clock_getStatus.do
@@ -171,5 +166,10 @@
     <welcome-file>/WEB-INF/smarthome/index.jsp</welcome-file>
   </welcome-file-list>
   
-</web-app>
+</web-app><!--
 
+clock.do,
+		clock_del.do,
+		clock_add.do,
+		clock_update.do,
+		hotel.do,-->

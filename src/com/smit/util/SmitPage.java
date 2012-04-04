@@ -5,7 +5,7 @@ public class SmitPage {
 	public final static String CUR_PAGE = "CUR_PAGE";
 	public final static String pageNumberParameterName = "cpage";
  	private int pageIndex;
- 	private int pageSize = 2;
+ 	private int pageSize = 20;
  	private int totalCount = 0;
  	private String url;
  	

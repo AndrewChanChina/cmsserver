@@ -8,4 +8,6 @@ import com.smit.vo.alarmclock.GroupRoom;
 public interface GroupRoomDao extends GenericDao <GroupRoom,Long> {
 
 	public List<GroupRoom> findGroupByName(String groupName);
+	
+	public List<GroupRoom> listAllByGroup();
 }

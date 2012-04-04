@@ -1,9 +1,8 @@
 package com.smit.vo.alarmclock;
 
 import java.io.Serializable;
-
-import com.smit.web.clock.Alarm;
-import com.smit.web.clock.Alarm.DaysOfWeek;
+import java.util.ArrayList;
+import java.util.List;
 
 public class GroupRoom implements Serializable{
 
@@ -20,6 +19,9 @@ public class GroupRoom implements Serializable{
 	private Integer roomNumId;
 	private String groupName;
 	private String roomNum;
+	
+	// temp 
+	private List<String> listRoomNums = new ArrayList<String>();
 	
 	private String status;
 	private String description;
@@ -65,8 +67,11 @@ public class GroupRoom implements Serializable{
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	
-	
-	
+	public List<String> getListRoomNums() {
+		return listRoomNums;
+	}
+	public void setListRoomNums(List<String> listRoomNums) {
+		this.listRoomNums = listRoomNums;
+	}
 }
 

@@ -111,7 +111,9 @@
 							 	${clock.lastLong}分钟
 							</td>
 							<td>
-								${clock.repeatTime}次
+								<c:if test="${clock.repeatTime == 0}">无重复</c:if>
+								<c:if test="${clock.repeatTime != 0}">${clock.repeatTime}次</c:if>
+								
 							</td>
 							<td>
 								${clock.nextTime}分钟

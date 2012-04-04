@@ -43,9 +43,11 @@ public interface ClockService {
 	
 	public void createGroup(String groupName,String[] roomNums);
 	public List<GroupRoom> findGroupByName(String groupName);
+	public List<GroupRoom> listAllGroup();
 	
 	public void saveClockLog(Clock clock, String operator);
 	public void saveLogList(LogList logList);
+	public List<LogList> listLatestLog(SmitPage page, String []names, String []values);
 
 	
 	

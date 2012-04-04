@@ -89,10 +89,19 @@
 		<property name="clockService" ref="clockService"></property>
 		<property name="pushService2UserDao" ref="pushService2UserDao"></property>		
 	</bean>	
+	<bean name="/clock_group_add" class="com.smit.web.clock.ClockAction">
+		<property name="clockService" ref="clockService"></property>
+		<property name="pushService2UserDao" ref="pushService2UserDao"></property>		
+	</bean>	
 	<bean name="/clock_room" class="com.smit.web.clock.ClockAction">
 		<property name="clockService" ref="clockService"></property>
 		<property name="pushService2UserDao" ref="pushService2UserDao"></property>		
 	</bean>	
+	<bean name="/clock_room_add" class="com.smit.web.clock.ClockAction">
+		<property name="clockService" ref="clockService"></property>
+		<property name="pushService2UserDao" ref="pushService2UserDao"></property>		
+	</bean>	
+	
 	<bean name="/clock_del" class="com.smit.web.clock.ClockAction">
 		<property name="clockService" ref="clockService"></property>
 		<property name="pushService2UserDao" ref="pushService2UserDao"></property>
@@ -112,10 +121,15 @@
 		<property name="clockService" ref="clockService"></property>
 	</bean>
 	
-	
+
 	<!-- 关于酒店的webservice -->
 	<bean name="/hotel" class="com.smit.web.webService.hotel.HotelAction">
 		<property name="pushService2UserDao" ref="pushService2UserDao"></property>
+	</bean>
+	
+	<bean name="/operationlog" class="com.smit.web.clock.OperationLogAction">
+		<property name="pushService2UserDao" ref="pushService2UserDao"></property>
+		<property name="clockService" ref="clockService"></property>
 	</bean>
 	
 	

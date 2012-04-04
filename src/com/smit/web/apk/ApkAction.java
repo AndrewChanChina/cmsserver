@@ -161,7 +161,7 @@ public class ApkAction extends MappingDispatchAction {
 
 		apkInfoService.save(apkInfo);
 
-		return new ActionForward("/hotel_apk_home.do");
+		return new ActionForward("/apk.do");
 	}
 
 	// 请求客户端删除apk

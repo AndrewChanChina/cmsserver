@@ -78,12 +78,11 @@ public class ClockServiceImpl implements ClockService {
 		clockDao.save(clock);
 	}
 
-	
-	public void updateStatus(Clock clock) {		
+	public void updateStatus(Clock clock) {
 		clockDao.update(clock);
-		saveClockLog(clock,LogList.OP_UPDATE);
+		saveClockLog(clock, LogList.OP_UPDATE);
 	}
-	
+
 	private void update(Clock clock) {
 		clock.setOperation(ParamsString.OP_UPDATE);
 		clock.setStatus(ParamsString.STATUS_SEND);
@@ -93,7 +92,7 @@ public class ClockServiceImpl implements ClockService {
 
 	public void delete(HttpServletRequest request, String[] ids, String pushId,
 			String admin) {
-		
+
 		List<Clock> listClock = new ArrayList<Clock>();
 		List<Alarm> la = new ArrayList<Alarm>();
 		// read database
@@ -103,40 +102,40 @@ public class ClockServiceImpl implements ClockService {
 			if (clock != null) {
 				clock.setOperation(AlarmXmlParse.Operation.s_del);
 				listClock.add(clock);
-				
+
 				Alarm alarm = new Alarm();
 				mapClock2Alarm(request, clock, alarm);
-				alarm.commitUrl = generateCommitUrl(request, clock.getId(),-1);
+				alarm.commitUrl = generateCommitUrl(request, clock.getId(), -1);
 				System.out.println(alarm.commitUrl);
 				la.add(alarm);
 			}
 
 		}
-		
+
 		// send data
-		pushData(request,la,pushId);
-		
-		for(Clock c : listClock){
+		pushData(request, la, pushId);
+
+		for (Clock c : listClock) {
 			// delete
 			delFake(c);
 			// set time out
 			Timer timer = new Timer();
 			TimeOutTask timeoutTask = new TimeOutTask(LogList.TYPE_CLOCK,
-					c.getId(), PUSH_SERVICE_ID, this,null);
+					c.getId(), PUSH_SERVICE_ID, this, null);
 			timer.schedule(timeoutTask, ParamsString.TIME_OUT);
 
 			saveClockLog(c, admin);
 		}
 	}
-	
-	private void delFake(Clock c){
+
+	private void delFake(Clock c) {
 		c.setOperation(ParamsString.OP_DELETE);
 		c.setStatus(ParamsString.STATUS_SEND);
 		updateStatus(c);
 	}
 
 	private boolean pushData(HttpServletRequest request, List<Alarm> la,
-			String pushId){
+			String pushId) {
 
 		HttpSession session = request.getSession();
 		IPushDataService ps = (IPushDataService) session
@@ -145,8 +144,8 @@ public class ClockServiceImpl implements ClockService {
 			return false;
 		}
 
-		List<String> pushIdList = new ArrayList<String>();	
-		
+		List<String> pushIdList = new ArrayList<String>();
+
 		pushIdList.add(pushId);
 
 		String message = AlarmXmlParse.alarmsToXmlItems(la);
@@ -159,11 +158,11 @@ public class ClockServiceImpl implements ClockService {
 		return true;
 	}
 
-	private String generateCommitUrl(HttpServletRequest request, int id,int backupId) {
+	private String generateCommitUrl(HttpServletRequest request, int id,
+			int backupId) {
 		return String.format(WebUtil.getServerAppIPwithPath(request)
-				+ "/clock_postStatus.do?%s=%s&%s=%s&%s=", ParamsString.UUID, id,
-				ParamsString.UUID_BACKUP,backupId,
-				ParamsString.STATUS);
+				+ "/clock_postStatus.do?%s=%s&%s=%s&%s=", ParamsString.UUID,
+				id, ParamsString.UUID_BACKUP, backupId, ParamsString.STATUS);
 	}
 
 	private void mapClock2Alarm(HttpServletRequest request, Clock clock, Alarm a) {
@@ -183,12 +182,12 @@ public class ClockServiceImpl implements ClockService {
 		a.alert = clock.getAlert();
 		a.enabled = clock.getEnable() == 1;
 		a.label = clock.getLabel();
-		if(clock.getMusic() != null){
-			a.musicPath = WebUtil.getServerAppIPwithPath(request) + File.separator
-			+ clock.getMusic();
-		}else{
+		if (clock.getMusic() != null) {
+			a.musicPath = WebUtil.getServerAppIPwithPath(request)
+					+ File.separator + clock.getMusic();
+		} else {
 			a.musicPath = "";
-		}			
+		}
 		a.operation = clock.getOperation();
 		a.nextTime = String.valueOf(clock.getNextTime());
 		a.lastTime = String.valueOf(clock.getLastLong());
@@ -263,15 +262,36 @@ public class ClockServiceImpl implements ClockService {
 		}
 	}
 
+	public List<GroupRoom> listAllGroup() {
+		List<GroupRoom> myList = groupRoomDao.listAllByGroup();
+		for (GroupRoom g : myList) {
+			List<GroupRoom> list = groupRoomDao.findGroupByName(g
+					.getGroupName());
+			if (list == null) {
+				continue;
+			}
+			for (GroupRoom gr : list) {
+				g.getListRoomNums().add(gr.getRoomNum());
+			}
+		}
+
+		return myList;
+	}
+
 	public List<GroupRoom> findGroupByName(String groupName) {
 		return groupRoomDao.findGroupByName(groupName);
 	}
 
+	/**
+	 * for log system
+	 */
 	public void saveClockLog(Clock clock, String operator) {
 		LogList logList = new LogList();
 		logList.initTime();
 		logList.setType(LogList.TYPE_CLOCK);
+		logList.setRoomNum(clock.getRoomnum());
 		logList.setOperation(operator);
+		logList.setKeyData(clock.toString());
 		logList.setOriginData(clock.toString());
 		logListDao.save(logList);
 	}
@@ -280,17 +300,21 @@ public class ClockServiceImpl implements ClockService {
 		logListDao.save(logList);
 	}
 
+	public List<LogList> listLatestLog(SmitPage page, String[] names,
+			String[] values) {
+		return logListDao.listLatestLog(page,names,values);
+	}
+
 	// for a single clock
-	public void saveorUpdate(HttpServletRequest request, Clock c,
-			String pushid) {
+	public void saveorUpdate(HttpServletRequest request, Clock c, String pushid) {
 
 		Clock backupClock = null;
 		int backupid = -1;
 		// modify database
-		if(c.getId() == 0){
+		if (c.getId() == 0) {
 			save(c);
-		}else{
-			// copy 
+		} else {
+			// copy
 			backupClock = new Clock();
 			backupClock.copy(getById(c.getId()));
 			backupClock.setOperation(ParamsString.OP_UPDATE);
@@ -298,39 +322,39 @@ public class ClockServiceImpl implements ClockService {
 			clockDao.save(backupClock);
 			backupid = backupClock.getId();
 			update(c);
-		}	
-		
+		}
+
 		// send to client
-		
+
 		Alarm alarm = new Alarm();
 		alarm.operation = AlarmXmlParse.Operation.s_add;
-		alarm.commitUrl = generateCommitUrl(request,c.getId(),backupid);
+		alarm.commitUrl = generateCommitUrl(request, c.getId(), backupid);
 		mapClock2Alarm(request, c, alarm);
-		pushData(request,alarm,pushid);
-		System.out.println(alarm.commitUrl);			
-		
+		pushData(request, alarm, pushid);
+		System.out.println(alarm.commitUrl);
+
 		// set time out
-		setTimeOut(c.getId(),backupClock);
+		setTimeOut(c.getId(), backupClock);
 
 		// set log
 		String adminName = (String) request.getSession().getAttribute(
 				Constants.CURUSERNAME);
 		saveClockLog(c, adminName);
-		
+
 	}
-	
-	private void setTimeOut(int id,Clock backupClock){
-		
+
+	private void setTimeOut(int id, Clock backupClock) {
+
 		Timer timer = new Timer();
-		TimeOutTask timeoutTask = new TimeOutTask(LogList.TYPE_CLOCK,
-				id,PUSH_SERVICE_ID, this,backupClock);
-		timer.schedule(timeoutTask, ParamsString.TIME_OUT);		
+		TimeOutTask timeoutTask = new TimeOutTask(LogList.TYPE_CLOCK, id,
+				PUSH_SERVICE_ID, this, backupClock);
+		timer.schedule(timeoutTask, ParamsString.TIME_OUT);
 	}
-	
+
 	private boolean pushData(HttpServletRequest request, Alarm alarm,
-			String pushId){
-		
-		if(pushId== null){ // don't need to push 
+			String pushId) {
+
+		if (pushId == null) { // don't need to push
 			return true;
 		}
 
@@ -338,13 +362,13 @@ public class ClockServiceImpl implements ClockService {
 		la.add(alarm);
 		List<String> pushIdList = new ArrayList<String>();
 		pushIdList.add(pushId);
-		
+
 		HttpSession session = request.getSession();
 		IPushDataService ps = (IPushDataService) session
 				.getAttribute(Constants.PUSH_CONNECTION);
 		if (ps == null || !ps.isConnected()) {
 			return false;
-		}		
+		}
 
 		String message = AlarmXmlParse.alarmsToXmlItems(la);
 

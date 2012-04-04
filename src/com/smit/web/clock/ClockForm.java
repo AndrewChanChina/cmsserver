@@ -30,9 +30,33 @@ public class ClockForm extends ActionForm {
 	private Integer repeat_time;
 	private Integer next_time;
 	
+	private String type;
+	private String groupName;
+	
+
 	
 	
 	
+	public String getGroupName() {
+		return groupName;
+	}
+	public void setGroupName(String groupName) {
+		this.groupName = groupName;
+	}
+	public boolean isGroup(){
+		if("group".equals(type)){
+			return true;
+		}else{
+			return false;
+		}
+	}
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
 
 	public Integer getLast_time() {
 		return last_time;

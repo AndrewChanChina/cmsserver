@@ -5,8 +5,6 @@
 <%@ taglib uri="/WEB-INF/struts-bean.tld" prefix="bean"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="smitpage" uri="/WEB-INF/smitpagetag.tld"%>
-<%@ taglib uri="http://struts.apache.org/tags-tiles" prefix="tiles"%>
-<%@ taglib prefix="smitpage" uri="/WEB-INF/smitpagetag.tld"%>
 
 <!DOCTYPE html>
 <html>

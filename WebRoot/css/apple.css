@@ -40,7 +40,7 @@ b {
 	margin-bottom: 4px;
 }
 /*
-** 通用設計
+** common setting
 */
 .inline_class{
 	display: inline-block;
@@ -49,7 +49,7 @@ b {
 .hide_class {
 	display: none;
 }
-/* 主菜单
+/* for mai menu
 */
 #main_menu{
 	margin: 5px 0;
@@ -70,7 +70,7 @@ b {
 }
 
 /* 
-** 子菜单
+** for sub menu
 */
 #sub_menu{
 	margin : 5px 0px;	
@@ -124,7 +124,13 @@ tr td {
 	font-size: 42px;
 	padding: 20px 0;
 }
-/*********************内容页**************************************/
+#logout{
+	margin-top:-40px;
+	padding-bottom:20px;
+	text-align: right;	
+	color:white;
+}
+/*********************for content*************************************/
 #sub_menu .menu_item {
 	display: inline-block;
 }
@@ -301,15 +307,5 @@ for the tourist track*/
 	
 }
 
-/****************************************************************************
-filter some useless feather*/
-#content #text {
-	clear: both;
-	font-size: 20px;
-	color: black;
-	margin-top: -20px;
-	margin-left: 10px;
-	margin-right: 10px;
-	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-}
+
 

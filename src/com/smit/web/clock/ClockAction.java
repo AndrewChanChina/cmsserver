@@ -1,6 +1,7 @@
 package com.smit.web.clock;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -197,6 +198,15 @@ public class ClockAction extends MappingDispatchAction {
 		return null;
 	}
 	
+	public ActionForward room_add(ActionMapping mapping, ActionForm form,
+			HttpServletRequest request, HttpServletResponse response) {
+
+		List<PushService2User> roomList = pushService2UserDao.listRoomNum();
+
+		request.setAttribute("roomList", roomList);
+		return mapping.findForward("add");
+	}
+	
 	public ActionForward room(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response) {
 
@@ -206,13 +216,23 @@ public class ClockAction extends MappingDispatchAction {
 		return mapping.findForward("list");
 	}
 	
+	public ActionForward group_add(ActionMapping mapping, ActionForm form,
+			HttpServletRequest request, HttpServletResponse response) throws IOException {
+		String groupName = request.getParameter("groupName");
+		String[] roomNums = request.getParameterValues("rooms");
+		clockService.createGroup(groupName, roomNums);
+
+		response.getOutputStream().print("ok");
+		return null;
+	}
+	
 	public ActionForward group(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response) {
 
-		String[] roomNums = new String[] { "222", "333", "444" };
-		clockService.createGroup("dddd", roomNums);
+		
+		List<GroupRoom> listGroup = clockService.listAllGroup();
 
-		List<GroupRoom> listRooms = clockService.findGroupByName("dddd");
+		request.setAttribute("listGroup", listGroup);
 		return mapping.findForward("list");
 	}
 
@@ -240,8 +260,7 @@ public class ClockAction extends MappingDispatchAction {
 		c.setNextTime(clockForm.getNext_time());
 		c.setRepeatTime(clockForm.getRepeat_time());
 		c.setLastLong(clockForm.getLast_time());
-
-		c.setRoomnum(clockForm.getRoomnum());
+		
 		c.setDayofweek(clockForm.getDayofWeek());
 		c.setEnable(clockForm.getEnable());
 		c.setVibrate(clockForm.getVibrate());
@@ -256,13 +275,29 @@ public class ClockAction extends MappingDispatchAction {
 		}
 
 		c.getWeekofDayBooleanArray();
-		String status = Constants.SUCCESS;
-
-		String pushid = getPushId(clockForm.getRoomnum());
-		if(pushid == null){
-			// TOO error
+		
+		if(clockForm.isGroup() == false){
+			c.setRoomnum(clockForm.getRoomnum());
+			String pushid = getPushId(clockForm.getRoomnum());
+			if(pushid == null){
+				// TOO error]
+				System.out.print("big error..... what to do ???");
+			}
+			clockService.saveorUpdate(request, c, pushid);
+		}else{
+			List<GroupRoom> listGroupRoom = clockService.findGroupByName(clockForm.getGroupName());
+			for(GroupRoom g : listGroupRoom){	
+				c.setId(0);
+				c.setRoomnum(g.getRoomNum());
+				String pushid = getPushId(g.getRoomNum());
+				if(pushid == null){
+					// TOO error
+					System.out.print("big error.....");
+				}
+				clockService.saveorUpdate(request, c, pushid);
+			}
 		}
-		clockService.saveorUpdate(request, c, pushid);
+		
 	}
 	
 
@@ -276,7 +311,12 @@ public class ClockAction extends MappingDispatchAction {
 			c.getWeekofDayBooleanArray();
 			
 			request.setAttribute("clock", c);
-		}	
+		}else{
+			List<PushService2User> roomList = pushService2UserDao.listRoomNum();
+			request.setAttribute("roomList", roomList);
+			List<GroupRoom> listGroup = clockService.listAllGroup();
+			request.setAttribute("listGroup", listGroup);
+		}
 
 		return new ActionForward("/hotel_clock_saveorupdate.do");
 	}

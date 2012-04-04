@@ -71,13 +71,41 @@
 										房间号
 									</td>
 									<td>
+									<input type='radio' class='f_room' name='type'
+											value='room' checked/>		
 										<select id="select_room" name='roomnum'>
+										<c:if test="${clock == null}">
+											<c:forEach items="${roomList}" var="room">
+											<option value="${room.roomNum}">
+												${room.roomNum}
+											</option>
+											</c:forEach>
+										</c:if>
+										<c:if test="${clock != null}">
 											<option value="${clock.roomnum}">
 												${clock.roomnum}
 											</option>
+										</c:if>											
 										</select>
 									</td>
 								</tr>
+								<c:if test="${clock == null}">
+								<tr>
+									<td class="col_1">
+										群组
+									</td>
+									<td>
+									<input type='radio' class='f_room' name='type' value='group' />		
+									<select id="select_group" name='groupName'>										
+										<c:forEach items="${listGroup}" var="g">
+										<option value="${g.groupName}">
+											${g.groupName}
+										</option>
+										</c:forEach>																			
+									</select>
+									</td>
+								</tr>
+								</c:if>
 								<tr>
 									<td class="col_1">
 										闹钟时间
@@ -152,7 +180,8 @@
 									</td>
 									<td>
 										<input type='radio' name='repeat_time' value="0"
-											<c:if test="${0 == clock.repeatTime}">checked</c:if>>
+											<c:if test="${0 == clock.repeatTime}">checked</c:if>
+											<c:if test="${null == clock}">checked</c:if>>
 										不重复
 										<input type="radio" name='repeat_time' value="1"
 											<c:if test="${1 == clock.repeatTime}">checked</c:if>>

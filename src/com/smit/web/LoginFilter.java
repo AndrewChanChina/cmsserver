@@ -47,7 +47,7 @@ public class LoginFilter implements Filter {
             allowedRequest = true;
         }
         //TODO test now
-        allowedRequest = true;
+        //allowedRequest = true;
         // skip 
 		if(allowedRequest == false){
 			HttpSession session = request.getSession();
