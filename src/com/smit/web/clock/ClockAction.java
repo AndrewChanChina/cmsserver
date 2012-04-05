@@ -71,6 +71,7 @@ public class ClockAction extends MappingDispatchAction {
 		String id = request.getParameter(ParamsString.UUID);
 		String idbackup = request.getParameter(ParamsString.UUID_BACKUP);
 		String status = request.getParameter(ParamsString.STATUS);
+		String localid = request.getParameter(ParamsString.ID);
 		
 		Clock c = clockService.getById(Integer.valueOf(id));
 		if(c == null){
@@ -87,7 +88,8 @@ public class ClockAction extends MappingDispatchAction {
 		}else if(ParamsString.OP_UPDATE.equals(c.getOperation())){
 			Clock clockBackup = clockService.getById(Integer.valueOf(idbackup));
 			if("true".endsWith(status)){
-				c.setStatus(ParamsString.STATUS_SUC);				
+				c.setStatus(ParamsString.STATUS_SUC);	
+				c.setId_local(Integer.valueOf(localid));
 				
 			}else{
 				c.copy(clockBackup);
@@ -354,7 +356,7 @@ public class ClockAction extends MappingDispatchAction {
 			case AlarmXmlParse.Operation.DELETE:
 				Clock clock2 = clockService.getByIdLocal(a.id);
 				if (clock2 != null) {
-					//clockService.delete(clock2);
+					clockService.deleteTrue(clock2);
 				}
 				break;
 			case AlarmXmlParse.Operation.LIST:
@@ -377,9 +379,15 @@ public class ClockAction extends MappingDispatchAction {
 		clock.setEnable(a.enabled ? 1 : 0);
 		clock.setLabel(a.label);
 		clock.setMusic(a.musicPath);
-		clock.setLastLong(Integer.valueOf(a.lastTime));
-		clock.setNextTime(Integer.valueOf(a.nextTime));
-		clock.setRepeatTime(Integer.valueOf(a.repeatTime));
+		if(a.lastTime != null){
+			clock.setLastLong(Integer.valueOf(a.lastTime));
+		}
+		if(a.nextTime != null){
+			clock.setNextTime(Integer.valueOf(a.nextTime));
+		}
+		if(a.repeatTime != null){
+			clock.setRepeatTime(Integer.valueOf(a.repeatTime));
+		}
 	}
 
 	private void mapClock2Alarm(HttpServletRequest request, Clock clock, Alarm a) {

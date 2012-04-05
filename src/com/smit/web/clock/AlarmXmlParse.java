@@ -42,10 +42,12 @@ public class AlarmXmlParse {
 		appendItem(sb,Alarm.Columns.VIBRATE,a.vibrate?1:0);
 		//appendItem(sb,Alarm.Columns.MESSAGE,a.);
 		//appendItem(sb,Alarm.Columns.ALERT,a.alert.toString());
+		appendItem(sb,Alarm.Columns.OPERATION,a.operation);
 		appendItem(sb,Alarm.Columns.NEXT_TIME,a.nextTime);
 		appendItem(sb,Alarm.Columns.REPEAT_TIME,a.repeatTime);
 		appendItem(sb,Alarm.Columns.LAST_TIME,a.lastTime);
 		appendItem(sb,Alarm.Columns.MUSIC,a.musicPath);
+		appendItem(sb,Alarm.Columns.COMMIT_URL,a.commitUrl);
 		sb.append("</").append(ITEM).append(">");
 		return sb.toString();
 		

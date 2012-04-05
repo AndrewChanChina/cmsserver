@@ -6,6 +6,7 @@ public class ParamsString {
 	public static String UUID_BACKUP = "uuid_b";
 	public static String ROOMNUM = "roomNum";
 	public static String STATUS = "status";
+	public static String ID = "id";
 	
 	public static String STATUS_SEND = "sended";
 	public static String STATUS_FAIL = "fail";

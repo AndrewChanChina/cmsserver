@@ -105,6 +105,7 @@ public class ClockServiceImpl implements ClockService {
 
 				Alarm alarm = new Alarm();
 				mapClock2Alarm(request, clock, alarm);
+				alarm.operation = AlarmXmlParse.Operation.s_del;
 				alarm.commitUrl = generateCommitUrl(request, clock.getId(), -1);
 				System.out.println(alarm.commitUrl);
 				la.add(alarm);
@@ -161,7 +162,7 @@ public class ClockServiceImpl implements ClockService {
 	private String generateCommitUrl(HttpServletRequest request, int id,
 			int backupId) {
 		return String.format(WebUtil.getServerAppIPwithPath(request)
-				+ "/clock_postStatus.do?%s=%s&%s=%s&%s=", ParamsString.UUID,
+				+ "/clock_postStatus.do?%s=%s*%s=%s*%s=", ParamsString.UUID,
 				id, ParamsString.UUID_BACKUP, backupId, ParamsString.STATUS);
 	}
 
@@ -185,6 +186,7 @@ public class ClockServiceImpl implements ClockService {
 		if (clock.getMusic() != null) {
 			a.musicPath = WebUtil.getServerAppIPwithPath(request)
 					+ File.separator + clock.getMusic();
+			a.musicPath = a.musicPath.replace("\\", "/");
 		} else {
 			a.musicPath = "";
 		}
@@ -307,7 +309,7 @@ public class ClockServiceImpl implements ClockService {
 
 	// for a single clock
 	public void saveorUpdate(HttpServletRequest request, Clock c, String pushid) {
-
+		boolean bUpdate = false;
 		Clock backupClock = null;
 		int backupid = -1;
 		// modify database
@@ -322,19 +324,26 @@ public class ClockServiceImpl implements ClockService {
 			clockDao.save(backupClock);
 			backupid = backupClock.getId();
 			update(c);
+			bUpdate = true;
 		}
 
 		// send to client
+		if(pushid != null){
+			Alarm alarm = new Alarm();
+			
+			alarm.commitUrl = generateCommitUrl(request, c.getId(), backupid);
+			mapClock2Alarm(request, c, alarm);
+			alarm.operation = AlarmXmlParse.Operation.s_add;
+			if(bUpdate){
+				alarm.operation = AlarmXmlParse.Operation.s_update;
+			}
+			pushData(request, alarm, pushid);
+			System.out.println(alarm.commitUrl);
 
-		Alarm alarm = new Alarm();
-		alarm.operation = AlarmXmlParse.Operation.s_add;
-		alarm.commitUrl = generateCommitUrl(request, c.getId(), backupid);
-		mapClock2Alarm(request, c, alarm);
-		pushData(request, alarm, pushid);
-		System.out.println(alarm.commitUrl);
-
-		// set time out
-		setTimeOut(c.getId(), backupClock);
+			// set time out
+			setTimeOut(c.getId(), backupClock);			
+		}
+		
 
 		// set log
 		String adminName = (String) request.getSession().getAttribute(
