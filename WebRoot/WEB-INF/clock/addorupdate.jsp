@@ -57,6 +57,7 @@
 						<form class="" action='clock_add.do' method='post'
 							id="add_clock_form" onsubmit="return checkAdd()">
 							<input type="hidden" name="id" value="${clock.id}">
+							<input type="hidden" name="local_id" value="${clock.id_local}">
 							<table>
 								<tr>
 									<td class="col_1">
@@ -223,7 +224,7 @@
 											value='server'
 											<c:if test="${clock.rings != null}">checked</c:if>>
 										使用服务器资源
-										<input type="hidden" name="server_music" value="1">
+										<input type="hidden" name="server_music" value="${clock.rings.id}">
 										&nbsp;&nbsp;
 										<a href="ring.do">上传声音资源</a>
 										<div id="show_music_for_sel">

@@ -75,6 +75,7 @@ public class ClockServiceImpl implements ClockService {
 	private void save(Clock clock) {
 		clock.setOperation(ParamsString.OP_CREATE);
 		clock.setStatus(ParamsString.STATUS_SEND);
+		clock.setEnable(1);
 		clockDao.save(clock);
 	}
 

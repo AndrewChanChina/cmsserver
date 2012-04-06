@@ -32,11 +32,17 @@ public class ClockForm extends ActionForm {
 	
 	private String type;
 	private String groupName;
-	
+	private int local_id;
 
 	
 	
 	
+	public int getLocal_id() {
+		return local_id;
+	}
+	public void setLocal_id(int local_id) {
+		this.local_id = local_id;
+	}
 	public String getGroupName() {
 		return groupName;
 	}

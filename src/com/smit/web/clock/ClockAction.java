@@ -101,6 +101,7 @@ public class ClockAction extends MappingDispatchAction {
 		}else{
 			if("true".endsWith(status)){
 				c.setStatus(ParamsString.STATUS_SUC);
+				c.setId_local(Integer.valueOf(localid));
 			}else{
 				c.setStatus(ParamsString.STATUS_FAIL);
 			}		
@@ -266,6 +267,7 @@ public class ClockAction extends MappingDispatchAction {
 		c.setDayofweek(clockForm.getDayofWeek());
 		c.setEnable(clockForm.getEnable());
 		c.setVibrate(clockForm.getVibrate());
+		c.setId_local(clockForm.getLocal_id());
 
 		if (clockForm.getMusic().equals("default") == false) {
 			Rings rings = clockService.getByIdRings(Integer.valueOf(clockForm
